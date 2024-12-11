@@ -6,6 +6,7 @@
 
 html {
     overflow-x: hidden;
+    font-family: sans-serif;
 }
 
 body {
@@ -18,4 +19,17 @@ body {
 
 span {
     color: rgba(41, 171, 226);
+}
+
+h1 {
+    height: 73px;
+}
+
+h2 {
+    margin-bottom: 16px;
+}
+
+.legal-info-container {
+    margin-bottom: 16px;
+    margin-top: 16px;
 }
