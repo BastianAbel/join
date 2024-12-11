@@ -1,0 +1,48 @@
+.nav-bar-container {
+    cursor: pointer;
+}
+
+@media (max-width: 428px) {
+    .nav-bar-main-container {
+        max-width: 428px;
+        height: 80px;
+        background-color: rgb(42, 54, 71);
+        display: flex;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .nav-bar {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .nav-bar-container {
+        width: 76px;
+        height: 76px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        color: rgb(240, 240, 240);
+        transition: background-color 0.2s ease;
+        border-radius: 16px;
+        &:hover {
+            background-color: rgb(9, 25, 41);
+            color: rgb(255, 255, 255);
+            border-radius: 16px;
+        }
+    }
+
+    .nav-bar-container img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .nav-bar-container span {
+        font-weight: 400;
+        font-size: 14px;
+    }
+}
