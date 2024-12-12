@@ -1,22 +1,22 @@
 @font-face {
-    font-family: "Inter", sans-serif;;
-    src: url('../assets/fonts/Inter-VariableFont_opsz\,wght.ttf');
+    font-family: inter;
+    src: url("../assets/fonts/Inter-VariableFont_opsz\,wght.ttf");
 }
 
 * {
-    --dark-background: #2A3647;
+    --dark-background: #2a3647;
     --dark-accent: #091931;
-    --light-background: #F6F7F8;
-    --light--accent: #FFFFFF;
-    --identity: #007CEE;
-    --light-text-color: #FFFFFF;
+    --light-background: #f6f7f8;
+    --light--accent: #ffffff;
+    --identity: #007cee;
+    --light-text-color: #ffffff;
     --dark-text-color: #000000;
-    --accent-text-color: #2A3647;
+    --accent-text-color: #2a3647;
 }
 
-html, body {
+html,
+body {
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Inter';
+    font-family: inter, sans-serif;
 }
-
