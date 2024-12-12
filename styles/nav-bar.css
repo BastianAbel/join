@@ -42,7 +42,7 @@ body {
             border-radius: 16px;
 
             #nav-bar-img-2 {
-                content: url(../icons/board-white.svg);
+                content: url(../assets/icons/);
                 width: 24px;
                 height: 24px;
             }
