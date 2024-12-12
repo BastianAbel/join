@@ -40,22 +40,6 @@ body {
             background-color: rgb(9, 25, 41);
             color: rgb(255, 255, 255);
             border-radius: 16px;
-
-            #nav-bar-img-2 {
-                content: url(../assets/icons/);
-                width: 24px;
-                height: 24px;
-            }
-            #nav-bar-img-3 {
-                content: url(../icons/add-to-task-white.svg);
-                width: 24px;
-                height: 24px;
-            }
-            #nav-bar-img-4 {
-                content: url(../icons/contacts-white.svg);
-                width: 24px;
-                height: 24px;
-            }
         }
     }
 
@@ -72,7 +56,7 @@ body {
 
 #nav-bar-container-summary:hover {
     #nav-bar-img-1 {
-        content: url(../icons/summary-white.svg);
+        content: url(../assets/icons/summary-white.svg);
         width: 24px;
         height: 24px;
     }
@@ -80,7 +64,7 @@ body {
 
 #nav-bar-container-board:hover {
     #nav-bar-img-2 {
-        content: url(../icons/board-white.svg);
+        content: url(../assets/icons/board-white.svg);
         width: 24px;
         height: 24px;
     }
@@ -88,7 +72,7 @@ body {
 
 #nav-bar-container-add-to-task:hover {
     #nav-bar-img-3 {
-        content: url(../icons/add-to-task-white.svg);
+        content: url(../assets/icons/add-to-task-white.svg);
         width: 24px;
         height: 24px;
     }
@@ -96,7 +80,7 @@ body {
 
 #nav-bar-container-contacts:hover {
     #nav-bar-img-4 {
-        content: url(../icons/contacts-white.svg);
+        content: url(../assets/icons/contacts-white.svg);
         width: 24px;
         height: 24px;
     }
