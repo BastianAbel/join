@@ -1,0 +1,22 @@
+@font-face {
+    font-family: "Inter", sans-serif;;
+    src: url('../assets/fonts/Inter-VariableFont_opsz\,wght.ttf');
+}
+
+* {
+    --dark-background: #2A3647;
+    --dark-accent: #091931;
+    --light-background: #F6F7F8;
+    --light--accent: #FFFFFF;
+    --identity: #007CEE;
+    --light-text-color: #FFFFFF;
+    --dark-text-color: #000000;
+    --accent-text-color: #2A3647;
+}
+
+html, body {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Inter';
+}
+
