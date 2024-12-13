@@ -74,11 +74,11 @@ span {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-top: 8px;
     position: relative;
-    padding-bottom: 8px;
+    padding-bottom: 13px;
+    padding-right: 21px;
+    padding-left: 13px;
+    padding-top: 13px;
 }
 
 input {
@@ -111,10 +111,28 @@ input {
     align-items: center;
     justify-content: center;
     padding-top: 24px;
+    gap: 20px;
 }
+
 
 .button-container img {
     padding: 4px;
+}
+
+.delete-button {
+    background-color: white;
+    color: var(--accent-text-color);
+    font-size: 21px;
+    font-weight: 400;
+    border-radius: 10px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 
 .create-contact-button {
