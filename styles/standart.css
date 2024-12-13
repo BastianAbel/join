@@ -12,6 +12,7 @@
     --light-text-color: #ffffff;
     --dark-text-color: #000000;
     --accent-text-color: #2a3647;
+    --prime-blue: #01bee8;
 }
 
 html,
@@ -19,4 +20,8 @@ body {
     margin: 0;
     box-sizing: border-box;
     font-family: inter, sans-serif;
+}
+
+.d-flex {
+    display: flex;
 }
