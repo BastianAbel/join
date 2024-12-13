@@ -1,7 +1,108 @@
+* {
+    --contactlist-element-padding: 0 38px;
+    --contactlist-element-width: 100%;
+}
+
+main {
+    overflow-x: auto;
+}
+
 .contactlist-container {
     display: flex;
     flex-direction: column;
-    padding: 24px 0;
+    align-items: center;
+    margin: 24px 0;
+    padding: var(--contactlist-element-padding);
 }
 
-.contact-category {}
+.contactlist-category {
+    width: var(--contactlist-element-width);
+    height: 58px;
+    display: flex;
+    align-items: center;
+}
+
+.contactlist-category span {
+    font-size: 20px;
+    font-weight: 400;
+    margin-left: 36px;
+}
+
+.contactlist-contact {
+    width: var(--contactlist-element-width);
+    height: 78px;
+    display: flex;
+    align-items: center;
+}
+
+.contactlist-contact .profile-picture {
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--light-text-color);
+    font-size: 12px;
+    font-weight: 400;
+    margin-right: 35px;
+    margin-left: 24px;
+}
+
+.contactlist-name-and-email {
+    height: 42px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contactlist-name-and-email span {
+    font-weight: 400;
+    font-size: 20px;
+    width: var(--contactlist-element-width);
+}
+
+.contactlist-name-and-email a {
+    text-decoration: none;
+    width: var(--contactlist-element-width);
+}
+
+.contactlist-separator {
+    width: var(--contactlist-element-width);
+    height: 1px;
+    background-color: rgb(212, 212, 212);
+    margin: 4px 0;
+}
+
+.test-profile-picture-background {
+    background-color: crimson;
+}
+
+  main::-webkit-scrollbar {
+    height: 100%;
+    width: 3px;
+    margin-right: 5px;
+  }
+  
+  main::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  main::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 10px;
+  }
+  
+  main::-webkit-scrollbar-thumb:hover {
+    background: darkgray;
+  }
+  
+  main::-webkit-scrollbar-button {
+    display: none !important;
+  }
+  
+
+@media(max-width: 320px) {
+    * {
+        --contactlist-element-padding: 0 19px;
+    }
+}
