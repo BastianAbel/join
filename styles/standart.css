@@ -12,11 +12,13 @@
     --light-text-color: #ffffff;
     --dark-text-color: #000000;
     --accent-text-color: #2a3647;
-    --prime-blue: #01bee8;
+    --prime-blue: #00bee8;
 }
 
 html,
-body {
+body,
+input,
+button {
     margin: 0;
     box-sizing: border-box;
     font-family: inter, sans-serif;

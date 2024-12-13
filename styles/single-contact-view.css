@@ -2,7 +2,7 @@
     padding-left: 16px;
     padding-right: 16px;
     background-color: #F6F7F8;
-    height: 100vh ;
+    height: calc(100vh - 160px) ;
 }
 
 .contact-head {
@@ -64,7 +64,7 @@ span {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 50%;
+    width: 90px;
     border-bottom: 3px solid #01bee8;
 }
 
