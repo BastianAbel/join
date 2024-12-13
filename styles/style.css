@@ -1,7 +1,7 @@
 header {
     display: flex;
     justify-content: center;
-    box-shadow: 0px 4px 4px 0px #0000001A;
+    box-shadow: 0px 4px 4px 0px #0000001a;
 }
 
 .header {
@@ -27,4 +27,12 @@ header {
     color: var(--identity);
     font-size: 21px;
     font-weight: 600;
+}
+
+main {
+    width: 320px;
+    min-width: 320px;
+    max-width: 1920px;
+    padding: 32px !important;
+    min-height: calc(100vh - 160px);
 }

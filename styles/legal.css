@@ -1,6 +1,5 @@
 * {
     margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
@@ -9,15 +8,8 @@ html {
 }
 
 body {
-}
-
-main {
-    width: 320px;
-    min-width: 320px;
-    max-width: 1920px;
-
-    padding: 32px;
-    height: calc(100% -160px);
+    display: flex;
+    flex-direction: column;
 }
 
 .highlight {
