@@ -1,27 +1,20 @@
-html {
-    border-right: solid red 5px;
-}
-
 @font-face {
     font-family: "Open Sans";
     src: url(../assets/fonts/OpenSans-Regular.ttf);
 }
 
 * {
-    max-width: 428px;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 
 .section-one {
     max-width: 396px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-left: 10px;
-    
+    margin-left: 16px;
     padding-top: 45px;
     padding-bottom: 32px;
 }
@@ -42,8 +35,7 @@ html {
 .section-two,
 .section-four {
     max-width: 396px;
-    margin-left: 10px;
-    
+    margin-left: 16px;
 }
 
 .user-input-section {
@@ -86,12 +78,13 @@ html {
     max-width: 396px;
     display: flex;
     flex-direction: column;
-    margin-left: 10px;
+    margin-left: 16px;
     padding-top: 25px;
 }
 
 .section-three-headline,
-.section-four-headline {
+.section-four-headline,
+.section-five-headline {
     display: flex;
     justify-content: space-between;
     margin-bottom: 12px;
@@ -130,3 +123,17 @@ html {
     width: 111px;
     height: 19px;
 }
+
+.in-progress-content, .await-feedback-content {
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.section-five {
+    max-width: 396px;
+    margin-left: 16px;
+    margin-bottom: 128px;
+}
+
+
