@@ -16,7 +16,7 @@ body {
     padding: 32px;
 }
 
-span {
+.highlight {
     color: rgba(41, 171, 226);
 }
 
