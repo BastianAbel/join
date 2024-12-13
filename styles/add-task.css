@@ -1,0 +1,79 @@
+#add-task-main {
+    width: 320px;
+    padding: 8px;
+}
+
+.add-task-attribute-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.require-asterisk {
+    color: red;
+}
+
+.add-task-attribute-input {
+    border: 2px solid rgba(209, 209, 209);
+    border-radius: 10px;
+    min-height: 24px;
+    margin-top: 8px;
+    margin-right: 8px;
+    margin-bottom: 24px;
+    font-size: 16px;
+}
+
+#task-description {
+    height: 64px;
+    resize: none;
+}
+
+::placeholder {
+    color: rgba(209, 209, 209);
+}
+
+#prio-container {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    width: 310px;
+    padding-top: 8px;
+}
+
+.prio-btn {
+    border: 2px solid rgba(209, 209, 209);
+    border-radius: 10px;
+    height: 24px;
+    width: 104px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    gap: 4px;
+}
+
+#prio-urgent-btn:hover {
+    color: var(--light-text-color);
+    background-color: #ff3d00;
+    & img {
+        content: url("../assets/icons/prio-alta-white.svg");
+    }
+}
+
+#prio-medium-btn:hover {
+    color: var(--light-text-color);
+    background-color: #ffa800;
+    & img {
+        content: url("../assets/icons/prio-media-white.svg");
+    }
+}
+
+#prio-low-btn:hover {
+    color: var(--light-text-color);
+    background-color: #7ae229;
+    & img {
+        content: url("../assets/icons/prio-baja-white.svg");
+    }
+}

@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="../styles/standart.css">
 	<link rel="stylesheet" href="../styles/nav-bar.css">
 	<link rel="stylesheet" href="../styles/style.css">
+	<link rel="stylesheet" href="../styles/add-task.css">
 	<title>Add Task</title>
 </head>
     <body>
@@ -21,7 +22,99 @@
                 <button class="profile-button">G</button>
             </section>
         </header>
-        <main></main>
+        <main id="add-task-main">
+            <h1>Add Task</h1>
+            <div class="create-task-container">
+                <form>
+                    <div class="add-task-attribute-container">
+                        <label for="task-titel">Title<span class="require-asterisk">*</span></label>
+                        <input
+                            id="task-titel"
+                            class="add-task-attribute-input"
+                            type="text"
+                            placeholder="Enter a title"
+                            required
+                        />
+                    </div>
+                    <div class="add-task-attribute-container">
+                        <label for="task-description">Description</label>
+                        <textarea
+                            id="task-description"
+                            class="add-task-attribute-input"
+                            placeholder="Enter a Description"
+                        ></textarea>
+                    </div>
+                    <div class="add-task-attribute-container">
+                        <label for="task-contact-select">Assigned to</label>
+                        <select
+                            id="task-contact-select"
+                            class="add-task-attribute-input"
+                        >
+                            <option
+                                value=""
+                                disabled
+                                selected
+                            >
+                                Select contacts to assign
+                            </option>
+                            <option value="anton mayer">Anton Mayer</option>
+                            <option value="anja schulz">Anja Schulz</option>
+                            <option value="bendikt ziegler">Bendikt Ziegler</option>
+                            <option value="david eisenberg">David Eisenberg</option>
+                            <option value="eva fischer">Eva Fischer</option>
+                            <option value="emmanuel mauer">Emmanuel Mauer</option>
+                        </select>
+                    </div>
+                    <div class="add-task-attribute-container">
+                        <label for="task-due-date">Due date<span class="require-asterisk">*</span></label>
+                        <input
+                            id="task-due-date"
+                            class="add-task-attribute-input"
+                            type="text"
+                            placeholder="dd/mm/yyyy"
+                            onfocus="(this.type='date')"
+                            onblur="(this.type='text')"
+                            required
+                        />
+                    </div>
+                    <div class="add-task-attribute-container">
+                        <label>Prio</label>
+                        <div id="prio-container">
+                            <div
+                                id="prio-urgent-btn"
+                                class="prio-btn"
+                            >
+                                <span>Urgent</span
+                                ><img
+                                    src="../assets/icons/prio-alta-red.svg"
+                                    alt=""
+                                />
+                            </div>
+                            <div
+                                id="prio-medium-btn"
+                                class="prio-btn"
+                            >
+                                <span>Medium</span
+                                ><img
+                                    src="../assets/icons/prio-media-orange.svg"
+                                    alt=""
+                                />
+                            </div>
+                            <div
+                                id="prio-low-btn"
+                                class="prio-btn"
+                            >
+                                <span>Low</span
+                                ><img
+                                    src="../assets/icons/prio-baja-green.svg"
+                                    alt=""
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
         <div class="nav-bar-main-container">
             <div class="nav-bar">
                 <div
