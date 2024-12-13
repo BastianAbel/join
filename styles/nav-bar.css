@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    height: 100vh;
+    max-width: 428px;
 }
 
 .nav-bar-container {
@@ -55,10 +55,9 @@ body {
 
 #nav-bar-container-summary:hover {
     #nav-bar-img-1 {
-        content: url(../assets/icons/summary-white.svg);
-        content: url(../assets/icons/summary-white.svg);
-        width: 24px;
-        height: 24px;
+    content: url(../assets/icons/summary-white.svg);
+    width: 24px;
+    height: 24px;
     }
 }
 
