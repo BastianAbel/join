@@ -1,10 +1,11 @@
 * {
-    --contactlist-element-padding: 0 38px;
+    --contactlist-element-padding: 0 26px;
     --contactlist-element-width: 100%;
 }
 
 main {
     overflow-x: auto;
+    margin: 0 12px;
 }
 
 .contactlist-container {
@@ -77,29 +78,45 @@ main {
     background-color: crimson;
 }
 
-  main::-webkit-scrollbar {
+main::-webkit-scrollbar {
     height: 100%;
     width: 3px;
-    margin-right: 5px;
-  }
-  
-  main::-webkit-scrollbar-track {
+}
+
+main::-webkit-scrollbar-track {
     background: transparent;
-  }
-  
-  main::-webkit-scrollbar-thumb {
+}
+
+main::-webkit-scrollbar-thumb {
     background: gray;
     border-radius: 10px;
-  }
-  
-  main::-webkit-scrollbar-thumb:hover {
+}
+
+main::-webkit-scrollbar-thumb:hover {
     background: darkgray;
-  }
-  
-  main::-webkit-scrollbar-button {
+}
+
+main::-webkit-scrollbar-button {
     display: none !important;
-  }
-  
+}
+
+.options-icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 56px;
+    width: 56px;
+    position: absolute;
+    background-color: var(--dark-background);
+    bottom: 100px;
+    right: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.options-icon-container:hover {
+    background-color: var(--identity);
+}
 
 @media(max-width: 320px) {
     * {
