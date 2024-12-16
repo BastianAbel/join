@@ -1,5 +1,9 @@
 #add-task-main {
     width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .add-task-attribute-container {
@@ -14,11 +18,11 @@
 .add-task-attribute-input {
     border: 2px solid rgba(209, 209, 209);
     border-radius: 10px;
-    min-height: 24px;
+    min-height: 40px;
     margin-top: 8px;
-    margin-right: 8px;
     margin-bottom: 24px;
     font-size: 16px;
+    padding-left: 8px;
 }
 
 #task-description {
@@ -36,16 +40,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 8px;
     width: 310px;
     padding-top: 8px;
+    margin-bottom: 24px;
 }
 
 .prio-btn {
     border: 2px solid rgba(209, 209, 209);
     border-radius: 10px;
     height: 24px;
-    width: 104px;
+    width: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,7 +57,8 @@
     gap: 4px;
 }
 
-#prio-urgent-btn:hover {
+#prio-urgent-btn:hover,
+#prio-urgent-btn:active {
     color: var(--light-text-color);
     background-color: var(--icon-urgent-red);
     & img {
@@ -61,7 +66,8 @@
     }
 }
 
-#prio-medium-btn:hover {
+#prio-medium-btn:hover,
+#prio-medium-btn:active {
     color: var(--light-text-color);
     background-color: var(--icon-medium-yellow);
     & img {
@@ -69,10 +75,70 @@
     }
 }
 
-#prio-low-btn:hover {
+#prio-low-btn:hover,
+#prio-low-btn:active {
     color: var(--light-text-color);
     background-color: var(--icon-low-green);
     & img {
         content: url("../assets/icons/prio-baja-white.svg");
     }
+}
+
+#sub-task-input-container {
+    border: 2px solid rgba(209, 209, 209);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: fit-content;
+    margin-top: 8px;
+    padding-right: 4px;
+}
+
+#subtask-titel {
+    border: none;
+    margin: 0;
+}
+
+.d_none {
+    display: none;
+}
+
+#substask-list {
+    padding: 0 4px;
+}
+
+#substask-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+#add-task-btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    padding-bottom: 8px;
+}
+
+.add-task-btn {
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    height: 40px;
+}
+
+#add-task-clear-btn {
+    background-color: white;
+}
+
+#create-task-btn {
+    background-color: var(--accent-text-color);
+    color: white;
 }
