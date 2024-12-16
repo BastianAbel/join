@@ -13,6 +13,10 @@ span {
     font-size: 20px;
 }
 
+button {
+    cursor: pointer;
+}
+
 .add-contact-container {
     background-color: var(--accent-text-color);
     height: 352px;
@@ -31,6 +35,7 @@ span {
     justify-content: end;
     padding-top: 24px;
     padding-right: 24px;
+    cursor: pointer;
 }
 
 
@@ -125,14 +130,11 @@ input {
     font-size: 21px;
     font-weight: 400;
     border-radius: 10px;
-    padding-top: 18px;
-    padding-bottom: 18px;
-    padding-left: 10px;
-    padding-right: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
- 
+    width: 82px;
+    height: 51px;
 }
 
 .create-contact-button {
@@ -141,11 +143,11 @@ input {
     font-size: 21px;
     font-weight: 700;
     border-radius: 10px;
-    padding-top: 18px;
-    padding-bottom: 18px;
     padding-left: 10px;
     padding-right: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 99px;
+    height: 51px;
 }
