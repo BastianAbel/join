@@ -31,7 +31,11 @@ header {
     color: var(--prime-blue);
     font-size: 21px;
     font-weight: 600;
+    &:hover {
+        background-color: var(--light-background);
+    }
 }
+
 .submenu-popup-container {
     height: 204px;
     width: 150px;
