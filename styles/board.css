@@ -16,7 +16,7 @@ body {
 
 #board-main {
     width: 100% !important;
-    padding:0;
+    padding: 0;
     background-color: rgb(246, 247, 248);
     height: calc(100vh - 160px);
     overflow: auto;
@@ -64,21 +64,21 @@ body {
     border-radius: 10px;
     margin-right: 16px;
     padding: 8px 16px 8px 16px;
-    ::placeholder {
+        ::placeholder {
         color: rgba(209, 209, 209, 1);
         font-size: 20px;
         font-weight: 400;
-        text-align: justify;
     }
 }
 
 .user-input-field {
+    font-size: 20px;
+    font-weight: 400;
+    outline: none;
     width: 280px;
     height: 32px;
-    display: flex;
-    justify-content: space-between;
     border: none;
-}
+} 
 
 .user-input-section button {
     cursor: pointer;
@@ -141,7 +141,7 @@ body {
     height: 19px;
 }
 
-.section-four-headline img{
+.section-four-headline img {
     cursor: pointer;
 }
 
@@ -168,6 +168,6 @@ body {
     margin-top: 12px;
 }
 
-.section-five-headline img{
+.section-five-headline img {
     cursor: pointer;
 }
