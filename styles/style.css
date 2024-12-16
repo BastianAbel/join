@@ -1,7 +1,7 @@
 header {
     display: flex;
     justify-content: center;
-    box-shadow: 0px 4px 4px 0px #0000001A;
+    box-shadow: 0px 4px 4px 0px #0000001a;
     background-color: var(--light--accent);
 }
 
@@ -60,7 +60,6 @@ header {
     padding-left: 16px;
 }
 
-main {
 /* main {
     width: 320px;
     min-width: 320px;
