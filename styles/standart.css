@@ -34,6 +34,11 @@ button {
     justify-content: center;
 }
 
+main {
+    height: calc(100vh - 160px);
+}
+
 button {
     cursor: pointer;
 }
+
