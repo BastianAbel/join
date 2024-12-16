@@ -12,6 +12,14 @@ body {
     flex-direction: column;
 }
 
+main {
+    width: 320px;
+    min-width: 320px;
+    max-width: 1920px;
+    padding: 32px;
+    min-height: calc(100vh - 160px);
+}
+
 .highlight {
     color: rgba(41, 171, 226);
 }

@@ -10,7 +10,7 @@ header {
     align-items: center;
     height: 80px;
     width: 100%;
-    box-shadow: 0 -6px 10px 5px rgba(0,0,0,0.5);
+    box-shadow: 0 -6px 10px 5px rgba(0, 0, 0, 0.5);
 }
 
 .header img {
@@ -53,15 +53,15 @@ header {
     height: 46px;
     width: 130px;
     padding-top: 8px;
-    
+
     padding-right: 16px;
     padding-left: 16px;
 }
 
-main {
+/* main {
     width: 320px;
     min-width: 320px;
     max-width: 1920px;
     padding: 32px;
     min-height: calc(100vh - 160px);
-}
+} */

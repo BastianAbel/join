@@ -1,6 +1,9 @@
 #add-task-main {
     width: 320px;
-    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .add-task-attribute-container {
@@ -15,11 +18,11 @@
 .add-task-attribute-input {
     border: 2px solid rgba(209, 209, 209);
     border-radius: 10px;
-    min-height: 24px;
+    min-height: 40px;
     margin-top: 8px;
-    margin-right: 8px;
     margin-bottom: 24px;
     font-size: 16px;
+    padding-left: 8px;
 }
 
 #task-description {
@@ -37,7 +40,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 8px;
     width: 310px;
     padding-top: 8px;
 }
@@ -46,7 +48,7 @@
     border: 2px solid rgba(209, 209, 209);
     border-radius: 10px;
     height: 24px;
-    width: 104px;
+    width: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
