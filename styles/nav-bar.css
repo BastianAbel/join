@@ -55,9 +55,9 @@ body {
 
 #nav-bar-container-summary:hover {
     #nav-bar-img-1 {
-    content: url(../assets/icons/summary-white.svg);
-    width: 24px;
-    height: 24px;
+        content: url(../assets/icons/summary-white.svg);
+        width: 24px;
+        height: 24px;
     }
 }
 

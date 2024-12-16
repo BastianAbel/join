@@ -1,7 +1,7 @@
 header {
     display: flex;
     justify-content: center;
-    box-shadow: 0px 4px 4px 0px #0000001A;
+    box-shadow: 0px 4px 4px 0px #0000001a;
 }
 
 .header {
@@ -29,7 +29,6 @@ header {
     font-size: 21px;
     font-weight: 600;
 }
-
 .submenu-popup-container {
     height: 204px;
     width: 150px;
@@ -57,4 +56,12 @@ header {
     
     padding-right: 16px;
     padding-left: 16px;
+}
+
+main {
+    width: 320px;
+    min-width: 320px;
+    max-width: 1920px;
+    padding: 32px;
+    min-height: calc(100vh - 160px);
 }
