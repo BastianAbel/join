@@ -3,6 +3,7 @@ header {
     justify-content: center;
     box-shadow: 0px 4px 4px 0px #0000001a;
     background-color: var(--light--accent);
+    z-index: 1000;
 }
 
 .header {
@@ -17,6 +18,7 @@ header {
 .header img {
     height: 40px;
     margin: 0 16px;
+    cursor: pointer;
 }
 
 .header button {
@@ -55,15 +57,9 @@ header {
     height: 46px;
     width: 130px;
     padding-top: 8px;
-
     padding-right: 16px;
     padding-left: 16px;
+    &:hover{
+        color: var(--identity);
+    }
 }
-
-/* main {
-    width: 320px;
-    min-width: 320px;
-    max-width: 1920px;
-    padding: 32px;
-    min-height: calc(100vh - 160px);
-} */

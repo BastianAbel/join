@@ -4,7 +4,6 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Join</title>
-        <link rel="shortcut icon" href="/assets/icons/join-logo-white.svg" type="image/x-icon">
         <link rel="shortcut icon" href="/assets/icons/join-logo-white.svg" type="image/x-icon" />
         <link rel="stylesheet" href="/styles/board.css" />
         <link rel="stylesheet" href="/styles/standart.css" />
@@ -15,11 +14,12 @@
     <body>
         <header>
             <section class="header">
-                <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
+                <a href="/index.html"> <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
+                </a>
                 <button class="profile-button">G</button>
             </section>
         </header>
-        <main id="board-main">
+            <main id="board-main">
             <section class="section-one">
                 <div><h2>Board</h2></div>
                 <div><img src="/assets/icons/plus-add-task.svg" alt="Add Task" /></div>
@@ -33,7 +33,7 @@
                 </div>
             </section>
             <section class="section-three">
-                <div class="section-three-headline">
+                <div class="board-progress-state">
                     <h2>To do</h2>
                     <img src="/assets/icons/plus-button.svg" alt="Add" />
                 </div>
@@ -42,7 +42,7 @@
                 </div>
             </section>
             <section class="section-four">
-                <div class="section-four-headline">
+                <div class="board-progress-state">
                     <h2>In progress</h2>
                     <img src="/assets/icons/plus-button.svg" alt="Add" />
                 </div>
@@ -64,9 +64,9 @@
                             </div>
                             <div class="user-and-card-mover-container">
                                 <div class="user-main">
-                                    <div><div class="user1">AM</div></div>
-                                    <div class="user-container"><div class="user2">EM</div></div>
-                                    <div class="user-container"><div class="user3">MB</div></div>
+                                    <div><div class="user test-profile-picture-background">AM</div></div>
+                                    <div class="user-container"><div class="user test-profile-picture-background">EM</div></div>
+                                    <div class="user-container"><div class="user test-profile-picture-background">MB</div></div>
                                 </div>
                                 <div class="move-card-button"><img src="/assets/icons/medium.svg" alt="Medium"></div>
                             </div>
@@ -75,11 +75,17 @@
                 </div>
             </section>
             <section class="section-five">
-                <div class="section-five-headline">
+                <div class="board-progress-state">
                     <h2>Await feedback</h2>
                     <img src="/assets/icons/plus-button.svg" alt="Add" />
                 </div>
                 <div class="await-feedback-content"></div>
+            </section>
+            <section class="section-five">
+                <div class="board-progress-state">
+                    <h2>Done</h2>
+                    <img src="/assets/icons/plus-button.svg" alt="Add" />
+                </div>
             </section>
         </main>
         <div class="nav-bar-main-container">

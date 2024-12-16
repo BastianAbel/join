@@ -1,14 +1,22 @@
-let tasks = [
-    {
-        id: 0,
-        type: "userStory", // || "technicalTask"
-        title: "Kochwelt Page & Recipe Recommender",
-        description: "Build start page recipe recommendation",
-        dueDate: "10.05.2023",
-        priority: "medium", // || "urgent" || "low"
-        assignedTo: ["Emmanuel Mauer", "Marcel Bauer", "Anton Mayer"],
-        subtasks: ["Implement Recipe Recommendation", "Start Page Layout"],
-        state: "backlog", // || "todo" || "testing" || "done"
+let tasks = {
+    /*Generated Id*/ : {
+        "type": "userStory", // || "technicalTask"
+        "title": "Kochwelt Page & Recipe Recommender",
+        "description": "Build start page recipe recommendation",
+        "dueDate": "10.05.2023",
+        "priority": "medium", // || "urgent" || "low"
+        "assignedTo": ["Emmanuel Mauer", "Marcel Bauer", "Anton Mayer"],
+        "subtasks": [
+            {
+                "description": "Implement Recipe Recommendation",
+                "checked": true
+            },
+            {
+                "description": "Start Page Layout",
+                "checked": false
+            }
+        ],
+        "state": "backlog", // || "todo" || "testing" || "done"
     },
     {
         id: 1,
@@ -32,4 +40,4 @@ let tasks = [
         subtasks: [],
         state: "todo",
     },
-];
+};

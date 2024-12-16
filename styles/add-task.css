@@ -99,6 +99,10 @@
     padding-right: 4px;
 }
 
+#sub-task-input-container img {
+    cursor: pointer;
+}
+
 #subtask-title {
     border: none;
     margin: 0;

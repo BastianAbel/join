@@ -1,9 +1,8 @@
-let contacts = [
-    {
-        id: 0,
-        name: "Anton Mayer",
-        email: "anton@gmail.com",
-        phone: "+49 1111 111 11 1",
+let contacts = {
+    /*Generated Id*/ : {
+        "name": "Anton Mayer",
+        "email": "anton@gmail.com",
+        "phone": "+49 1111 111 11 1",
     },
     {
         id: 1,
@@ -35,4 +34,4 @@ let contacts = [
         email: "emmanuelma@gmail.com",
         phone: "+49 6666 666 66 6",
     },
-];
+};

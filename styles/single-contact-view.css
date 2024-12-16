@@ -105,6 +105,14 @@ span {
     width: 24px;
 }
 
+.edit-popup-container span {
+ color: var(--accent-text-color);
+}
+
+.edit-popup-container span:hover {
+ color: var(--identity);
+}
+
 .info-container {
     display: flex;
     flex-direction: column;
