@@ -33,3 +33,7 @@ button {
     align-items: center;
     justify-content: center;
 }
+
+main {
+    height: calc(100vh - 160px);
+}
