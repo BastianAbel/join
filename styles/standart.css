@@ -12,6 +12,9 @@
     --light-text-color: #ffffff;
     --dark-text-color: #000000;
     --accent-text-color: #2a3647;
+    --icon-urgent-red: #ff3d00;
+    --icon-medium-yellow: #ffa800;
+    --icon-low-green: #7ae229;
 }
 
 html,

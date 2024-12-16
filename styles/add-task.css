@@ -56,7 +56,7 @@
 
 #prio-urgent-btn:hover {
     color: var(--light-text-color);
-    background-color: #ff3d00;
+    background-color: var(--icon-urgent-red);
     & img {
         content: url("../assets/icons/prio-alta-white.svg");
     }
@@ -64,7 +64,7 @@
 
 #prio-medium-btn:hover {
     color: var(--light-text-color);
-    background-color: #ffa800;
+    background-color: var(--icon-medium-yellow);
     & img {
         content: url("../assets/icons/prio-media-white.svg");
     }
@@ -72,7 +72,7 @@
 
 #prio-low-btn:hover {
     color: var(--light-text-color);
-    background-color: #7ae229;
+    background-color: var(--icon-low-green);
     & img {
         content: url("../assets/icons/prio-baja-white.svg");
     }
