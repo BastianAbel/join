@@ -4,22 +4,23 @@
     <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" href="../assets/icons/join-logo-dark.svg" type="image/x-icon">
-	<link rel="stylesheet" href="../styles/standart.css">
-	<link rel="stylesheet" href="../styles/nav-bar.css">
-	<link rel="stylesheet" href="../styles/style.css">
-	<link rel="stylesheet" href="../styles/add-task.css">
-    <script src="../scripts/add_task.js" defer></script>
-    <script src="../scripts/db_contacts.js" defer></script>
-    <script src="../scripts/db_tasks.js" defer></script>
-    <script src="../scripts/add_task_template.js" defer></script>
+
+	<link rel="shortcut icon" href="/assets/icons/join-logo-white.svg" type="image/x-icon">
+	<link rel="stylesheet" href="/styles/standart.css">
+	<link rel="stylesheet" href="/styles/nav-bar.css">
+	<link rel="stylesheet" href="/styles/style.css">
+	<link rel="stylesheet" href="/styles/add-task.css">
+    <script src="/scripts/add_task.js" defer></script>
+    <script src="/scripts/db_contacts.js" defer></script>
+    <script src="/scripts/db_tasks.js" defer></script>
+    <script src="/scripts/add_task_template.js" defer></script>
 	<title>Add Task</title>
 </head>
     <body onload="getAllContactNames()">
         <header>
             <section class="header">
                 <img
-                    src="../assets/icons/join-logo-dark.svg"
+                    src="/assets/icons/join-logo-dark.svg"
                     alt="Join Logo"
                 />
                 <button class="profile-button">G</button>
@@ -83,7 +84,7 @@
                             >
                                 <span>Urgent</span
                                 ><img
-                                    src="../assets/icons/prio-alta-red.svg"
+                                    src="/assets/icons/prio-alta-red.svg"
                                     alt=""
                                 />
                             </div>
@@ -93,7 +94,7 @@
                             >
                                 <span>Medium</span
                                 ><img
-                                    src="../assets/icons/prio-media-orange.svg"
+                                    src="/assets/icons/prio-media-orange.svg"
                                     alt=""
                                 />
                             </div>
@@ -103,7 +104,7 @@
                             >
                                 <span>Low</span
                                 ><img
-                                    src="../assets/icons/prio-baja-green.svg"
+                                    src="/assets/icons/prio-baja-green.svg"
                                     alt=""
                                 />
                             </div>
@@ -136,7 +137,7 @@
                                 placeholder="Add new Subtask"
                             />
                             <img
-                                src="../assets/icons/plus-subtask.svg"
+                                src="/assets/icons/plus-subtask.svg"
                                 alt="plus-icon"
                                 onclick="addSubTask()"
                             />
@@ -153,7 +154,7 @@
                             >
                                 Clear
                                 <img
-                                    src="../assets/icons/close-black.svg"
+                                    src="/assets/icons/close-black.svg"
                                     alt=""
                                 />
                             </button>
@@ -163,7 +164,7 @@
                             >
                                 Create Task
                                 <img
-                                    src="../assets/icons/check.svg"
+                                    src="/assets/icons/check.svg"
                                     alt=""
                                 />
                             </button>
@@ -174,50 +175,10 @@
         </main>
         <div class="nav-bar-main-container">
             <div class="nav-bar">
-                <div
-                    id="nav-bar-container-summary"
-                    class="nav-bar-container"
-                >
-                    <img
-                        id="nav-bar-img-1"
-                        src="../assets/icons/summary.svg"
-                        alt=""
-                    />
-                    <span>Summary</span>
-                </div>
-                <div
-                    id="nav-bar-container-board"
-                    class="nav-bar-container"
-                >
-                    <img
-                        id="nav-bar-img-2"
-                        src="../assets/icons/board.svg"
-                        alt=""
-                    />
-                    <span>Board</span>
-                </div>
-                <div
-                    id="nav-bar-container-add-to-task"
-                    class="nav-bar-container"
-                >
-                    <img
-                        id="nav-bar-img-3"
-                        src="../assets/icons/add-to-task.svg"
-                        alt=""
-                    />
-                    <span>Add Task</span>
-                </div>
-                <div
-                    id="nav-bar-container-contacts"
-                    class="nav-bar-container"
-                >
-                    <img
-                        id="nav-bar-img-4"
-                        src="../assets/icons/contacts.svg"
-                        alt=""
-                    />
-                    <span>Contacts</span>
-                </div>
+                <a href="" id="nav-bar-container-summary" class="nav-bar-container"><img id="nav-bar-img-1" src="/assets/icons/summary.svg" alt="" /> <span>Summary</span></a>
+                <a href="" id="nav-bar-container-board" class="nav-bar-container"><img id="nav-bar-img-2" src="/assets/icons/board.svg" alt="" /> <span>Board</span></a>
+                <a href="" id="nav-bar-container-add-to-task" class="nav-bar-container"><img id="nav-bar-img-3" src="/assets/icons/add-to-task.svg" alt="" /> <span>Add Task</span></a>
+                <a href="" id="nav-bar-container-contacts" class="nav-bar-container"><img id="nav-bar-img-4" src="/assets/icons/contacts.svg" alt="" /> <span>Contacts</span></a>
             </div>
         </div>
     </body>
