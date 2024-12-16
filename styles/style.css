@@ -48,6 +48,7 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    cursor: pointer;
 }
 
 .submenu-text-container span {
@@ -59,6 +60,7 @@ header {
     padding-left: 16px;
 }
 
+main {
 /* main {
     width: 320px;
     min-width: 320px;
