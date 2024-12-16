@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html>
+<!-- prettier-ignore -->
 
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible' content='IE=edge">
     <title>Contact</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='../styles/style.css'>
-    <link rel='stylesheet' type='text/css' media='screen' href='../styles/responsive/single-contact-view.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../styles/single-contact-view.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='../styles/standart.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../styles/nav-bar.css'>
     <script src='../scripts/main.js'></script>
 </head>
 
 <body>
     <!-- Platz für Header -->
+    <header>
+        <section class="header">
+            <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo">
+            <button class="profile-button">G</button>
+        </section>
+    </header>
 
     <!-- Beginn HTML Kontakt Seite -->
     <div class="contact-container">
@@ -21,7 +29,7 @@
             <div>
                 <h1>Contacts</h1>
             </div>
-            <div>
+            <div class="arrow-position">
                 <img class="" src="../assets/icons/blue-arrow-left.svg" alt="">
             </div>
         </div>
@@ -32,19 +40,41 @@
         </div>
         <div class="contact-information">
             <span>Contact Information</span>
-            <span><b>Email</b></span>
-            <a href="#">anton@gmail.com</a>
-            <span><b>Phone</b></span>
-            <span>+49 1111 111 11 1</span>
+            <span class="small-span"><b>Email</b></span>
+            <a class="small-span" href="#">anton@gmail.com</a>
+            <span class="small-span"><b>Phone</b></span>
+            <span class="small-span">+49 1111 111 11 1</span>
         </div>
-        <img class="options-style" src="../assets/icons/options-logo.svg" alt="">
-
+        <!-- edit/delete popup -->
+        <div class="edit-popup-container">
+            <div>
+                <img src="../assets/icons/edit-symbol.svg" alt=""><span class="small-span">Edit</span>
+            </div>
+            <div>
+                <img src="../assets/icons/delete.svg" alt=""><span class="small-span">Delete
+            </div>
+        </div>
+        <!---->
+        <div class="options-icon-container">
+            <img class="options-style" src="../assets/icons/options-logo.svg" alt="">
+        </div>
     </div>
 
 
-
-
-
+    </div>
+    <!-- NavBar -->
+    <div class="nav-bar-main-container">
+        <div class="nav-bar">
+            <div id="nav-bar-container-summary" class="nav-bar-container"><img id="nav-bar-img-1"
+                    src="../assets/icons/summary.svg" alt="" /> <span>Summary</span></div>
+            <div id="nav-bar-container-board" class="nav-bar-container"><img id="nav-bar-img-2"
+                    src="../assets/icons/board.svg" alt="" /> <span>Board</span></div>
+            <div id="nav-bar-container-add-to-task" class="nav-bar-container"><img id="nav-bar-img-3"
+                    src="../assets/icons/add-to-task.svg" alt="" /> <span>Add Task</span></div>
+            <div id="nav-bar-container-contacts" class="nav-bar-container"><img id="nav-bar-img-4"
+                    src="../assets/icons/contacts.svg" alt="" /> <span>Contacts</span></div>
+        </div>
+    </div>
 </body>
 
 </html>

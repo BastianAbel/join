@@ -12,13 +12,26 @@
     --light-text-color: #ffffff;
     --dark-text-color: #000000;
     --accent-text-color: #2a3647;
+    --prime-blue: #00bee8;
+    --icon-urgent-red: #ff3d00;
+    --icon-medium-yellow: #ffa800;
+    --icon-low-green: #7ae229;
 }
 
 html,
-body {
+body,
+input,
+button {
     margin: 0;
     box-sizing: border-box;
     font-family: inter, sans-serif;
+    overflow-x: hidden;
+}
+
+.d-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 main {

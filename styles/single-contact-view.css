@@ -1,0 +1,117 @@
+.contact-container {
+    padding-left: 16px;
+    padding-right: 16px;
+    background-color: #F6F7F8;
+    height: calc(100vh - 160px);
+}
+
+.contact-head {
+    display: flex;
+    align-items: normal;
+    justify-content: space-between;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1 {
+    margin-bottom: 0px;
+    font-weight: 700;
+    font-size: 47px;
+}
+
+h2 {
+    font-size: 36px;
+    font-weight: 700;
+}
+
+span {
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.small-span {
+    font-size: 16px;
+}
+
+.contact-name {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 13px;
+    padding-top: 34px;
+}
+
+.contact-name img {
+    height: 80px;
+    width: 80px;
+}
+
+.contact-information {
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+}
+
+.border-bottom {
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.border-bottom::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 90px;
+    border-bottom: 3px solid #01bee8;
+}
+
+.options-icon-container {
+    display: flex;
+    align-items: end;
+    justify-content: end;
+}
+
+.options-style {
+    height: 56px;
+    width: 56px;
+    position: absolute;
+    bottom: 100px;
+}
+
+.arrow-position {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.edit-popup-container {
+    width: 116px;
+    height: 100px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    position: absolute;
+    left: 208px;
+    bottom: 160px;
+}
+
+.edit-popup-container div {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    height: 40px;
+    width: 96px;
+    font-size: 16px;
+}
+
+.edit-popup-container img {
+    height: 24px;
+    width: 24px;
+}
