@@ -99,20 +99,17 @@
     padding-right: 4px;
 }
 
-#subtask-titel {
+#subtask-title {
     border: none;
     margin: 0;
+    outline: none;
 }
 
-.d_none {
-    display: none;
-}
-
-#substask-list {
+#subtask-list {
     padding: 0 4px;
 }
 
-#substask-list li {
+#subtask-list li {
     display: flex;
     justify-content: space-between;
     align-items: center;

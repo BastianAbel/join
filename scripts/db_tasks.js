@@ -7,7 +7,7 @@ let tasks = [
         dueDate: "10.05.2023",
         priority: "medium", // || "urgent" || "low"
         assignedTo: ["Emmanuel Mauer", "Marcel Bauer", "Anton Mayer"],
-        subtasks: [{ id: 2 }, { id: 5 }], // in task-card shown: task.title ("Implement Recipe Recommendation")
+        subtasks: ["Implement Recipe Recommendation", "Start Page Layout"],
         state: "backlog", // || "todo" || "testing" || "done"
     },
     {
@@ -18,7 +18,7 @@ let tasks = [
         dueDate: "02.09.2023",
         priority: "urgent",
         assignedTo: ["Sofia Müller (You)", "Benedikt Ziegler"],
-        subtasks: [{ id: 7 }, { id: 8 }],
+        subtasks: ["Establish CSS Methodology", "Setup Base Styles"],
         state: "todo",
     },
     {

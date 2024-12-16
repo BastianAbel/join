@@ -9,9 +9,13 @@
 	<link rel="stylesheet" href="../styles/nav-bar.css">
 	<link rel="stylesheet" href="../styles/style.css">
 	<link rel="stylesheet" href="../styles/add-task.css">
+    <script src="../scripts/add_task.js" defer></script>
+    <script src="../scripts/db_contacts.js" defer></script>
+    <script src="../scripts/db_tasks.js" defer></script>
+    <script src="../scripts/add_task_template.js" defer></script>
 	<title>Add Task</title>
 </head>
-    <body>
+    <body onload="getAllContactNames()">
         <header>
             <section class="header">
                 <img
@@ -26,9 +30,9 @@
             <div class="create-task-container">
                 <form>
                     <div class="add-task-attribute-container">
-                        <label for="task-titel">Title<span class="require-asterisk">*</span></label>
+                        <label for="task-title">Title<span class="require-asterisk">*</span></label>
                         <input
-                            id="task-titel"
+                            id="task-title"
                             class="add-task-attribute-input"
                             type="text"
                             placeholder="Enter a title"
@@ -56,12 +60,6 @@
                             >
                                 Select contacts to assign
                             </option>
-                            <option value="anton mayer">Anton Mayer</option>
-                            <option value="anja schulz">Anja Schulz</option>
-                            <option value="bendikt ziegler">Bendikt Ziegler</option>
-                            <option value="david eisenberg">David Eisenberg</option>
-                            <option value="eva fischer">Eva Fischer</option>
-                            <option value="emmanuel mauer">Emmanuel Mauer</option>
                         </select>
                     </div>
                     <div class="add-task-attribute-container">
@@ -77,7 +75,7 @@
                         />
                     </div>
                     <div class="add-task-attribute-container">
-                        <label>Prio</label>
+                        <label for="prio-container">Prio</label>
                         <div id="prio-container">
                             <div
                                 id="prio-urgent-btn"
@@ -129,10 +127,10 @@
                         </select>
                     </div>
                     <div class="add-task-attribute-container">
-                        <label for="subtask-titel">Subtasks</label>
+                        <label for="subtask-title">Subtasks</label>
                         <div id="sub-task-input-container">
                             <input
-                                id="subtask-titel"
+                                id="subtask-title"
                                 class="add-task-attribute-input"
                                 type="text"
                                 placeholder="Add new Subtask"
@@ -140,25 +138,11 @@
                             <img
                                 src="../assets/icons/plus-subtask.svg"
                                 alt="plus-icon"
+                                onclick="addSubTask()"
                             />
                         </div>
                         <div id="subtask-list-container">
-                            <ul id="substask-list">
-                                <li>
-                                    <span>Dummy-Subtask 1</span
-                                    ><img
-                                        src="../assets/icons/trashcan.svg"
-                                        alt="trashcan-logo"
-                                    />
-                                </li>
-                                <li>
-                                    <span>Dummy-Subtask 2</span
-                                    ><img
-                                        src="../assets/icons/trashcan.svg"
-                                        alt="trashcan-logo"
-                                    />
-                                </li>
-                            </ul>
+                            <ul id="subtask-list"></ul>
                         </div>
                     </div>
                     <div class="add-task-attribute-container">
