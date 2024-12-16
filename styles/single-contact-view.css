@@ -51,7 +51,7 @@ span {
 .contact-information {
     display: flex;
     flex-direction: column;
-    gap: 21px;
+    gap: 22px;
 }
 
 .border-bottom {
@@ -72,6 +72,7 @@ span {
     display: flex;
     align-items: end;
     justify-content: end;
+    cursor: pointer;
 }
 
 .options-style {
@@ -85,6 +86,7 @@ span {
     display: flex;
     align-items: center;
     justify-content: start;
+    cursor: pointer;
 }
 
 .edit-popup-container {
@@ -98,6 +100,7 @@ span {
     position: absolute;
     left: 208px;
     bottom: 160px;
+    cursor: pointer;
 }
 
 .edit-popup-container div {
@@ -114,4 +117,10 @@ span {
 .edit-popup-container img {
     height: 24px;
     width: 24px;
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }

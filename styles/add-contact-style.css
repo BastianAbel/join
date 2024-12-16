@@ -124,12 +124,10 @@ input {
     font-size: 21px;
     font-weight: 700;
     border-radius: 10px;
-    padding-top: 18px;
-    padding-bottom: 18px;
-    padding-left: 10px;
-    padding-right: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 202px;
+    height: 51px;
 }
 
