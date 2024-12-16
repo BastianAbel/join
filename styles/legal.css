@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    width: 320px;
+    min-width: 320px;
+    max-width: 1920px;
+    padding: 32px;
+    min-height: calc(100vh - 160px);
+}
+
+.highlight {
+    color: rgba(41, 171, 226);
+}
+
+h1 {
+    height: 73px;
+}
+
+h2 {
+    margin-bottom: 16px;
+}
+
+.legal-info-container {
+    margin-bottom: 16px;
+    margin-top: 16px;
+}
