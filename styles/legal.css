@@ -16,12 +16,23 @@ main {
     background-color: var(--light-background);
 }
 
-main>div {
+main > div {
     margin: 8px;
 }
 
 main a {
     display: inline-block;
+}
+
+.headline-and-arrow-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 32px;
+
+    & img {
+        margin-top: -44px;
+    }
 }
 
 .highlight {
@@ -39,4 +50,11 @@ h2 {
 .legal-info-container {
     margin-bottom: 16px;
     margin-top: 16px;
+}
+
+.arrow-position {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    cursor: pointer;
 }
