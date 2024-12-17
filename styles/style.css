@@ -13,6 +13,7 @@ header {
     height: 80px;
     width: 100%;
     box-shadow: 0 -6px 10px 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
 }
 
 .header img {
@@ -63,7 +64,7 @@ header {
     padding-top: 8px;
     padding-right: 16px;
     padding-left: 16px;
-    &:hover{
+    &:hover {
         color: var(--identity);
     }
 }
