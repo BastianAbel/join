@@ -1,0 +1,180 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+main {
+    width: 396px;
+    height: 724px;
+    border-radius: 30px;
+    padding: 32px 24px;
+    gap: 16px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+tr {
+    width: 348px;
+    height: 19px;
+}
+
+.userstory-close-container {
+    width: 348px;
+    height: 32px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.userstory-close-container img {
+    height: 24px;
+    width: 24px;
+}
+
+.date-container {
+    display: flex;
+    width: 348px;
+    height: 19px;
+    gap: 25px;
+}
+
+.info-text {
+    color: #42526E;
+}
+
+.priority-container {
+    display: flex;
+    align-items: center;
+    width: 348px;
+    height: 27px;
+    gap: 25px;
+}
+
+.priority-state-container {
+    display: flex;
+    align-items: center;
+    width: 124px;
+    height: 27px;
+    padding: 4px 18px 4px 18px;
+    gap: 10px;
+    border-radius: 10px 0px 0px 0px;
+    opacity: 0px;
+
+}
+
+.priority-state-container img {
+    width: 17px;
+    height: 6.33px;
+}
+
+.assigned-contacts-container {
+    display: flex;
+    flex-direction: column;
+    width: 445px;
+    height: 208px;
+    gap: 8px;
+}
+
+.assigned-head {
+    width: 348px;
+    height: 24px;
+    color: #42526E;
+}
+
+.assigned-contacts {
+    width: 348px;
+    height: 176px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.contact {
+    width: 348px;
+    height: 56px;
+    padding: 7px 16px 7px 16px;
+    gap: 0px;
+    border-radius: 10px 0px 0px 0px;
+    display: flex;
+    justify-content: space-between;
+    opacity: 0px;
+}
+
+.contact-img {
+    width: 42px;
+    height: 42px;
+    border: 2px;
+    background-color: var(--contact-green);
+    border-radius: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+    font-weight: 400;
+    gap: 10px;
+}
+
+.contact-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+}
+
+.subtasks-head {
+    color: #42526E;
+    width: 348px;
+    height: 19px;
+}
+
+.subtasks {
+    height: 95px;
+    width: 348px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.subtasks-container {
+    width: 348px;
+    height: 68px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.subtask-element-container {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    padding: 6px 16px 6px 16px;
+    gap: 16px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.seperator {
+    height: 24px;
+    width: 1px;
+    border: 1px;
+    background-color: #D1D1D1;
+}
+
+.delete-edit-container {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 8px;
+}
