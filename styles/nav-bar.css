@@ -25,6 +25,10 @@ body {
     justify-content: space-around;
 }
 
+.nav-bar a{
+    text-decoration: none;
+}
+
 .nav-bar-container {
     width: 76px;
     height: 76px;
