@@ -72,7 +72,7 @@
 }
 
 #prio-urgent-btn:hover,
-#prio-urgent-btn:active {
+.active-urgent {
     color: var(--light-text-color);
     background-color: var(--icon-urgent-red);
     & img {
@@ -81,7 +81,7 @@
 }
 
 #prio-medium-btn:hover,
-#prio-medium-btn:active {
+.active-medium {
     color: var(--light-text-color);
     background-color: var(--icon-medium-yellow);
     & img {
@@ -90,7 +90,7 @@
 }
 
 #prio-low-btn:hover,
-#prio-low-btn:active {
+.active-low {
     color: var(--light-text-color);
     background-color: var(--icon-low-green);
     & img {
@@ -183,4 +183,11 @@ input,
 textarea,
 select {
     cursor: pointer;
+    &:focus {
+        outline: 2px solid var(--identity);
+    }
+}
+
+#sub-task-input-container:has(input:focus) {
+    border: 2px solid var(--identity);
 }

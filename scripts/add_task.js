@@ -1,7 +1,10 @@
 const TASK_CONTACT_SELECT = document.getElementById("task-contact-select");
 const SUBTASK_INPUT = document.getElementById("subtask-title");
 const SUBTASK_LIST = document.getElementById("subtask-list");
-
+const TASK_TITLE_INPUT = document.getElementById("task-title");
+const PRIO_URGENT_BUTTON = document.getElementById("prio-urgent-btn");
+const PRIO_MEDIUM_BUTTON = document.getElementById("prio-medium-btn");
+const PRIO_LOW_BUTTON = document.getElementById("prio-low-btn");
 let contactNames = [];
 
 function getAllContactNames() {
@@ -32,4 +35,26 @@ function addSubTask() {
 
 function deleteSubtask(event) {
     event.target.parentNode.parentNode.removeChild(event.target.parentNode);
+}
+
+function clearAllInputAddTask() {
+    location.reload();
+}
+
+function setUrgentPrio() {
+    PRIO_URGENT_BUTTON.classList.add("active-urgent");
+    PRIO_MEDIUM_BUTTON.classList.remove("active-medium");
+    PRIO_LOW_BUTTON.classList.remove("active-low");
+}
+
+function setMediumPrio() {
+    PRIO_URGENT_BUTTON.classList.remove("active-urgent");
+    PRIO_MEDIUM_BUTTON.classList.add("active-medium");
+    PRIO_LOW_BUTTON.classList.remove("active-low");
+}
+
+function setLowPrio() {
+    PRIO_URGENT_BUTTON.classList.remove("active-urgent");
+    PRIO_MEDIUM_BUTTON.classList.remove("active-medium");
+    PRIO_LOW_BUTTON.classList.add("active-low");
 }
