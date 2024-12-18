@@ -86,6 +86,7 @@
                                 <div
                                     id="prio-urgent-btn"
                                     class="prio-btn"
+                                    onclick="setUrgentPrio()"
                                 >
                                     <span>Urgent</span
                                     ><img
@@ -96,6 +97,7 @@
                                 <div
                                     id="prio-medium-btn"
                                     class="prio-btn"
+                                    onclick="setMediumPrio()"
                                 >
                                     <span>Medium</span
                                     ><img
@@ -106,6 +108,7 @@
                                 <div
                                     id="prio-low-btn"
                                     class="prio-btn"
+                                    onclick="setLowPrio()"
                                 >
                                     <span>Low</span
                                     ><img
@@ -120,6 +123,7 @@
                             <select
                                 id="task-category-select"
                                 class="add-task-attribute-input"
+                                required
                             >
                                 <option
                                     value=""
@@ -156,6 +160,7 @@
                                 <button
                                     id="add-task-clear-btn"
                                     class="add-task-btn"
+                                    onclick="clearAllInputAddTask()"
                                 >
                                     Clear
                                     <img
