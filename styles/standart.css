@@ -1,6 +1,6 @@
 @font-face {
     font-family: inter;
-    src: url("../assets/fonts/Inter-VariableFont_opsz\,wght.ttf");
+    src: url("/assets/fonts/Inter-VariableFont_opsz\,wght.ttf");
 }
 
 * {
@@ -8,7 +8,7 @@
     --dark-accent: #091931;
     --light-background: #f6f7f8;
     --light--accent: #ffffff;
-    --identity: #007cee;
+    --identity: #29ABE2;
     --light-text-color: #ffffff;
     --dark-text-color: #000000;
     --accent-text-color: #2a3647;
@@ -38,9 +38,20 @@ button {
 
 main {
     height: calc(100vh - 160px);
+    overflow-y: auto;
 }
 
 button {
     cursor: pointer;
 }
+
+a {
+    text-decoration: none;
+}
+
+
+.test-profile-picture-background {
+    background-color: crimson;
+}
+
 

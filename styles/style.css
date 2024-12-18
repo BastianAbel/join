@@ -1,8 +1,9 @@
 header {
     display: flex;
     justify-content: center;
-    box-shadow: 0px 4px 4px 0px #0000001A;
+    box-shadow: 0px 4px 4px 0px #0000001a;
     background-color: var(--light--accent);
+    z-index: 1000;
 }
 
 .header {
@@ -11,12 +12,14 @@ header {
     align-items: center;
     height: 80px;
     width: 100%;
-    box-shadow: 0 -6px 10px 5px rgba(0,0,0,0.5);
+    box-shadow: 0 -6px 10px 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
 }
 
 .header img {
     height: 40px;
     margin: 0 16px;
+    cursor: pointer;
 }
 
 .header button {
@@ -29,7 +32,11 @@ header {
     color: var(--prime-blue);
     font-size: 21px;
     font-weight: 600;
+    &:hover {
+        background-color: var(--light-background);
+    }
 }
+
 .submenu-popup-container {
     height: 204px;
     width: 150px;
@@ -57,11 +64,7 @@ header {
     padding-top: 8px;
     padding-right: 16px;
     padding-left: 16px;
-}
-
-main {
-    min-width: 320px;
-    max-width: 1920px;
-    padding: 32px;
-    min-height: calc(100vh - 160px);
+    &:hover {
+        color: var(--identity);
+    }
 }
