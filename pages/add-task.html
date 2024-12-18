@@ -14,6 +14,7 @@
     <script src="/scripts/db_contacts.js" defer></script>
     <script src="/scripts/db_tasks.js" defer></script>
     <script src="/scripts/add_task_template.js" defer></script>
+    <script src="/scripts/main.js" defer></script>
 	<title>Add Task</title>
 </head>
     <body onload="getAllContactNames()">
@@ -39,7 +40,7 @@
                             <label for="task-title">Title<span class="require-asterisk">*</span></label>
                             <input
                                 id="task-title"
-                                class="add-task-attribute-input"
+                                class="add-task-attribute-input grey-placeholder"
                                 type="text"
                                 placeholder="Enter a title"
                                 required
@@ -49,30 +50,34 @@
                             <label for="task-description">Description</label>
                             <textarea
                                 id="task-description"
-                                class="add-task-attribute-input"
+                                class="add-task-attribute-input grey-placeholder"
                                 placeholder="Enter a Description"
                             ></textarea>
                         </div>
                         <div class="add-task-attribute-container">
-                            <label for="task-contact-select">Assigned to</label>
-                            <select
-                                id="task-contact-select"
-                                class="add-task-attribute-input"
+                            <label for="task-contact-input">Assigned to</label>
+                            <div
+                                id="add-task-contact-container"
+                                class="add-task-input-img-container"
                             >
-                                <option
-                                    value=""
-                                    disabled
-                                    selected
-                                >
-                                    Select contacts to assign
-                                </option>
-                            </select>
+                                <input
+                                    type="text"
+                                    id="task-contact-input"
+                                    class="add-task-attribute-input"
+                                    placeholder="Select contacts to assign"
+                                />
+                                <img
+                                    src="/assets/icons/black-arrow-drop-down.svg"
+                                    alt="closed drop down logo"
+                                />
+                            </div>
+                            <ul id="add-task-contacts-list"></ul>
                         </div>
                         <div class="add-task-attribute-container">
                             <label for="task-due-date">Due date<span class="require-asterisk">*</span></label>
                             <input
                                 id="task-due-date"
-                                class="add-task-attribute-input"
+                                class="add-task-attribute-input grey-placeholder"
                                 type="text"
                                 placeholder="dd/mm/yyyy"
                                 onfocus="(this.type='date')"
@@ -138,10 +143,13 @@
                         </div>
                         <div class="add-task-attribute-container">
                             <label for="subtask-title">Subtasks</label>
-                            <div id="sub-task-input-container">
+                            <div
+                                id="sub-task-input-container"
+                                class="add-task-input-img-container"
+                            >
                                 <input
                                     id="subtask-title"
-                                    class="add-task-attribute-input"
+                                    class="add-task-attribute-input grey-placeholder"
                                     type="text"
                                     placeholder="Add new Subtask"
                                 />

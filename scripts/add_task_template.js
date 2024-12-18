@@ -8,3 +8,13 @@ function renderSubtask(subtaskTitle) {
 				/>
 			</li>`;
 }
+
+function renderAssignContact(name) {
+    return `<div class="assign-contact-li-container">
+				<div class="contact-circle-and-name-container">
+				    <div id="name-circle(${name})" class="name-circle">${getContactInitials(name)}</div>
+					<li>${name}</li>
+				</div>
+				<img src="/assets/icons/checkbox-not-checked.svg" alt="unchecked checkbox"/>
+			</div>`;
+}

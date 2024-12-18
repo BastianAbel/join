@@ -1,4 +1,5 @@
-const TASK_CONTACT_SELECT = document.getElementById("task-contact-select");
+const CONTACT_INPUT = document.getElementById("task-contact-input");
+const TASK_CONTACT_LIST = document.getElementById("add-task-contacts-list");
 const SUBTASK_INPUT = document.getElementById("subtask-title");
 const SUBTASK_LIST = document.getElementById("subtask-list");
 const TASK_TITLE_INPUT = document.getElementById("task-title");
@@ -6,21 +7,22 @@ const PRIO_URGENT_BUTTON = document.getElementById("prio-urgent-btn");
 const PRIO_MEDIUM_BUTTON = document.getElementById("prio-medium-btn");
 const PRIO_LOW_BUTTON = document.getElementById("prio-low-btn");
 let contactNames = [];
+let filteredNames = [];
 
 function getAllContactNames() {
     for (let i = 0; i < contacts.length; i++) {
         contactNames.push(contacts[i].name);
     }
-    createChildnotesToContactList();
+    filteredNames = contactNames;
+    addContactNamesToList(filteredNames, TASK_CONTACT_LIST);
+    console.log(getContactInitials("Dennis Jakobi der zweite"));
 }
 
-function createChildnotesToContactList() {
-    for (let j = 0; j < contactNames.length; j++) {
-        let name = contactNames[j];
-        let element = document.createElement("option");
-        element.textContent = name;
-        element.value = name.toLowerCase();
-        TASK_CONTACT_SELECT.appendChild(element);
+function addContactNamesToList(array, element) {
+    element.innerHTML = "";
+    for (let j = 0; j < array.length; j++) {
+        let name = array[j];
+        element.innerHTML += renderAssignContact(name);
     }
 }
 

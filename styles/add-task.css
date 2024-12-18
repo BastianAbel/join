@@ -40,7 +40,7 @@
     resize: none;
 }
 
-::placeholder {
+.grey-placeholder::placeholder {
     color: rgba(209, 209, 209);
 }
 
@@ -96,17 +96,6 @@
     & img {
         content: url("../assets/icons/prio-baja-white.svg");
     }
-}
-
-#sub-task-input-container {
-    border: 2px solid rgba(209, 209, 209);
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: fit-content;
-    margin-top: 8px;
-    padding-right: 4px;
 }
 
 #sub-task-input-container img {
@@ -188,6 +177,61 @@ select {
     }
 }
 
-#sub-task-input-container:has(input:focus) {
+#task-contact-input {
+    border: 0;
+    outline: none;
+    margin: 0;
+}
+
+#sub-task-input-container:has(input:focus),
+#add-task-contact-container:has(input:focus) {
     border: 2px solid var(--identity);
+}
+
+.add-task-input-img-container {
+    border: 2px solid rgba(209, 209, 209);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: fit-content;
+    margin-top: 8px;
+    padding-right: 4px;
+}
+
+#add-task-contact-container {
+    height: 40px;
+}
+
+#add-task-contacts-list {
+    list-style: none;
+}
+
+.assign-contact-li-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px 0 0;
+    height: 40px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.contact-circle-and-name-container {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.name-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 34px;
+    width: 34px;
+    background-color: rgb(194, 176, 212);
+    border-radius: 50%;
 }
