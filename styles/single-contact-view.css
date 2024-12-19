@@ -99,22 +99,3 @@ span {
     width: 96px;
     font-size: 16px;
 }
-
-.edit-popup-container img {
-    height: 24px;
-    width: 24px;
-}
-
-.edit-popup-container span {
- color: var(--accent-text-color);
-}
-
-.edit-popup-container span:hover {
- color: var(--identity);
-}
-
-.info-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
