@@ -184,7 +184,8 @@ select {
 }
 
 #sub-task-input-container:has(input:focus),
-#add-task-contact-container:has(input:focus) {
+#add-task-contact-container:has(input:focus),
+#add-task-date-container:has(input:focus) {
     border: 2px solid var(--identity);
 }
 
@@ -201,6 +202,7 @@ select {
 
 #add-task-contact-container {
     height: 40px;
+    margin-bottom: 24px;
 }
 
 #add-task-contacts-list {
@@ -252,4 +254,35 @@ select {
     & img {
         content: url(/assets/icons/checkbox-checked-white.svg);
     }
+}
+
+.open-list {
+    content: url("/assets/icons/black-arrow-drop-up.svg");
+}
+
+.d_none {
+    display: none;
+}
+
+#name-circle-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.open-circle-container {
+    gap: 8px;
+    padding: 8px;
+    margin-bottom: 24px;
+}
+
+#task-due-date {
+    border: 0;
+    outline: none;
+    margin: 0;
+}
+
+#add-task-date-container {
+    margin-bottom: 24px;
+    padding: 0 24px 0 8px;
 }

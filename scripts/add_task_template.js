@@ -18,3 +18,7 @@ function renderAssignContact(name) {
 				<img src="/assets/icons/checkbox-not-checked.svg" alt="unchecked checkbox"/>
 			</div>`;
 }
+
+function renderNameCircle(name) {
+    return `<div id="contact-name-circle(${name})" class="name-circle">${getContactInitials(name)}</div>`;
+}
