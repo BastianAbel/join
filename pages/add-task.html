@@ -65,13 +65,16 @@
                                     id="task-contact-input"
                                     class="add-task-attribute-input"
                                     placeholder="Select contacts to assign"
+                                    oninput="filterInput(event)"
                                 />
                                 <img
                                     src="/assets/icons/black-arrow-drop-down.svg"
                                     alt="closed drop down logo"
                                 />
                             </div>
-                            <ul id="add-task-contacts-list"></ul>
+                            <div id="add-task-contact-list-container">
+                                <ul id="add-task-contacts-list"></ul>
+                            </div>
                         </div>
                         <div class="add-task-attribute-container">
                             <label for="task-due-date">Due date<span class="require-asterisk">*</span></label>

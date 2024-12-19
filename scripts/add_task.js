@@ -60,3 +60,13 @@ function setLowPrio() {
     PRIO_MEDIUM_BUTTON.classList.remove("active-medium");
     PRIO_LOW_BUTTON.classList.add("active-low");
 }
+
+function filterInput(event) {
+    filteredNames = filterInputFromArray(contactNames, event.target.value);
+    addContactNamesToList(filteredNames, TASK_CONTACT_LIST);
+}
+
+function checkContact(event) {
+    const container = event.currentTarget;
+    container.classList.toggle("checked-contact");
+}

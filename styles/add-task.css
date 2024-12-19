@@ -211,12 +211,20 @@ select {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 32px 0 0;
+    padding: 4px 32px 4px 8px;
     height: 40px;
+    border-radius: 10px;
+    margin-bottom: 8px;
 
     &:hover {
         cursor: pointer;
     }
+}
+
+#add-task-contact-list-container {
+    height: 240px;
+    overflow-y: auto;
+    margin-bottom: 24px;
 }
 
 .contact-circle-and-name-container {
@@ -234,4 +242,14 @@ select {
     width: 34px;
     background-color: rgb(194, 176, 212);
     border-radius: 50%;
+    border: 2px solid var(--light-text-color);
+}
+
+.checked-contact {
+    background-color: var(--accent-text-color);
+    color: var(--light-text-color);
+
+    & img {
+        content: url(/assets/icons/checkbox-checked-white.svg);
+    }
 }

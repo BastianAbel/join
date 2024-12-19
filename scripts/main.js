@@ -3,11 +3,12 @@ function getBackToPreviousSite() {
 }
 
 function getContactInitials(contactName) {
-    let names = [];
-    names = contactName.split(" ");
-    let initials = "";
-    for (let i = 0; i < names.length; i++) {
-        initials += names[i][0].toUpperCase();
-    }
-    return initials;
+    return contactName
+        .split(" ")
+        .map((name) => name[0].toUpperCase())
+        .join("");
+}
+
+function filterInputFromArray(sourceArray, input) {
+    return sourceArray.filter((name) => name.toLowerCase().includes(input.toLowerCase()));
 }

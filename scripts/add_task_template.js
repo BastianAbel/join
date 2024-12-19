@@ -10,7 +10,7 @@ function renderSubtask(subtaskTitle) {
 }
 
 function renderAssignContact(name) {
-    return `<div class="assign-contact-li-container">
+    return `<div class="assign-contact-li-container" onclick="checkContact(event)">
 				<div class="contact-circle-and-name-container">
 				    <div id="name-circle(${name})" class="name-circle">${getContactInitials(name)}</div>
 					<li>${name}</li>
