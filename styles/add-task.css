@@ -4,6 +4,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: calc(100vh-160px);
 }
 
 .add-task-attribute-container {
@@ -291,5 +292,19 @@ select {
     display: flex;
     align-items: center;
     margin-top: -16px;
-    margin-bottom: 64px;
+    margin-bottom: 24px;
+}
+
+#inner-form-container {
+    overflow-y: auto;
+}
+
+#sticky-bottom-container {
+    width: 310px;
+    position: sticky;
+    background-color: var(--light--accent);
+    bottom: 0;
+    margin: 0;
+    padding-top: 24px;
+    z-index: 10;
 }
