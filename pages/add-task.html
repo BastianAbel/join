@@ -1,236 +1,128 @@
 <!DOCTYPE html>
 <html lang="de">
-    <!-- prettier-ignore -->
-    <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- prettier-ignore -->
 
-	<link rel="shortcut icon" href="/assets/icons/join-logo-dark.svg" type="image/x-icon">
-	<link rel="stylesheet" href="/styles/standart.css">
-	<link rel="stylesheet" href="/styles/nav-bar.css">
-	<link rel="stylesheet" href="/styles/style.css">
-	<link rel="stylesheet" href="/styles/add-task.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="/assets/icons/join-logo-dark.svg" type="image/x-icon">
+    <link rel="stylesheet" href="/styles/standart.css">
+    <link rel="stylesheet" href="/styles/nav-bar.css">
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/add-task.css">
     <script src="/scripts/add_task.js" defer></script>
     <script src="/scripts/db_contacts.js" defer></script>
     <script src="/scripts/db_tasks.js" defer></script>
     <script src="/scripts/add_task_template.js" defer></script>
-	<title>Add Task</title>
+    <title>Add Task</title>
 </head>
-    <body onload="getAllContactNames()">
-        <header>
-            <section class="header">
-                <a href="/index.html">
-                    <img
-                        src="/assets/icons/join-logo-dark.svg"
-                        alt="Join Logo"
-                    />
-                </a>
-                <button class="profile-button">G</button>
-            </section>
-        </header>
-        <main>
-            <div id="add-task-main">
-                <div class="add-task-sticky-headline-container">
-                    <h1>Add Task</h1>
-                </div>
-                <div class="create-task-container">
-                    <form>
-                        <div class="add-task-attribute-container">
-                            <label for="task-title">Title<span class="require-asterisk">*</span></label>
-                            <input
-                                id="task-title"
-                                class="add-task-attribute-input"
-                                type="text"
-                                placeholder="Enter a title"
-                                required
-                            />
-                        </div>
-                        <div class="add-task-attribute-container">
-                            <label for="task-description">Description</label>
-                            <textarea
-                                id="task-description"
-                                class="add-task-attribute-input"
-                                placeholder="Enter a Description"
-                            ></textarea>
-                        </div>
-                        <div class="add-task-attribute-container">
-                            <label for="task-contact-select">Assigned to</label>
-                            <select
-                                id="task-contact-select"
-                                class="add-task-attribute-input"
-                            >
-                                <option
-                                    value=""
-                                    disabled
-                                    selected
-                                >
-                                    Select contacts to assign
-                                </option>
-                            </select>
-                        </div>
-                        <div class="add-task-attribute-container">
-                            <label for="task-due-date">Due date<span class="require-asterisk">*</span></label>
-                            <input
-                                id="task-due-date"
-                                class="add-task-attribute-input"
-                                type="text"
-                                placeholder="dd/mm/yyyy"
-                                onfocus="(this.type='date')"
-                                onblur="(this.type='text')"
-                                required
-                            />
-                        </div>
-                        <div class="add-task-attribute-container">
-                            <span>Prio</span>
-                            <div id="prio-container">
-                                <div
-                                    id="prio-urgent-btn"
-                                    class="prio-btn"
-                                    onclick="setUrgentPrio()"
-                                >
-                                    <span>Urgent</span
-                                    ><img
-                                        src="/assets/icons/prio-alta-red.svg"
-                                        alt=""
-                                    />
-                                </div>
-                                <div
-                                    id="prio-medium-btn"
-                                    class="prio-btn"
-                                    onclick="setMediumPrio()"
-                                >
-                                    <span>Medium</span
-                                    ><img
-                                        src="/assets/icons/prio-media-orange.svg"
-                                        alt=""
-                                    />
-                                </div>
-                                <div
-                                    id="prio-low-btn"
-                                    class="prio-btn"
-                                    onclick="setLowPrio()"
-                                >
-                                    <span>Low</span
-                                    ><img
-                                        src="/assets/icons/prio-baja-green.svg"
-                                        alt=""
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="add-task-attribute-container">
-                            <label for="task-category-select">Category<span class="require-asterisk">*</span></label>
-                            <select
-                                id="task-category-select"
-                                class="add-task-attribute-input"
-                                required
-                            >
-                                <option
-                                    value=""
-                                    disabled
-                                    selected
-                                >
-                                    Select task category
-                                </option>
-                                <option value="userStory">User Story</option>
-                                <option value="technicalTask">Technical Task</option>
-                            </select>
-                        </div>
-                        <div class="add-task-attribute-container">
-                            <label for="subtask-title">Subtasks</label>
-                            <div id="sub-task-input-container">
-                                <input
-                                    id="subtask-title"
-                                    class="add-task-attribute-input"
-                                    type="text"
-                                    placeholder="Add new Subtask"
-                                />
-                                <img
-                                    src="/assets/icons/plus-subtask.svg"
-                                    alt="plus-icon"
-                                    onclick="addSubTask()"
-                                />
-                            </div>
-                            <div id="subtask-list-container">
-                                <ul id="subtask-list"></ul>
-                            </div>
-                        </div>
-                        <div class="add-task-attribute-container">
-                            <div id="add-task-btn-container">
-                                <button
-                                    id="add-task-clear-btn"
-                                    class="add-task-btn"
-                                    onclick="clearAllInputAddTask()"
-                                >
-                                    Clear
-                                    <img
-                                        src="/assets/icons/close-black.svg"
-                                        alt=""
-                                    />
-                                </button>
-                                <button
-                                    id="create-task-btn"
-                                    class="add-task-btn"
-                                >
-                                    Create Task
-                                    <img
-                                        src="/assets/icons/check.svg"
-                                        alt=""
-                                    />
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+
+<body onload="getAllContactNames()">
+    <header>
+        <section class="header">
+            <a href="/index.html">
+                <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
+            </a>
+            <button class="profile-button">G</button>
+        </section>
+    </header>
+    <main>
+        <div id="add-task-main">
+            <div class="add-task-sticky-headline-container">
+                <h1>Add Task</h1>
             </div>
-        </main>
-        <div class="nav-bar-main-container">
-            <div class="nav-bar">
-                <a
-                    href=""
-                    id="nav-bar-container-summary"
-                    class="nav-bar-container"
-                    ><img
-                        id="nav-bar-img-1"
-                        src="/assets/icons/summary.svg"
-                        alt=""
-                    />
-                    <span>Summary</span></a
-                >
-                <a
-                    href=""
-                    id="nav-bar-container-board"
-                    class="nav-bar-container"
-                    ><img
-                        id="nav-bar-img-2"
-                        src="/assets/icons/board.svg"
-                        alt=""
-                    />
-                    <span>Board</span></a
-                >
-                <a
-                    href=""
-                    id="nav-bar-container-add-to-task"
-                    class="nav-bar-container"
-                    ><img
-                        id="nav-bar-img-3"
-                        src="/assets/icons/add-to-task.svg"
-                        alt=""
-                    />
-                    <span>Add Task</span></a
-                >
-                <a
-                    href=""
-                    id="nav-bar-container-contacts"
-                    class="nav-bar-container"
-                    ><img
-                        id="nav-bar-img-4"
-                        src="/assets/icons/contacts.svg"
-                        alt=""
-                    />
-                    <span>Contacts</span></a
-                >
+            <div class="create-task-container">
+                <form>
+                    <div class="add-task-attribute-container">
+                        <label for="task-title">Title<span class="require-asterisk">*</span></label>
+                        <input id="task-title" class="add-task-attribute-input" type="text" placeholder="Enter a title"
+                            required />
+                    </div>
+                    <div class="add-task-attribute-container">
+                        <label for="task-description">Description</label>
+                        <textarea id="task-description" class="add-task-attribute-input"
+                            placeholder="Enter a Description"></textarea>
+                    </div>
+                    <div class="add-task-attribute-container">
+                        <label for="task-contact-select">Assigned to</label>
+                        <select id="task-contact-select" class="add-task-attribute-input">
+                            <option value="" disabled selected>
+                                Select contacts to assign
+                            </option>
+                        </select>
+                    </div>
+                    <div class="add-task-attribute-container">
+                        <label for="task-due-date">Due date<span class="require-asterisk">*</span></label>
+                        <input id="task-due-date" class="add-task-attribute-input" type="text" placeholder="dd/mm/yyyy"
+                            onfocus="(this.type='date')" onblur="(this.type='text')" required />
+                    </div>
+                    <div class="add-task-attribute-container">
+                        <span>Prio</span>
+                        <div id="prio-container">
+                            <div id="prio-urgent-btn" class="prio-btn" onclick="setUrgentPrio()">
+                                <span>Urgent</span><img src="/assets/icons/prio-alta-red.svg" alt="" />
+                            </div>
+                            <div id="prio-medium-btn" class="prio-btn" onclick="setMediumPrio()">
+                                <span>Medium</span><img src="/assets/icons/prio-media-orange.svg" alt="" />
+                            </div>
+                            <div id="prio-low-btn" class="prio-btn" onclick="setLowPrio()">
+                                <span>Low</span><img src="/assets/icons/prio-baja-green.svg" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="add-task-attribute-container">
+                        <label for="task-category-select">Category<span class="require-asterisk">*</span></label>
+                        <select id="task-category-select" class="add-task-attribute-input" required>
+                            <option value="" disabled selected>
+                                Select task category
+                            </option>
+                            <option value="userStory">User Story</option>
+                            <option value="technicalTask">Technical Task</option>
+                        </select>
+                    </div>
+                    <div class="add-task-attribute-container">
+                        <label for="subtask-title">Subtasks</label>
+                        <div id="sub-task-input-container">
+                            <input id="subtask-title" class="add-task-attribute-input" type="text"
+                                placeholder="Add new Subtask" />
+                            <img src="/assets/icons/plus-subtask.svg" alt="plus-icon" onclick="addSubTask()" />
+                        </div>
+                        <div id="subtask-list-container">
+                            <ul id="subtask-list"></ul>
+                        </div>
+                    </div>
+                    <div class="add-task-attribute-container">
+                        <div id="add-task-btn-container">
+                            <button id="add-task-clear-btn" class="add-task-btn" onclick="clearAllInputAddTask()">
+                                Clear
+                                <img src="/assets/icons/close-black.svg" alt="" />
+                            </button>
+                            <button id="create-task-btn" class="add-task-btn">
+                                Create Task
+                                <img src="/assets/icons/check.svg" alt="" />
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </body>
+    </main>
+    <div class="nav-bar-main-container">
+        <div class="nav-bar">
+            <a href="" id="nav-bar-container-summary" class="nav-bar-container"><img id="nav-bar-img-1"
+                    src="/assets/icons/summary.svg" alt="" />
+                <span>Summary</span></a>
+            <a href="" id="nav-bar-container-board" class="nav-bar-container"><img id="nav-bar-img-2"
+                    src="/assets/icons/board.svg" alt="" />
+                <span>Board</span></a>
+            <a href="" id="nav-bar-container-add-to-task" class="nav-bar-container"><img id="nav-bar-img-3"
+                    src="/assets/icons/add-to-task.svg" alt="" />
+                <span>Add Task</span></a>
+            <a href="" id="nav-bar-container-contacts" class="nav-bar-container"><img id="nav-bar-img-4"
+                    src="/assets/icons/contacts.svg" alt="" />
+                <span>Contacts</span></a>
+        </div>
+    </div>
+</body>
 </html>

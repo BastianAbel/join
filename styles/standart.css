@@ -16,8 +16,20 @@
     --icon-urgent-red: #ff3d00;
     --icon-medium-yellow: #ffa800;
     --icon-low-green: #7ae229;
-    --contact-green: #1FD7C1;
+    --link-color: #007CEE;
+
+}
+
+* {
     --contact-orange: #FF7A00;
+    --contact-purple: #9327FF;
+    --contact-violet: #6E52FF;
+    --contact-pink: #9327FF;
+    --contact-yellow: #FFBB2B;
+    --contact-green: #1FD7C1;
+    --contact-darkblue: #462F8A;
+    --contact-red: #FF4646;
+    --contact-blue: #00BEE8;
 }
 
 html,

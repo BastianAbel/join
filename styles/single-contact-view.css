@@ -13,6 +13,7 @@
 
 a {
     text-decoration: none;
+    color: var(--link-color);
 }
 
 h1 {
@@ -106,11 +107,15 @@ span {
 }
 
 .edit-popup-container span {
- color: var(--accent-text-color);
+    color: var(--accent-text-color);
 }
 
 .edit-popup-container span:hover {
- color: var(--identity);
+    color: var(--identity);
+}
+
+.edit-popup-container img:hover {
+    background-color: var(--identity);
 }
 
 .info-container {
