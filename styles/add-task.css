@@ -1,10 +1,11 @@
 #add-task-main {
-    width: 320px;
+    width: 310px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: calc(100vh-160px);
+    padding: 0 8px;
 }
 
 .add-task-attribute-container {
@@ -110,7 +111,7 @@
 }
 
 #subtask-list {
-    padding: 0 4px;
+    padding: 0 8px;
 }
 
 #subtask-list li {
@@ -307,4 +308,28 @@ select {
     margin: 0;
     padding-top: 24px;
     z-index: 10;
+}
+
+#sub-task-icon-cross {
+    margin-right: 4px;
+}
+
+.subtask-text-img-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 310px;
+}
+
+.subtask-img-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-right: 4px;
+}
+
+.editableSpan {
+    font-size: 24px;
+    outline: none;
+    border-bottom: 2px solid var(--identity);
 }

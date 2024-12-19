@@ -175,11 +175,30 @@
                                         class="add-task-attribute-input grey-placeholder"
                                         type="text"
                                         placeholder="Add new Subtask"
+                                        oninput="showAndHideIcons()"
                                     />
                                     <img
+                                        id="sub-task-icon-plus"
                                         src="/assets/icons/plus-subtask.svg"
                                         alt="plus-icon"
+                                    />
+                                    <img
+                                        id="sub-task-icon-cross"
+                                        src="/assets/icons/subtask-cross.svg"
+                                        alt="cross icon"
+                                        onclick="clearSubtaskInputField()"
+                                        class="d_none"
+                                    /><img
+                                        id="sub-task-icon-vector"
+                                        src="/assets/icons/subtask-vektor.svg"
+                                        alt="vector icon"
+                                        class="d_none"
+                                    /><img
+                                        id="sub-task-icon-check"
+                                        src="/assets/icons/subtask-check.svg"
+                                        alt="checked icon"
                                         onclick="addSubTask()"
+                                        class="d_none"
                                     />
                                 </div>
                                 <div id="subtask-list-container">

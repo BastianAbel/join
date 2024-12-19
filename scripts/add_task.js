@@ -5,6 +5,10 @@ const TASK_CONTACT_LIST = document.getElementById("add-task-contacts-list");
 const NAME_CIRCLE_CONTAINER = document.getElementById("name-circle-container");
 const SUBTASK_INPUT = document.getElementById("subtask-title");
 const SUBTASK_LIST = document.getElementById("subtask-list");
+const SUBTASK_ICON_PLUS = document.getElementById("sub-task-icon-plus");
+const SUBTASK_ICON_CROSS = document.getElementById("sub-task-icon-cross");
+const SUBTASK_ICON_VECTOR = document.getElementById("sub-task-icon-vector");
+const SUBTASK_ICON_CHECK = document.getElementById("sub-task-icon-check");
 const TASK_TITLE_INPUT = document.getElementById("task-title");
 const DUE_DATE_INPUT = document.getElementById("task-due-date");
 const PRIO_URGENT_BUTTON = document.getElementById("prio-urgent-btn");
@@ -36,11 +40,12 @@ function addSubTask() {
         subtaskTitle = SUBTASK_INPUT.value;
         SUBTASK_LIST.innerHTML += renderSubtask(subtaskTitle);
         SUBTASK_INPUT.value = "";
+        clearSubtaskInputField();
     }
 }
 
 function deleteSubtask(event) {
-    event.target.parentNode.parentNode.removeChild(event.target.parentNode);
+    event.target.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode);
 }
 
 function clearAllInputAddTask() {
@@ -127,4 +132,34 @@ function isDateValid(dateString) {
     const date = new Date(year, month - 1, day);
     // Überprüfen, ob das Datum gültig ist
     return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
+}
+
+function clearSubtaskInputField() {
+    SUBTASK_INPUT.value = "";
+    SUBTASK_ICON_PLUS.classList.remove("d_none");
+    SUBTASK_ICON_CROSS.classList.add("d_none");
+    SUBTASK_ICON_VECTOR.classList.add("d_none");
+    SUBTASK_ICON_CHECK.classList.add("d_none");
+}
+
+function showAndHideIcons() {
+    if (SUBTASK_INPUT.value.length > 0) {
+        SUBTASK_ICON_PLUS.classList.add("d_none");
+        SUBTASK_ICON_CROSS.classList.remove("d_none");
+        SUBTASK_ICON_VECTOR.classList.remove("d_none");
+        SUBTASK_ICON_CHECK.classList.remove("d_none");
+    }
+}
+
+function editContent(event) {
+    let spanElement = event.target.parentNode.parentNode.querySelector("span");
+    if (spanElement) {
+        spanElement.setAttribute("contenteditable", "true");
+        spanElement.focus();
+        spanElement.classList.add("editableSpan");
+    }
+}
+
+function removeEditClass(event) {
+    event.target.classList.remove("editableSpan");
 }
