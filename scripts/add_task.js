@@ -162,4 +162,8 @@ function editContent(event) {
 
 function removeEditClass(event) {
     event.target.classList.remove("editableSpan");
+    let spanElement = event.target.parentNode.parentNode.querySelector("span");
+    if (spanElement) {
+        spanElement.setAttribute("contenteditable", "flase");
+    }
 }
