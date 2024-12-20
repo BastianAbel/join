@@ -123,14 +123,10 @@ function formatDateInput() {
 }
 
 function isDateValid(dateString) {
-    // Überprüfen, ob das Format korrekt ist
     const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
     if (!dateRegex.test(dateString)) return false;
-    // Zerlegen in Tag, Monat und Jahr
     const [day, month, year] = dateString.split("/").map(Number);
-    // Erstellen des Datumsobjekts (Monat - 1, da Monate von 0 bis 11 zählen)
     const date = new Date(year, month - 1, day);
-    // Überprüfen, ob das Datum gültig ist
     return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
 }
 
