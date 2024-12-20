@@ -1,5 +1,5 @@
 main {
-    width: 428px !important;
+    /*width: 428px !important;*/
 }
 
 .start-site-container {
@@ -7,8 +7,8 @@ main {
     align-items: center;
     justify-content: center;
     position: relative;
+    width: 100vw;
     height: 100vh;
-    width: 100% !important;
     background-color: rgba(42, 54, 71, 1);
 }
 
@@ -35,7 +35,7 @@ main {
     height: 121.97px;
     position: absolute;
     z-index: 1;
-    animation-name: slide-img;
+    animation-name: slide-img1;
     animation-duration: 0.5s;
     animation-timing-function: linear;
     animation-delay: 0.5s;
@@ -43,7 +43,7 @@ main {
     animation-direction: normal;
     animation-fill-mode: both;
 }
-@keyframes slide-img {
+@keyframes slide-img1 {
     0% {
         transform: translateY(0) translateX(0);
         width: 100.03px;
@@ -53,14 +53,13 @@ main {
 
     100% {
         opacity: 0;
-        transform: translateY(-43vh) translateX(-150px);
+        transform: translateY(-43vh) translateX(-35vw);
         width: 64px;
         height: 78.03px;
     }
 }
 
 #join-logo-dark {
-    z-index: 10000;
     width: 100.03px;
     height: 121.97px;
     position: absolute;
@@ -83,7 +82,7 @@ main {
 
     100% {
         opacity: 1;
-        transform: translateY(-43vh) translateX(-150px);
+        transform: translateY(-43vh) translateX(-35vw);
         width: 64px;
         height: 78.03px;
     }
