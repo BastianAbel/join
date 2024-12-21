@@ -13,6 +13,7 @@
 
 a {
     text-decoration: none;
+    color: var(--link-color);
 }
 
 h1 {
@@ -89,13 +90,32 @@ span {
     cursor: pointer;
 }
 
-.edit-popup-container div {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    gap: 8px;
-    padding: 8px;
+.option-container {
     height: 40px;
     width: 96px;
-    font-size: 16px;
+    display: flex;
+    padding: 8px;
+    gap: 8px;
+}
+
+.option-container:hover {
+    color: var(--identity);
+    .option-edit {
+        background: url(../assets/icons/edit-symbol-blue.svg) no-repeat;
+    }
+    .option-delete {
+        background: url(../assets/icons/delete-symbol-blue.svg) no-repeat
+    }
+}
+
+.option-edit {
+    background: url(../assets/icons/edit-symbol.svg) no-repeat;
+    height: 24px;
+    width: 24px;
+}
+
+.option-delete {
+    background: url(../assets/icons/delete.svg) no-repeat;
+    height: 24px;
+    width: 24px;
 }

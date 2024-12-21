@@ -47,6 +47,7 @@ span {
     left: 0;
     width: 90px;
     border-bottom: 3px solid #01bee8;
+    border-radius: 3px;
 }
 
 .contact-img {
@@ -87,12 +88,17 @@ input {
     padding-top: 13px;
     padding-bottom: 13px;
     padding-left: 21px;
-    
     height: 40px;
     border: 1px solid #ccc;
     border-radius: 10px;
     font-size: 16px;
     box-sizing: border-box;
+    cursor: pointer;
+}
+
+input:focus {
+    outline: transparent;
+    border: 1px solid var(--identity);
 }
 
 .input-icon {
