@@ -11,12 +11,17 @@ const SUBTASK_ICON_VECTOR = document.getElementById("sub-task-icon-vector");
 const SUBTASK_ICON_CHECK = document.getElementById("sub-task-icon-check");
 const TASK_TITLE_INPUT = document.getElementById("task-title");
 const DUE_DATE_INPUT = document.getElementById("task-due-date");
+const TASK_CATEGORY_SELECT = document.getElementById("task-category-select");
+const TASK_DESCRIPTION = document.getElementById("task-description");
 const PRIO_URGENT_BUTTON = document.getElementById("prio-urgent-btn");
 const PRIO_MEDIUM_BUTTON = document.getElementById("prio-medium-btn");
 const PRIO_LOW_BUTTON = document.getElementById("prio-low-btn");
 let contactNames = [];
 let filteredNames = [];
 let checkedContactNames = [];
+let subtaskList = [];
+let taskPrio = "";
+let newTask = {};
 
 function getAllContactNames() {
     for (let i = 0; i < contacts.length; i++) {
@@ -36,9 +41,13 @@ function addContactNamesToList(array, element) {
 
 function addSubTask() {
     let subtaskTitle = "";
+    let subTaskObject = {};
     if (SUBTASK_INPUT.value) {
         subtaskTitle = SUBTASK_INPUT.value;
         SUBTASK_LIST.innerHTML += renderSubtask(subtaskTitle);
+        subTaskObject["description"] = subtaskTitle;
+        subTaskObject["checked"] = false;
+        subtaskList.push(subTaskObject);
         SUBTASK_INPUT.value = "";
         clearSubtaskInputField();
     }
@@ -56,18 +65,21 @@ function setUrgentPrio() {
     PRIO_URGENT_BUTTON.classList.add("active-urgent");
     PRIO_MEDIUM_BUTTON.classList.remove("active-medium");
     PRIO_LOW_BUTTON.classList.remove("active-low");
+    taskPrio = "urgent";
 }
 
 function setMediumPrio() {
     PRIO_URGENT_BUTTON.classList.remove("active-urgent");
     PRIO_MEDIUM_BUTTON.classList.add("active-medium");
     PRIO_LOW_BUTTON.classList.remove("active-low");
+    taskPrio = "medium";
 }
 
 function setLowPrio() {
     PRIO_URGENT_BUTTON.classList.remove("active-urgent");
     PRIO_MEDIUM_BUTTON.classList.remove("active-medium");
     PRIO_LOW_BUTTON.classList.add("active-low");
+    taskPrio = "low";
 }
 
 function filterInput(event) {
@@ -162,4 +174,22 @@ function removeEditClass(event) {
     if (spanElement) {
         spanElement.setAttribute("contenteditable", "false");
     }
+}
+
+async function createTask() {
+    newTask = {};
+    let helperArray = [];
+    newTask["type"] = TASK_CATEGORY_SELECT.value;
+    newTask["title"] = TASK_TITLE_INPUT.value;
+    newTask["description"] = TASK_DESCRIPTION.value;
+    newTask["dueDate"] = DUE_DATE_INPUT.value;
+    newTask["priority"] = taskPrio;
+    newTask["assignedTo"] = checkedContactNames;
+    newTask["subtasks"] = subtaskList;
+    newTask["state"] = "backlog";
+    helperArray.push(newTask);
+    console.log(helperArray);
+
+    // await postData(PATH_TO_TASKS, tasks[0]);
+    await postData(PATH_TO_TASKS, helperArray[0]);
 }
