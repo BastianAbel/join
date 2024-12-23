@@ -1,12 +1,28 @@
 body {
     background-color: #F6F7F8;
     margin: 0px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: flex-end;
 }
 
 h1 {
     font-size: 47px;
     font-weight: 700;
-    /* width: 139px; */
     height: 56px;
     margin-bottom: 0px;
     margin-top: 0px;
@@ -14,35 +30,34 @@ h1 {
 
 a {
     color:  #A8A8A8;
-
 }
 
 .join-logo {
     width: 64px;
     height: 78.03px;
-    position: absolute;
-    top: 37px;
-    left: 38px;
     display: flex;
     gap: 10px;
     opacity: 0px;
+    margin: 37px 0 0 38px;
 }
 
 .head-container {
     display: flex;
     justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
 }
 
 .head-container button {
     background-color: transparent;
     border: none;
+    position: absolute;
+    left: 21px;
 }
 
 .login-main-container {
     width: 396px;
-    top: 225.5px;
-    left: 16px;
-    position: absolute;
     padding: 32px 0px 32px 0px;
     border-radius: 30px;
     background-color: #FFFFFF;
@@ -71,11 +86,11 @@ a {
 }
 
 .input-main {
-    height: 152px;
     display: flex;
     flex-direction: column;
     gap: 16px;
     padding-bottom: 32px;
+    width: 100%;
 }
 
 .input-container {
@@ -88,20 +103,20 @@ a {
     padding-left: 21px;
     padding-top: 12px;
     gap: 10px;
+    width: calc(100% - 42px);
 }
 
 input {
     padding-top: 13px;
     padding-bottom: 13px;
     padding-left: 21px;
-    height: 40px;
     border: 1px solid #ccc;
     border-radius: 10px;
     font-size: 16px;
     box-sizing: border-box;
     cursor: pointer;
     height: 48px;
-    width: 364px;
+    width: 100%;
 }
 
 input:focus {
@@ -123,7 +138,6 @@ input:focus {
 
 .login-options-container {
     width: 180px;
-    height: 123px;
     display: flex;
     flex-direction: column;
     gap: 21px;
@@ -134,6 +148,7 @@ input:focus {
     display: flex;
     align-items: center;
     flex-direction: column;
+    width: 100%;
 }
 
 .login-button {
@@ -174,13 +189,10 @@ input:focus {
 .signup-container {
     width: 292px;
     height: 49px;
-    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 35px;
-    top: 778px;
-    left: 70px;
     font-size: 20px;
     font-weight: 400;
 }
@@ -203,9 +215,6 @@ input:focus {
 .legal-container {
     width: 246px;
     height: 35px;
-    top: 869px;
-    left: 91px;
-    position: absolute;
     display: flex;
     justify-content: space-around;
     align-items: center;
