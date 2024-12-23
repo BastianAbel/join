@@ -71,7 +71,7 @@ a {
 }
 
 .input-main {
-    /* height: 152px; */
+    height: 152px;
     display: flex;
     flex-direction: column;
     gap: 16px;
