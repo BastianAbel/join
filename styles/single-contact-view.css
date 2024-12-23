@@ -88,23 +88,30 @@ span {
     left: 208px;
     bottom: 160px;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 .option-container {
     height: 40px;
     width: 96px;
     display: flex;
-    padding: 8px;
+    align-items: center;
     gap: 8px;
 }
 
 .option-container:hover {
+    background-color: #e7e7e7;
+    border-radius: 10px;
     color: var(--identity);
     .option-edit {
         background: url(../assets/icons/edit-symbol-blue.svg) no-repeat;
     }
     .option-delete {
-        background: url(../assets/icons/delete-symbol-blue.svg) no-repeat
+        background: url(../assets/icons/delete-symbol-blue.svg) no-repeat;
     }
 }
 

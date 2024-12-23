@@ -67,6 +67,7 @@ body {
     border-radius: 10px;
 
     padding: 8px 16px 8px 16px;
+
     ::placeholder {
         color: rgba(209, 209, 209, 1);
         font-size: 20px;
