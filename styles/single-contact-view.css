@@ -7,7 +7,7 @@
 
 .contact-head {
     display: flex;
-    align-items: normal;
+    align-items: center;
     justify-content: space-between;
 }
 
@@ -74,6 +74,10 @@ span {
     align-items: center;
     justify-content: start;
     cursor: pointer;
+    & :hover {
+        background-color: #e7e7e7;
+        border-radius: 50%;
+    }
 }
 
 .edit-popup-container {
