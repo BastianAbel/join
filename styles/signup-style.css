@@ -26,9 +26,8 @@
 .check-privacy-container img:hover {
     background-color: #e7e7e7;
     border-radius: 50%;
+    cursor: pointer;
 }
-
-
 
 .privacy-link {
     color: var(--identity);
