@@ -6,7 +6,8 @@
     <link rel="shortcut icon" href="/assets/icons/join-logo-white.svg" type="image/x-icon">
     <link rel="stylesheet" href="/styles/standart.css">
     <link rel="stylesheet" href="/styles/login-style.css">
-    <title>Join</title>
+    <link rel="stylesheet" href="/styles/signup-style.css">
+    <title>Sign Up</title>
 </head>
 <body>
     <header>
@@ -21,6 +22,10 @@
             <form action="">
                 <div class="input-main">
                     <div class="input-container">
+                        <input type="text" placeholder="Name">
+                        <img src="/assets/icons/contact-person.svg" alt="User Icon" class="input-icon">
+                    </div>
+                    <div class="input-container">
                         <input type="text" placeholder="Email">
                         <img src="/assets/icons/mail-icon.svg" alt="User Icon" class="input-icon">
                     </div>
@@ -29,13 +34,12 @@
                         <img src="/assets/icons/lock.svg" alt="User Icon" class="input-icon">
                     </div>
                     <div class="input-container">
-                        <input type="text" placeholder="Email">
-                        <img src="/assets/icons/mail-icon.svg" alt="User Icon" class="input-icon">
+                        <input type="text" placeholder="Confirm Password">
+                        <img src="/assets/icons/lock.svg" alt="User Icon" class="input-icon">
                     </div>
-                    <div class="input-container">
-                        <input type="text" placeholder="Email">
-                        <img src="/assets/icons/mail-icon.svg" alt="User Icon" class="input-icon">
-                    </div>
+                </div>
+                <div class="check-privacy-container">
+                    <img src="/assets/icons/checkbox-not-checked.svg" alt=""><span style="color: #a8a8a8;">I accept the <a class="privacy-link" href="">Privacy policy</a></span>
                 </div>
                 <div class="login-options-container">
                     <button class="login-button">Sign up</button>
@@ -44,9 +48,6 @@
         </div>    
     </main>
     <footer>
-        <div class="signup-container">
-            <span>Not a Join user?</span><button class="signup-button">Sign up</button>
-        </div>
         <div class="legal-container">
             <a href="#">Privacy Policy</a><a href="#">Legal notice</a>
         </div>    

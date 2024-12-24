@@ -152,17 +152,16 @@ tr {
     gap: 16px;
     font-size: 16px;
     font-weight: 400;
+    width: fit-content;
 }
 
 .subtask-element-container:hover {
     background-color: #e7e7e7;
     border-radius: 10px;
-
     img {
         background-color: rgba(0, 0, 0, 0.16);
         border-radius: 50%;
     }
-
 }
 
 .seperator {
@@ -188,15 +187,12 @@ tr {
 .option-container:hover {
     color: var(--identity);
     font-weight: bold;
-
     .option-edit {
         background: url(../assets/icons/edit-symbol-blue.svg) no-repeat;
     }
-
     .option-delete {
         background: url(../assets/icons/delete-symbol-blue.svg) no-repeat;
     }
-
     cursor: pointer;
 }
 
