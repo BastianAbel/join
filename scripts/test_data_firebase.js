@@ -14,3 +14,9 @@ async function postData(path = "", data = {}) {
     const responseToJson = await response.json();
     return responseToJson;
 }
+
+async function loadData(path = "") {
+    let response = await fetch(`${BASE_URL}${path}.json`);
+    let responseToJson = await response.json();
+    return responseToJson;
+}

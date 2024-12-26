@@ -23,10 +23,9 @@ let checkedContactNames = [];
 let subtaskList = [];
 let taskPrio = "";
 
-function getAllContactNames() {
-    for (let i = 0; i < contacts.length; i++) {
-        contactNames.push(contacts[i].name);
-    }
+async function getAllContactNames() {
+    let contactsResponse = await loadData(PATH_TO_CONTACTS);
+    let contactNames = Object.values(contactsResponse).map(({ name }) => name);
     filteredNames = contactNames;
     addContactNamesToList(filteredNames, TASK_CONTACT_LIST);
 }
