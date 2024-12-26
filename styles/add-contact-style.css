@@ -13,6 +13,10 @@ span {
     font-size: 20px;
 }
 
+input {
+    cursor: pointer;
+}
+
 .add-contact-container {
     background-color: var(--accent-text-color);
     height: 352px;
@@ -32,8 +36,14 @@ span {
     padding-top: 24px;
     padding-right: 24px;
     cursor: pointer;
+    img {
+        padding: 9px;
+    }
+    & :hover {
+        background-color: var(--identity);
+        border-radius: 50%;
+    }
 }
-
 
 .border-bottom {
     position: relative;
@@ -135,5 +145,10 @@ input:focus {
     justify-content: center;
     width: 202px;
     height: 51px;
+    border: none;
 }
 
+.create-contact-button:hover {
+    background-color: var(--identity);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}

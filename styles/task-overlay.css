@@ -1,5 +1,4 @@
 main {
-    width: 396px;
     height: fit-content !important;
     border-radius: 30px;
     padding: 32px 24px;
@@ -7,6 +6,7 @@ main {
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
     display: flex;
     flex-direction: column;
+    overflow-y: unset !important;
 }
 
 h1 {
@@ -19,7 +19,6 @@ table {
 }
 
 tr {
-    width: 348px;
     height: 19px;
 }
 
@@ -28,16 +27,22 @@ tr {
     height: 32px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .userstory-close-container img {
     height: 24px;
     width: 24px;
+    cursor: pointer;
+}
+
+.userstory-close-container img:hover {
+    background-color: #e7e7e7;
+    border-radius: 50%;
 }
 
 .date-container {
     display: flex;
-    width: 348px;
     height: 19px;
     gap: 25px;
 }
@@ -49,7 +54,6 @@ tr {
 .priority-container {
     display: flex;
     align-items: center;
-    width: 348px;
     height: 27px;
     gap: 25px;
 }
@@ -74,18 +78,15 @@ tr {
 .assigned-contacts-container {
     display: flex;
     flex-direction: column;
-    width: 445px;
     gap: 8px;
 }
 
 .assigned-head {
-    width: 348px;
     height: 24px;
     color: #42526E;
 }
 
 .assigned-contacts {
-    width: 348px;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -131,7 +132,6 @@ tr {
 }
 
 .subtasks {
-    width: 348px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -154,6 +154,17 @@ tr {
     font-weight: 400;
 }
 
+.subtask-element-container:hover {
+    background-color: #e7e7e7;
+    border-radius: 10px;
+
+    img {
+        background-color: rgba(0, 0, 0, 0.16);
+        border-radius: 50%;
+    }
+
+}
+
 .seperator {
     height: 24px;
     width: 1px;
@@ -166,4 +177,37 @@ tr {
     align-items: center;
     justify-content: end;
     gap: 8px;
+}
+
+.option-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.option-container:hover {
+    color: var(--identity);
+    font-weight: bold;
+
+    .option-edit {
+        background: url(../assets/icons/edit-symbol-blue.svg) no-repeat;
+    }
+
+    .option-delete {
+        background: url(../assets/icons/delete-symbol-blue.svg) no-repeat;
+    }
+
+    cursor: pointer;
+}
+
+.option-edit {
+    background: url(../assets/icons/edit-symbol.svg) no-repeat;
+    height: 24px;
+    width: 24px;
+}
+
+.option-delete {
+    background: url(../assets/icons/delete.svg) no-repeat;
+    height: 24px;
+    width: 24px;
 }
