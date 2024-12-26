@@ -38,3 +38,11 @@
         text-decoration-thickness: 2px;
     }
 }
+
+.check-password-style {
+    color: red;
+    font-size: 0.9em;
+    width: calc(100% - 42px);
+    padding-left: 21px;
+    padding-right: 21px;
+}

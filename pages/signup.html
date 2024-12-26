@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="/styles/standart.css">
     <link rel="stylesheet" href="/styles/login-style.css">
     <link rel="stylesheet" href="/styles/signup-style.css">
+    <script src="/scripts/register.js"></script>
+    <script src="/scripts/test_data_firebase.js"></script>
     <title>Sign Up</title>
 </head>
 
@@ -21,31 +23,34 @@
                 <button><img src="/assets/icons/blue-arrow-left.svg" alt=""></button>
                 <h1 class="border-bottom">Sign Up</h1>
             </div>
-            <form action="">
+            <form onsubmit="addUser(); return false;">
                 <div class="input-main">
                     <div class="input-container">
-                        <input type="text" placeholder="Name">
+                        <input id="username" type="text" placeholder="Name" required>
                         <img src="/assets/icons/contact-person.svg" alt="User Icon" class="input-icon">
                     </div>
                     <div class="input-container">
-                        <input type="email" placeholder="Email">
+                        <input id="email" type="email" placeholder="Email" required>
                         <img src="/assets/icons/mail-icon.svg" alt="User Icon" class="input-icon">
                     </div>
                     <div class="input-container">
-                        <input type="password" placeholder="Password">
+                        <input id="password" type="password" placeholder="Password" onkeyup='checkIfPasswordsMatch();' required>
                         <img src="/assets/icons/lock.svg" alt="User Icon" class="input-icon">
                     </div>
                     <div class="input-container">
-                        <input type="password" placeholder="Confirm Password">
+                        <input id="confirmPassword" type="password" placeholder="Confirm Password" onkeyup='checkIfPasswordsMatch();' required>
                         <img src="/assets/icons/lock.svg" alt="User Icon" class="input-icon">
                     </div>
+                    <div class="check-password-style" id="pw-state-message"></div>
                 </div>
                 <div class="check-privacy-container">
-                    <img id="checkbox" src="/assets/icons/checkbox-not-checked.svg" alt=""><span style="color: #a8a8a8;">I accept the
+                    <input id="privacyCheckbox" type="checkbox" onchange="document.getElementById('submitBtn').disabled = !this.checked;" required>
+                    <label for="privacyCheckbox"></label>
+                    <span style="color: #a8a8a8;">I accept the
                         <a class="privacy-link" href="/pages/privacy-policy.html">Privacy policy</a></span>
                 </div>
                 <div class="login-options-container">
-                    <button class="login-button">Sign up</button>
+                    <button disabled id="submitBtn" class="login-button">Sign up</button>
                 </div>
             </form>
         </div>
