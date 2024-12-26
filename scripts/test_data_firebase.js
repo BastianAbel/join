@@ -3,13 +3,14 @@ const PATH_TO_CONTACTS = "contacts/";
 const PATH_TO_TASKS = "tasks/";
 
 async function postData(path = "", data = {}) {
-    let response = await fetch(BASE_URL + path + ".json", {
+    let response = await fetch(`${BASE_URL}${path}.json`, {
         method: "POST",
         header: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
     });
-    let responseToJson = await response.json();
+
+    const responseToJson = await response.json();
     return responseToJson;
 }

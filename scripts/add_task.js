@@ -16,12 +16,12 @@ const TASK_DESCRIPTION = document.getElementById("task-description");
 const PRIO_URGENT_BUTTON = document.getElementById("prio-urgent-btn");
 const PRIO_MEDIUM_BUTTON = document.getElementById("prio-medium-btn");
 const PRIO_LOW_BUTTON = document.getElementById("prio-low-btn");
+let newTask = {};
 let contactNames = [];
 let filteredNames = [];
 let checkedContactNames = [];
 let subtaskList = [];
 let taskPrio = "";
-let newTask = {};
 
 function getAllContactNames() {
     for (let i = 0; i < contacts.length; i++) {
@@ -176,20 +176,26 @@ function removeEditClass(event) {
     }
 }
 
-async function createTask() {
-    newTask = {};
-    let helperArray = [];
-    newTask["type"] = TASK_CATEGORY_SELECT.value;
-    newTask["title"] = TASK_TITLE_INPUT.value;
-    newTask["description"] = TASK_DESCRIPTION.value;
-    newTask["dueDate"] = DUE_DATE_INPUT.value;
-    newTask["priority"] = taskPrio;
-    newTask["assignedTo"] = checkedContactNames;
-    newTask["subtasks"] = subtaskList;
-    newTask["state"] = "backlog";
-    helperArray.push(newTask);
-    console.log(helperArray);
+async function createTask(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    newTask = {
+        "type": document.getElementById("task-category-select").value,
+        "title": document.getElementById("task-title").value,
+        "description": document.getElementById("task-description").value,
+        "dueDate": document.getElementById("task-due-date").value,
+        "priority": taskPrio,
+        "assignedTo": checkedContactNames,
+        "subtasks": subtaskList,
+        "state": "backlog",
+    };
 
-    // await postData(PATH_TO_TASKS, tasks[0]);
-    await postData(PATH_TO_TASKS, helperArray[0]);
+    try {
+        if (newTask["type"] !== "" && newTask["title"] !== "" && newTask["dueDate"] !== "") {
+            await postData(PATH_TO_TASKS, newTask);
+            console.log("Aufgabe erfolgreich erstellt:", newTask);
+        }
+    } catch (error) {
+        console.error("Fehler beim Erstellen der Aufgabe:", error);
+    }
 }
