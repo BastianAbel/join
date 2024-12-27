@@ -4,3 +4,7 @@ function toggleClassById(className, ...IDs) {
         currentElement?.classList.toggle(className);
     }
 }
+
+function getBackToPreviousSite() {
+    window.history.back();
+}

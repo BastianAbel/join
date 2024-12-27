@@ -1,7 +1,3 @@
-function getBackToPreviousSite() {
-    window.history.back();
-}
-
 function getContactInitials(contactName) {
     return contactName
         .split(" ")
