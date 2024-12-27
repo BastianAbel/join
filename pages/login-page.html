@@ -20,14 +20,14 @@
             <div class="head-container">
                 <h1 class="border-bottom">Log in</h1>
             </div>
-            <form action="">
+            <form onsubmit="userLogin()">
                 <div class="input-main">
                     <div class="input-container">
-                        <input type="text" placeholder="Email">
+                        <input id="email" type="email" placeholder="Email" required>
                         <img src="/assets/icons/mail-icon.svg" alt="User Icon" class="input-icon">
                     </div>
                     <div class="input-container">
-                        <input type="password" placeholder="Password">
+                        <input id="password" type="password" placeholder="Password" required>
                         <img src="/assets/icons/lock.svg" alt="User Icon" class="input-icon">
                     </div>
                 </div>

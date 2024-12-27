@@ -21,4 +21,10 @@ function addUser(){
     let password = document.getElementById('password').value;
     let userData = {"name":`"${userName}"`, "email":`"${email}"`, "password":`"${password}"`};
     postData(path = "users/", data = {userData});
+    document.getElementById("register-poup").classList.remove('d-none');
+    setTimeout(navigateToLogin, 800)
+}
+
+function navigateToLogin(){
+    window.location.href = "login-page.html";
 }
