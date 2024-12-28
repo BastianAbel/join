@@ -9,6 +9,8 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="/styles/standart.css">
     <link rel="stylesheet" href="/styles/login-style.css">
+    <script src="/scripts/login.js"></script>
+    <script src="/scripts/test_data_firebase.js"></script>
 </head>
 
 <body>
@@ -20,20 +22,20 @@
             <div class="head-container">
                 <h1 class="border-bottom">Log in</h1>
             </div>
-            <form action="">
+            <form onsubmit="userLogin(); return false;">
                 <div class="input-main">
                     <div class="input-container">
-                        <input type="text" placeholder="Email">
+                        <input id="email" type="email" placeholder="Email" required>
                         <img src="/assets/icons/mail-icon.svg" alt="User Icon" class="input-icon">
                     </div>
                     <div class="input-container">
-                        <input type="password" placeholder="Password">
+                        <input id="password" type="password" placeholder="Password" required>
                         <img src="/assets/icons/lock.svg" alt="User Icon" class="input-icon">
                     </div>
                 </div>
                 <div class="login-options-container">
                     <button class="login-button">Log In</button>
-                    <button class="guest-login-button">Guest Log in</button>
+                    <button disabled class="guest-login-button">Guest Log in</button>
                 </div>    
             </form>
         </div>    

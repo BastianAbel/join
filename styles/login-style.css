@@ -34,6 +34,7 @@ a {
 
 a:hover {
     color: var(--identity);
+    font-weight: bold;
 }
 
 .join-logo {
