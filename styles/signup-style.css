@@ -46,3 +46,13 @@
     padding-left: 21px;
     padding-right: 21px;
 }
+
+.pw-match-green {
+    display: block;
+    color: green !important;
+}
+
+.pw-match-red {
+    display: block;
+    color: red !important;
+}

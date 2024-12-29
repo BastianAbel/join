@@ -8,10 +8,20 @@ async function userLogin() {
         users.push(
             {
                 id: userKeysArray[i],
-                user: fetchedUsers[userKeysArray[i]],
+                user: fetchedUsers[userKeysArray[i]]["userData"],
             }
         )
     }
+    console.log(users)
+    checkIfUserExists()
+}
+
+function checkIfUserExists(){
+    let email = document.getElementById('email');
+    let password = document.getElementById('password');
+    let user = users.find(i => i.user.email === email.value && i.user.password === password.value);
+    console.log(email.value)
+    console.log(users[0].user.email)
 }
 
 
