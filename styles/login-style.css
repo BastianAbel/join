@@ -264,3 +264,7 @@ input:focus {
 .accept-privacy-policy-container a {
     color: var(--identity);
 }
+
+.visibility-icon {
+    cursor: pointer;
+}
