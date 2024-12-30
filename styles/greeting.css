@@ -7,7 +7,7 @@
 #greeting {
     font-size: 36px;
     font-weight: 400;
-    color: #2A3647;
+    color: var(--accent-text-color);
 }
 
 #userName {

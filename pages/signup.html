@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/styles/signup-style.css">
     <link rel="stylesheet" href="/styles/big-popup.css">
     <script src="/scripts/standart.js"></script>
+    <script src="/scripts/login.js"></script>
     <script src="/scripts/register.js"></script>
     <script src="/scripts/test_data_firebase.js"></script>
     <script src="/scripts/b_placeholder.js"></script>
@@ -26,7 +27,7 @@
                 <button onclick="getBackToPreviousSite()"><img src="/assets/icons/blue-arrow-left.svg" alt=""></button>
                 <h1 class="border-bottom">Sign Up</h1>
             </div>
-            <form onsubmit="addUser(); return false;">
+            <form id="userSubmit" onsubmit="addUser(); return false;">
                 <div class="input-main">
                     <div class="input-container">
                         <input id="username" type="text" placeholder="Name" required>
@@ -39,12 +40,12 @@
                     <div class="input-container">
                         <input id="password" type="password" placeholder="Password" onkeyup='checkIfPasswordsMatch(); checkforvisibility(this, "first")' required>
                         <img src="/assets/icons/lock.svg" alt="User Icon" class="input-icon" id="password-lock-first">
-                        <img src="/assets/icons/visibility_off.svg" alt="User Icon" class="input-icon d-none visibility-icon" id="password-visibility-first">
+                        <img src="/assets/icons/visibility_off.svg" onclick="togglePassword()" alt="User Icon" class="input-icon d-none visibility-icon" id="password-visibility-first">
                     </div>
                     <div class="input-container">
                         <input id="confirmPassword" type="password" placeholder="Confirm Password" onkeyup='checkIfPasswordsMatch(); checkforvisibility(this, "second")' required>
                         <img src="/assets/icons/lock.svg" alt="User Icon" class="input-icon" id="password-lock-second">
-                        <img src="/assets/icons/visibility_off.svg" alt="User Icon" class="input-icon d-none visibility-icon" id="password-visibility-second">
+                        <img src="/assets/icons/visibility_off.svg" onclick="toggleConfirmPassword()" alt="User Icon" class="input-icon d-none visibility-icon" id="password-visibility-second">
                     </div>
                     <div class="check-password-style" id="pw-state-message"></div>
                 </div>

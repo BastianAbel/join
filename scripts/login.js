@@ -1,7 +1,12 @@
 let users = [];
 
 // User werden geladen und gepusht
-async function userLogin() {
+function userLogin() {
+    fetchUsers();
+    checkIfUserExists();
+}
+// Fetch all users in Backend
+async function fetchUsers() {
     let response = await fetch(BASE_URL + PATH_TO_USERS + ".json")
     let fetchedUsers = await response.json()
     let userKeysArray = Object.keys(fetchedUsers);
@@ -15,21 +20,21 @@ async function userLogin() {
             }
         });
     }
-    console.log(users)
-    checkIfUserExists()
 }
+
 //Check if user exists
 function checkIfUserExists() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
     let user = users.find(user => user.user.email === email && user.user.password === password);
-    let userName = user.user.name;
     console.log(user)
     if (user) {
         userName = user.user.name
         navigateToUserPage(userName);
     } else {
-        console.log("user nicht gefunden")
+        document.getElementById('pw-state-message').innerHTML = "Check your email and password. Please try again.";
+        document.getElementById('password').style.border = "1px solid var(--icon-urgent-red)";
+        document.getElementById('email').style.border = "1px solid var(--icon-urgent-red)";
     }
 }
 
@@ -40,7 +45,6 @@ function navigateToUserPage(userName) {
 
 // Weiterleitung Guestseite
 function navigateToGuestPage() {
-    showTimeAndUserGuest();
     window.location.href = "greeting-guest.html";
 }
 
@@ -50,9 +54,9 @@ function showTimeAndUser() {
     let time = date.getHours();
     const urlParams = new URLSearchParams(window.location.search);
     const userName = urlParams.get('userName');
-    if (time < 12) {
+    if (time >= 5 && time <= 11) {
         document.getElementById('greeting').innerHTML = "Good morning,";
-    } else if (time < 18) {
+    } else if (time >= 11 && time <= 18) {
         document.getElementById('greeting').innerHTML = "Good afternoon,";
     } else {
         document.getElementById('greeting').innerHTML = "Good evening,";
@@ -73,6 +77,16 @@ function showTimeAndUserGuest() {
     } else {
         document.getElementById('greeting').innerHTML = "Good evening!";
     }
+}
+
+function resetLoginWarning() {
+    let pwInput = document.getElementById('password').value
+    if (pwInput === "") {
+        document.getElementById('email').style.border = "1px solid #ccc";
+        document.getElementById('password').style.border = "1px solid #ccc";
+        document.getElementById('pw-state-message').innerHTML = "";
+    }
+
 }
 
 
