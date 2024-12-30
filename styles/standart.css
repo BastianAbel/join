@@ -66,4 +66,27 @@ a {
     background-color: crimson;
 }
 
+input[type=checkbox] {
+    display: none;
+}
 
+input[type=checkbox]+label {
+    display: inline-block;
+    background: url("/assets/icons/checkbox-not-checked.svg") no-repeat;
+    height: 24px;
+    width: 24px;
+    background-size: 100%;
+    cursor: pointer;
+}
+
+input[type=checkbox]:checked+label {
+    background: url("/assets/icons/checkbox-checked.svg") no-repeat;
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+    background-size: 100%;
+}
+
+.d-none {
+    display: none !important;
+}
