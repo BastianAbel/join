@@ -10,3 +10,16 @@ function checkforvisibility(element, imgId) {
         visibilityImgRef.classList.remove("d-none");
     }
 }
+
+function changePasswordVisibility(inputfieldId, imgElement) {
+    visibleImgRef = imgElement;
+    // visibleImgRef = document.getElementById("password-visibility-" + imgId);
+    inputfieldRef = document.getElementById(inputfieldId);
+    if(inputfieldRef.type == "text") {
+        inputfieldRef.type = "password";
+        visibleImgRef.src = "/assets/icons/visibility_off.svg"
+    }else{
+        inputfieldRef.type = "text";
+        visibleImgRef.src = "/assets/icons/visibility_on.svg"
+    }
+}
