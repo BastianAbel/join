@@ -3,14 +3,16 @@ function checkIfPasswordsMatch() {
     let pw = document.getElementById("password").value;
     let confirmPw = document.getElementById("confirmPassword").value;
     if (pw === "" && confirmPw === "") {
-        document.getElementById("pw-state-message").style.display = "none";
-    } else if (pw == confirmPw) {
-        document.getElementById("pw-state-message").classList.add('pw-match-green');
-        document.getElementById("pw-state-message").innerHTML = "Passwords match!";
+        document.getElementById("pw-state-message").classList.add('d-none');
+    } else if (pw === confirmPw) {
+        document.getElementById('pw-state-message').innerHTML = "Passwords match!"
+        document.getElementById("pw-state-message").classList.remove('d-none');
+        document.getElementById('pw-state-message').classList.add('pw-match-green');
     }
     else {
-        document.getElementById("pw-state-message").classList.remove('pw-match-green');
-        document.getElementById("pw-state-message").innerHTML = "Passwords do NOT match!";
+        document.getElementById('pw-state-message').innerHTML = "Your passwords don't match. Please try again."
+        document.getElementById("pw-state-message").classList.remove('d-none');
+        document.getElementById('pw-state-message').classList.remove('pw-match-green');
     }
 }
 // User im Backend anlegen

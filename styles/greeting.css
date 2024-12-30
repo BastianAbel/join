@@ -1,0 +1,17 @@
+.greeting-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#greeting {
+    font-size: 36px;
+    font-weight: 400;
+    color: #2A3647;
+}
+
+#userName {
+    font-size: 47px;
+    font-weight: 700;
+    color: var(--identity);
+}
