@@ -37,7 +37,10 @@
                     <h1>Add Task</h1>
                 </div>
                 <div class="create-task-container">
-                    <form>
+                    <form
+                        id="create-task-form"
+                        onsubmit="createTask(event)"
+                    >
                         <div id="inner-form-container">
                             <div class="add-task-attribute-container">
                                 <label for="task-title">Title<span class="require-asterisk">*</span></label>
@@ -230,7 +233,6 @@
                                         type="submit"
                                         id="create-task-btn"
                                         class="add-task-btn"
-                                        onclick="createTask(event)"
                                     >
                                         Create Task
                                         <img

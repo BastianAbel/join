@@ -177,7 +177,6 @@ function removeEditClass(event) {
 
 async function createTask(event) {
     event.preventDefault();
-    event.stopPropagation();
     newTask = {
         "type": document.getElementById("task-category-select").value,
         "title": document.getElementById("task-title").value,
@@ -193,6 +192,7 @@ async function createTask(event) {
         if (newTask["type"] !== "" && newTask["title"] !== "" && newTask["dueDate"] !== "") {
             await postData(PATH_TO_TASKS, newTask);
             console.log("Aufgabe erfolgreich erstellt:", newTask);
+            clearAllInputAddTask();
         }
     } catch (error) {
         console.error("Fehler beim Erstellen der Aufgabe:", error);
