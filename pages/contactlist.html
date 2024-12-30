@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="/styles/basic-assets.css">
     <script src="/scripts/contact_list.js" defer></script>
     <script src="/scripts/firebase.js" defer></script>
+    <script src="/scripts/contact_list_template.js" defer></script>
+    <script src="/scripts/main.js" defer></script>
 </head>
     <body onload="initializeContactsList()">
         <header>
@@ -27,8 +29,11 @@
             </section>
         </header>
         <main>
-            <section class="contactlist-container">
-                <div class="contactlist-category">
+            <section
+                id="contact-list-container"
+                class="contactlist-container"
+            >
+                <!-- <div class="contactlist-category">
                     <span>A</span>
                 </div>
                 <div class="contactlist-separator"></div>
@@ -93,7 +98,7 @@
                         <span>Anton Mayer</span>
                         <a href="mailto:antom@gmail.com">antom@gmail.com</a>
                     </div>
-                </div>
+                </div> -->
             </section>
         </main>
         <div class="options-icon-container">
