@@ -41,18 +41,19 @@
 
 .check-password-style {
     color: red;
-    font-size: 0.9em;
+    font-size: 12px;
+    font-weight: 400;
     width: calc(100% - 42px);
     padding-left: 21px;
     padding-right: 21px;
 }
 
 .pw-match-green {
-    display: block;
-    color: green !important;
+    display: block ;
+    color: green !important ;
 }
 
 .pw-match-red {
-    display: block;
-    color: red !important;
+    display: block ;
+    color: red;
 }
