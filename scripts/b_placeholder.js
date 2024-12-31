@@ -13,7 +13,6 @@ function checkforvisibility(element, imgId) {
 
 function changePasswordVisibility(inputfieldId, imgElement) {
     visibleImgRef = imgElement;
-    // visibleImgRef = document.getElementById("password-visibility-" + imgId);
     inputfieldRef = document.getElementById(inputfieldId);
     if(inputfieldRef.type == "text") {
         inputfieldRef.type = "password";
