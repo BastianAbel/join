@@ -1,4 +1,3 @@
-// Check if Passwords are identical
 function checkIfPasswordsMatch() {
     let pw = document.getElementById("password").value;
     let confirmPw = document.getElementById("confirmPassword").value;
@@ -13,7 +12,7 @@ function checkIfPasswordsMatch() {
         document.getElementById("pw-state-message").innerHTML = "Passwords do NOT match!";
     }
 }
-// User im Backend anlegen
+
 function addUser(){
     let userName = document.getElementById('username').value;
     let email = document.getElementById('email').value;
@@ -24,7 +23,7 @@ function addUser(){
     document.getElementById("register-popup").classList.remove('d-none');
     setTimeout(navigateToLogin, 800)
 }
-// Weiterleitung
+
 function navigateToLogin(){
     window.location.href = "login-page.html";
 }
