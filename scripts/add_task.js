@@ -36,6 +36,7 @@ function addContactNamesToList(array, element) {
         let name = array[j];
         element.innerHTML += renderAssignContact(name);
     }
+    addColorToElements("name-circle");
 }
 
 function addSubTask() {
@@ -103,6 +104,7 @@ function showContactList() {
             NAME_CIRCLE_CONTAINER.classList.add("open-circle-container");
             NAME_CIRCLE_CONTAINER.innerHTML = "";
             checkedContactNames.forEach((name) => (NAME_CIRCLE_CONTAINER.innerHTML += renderNameCircle(name)));
+            addColorToElements("name-circle");
         }
         if (!NAME_CIRCLE_CONTAINER.classList.contains("d_none") && !NAME_CIRCLE_CONTAINER.hasChildNodes()) {
             NAME_CIRCLE_CONTAINER.classList.add("d_none");
