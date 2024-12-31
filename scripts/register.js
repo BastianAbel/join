@@ -1,4 +1,3 @@
-// Check if Passwords are identical
 function checkIfPasswordsMatch() {
     let pw = document.getElementById("password").value;
     let confirmPw = document.getElementById("confirmPassword").value;

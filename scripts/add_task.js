@@ -36,6 +36,7 @@ function addContactNamesToList(array, element) {
         let name = array[j];
         element.innerHTML += renderAssignContact(name);
     }
+    addColorToElements("name-circle");
 }
 
 function addSubTask() {
@@ -103,6 +104,7 @@ function showContactList() {
             NAME_CIRCLE_CONTAINER.classList.add("open-circle-container");
             NAME_CIRCLE_CONTAINER.innerHTML = "";
             checkedContactNames.forEach((name) => (NAME_CIRCLE_CONTAINER.innerHTML += renderNameCircle(name)));
+            addColorToElements("name-circle");
         }
         if (!NAME_CIRCLE_CONTAINER.classList.contains("d_none") && !NAME_CIRCLE_CONTAINER.hasChildNodes()) {
             NAME_CIRCLE_CONTAINER.classList.add("d_none");
@@ -177,7 +179,6 @@ function removeEditClass(event) {
 
 async function createTask(event) {
     event.preventDefault();
-    event.stopPropagation();
     newTask = {
         "type": document.getElementById("task-category-select").value,
         "title": document.getElementById("task-title").value,
@@ -193,6 +194,7 @@ async function createTask(event) {
         if (newTask["type"] !== "" && newTask["title"] !== "" && newTask["dueDate"] !== "") {
             await postData(PATH_TO_TASKS, newTask);
             console.log("Aufgabe erfolgreich erstellt:", newTask);
+            clearAllInputAddTask();
         }
     } catch (error) {
         console.error("Fehler beim Erstellen der Aufgabe:", error);
