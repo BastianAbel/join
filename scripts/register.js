@@ -33,23 +33,27 @@ function addUser() {
     let userName = document.getElementById('username').value;
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
-    checkIfEmailExists(email);
-    let userData = { "name": `"${userName}"`, "email": `"${email}"`, "password": `"${password}"` };
-    postData(path = "users/", data = { userData });
-    document.getElementById("register-popup").classList.remove('d-none');
-    setTimeout(navigateToLogin, 800)
+    checkIfEmailExists(userName, email, password);
 }
-//check if email is alreasy existing
-async function checkIfEmailExists(email) {
+//check if email is already existing
+async function checkIfEmailExists(userName, email, password) {
     await fetchUsers();
     let userEmail = users.find(user => user.user.email === email);
+    console.log(userEmail)
     if (userEmail) {
         document.getElementById('pw-state-message').innerHTML = "This email already exists."
         document.getElementById('pw-state-message').classList.remove('pw-match-green');
+        return false;
     } else {
         document.getElementById('pw-state-message').innerHTML = ""
+        let userData = { "name": `"${userName}"`, "email": `"${email}"`, "password": `"${password}"` };
+        postData(path = "users/", data = { userData });
+        document.getElementById("register-popup").classList.remove('d-none');
+        setTimeout(navigateToLogin, 800)
+        return true;
     }
 }
+
 // Weiterleitung
 function navigateToLogin() {
     window.location.href = "login-page.html";
