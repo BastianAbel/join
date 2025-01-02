@@ -21,7 +21,6 @@ async function fetchUsers() {
         });
     }
 }
-
 //Check if user exists
 function checkIfUserExists() {
     let email = document.getElementById('email').value;
@@ -37,17 +36,14 @@ function checkIfUserExists() {
         document.getElementById('email').style.border = "1px solid var(--icon-urgent-red)";
     }
 }
-
 // Weiterleitung Userseite
 function navigateToUserPage(userName) {
     window.location.href = `greeting-user.html?userName=${encodeURIComponent(userName)}`;
 }
-
 // Weiterleitung Guestseite
 function navigateToGuestPage() {
     window.location.href = "greeting-guest.html";
 }
-
 // Greeting Time
 function showTimeAndUser() {
     let date = new Date();
@@ -65,7 +61,6 @@ function showTimeAndUser() {
         document.getElementById('userName').innerHTML = userName;
     }
 }
-
 //Greeting Time Guest
 function showTimeAndUserGuest() {
     let date = new Date();
@@ -78,7 +73,6 @@ function showTimeAndUserGuest() {
         document.getElementById('greeting').innerHTML = "Good evening!";
     }
 }
-
 function resetLoginWarning() {
     let pwInput = document.getElementById('password').value
     if (pwInput === "") {
