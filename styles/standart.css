@@ -8,7 +8,7 @@
     --dark-accent: #091931;
     --light-background: #f6f7f8;
     --light--accent: #ffffff;
-    --identity: #29ABE2;
+    --identity: #29abe2;
     --light-text-color: #ffffff;
     --dark-text-color: #000000;
     --accent-text-color: #2a3647;
@@ -16,19 +16,19 @@
     --icon-urgent-red: #ff3d00;
     --icon-medium-yellow: #ffa800;
     --icon-low-green: #7ae229;
-    --link-color: #007CEE;
+    --link-color: #007cee;
 }
 
 * {
-    --contact-orange: #FF7A00;
-    --contact-purple: #9327FF;
-    --contact-violet: #6E52FF;
-    --contact-pink: #9327FF;
-    --contact-yellow: #FFBB2B;
-    --contact-green: #1FD7C1;
-    --contact-darkblue: #462F8A;
-    --contact-red: #FF4646;
-    --contact-blue: #00BEE8;
+    --contact-orange: #ff7a00;
+    --contact-purple: #9327ff;
+    --contact-violet: #6e52ff;
+    --contact-pink: #9327ff;
+    --contact-yellow: #ffbb2b;
+    --contact-green: #1fd7c1;
+    --contact-darkblue: #462f8a;
+    --contact-red: #ff4646;
+    --contact-blue: #00bee8;
 }
 
 html,
@@ -61,16 +61,15 @@ a {
     cursor: pointer;
 }
 
-
-.test-profile-picture-background {
+/* .test-profile-picture-background {
     background-color: crimson;
-}
+} */
 
-input[type=checkbox] {
+input[type="checkbox"] {
     display: none;
 }
 
-input[type=checkbox]+label {
+input[type="checkbox"] + label {
     display: inline-block;
     background: url("/assets/icons/checkbox-not-checked.svg") no-repeat;
     height: 24px;
@@ -79,7 +78,7 @@ input[type=checkbox]+label {
     cursor: pointer;
 }
 
-input[type=checkbox]:checked+label {
+input[type="checkbox"]:checked + label {
     background: url("/assets/icons/checkbox-checked.svg") no-repeat;
     height: 24px;
     width: 24px;
