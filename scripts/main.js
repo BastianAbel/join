@@ -19,9 +19,20 @@ function getRandomColor() {
 }
 
 //TODO - Make Color consistent
-function addColorToElements(elementsClassName) {
-    let nameBubbles = document.getElementsByClassName(elementsClassName);
-    for (let i = 0; i < nameBubbles.length; i++) {
-        nameBubbles[i].style.backgroundColor = getRandomColor();
-    }
+// function addColorToElements(elementsClassName) {
+//     // let nameBubbles = document.getElementsByClassName(elementsClassName);
+//     let bubble = document.getElementById(elementsClassName);
+//     bubble.style.backgroundColor = getRandomColor();
+//     // for (let i = 0; i < nameBubbles.length; i++) {
+//     //     nameBubbles[i].style.backgroundColor = getRandomColor();
+//     // }
+// }
+
+function setColorById(id, color) {
+    let profilePicture = document.getElementById(id);
+    profilePicture.style.backgroundColor = color;
+}
+
+function getContactFromArrayById(array, id) {
+    return array.find((entry) => entry.id == id);
 }
