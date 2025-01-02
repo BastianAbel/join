@@ -7,8 +7,8 @@ function userLogin() {
 }
 // Fetch all users in Backend
 async function fetchUsers() {
-    let response = await fetch(BASE_URL + PATH_TO_USERS + ".json")
-    let fetchedUsers = await response.json()
+    let response = await fetch(BASE_URL + PATH_TO_USERS + ".json");
+    let fetchedUsers = await response.json();
     let userKeysArray = Object.keys(fetchedUsers);
     for (let i = 0; i < userKeysArray.length; i++) {
         users.push({
@@ -36,6 +36,7 @@ function checkIfUserExists() {
         document.getElementById('email').style.border = "1px solid var(--icon-urgent-red)";
     }
 }
+
 // Weiterleitung Userseite
 function navigateToUserPage(userName) {
     window.location.href = `greeting-user.html?userName=${encodeURIComponent(userName)}`;
@@ -73,6 +74,7 @@ function showTimeAndUserGuest() {
         document.getElementById('greeting').innerHTML = "Good evening!";
     }
 }
+
 function resetLoginWarning() {
     let pwInput = document.getElementById('password').value
     if (pwInput === "") {
@@ -80,7 +82,6 @@ function resetLoginWarning() {
         document.getElementById('password').style.border = "1px solid #ccc";
         document.getElementById('pw-state-message').innerHTML = "";
     }
-
 }
 
 
