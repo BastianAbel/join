@@ -18,25 +18,31 @@ const PRIO_MEDIUM_BUTTON = document.getElementById("prio-medium-btn");
 const PRIO_LOW_BUTTON = document.getElementById("prio-low-btn");
 let newTask = {};
 let contactNames = [];
-let filteredNames = [];
-let checkedContactNames = [];
+let filteredNamesAndColors = [];
+let checkedContactNamesAndColors = [];
 let subtaskList = [];
 let taskPrio = "";
 
 async function getAllContactNames() {
-    let contactsResponse = await loadData(PATH_TO_CONTACTS);
-    let contactNames = Object.values(contactsResponse).map(({ name }) => name);
-    filteredNames = contactNames;
-    addContactNamesToList(filteredNames, TASK_CONTACT_LIST);
+    //TODO - remove contact_list.js from html and remove loadAllContacts
+    await loadAllContacts();
+    let contactNamesAndColors = allContacts.map((entry) => ({
+        name: entry.contact.name,
+        color: entry.color,
+        id: entry.id,
+    }));
+    filteredNamesAndColors = contactNamesAndColors;
+    addContactNamesToList(filteredNamesAndColors, TASK_CONTACT_LIST);
 }
 
 function addContactNamesToList(array, element) {
     element.innerHTML = "";
     for (let j = 0; j < array.length; j++) {
-        let name = array[j];
-        element.innerHTML += renderAssignContact(name);
+        let name = array[j].name;
+        let id = array[j].id;
+        element.innerHTML += renderAssignContact(name, id);
+        setColorById(`name-circle(${id})`, array[j].color);
     }
-    addColorToElements("name-circle");
 }
 
 function addSubTask() {
@@ -83,13 +89,19 @@ function setLowPrio() {
 }
 
 function filterInput(event) {
-    filteredNames = filterInputFromArray(contactNames, event.target.value);
-    addContactNamesToList(filteredNames, TASK_CONTACT_LIST);
+    filteredNamesAndColors = filterInputFromArray(contactNamesAndColors, event.target.value);
+    addContactNamesToList(filteredNamesAndColors, TASK_CONTACT_LIST);
 }
 
-function checkContact(event) {
+function checkContact(event, data) {
     const container = event.currentTarget;
+    let currentContact = getContactFromArrayById(filteredNamesAndColors, data.id);
     container.classList.toggle("checked-contact");
+    if (container.classList.contains("checked-contact")) {
+        checkedContactNamesAndColors.push(currentContact);
+    } else {
+        checkedContactNamesAndColors.splice(checkedContactNamesAndColors.indexOf(currentContact), 1);
+    }
 }
 
 function showContactList() {
@@ -99,12 +111,10 @@ function showContactList() {
             CONTACT_INPUT_ICON.src = "/assets/icons/arrow-drop-up.svg";
         } else {
             CONTACT_INPUT_ICON.src = "/assets/icons/arrow-drop-down.svg";
-            getCheckedContacts();
             NAME_CIRCLE_CONTAINER.classList.remove("d_none");
             NAME_CIRCLE_CONTAINER.classList.add("open-circle-container");
             NAME_CIRCLE_CONTAINER.innerHTML = "";
-            checkedContactNames.forEach((name) => (NAME_CIRCLE_CONTAINER.innerHTML += renderNameCircle(name)));
-            addColorToElements("name-circle");
+            addNameCircles(checkedContactNamesAndColors, NAME_CIRCLE_CONTAINER, `contact-name-circle`);
         }
         if (!NAME_CIRCLE_CONTAINER.classList.contains("d_none") && !NAME_CIRCLE_CONTAINER.hasChildNodes()) {
             NAME_CIRCLE_CONTAINER.classList.add("d_none");
@@ -113,15 +123,14 @@ function showContactList() {
     }
 }
 
-function getCheckedContacts() {
-    let allCheckedElements = TASK_CONTACT_LIST.getElementsByClassName("checked-contact");
-    checkedContactNames = [];
-
-    for (let i = 0; i < allCheckedElements.length; i++) {
-        const listElement = allCheckedElements[i].querySelector("li");
-        if (listElement) {
-            checkedContactNames.push(listElement.innerHTML);
-        }
+function addNameCircles(array, containerElement, elementIdForColor) {
+    for (let i = 0; i < array.length; i++) {
+        let name = array[i].name;
+        let id = array[i].id;
+        let color = array[i].color;
+        let targetElementForColor = elementIdForColor + `(${id})`;
+        containerElement.innerHTML += renderNameCircle(name, id);
+        setColorById(targetElementForColor, color);
     }
 }
 

@@ -6,9 +6,9 @@ function renderContactSection(letter) {
 				<div id="div-for-contacts-with-letter(${letter})"></div>`;
 }
 
-function renderContactListContact(contact, initials) {
+function renderContactListContact(contact, initials, id) {
     return `<div class="contactlist-contact">
-                    <div class="profile-picture test-profile-picture-background">
+                    <div id="profile-picture(${id})" class="profile-picture test-profile-picture-background">
                         <span>${initials}</span>
                     </div>
                     <div class="contactlist-name-and-email">
