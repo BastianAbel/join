@@ -73,6 +73,7 @@ function showTimeAndUserGuest() {
         document.getElementById('greeting').innerHTML = "Good evening!";
     }
 }
+
 function resetLoginWarning() {
     let pwInput = document.getElementById('password').value
     if (pwInput === "") {

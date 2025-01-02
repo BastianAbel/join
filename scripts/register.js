@@ -54,26 +54,3 @@ async function checkIfEmailExists(email) {
 function navigateToLogin() {
     window.location.href = "login-page.html";
 }
-
-//Password visibility toggle
-function togglePassword() {
-    var x = document.getElementById("password");
-    if (x.type === "password") {
-        x.type = "text";
-        document.getElementById('password-visibility-first').src = "/assets/icons/visibility_on.svg"
-    } else {
-        x.type = "password";
-        document.getElementById('password-visibility-first').src = "/assets/icons/visibility_off.svg"
-    }
-}
-//confirmPassword visibility toggle
-function toggleConfirmPassword() {
-    var x = document.getElementById("confirmPassword");
-    if (x.type === "password") {
-        x.type = "text";
-        document.getElementById('password-visibility-second').src = "/assets/icons/visibility_on.svg"
-    } else {
-        x.type = "password";
-        document.getElementById('password-visibility-second').src = "/assets/icons/visibility_off.svg"
-    }
-}
