@@ -46,6 +46,8 @@ async function checkIfEmailExists(email) {
     if (userEmail) {
         document.getElementById('pw-state-message').innerHTML = "This email already exists."
         document.getElementById('pw-state-message').classList.remove('pw-match-green');
+    } else {
+        document.getElementById('pw-state-message').innerHTML = ""
     }
 }
 // Weiterleitung
