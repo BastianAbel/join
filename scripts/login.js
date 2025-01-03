@@ -30,6 +30,7 @@ function checkIfUserExists() {
     if (user) {
         userName = user.user.name
         getUserInitials(userName);
+        setLoginInformationToSessionStorage(userName, email, password);
         navigateToUserPage(userName);
     } else {
         document.getElementById('pw-state-message').innerHTML = "Check your email and password. Please try again.";
@@ -48,6 +49,15 @@ function getUserInitials(userName){
         let firstNameInitial = userName.charAt(0).toUpperCase();
         localStorage.setItem("user", firstNameInitial);
     }
+}
+
+function setLoginInformationToSessionStorage(userName, userEmail, userPassword) {
+    userData = {
+        "name" :  userName,
+        "email" : userEmail,
+        "password" : userPassword,
+    }
+    sessionStorage.setItem("user", JSON.stringify(userData));
 }
 
 function loadUserInitials(){
