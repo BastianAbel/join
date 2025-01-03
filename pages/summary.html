@@ -9,12 +9,13 @@
         <link rel="stylesheet" href="/styles/standart.css" />
         <link rel="stylesheet" href="/styles/style.css" />
         <link rel="stylesheet" href="/styles/summary-page.css" />
+        <script src="/scripts/login.js"></script>
     </head>
-    <body>
+    <body onload="loadUserInitials()">
         <header>
             <section class="header">
                 <a href="/index.html"> <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" /> </a>
-                <button class="profile-button">G</button>
+                <button id="profileBtn" class="profile-button">G</button>
             </section>
         </header>
         <main class="summary-main-container">

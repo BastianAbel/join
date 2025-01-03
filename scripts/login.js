@@ -1,8 +1,8 @@
 let users = [];
 
 // User werden geladen und gepusht
-function userLogin() {
-    fetchUsers();
+async function userLogin() {
+    await fetchUsers();
     checkIfUserExists();
 }
 // Fetch all users in Backend
@@ -29,12 +29,30 @@ function checkIfUserExists() {
     console.log(user)
     if (user) {
         userName = user.user.name
+        getUserInitials(userName);
         navigateToUserPage(userName);
     } else {
         document.getElementById('pw-state-message').innerHTML = "Check your email and password. Please try again.";
         document.getElementById('password').style.border = "1px solid var(--icon-urgent-red)";
         document.getElementById('email').style.border = "1px solid var(--icon-urgent-red)";
     }
+}
+
+function getUserInitials(userName){
+    if(userName.includes(' ')){
+        let firstName = userName.split(' ')[0].trim().charAt(0).toUpperCase();
+        let secondName = userName.split(' ')[1].trim().charAt(0).toUpperCase();
+        let userInitials = firstName + secondName;
+        localStorage.setItem("user", userInitials);
+    } else {
+        let firstNameInitial = userName.charAt(0).toUpperCase();
+        localStorage.setItem("user", firstNameInitial);
+    }
+}
+
+function loadUserInitials(){
+    let userInitials = localStorage.getItem("user"); 
+    document.getElementById('profileBtn').innerText = userInitials;
 }
 
 // Weiterleitung Userseite
@@ -45,8 +63,14 @@ function navigateToUserPage(userName) {
 function navigateToGuestPage() {
     window.location.href = "greeting-guest.html";
 }
-// Greeting Time
-function showTimeAndUser() {
+
+function navigateToSummary() {
+    setTimeout(() => {
+        window.location.href = "summary.html";
+    }, 2000)
+}
+
+function loadUserPage() {
     let date = new Date();
     let time = date.getHours();
     const urlParams = new URLSearchParams(window.location.search);
@@ -61,9 +85,11 @@ function showTimeAndUser() {
     if (userName) {
         document.getElementById('userName').innerHTML = userName;
     }
+    navigateToSummary();
+    loadUserInitials();
 }
-//Greeting Time Guest
-function showTimeAndUserGuest() {
+
+function loadGuestPage() {
     let date = new Date();
     let time = date.getHours();
     if (time >= 5 && time <= 11) {
@@ -72,7 +98,8 @@ function showTimeAndUserGuest() {
         document.getElementById('greeting').innerHTML = "Good afternoon!";
     } else {
         document.getElementById('greeting').innerHTML = "Good evening!";
-    }
+    };
+    navigateToSummary()
 }
 
 function resetLoginWarning() {
@@ -83,7 +110,6 @@ function resetLoginWarning() {
         document.getElementById('pw-state-message').innerHTML = "";
     }
 }
-
 
 
 
