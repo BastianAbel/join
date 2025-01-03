@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!-- prettier-ignore -->
-    <head>
+<!-- prettier-ignore -->
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join</title>
@@ -15,25 +16,21 @@
     <script src="/scripts/firebase.js" defer></script>
     <script src="/scripts/contact_list_template.js" defer></script>
     <script src="/scripts/main.js" defer></script>
+    <script src="/scripts/login.js"></script>
 </head>
-    <body onload="initializeContactsList()">
-        <header>
-            <section class="header">
-                <a href="/index.html">
-                    <img
-                        src="/assets/icons/join-logo-dark.svg"
-                        alt="Join Logo"
-                    />
-                </a>
-                <button class="profile-button">G</button>
-            </section>
-        </header>
-        <main>
-            <section
-                id="contact-list-container"
-                class="contactlist-container"
-            >
-                <!-- <div class="contactlist-category">
+
+<body onload="initializeContactsList()">
+    <header>
+        <section class="header">
+            <a href="/index.html">
+                <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
+            </a>
+            <button class="profile-button">G</button>
+        </section>
+    </header>
+    <main>
+        <section id="contact-list-container" class="contactlist-container">
+            <!-- <div class="contactlist-category">
                     <span>A</span>
                 </div>
                 <div class="contactlist-separator"></div>
@@ -99,61 +96,23 @@
                         <a href="mailto:antom@gmail.com">antom@gmail.com</a>
                     </div>
                 </div> -->
-            </section>
-        </main>
-        <div class="options-icon-container">
-            <img
-                src="/assets/icons/add-contact.svg"
-                alt=""
-            />
+        </section>
+    </main>
+    <div class="options-icon-container">
+        <img src="/assets/icons/add-contact.svg" alt="" />
+    </div>
+    <div class="nav-bar-main-container">
+        <div class="nav-bar">
+            <a href="/pages/summary.html" id="nav-bar-container-summary" class="nav-bar-container"><img
+                    id="nav-bar-img-1" src="/assets/icons/summary.svg" alt="" /> <span>Summary</span></a>
+            <a href="/pages/board.html" id="nav-bar-container-board" class="nav-bar-container"><img id="nav-bar-img-2"
+                    src="/assets/icons/board.svg" alt="" /> <span>Board</span></a>
+            <a href="/pages/add-task.html" id="nav-bar-container-add-to-task" class="nav-bar-container"><img
+                    id="nav-bar-img-3" src="/assets/icons/add-to-task.svg" alt="" /> <span>Add Task</span></a>
+            <a href="/pages/contactlist.html" id="nav-bar-container-contacts" class="nav-bar-container"><img
+                    id="nav-bar-img-4" src="/assets/icons/contacts.svg" alt="" /> <span>Contacts</span></a>
         </div>
-        <div class="nav-bar-main-container">
-            <div class="nav-bar">
-                <a
-                    href=""
-                    id="nav-bar-container-summary"
-                    class="nav-bar-container"
-                    ><img
-                        id="nav-bar-img-1"
-                        src="/assets/icons/summary.svg"
-                        alt=""
-                    />
-                    <span>Summary</span></a
-                >
-                <a
-                    href=""
-                    id="nav-bar-container-board"
-                    class="nav-bar-container"
-                    ><img
-                        id="nav-bar-img-2"
-                        src="/assets/icons/board.svg"
-                        alt=""
-                    />
-                    <span>Board</span></a
-                >
-                <a
-                    href=""
-                    id="nav-bar-container-add-to-task"
-                    class="nav-bar-container"
-                    ><img
-                        id="nav-bar-img-3"
-                        src="/assets/icons/add-to-task.svg"
-                        alt=""
-                    />
-                    <span>Add Task</span></a
-                >
-                <a
-                    href=""
-                    id="nav-bar-container-contacts"
-                    class="nav-bar-container"
-                    ><img
-                        id="nav-bar-img-4"
-                        src="/assets/icons/contacts.svg"
-                        alt=""
-                    />
-                    <span>Contacts</span></a
-                >
-            </div>
-        </div>
-    </body>
+    </div>
+</body>
+
 </html>
