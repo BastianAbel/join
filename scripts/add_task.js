@@ -21,18 +21,34 @@ let contactNames = [];
 let filteredNamesAndColors = [];
 let checkedContactNamesAndColors = [];
 let subtaskList = [];
+let allUsers = [];
+let checkedUsersNamesAndColors = [];
 let taskPrio = "";
 
-async function getAllContactNames() {
-    //TODO - remove contact_list.js from html and remove loadAllContacts
-    await loadAllContacts();
-    let contactNamesAndColors = allContacts.map((entry) => ({
-        name: entry.contact.name,
+async function loadAllUsers() {
+    let usersResponse = await loadData(PATH_TO_USERS);
+    let usersKeysArray = Object.keys(usersResponse);
+    for (let i = 0; i < usersKeysArray.length; i++) {
+        allUsers.push({
+            id: usersKeysArray[i],
+            user: usersResponse[usersKeysArray[i]],
+            color: getRandomColor(),
+        });
+    }
+    return allUsers;
+}
+
+async function getAllUserNames() {
+    await loadAllUsers();
+    let usersNamesAndColors = allUsers.map((entry) => ({
+        name: entry.user.userData.name.replace(/[^a-zA-Z ]/g, ""),
         color: entry.color,
         id: entry.id,
     }));
-    filteredNamesAndColors = contactNamesAndColors;
+
+    filteredNamesAndColors = usersNamesAndColors;
     addContactNamesToList(filteredNamesAndColors, TASK_CONTACT_LIST);
+    console.log(filteredNamesAndColors);
 }
 
 function addContactNamesToList(array, element) {
@@ -89,7 +105,8 @@ function setLowPrio() {
 }
 
 function filterInput(event) {
-    filteredNamesAndColors = filterInputFromArray(contactNamesAndColors, event.target.value);
+    filteredNamesAndColors = filterInputFromArray(usersNamesAndColorsNamesAndColors, event.target.value);
+    console.log(filteredNamesAndColors);
     addContactNamesToList(filteredNamesAndColors, TASK_CONTACT_LIST);
 }
 
@@ -98,9 +115,9 @@ function checkContact(event, data) {
     let currentContact = getContactFromArrayById(filteredNamesAndColors, data.id);
     container.classList.toggle("checked-contact");
     if (container.classList.contains("checked-contact")) {
-        checkedContactNamesAndColors.push(currentContact);
+        checkedUsersNamesAndColors.push(currentContact);
     } else {
-        checkedContactNamesAndColors.splice(checkedContactNamesAndColors.indexOf(currentContact), 1);
+        checkedUsersNamesAndColors.splice(checkedUsersNamesAndColors.indexOf(currentContact), 1);
     }
 }
 
@@ -114,7 +131,7 @@ function showContactList() {
             NAME_CIRCLE_CONTAINER.classList.remove("d_none");
             NAME_CIRCLE_CONTAINER.classList.add("open-circle-container");
             NAME_CIRCLE_CONTAINER.innerHTML = "";
-            addNameCircles(checkedContactNamesAndColors, NAME_CIRCLE_CONTAINER, `contact-name-circle`);
+            addNameCircles(checkedUsersNamesAndColors, NAME_CIRCLE_CONTAINER, `contact-name-circle`);
         }
         if (!NAME_CIRCLE_CONTAINER.classList.contains("d_none") && !NAME_CIRCLE_CONTAINER.hasChildNodes()) {
             NAME_CIRCLE_CONTAINER.classList.add("d_none");
@@ -194,7 +211,7 @@ async function createTask(event) {
         "description": document.getElementById("task-description").value,
         "dueDate": document.getElementById("task-due-date").value,
         "priority": taskPrio,
-        "assignedTo": checkedContactNames,
+        "assignedTo": checkedUsersNamesAndColors,
         "subtasks": subtaskList,
         "state": "backlog",
     };
@@ -203,9 +220,22 @@ async function createTask(event) {
         if (newTask["type"] !== "" && newTask["title"] !== "" && newTask["dueDate"] !== "") {
             await postData(PATH_TO_TASKS, newTask);
             console.log("Aufgabe erfolgreich erstellt:", newTask);
+            if (checkedUsersNamesAndColors.length > 0) {
+                let newTaskId = await getIdOfNewTask();
+                for (let i = 0; i < checkedUsersNamesAndColors.length; i++) {
+                    //TODO - make sure, that tasks are not overwritten
+                    await updateData(PATH_TO_USERS, checkedUsersNamesAndColors[i].id, (data = { tasksAssignedTo: [newTaskId] }));
+                }
+            }
             clearAllInputAddTask();
         }
     } catch (error) {
         console.error("Fehler beim Erstellen der Aufgabe:", error);
     }
+}
+
+async function getIdOfNewTask() {
+    let response = await loadData(PATH_TO_TASKS);
+    let taskKeysArray = Object.keys(response);
+    return taskKeysArray[taskKeysArray.length - 1];
 }
