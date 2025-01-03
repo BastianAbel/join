@@ -21,12 +21,39 @@
     align-items: center;
     gap: 8px;
     padding-bottom: 24px;
+    position: relative;
 }
 
 .check-privacy-container img:hover {
     background-color: #e7e7e7;
     border-radius: 50%;
     cursor: pointer;
+}
+
+input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    height: 1px;
+    width: 1px;
+    top: 20px;
+    left: 12px;
+}
+
+input[type="checkbox"] + label {
+    display: inline-block;
+    background: url("/assets/icons/checkbox-not-checked.svg") no-repeat;
+    height: 24px;
+    width: 24px;
+    background-size: 100%;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked + label {
+    background: url("/assets/icons/checkbox-checked.svg") no-repeat;
+    height: 24px;
+    width: 24px;
+    display: inline-block;
+    background-size: 100%;
 }
 
 .privacy-link {
