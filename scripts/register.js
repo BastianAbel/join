@@ -7,7 +7,7 @@ const signupPopup = document.getElementById("register-popup");
 
 function visualizeIfPasswordsMatch() {
     const passwordInputValue = getPasswordInput();
-    const isEmpty = passwordFieldsEmpty(passwordInputValue);
+    const isEmpty = checkIfpasswordFieldsEmpty(passwordInputValue);
     if (isEmpty) {
         removePasswordFeedbackStyle()
     } else {
@@ -19,10 +19,6 @@ function getPasswordInput() {
     password = passwordInput.value;
     confirmPassword = confirmPasswordInput.value;
     return { "password": password, "confirmPassword": confirmPassword }
-}
-
-function passwordFieldsEmpty(inputToTest) {
-    return checkIfpasswordFieldsEmpty(inputToTest)
 }
 
 function checkIfpasswordFieldsEmpty(inputToTest) {
