@@ -5,7 +5,7 @@ async function userLogin() {
     await fetchUsers();
     checkIfUserExists();
 }
-// Fetch all users in Backend
+//TODO - Pfad überprüfen
 async function fetchUsers() {
     let response = await fetch(BASE_URL + PATH_TO_USERS + ".json");
     let fetchedUsers = await response.json();
@@ -21,7 +21,7 @@ async function fetchUsers() {
         });
     }
 }
-//Check if user exists
+
 function checkIfUserExists() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
@@ -39,8 +39,8 @@ function checkIfUserExists() {
     }
 }
 
-function getUserInitials(userName){
-    if(userName.includes(' ')){
+function getUserInitials(userName) {
+    if (userName.includes(' ')) {
         let firstName = userName.split(' ')[0].trim().charAt(0).toUpperCase();
         let secondName = userName.split(' ')[1].trim().charAt(0).toUpperCase();
         let userInitials = firstName + secondName;
@@ -65,11 +65,11 @@ function loadUserInitials(){
     document.getElementById('profileBtn').innerText = userInitials;
 }
 
-// Weiterleitung Userseite
+
 function navigateToUserPage(userName) {
     window.location.href = `greeting-user.html?userName=${encodeURIComponent(userName)}`;
 }
-// Weiterleitung Guestseite
+
 function navigateToGuestPage() {
     window.location.href = "greeting-guest.html";
 }
