@@ -10,14 +10,15 @@
     <link rel="stylesheet" href="/styles/style.css" />
     <link rel="stylesheet" href="/styles/nav-bar.css">
     <link rel="stylesheet" href="/styles/card.css">
-    <script src="/scripts/login.js"></script>
+    <script src="/scripts/login.js" defer></script>
+    <script src="/scripts/standart.js" defer></script>
 </head>
-<body>
+<body onload="loadUserInitials()">
     <header>
         <section class="header">
-            <a href="/index.html"> <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
+            <a href=""> <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
             </a>
-            <button class="profile-button">G</button>
+            <button onclick="showSubmenu()" id="profileBtn" class="profile-button"></button>
         </section>
     </header>
     <main id="board-main">

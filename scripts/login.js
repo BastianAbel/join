@@ -58,11 +58,19 @@ function setLoginInformationToSessionStorage(userName, userEmail, userPassword) 
         "password" : userPassword,
     }
     sessionStorage.setItem("user", JSON.stringify(userData));
+    sessionStorage.setItem("loginStatus", "user")
+    
 }
 
 function loadUserInitials(){
-    let userInitials = localStorage.getItem("user"); 
-    document.getElementById('profileBtn').innerText = userInitials;
+    onlyLoadIfUserOrGuest();
+    let userInitials = localStorage.getItem("user");
+    let loginStatus = sessionStorage.getItem('loginStatus');
+    if(loginStatus === "user") {
+        document.getElementById('profileBtn').innerText = userInitials;
+    } else {
+        document.getElementById('profileBtn').innerText = "G";
+    }
 }
 
 
@@ -70,7 +78,9 @@ function navigateToUserPage(userName) {
     window.location.href = `greeting-user.html?userName=${encodeURIComponent(userName)}`;
 }
 
-function navigateToGuestPage() {
+function setGuestToSessionStorage() {
+    sessionStorage.setItem("loginStatus", "guest")
+    sessionStorage.setItem("guest", true)
     window.location.href = "greeting-guest.html";
 }
 
@@ -81,6 +91,7 @@ function navigateToSummary() {
 }
 
 function loadUserPage() {
+    loadUserInitials(); 
     let date = new Date();
     let time = date.getHours();
     const urlParams = new URLSearchParams(window.location.search);
@@ -96,7 +107,6 @@ function loadUserPage() {
         document.getElementById('userName').innerHTML = userName;
     }
     navigateToSummary();
-    loadUserInitials();
 }
 
 function loadGuestPage() {

@@ -39,6 +39,8 @@ async function loadAllUsers() {
 }
 
 async function getAllUserNames() {
+    onlyLoadIfUserOrGuest();
+    loadUserInitials();
     await loadAllUsers();
     let usersNamesAndColors = allUsers.map((entry) => ({
         name: entry.user.userData.name.replace(/[^a-zA-Z ]/g, ""),

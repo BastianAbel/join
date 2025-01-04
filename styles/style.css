@@ -30,7 +30,6 @@ header {
     border: 2px solid var(--dark-background);
     background-color: var(--light--accent);
     color: var(--prime-blue);
-    font-size: 21px;
     font-weight: 600;
     &:hover {
         background-color: var(--light-background);

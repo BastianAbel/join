@@ -8,3 +8,13 @@ function toggleClassById(className, ...IDs) {
 function getBackToPreviousSite() {
     window.history.back();
 }
+
+function onlyLoadIfUserOrGuest(){
+    user = sessionStorage.getItem('user');
+    guest = sessionStorage.getItem('guest')
+    if (guest || user) {
+        return true;
+    } else {
+        window.location.href = 'login-page.html';
+    }
+}

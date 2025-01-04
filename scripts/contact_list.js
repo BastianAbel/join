@@ -34,6 +34,8 @@ async function getListSection() {
 }
 
 async function initializeContactsList() {
+    loadUserInitials();
+    onlyLoadIfUserOrGuest();
     await loadAllContacts();
     await getListSection();
 }

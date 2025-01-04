@@ -11,13 +11,13 @@
     <link rel="stylesheet" href="/styles/signup-style.css">
     <link rel="stylesheet" href="/styles/big-popup.css">
     <script src="/scripts/standart.js" defer></script>
-    <script src="/scripts/login.js"></script>
+    <script src="/scripts/login.js" defer></script>
     <script src="/scripts/register.js" defer></script>
     <script src="/scripts/firebase.js" defer></script>
     <title>Sign Up</title>
 </head>
 
-<body>
+<body onload="onlyLoadIfUserOrGuest()">
     <header>
         <img class="join-logo" src="../assets/icons/join-logo-dark.svg" alt="" />
     </header>

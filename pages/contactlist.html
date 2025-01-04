@@ -16,16 +16,17 @@
     <script src="/scripts/firebase.js" defer></script>
     <script src="/scripts/contact_list_template.js" defer></script>
     <script src="/scripts/main.js" defer></script>
-    <script src="/scripts/login.js"></script>
+    <script src="/scripts/login.js" defer></script>
+    <script src="/scripts/standart.js" defer></script>
 </head>
 
 <body onload="initializeContactsList()">
     <header>
         <section class="header">
-            <a href="/index.html">
+            <a href="">
                 <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
             </a>
-            <button class="profile-button">G</button>
+            <button onclick="showSubmenu()" id="profileBtn" class="profile-button"></button>
         </section>
     </header>
     <main>

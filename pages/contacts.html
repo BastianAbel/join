@@ -13,14 +13,15 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/styles/standart.css">
     <link rel="stylesheet" type="text/css" media="screen" href="/styles/nav-bar.css">
     <link rel="stylesheet" href="/styles/basic-assets.css">
-    <script src="/scripts/main.js"></script>
+    <script src="/scripts/main.js" defer></script>
+    <script src="/scripts/standart.js" defer></script>
 </head>
 
-<body>
+<body onload="onlyLoadIfUserOrGuest()">
     <!-- Platz für Header -->
     <header>
         <section class="header">
-            <a href="/index.html">
+            <a href="">
                 <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
             </a>
             <button class="profile-button">G</button>
