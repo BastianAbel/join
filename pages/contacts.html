@@ -12,30 +12,47 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/styles/single-contact-view.css">
     <link rel="stylesheet" type="text/css" media="screen" href="/styles/standart.css">
     <link rel="stylesheet" type="text/css" media="screen" href="/styles/nav-bar.css">
+    <link rel="stylesheet" href="/styles/submenu-popup.css" />
     <link rel="stylesheet" href="/styles/basic-assets.css">
     <script src="/scripts/main.js" defer></script>
     <script src="/scripts/standart.js" defer></script>
+    <script src="/scripts/login.js" defer></script>
 </head>
 
-<body onload="onlyLoadIfUserOrGuest()">
-    <!-- Platz für Header -->
+<body onload="loadUserInitials()">
+    <div id="submenu" class="submenu-popup-container d-none">
+        <div class="submenu-text-container">
+            <a href="">Help</a>
+            <a href="/pages/impressum.html">Legal Notice</a>
+            <a href="/pages/privacy-policy.html">Privacy Policy</a>
+            <a onclick="userLogout()" href="/pages/login-page.html">Log Out</a>
+        </div>
+    </div>
     <header>
         <section class="header">
             <a href="">
                 <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
             </a>
-            <button class="profile-button">G</button>
+            <button onclick="showSubmenu()" id="profileBtn" class="profile-button">G</button>
         </section>
     </header>
 
     <!-- Beginn HTML Kontakt Seite -->
     <div class="contact-container">
+        <div class="edit-popup-container">
+            <div class="option-container">
+                <div class="option-edit"></div><span>Edit</span>
+            </div>
+            <div class="option-container">
+                <div class="option-delete"></div><span>Delete</span>
+            </div>
+        </div>
         <div class="contact-head">
             <div>
                 <h1>Contacts</h1>
             </div>
             <div class="arrow-position">
-                <img class="" src="/assets/icons/blue-arrow-left.svg" alt="" />
+                <img onclick="getBackToPreviousSite()" class="" src="/assets/icons/blue-arrow-left.svg" alt="" />
             </div>
         </div>
         <span class="border-bottom">Better with a team</span>
@@ -51,14 +68,7 @@
             <span class="small-span">+49 1111 111 11 1</span>
         </div>
         <!-- edit/delete popup -->
-        <div class="edit-popup-container">
-            <div class="option-container">
-                <div class="option-edit"></div><span>Edit</span>
-            </div>
-            <div class="option-container">
-                <div class="option-delete"></div><span>Delete</span>
-            </div>
-        </div>
+        
         <!---->
         <div class="options-icon-container">
             <img src="/assets/icons/options-logo.svg" alt="" />

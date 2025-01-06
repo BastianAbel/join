@@ -1,5 +1,4 @@
 let users = [];
-
 // User werden geladen und gepusht
 async function userLogin() {
     await fetchUsers();
@@ -29,8 +28,11 @@ function checkIfUserExists() {
     console.log(user)
     if (user) {
         userName = user.user.name
+        localStorage.setItem("userName", userName)
+        userKey = user.id
         getUserInitials(userName);
         setLoginInformationToSessionStorage(userName, email, password);
+        rememberUser(userKey);
         navigateToUserPage(userName);
     } else {
         document.getElementById('pw-state-message').innerHTML = "Check your email and password. Please try again.";
@@ -44,10 +46,10 @@ function getUserInitials(userName) {
         let firstName = userName.split(' ')[0].trim().charAt(0).toUpperCase();
         let secondName = userName.split(' ')[1].trim().charAt(0).toUpperCase();
         let userInitials = firstName + secondName;
-        localStorage.setItem("user", userInitials);
+        sessionStorage.setItem("userName", userInitials);
     } else {
         let firstNameInitial = userName.charAt(0).toUpperCase();
-        localStorage.setItem("user", firstNameInitial);
+        sessionStorage.setItem("userName", firstNameInitial);
     }
 }
 
@@ -59,12 +61,21 @@ function setLoginInformationToSessionStorage(userName, userEmail, userPassword) 
     }
     sessionStorage.setItem("user", JSON.stringify(userData));
     sessionStorage.setItem("loginStatus", "user")
-    
+}
+
+function rememberUser(userKey){
+    let key = userKey
+    let rememberMe = document.getElementById("privacyCheckbox").checked;
+    if(rememberMe){
+        localStorage.setItem("userkey", key)
+    } else {
+        return;
+    }
 }
 
 function loadUserInitials(){
     onlyLoadIfUserOrGuest();
-    let userInitials = localStorage.getItem("user");
+    let userInitials = sessionStorage.getItem("userName");
     let loginStatus = sessionStorage.getItem('loginStatus');
     if(loginStatus === "user") {
         document.getElementById('profileBtn').innerText = userInitials;
@@ -142,5 +153,17 @@ async function setBackendJsonToSessionStorage() {
 function userLogout(){
     sessionStorage.removeItem("user");
     sessionStorage.removeItem("loginStatus");
+    sessionStorage.removeItem("userName");
     localStorage.removeItem("user");
+    localStorage.removeItem("userkey");
+    localStorage.removeItem("userName");
 }
+
+function autoLogin(){
+    let userKey = localStorage.getItem("userkey");
+    let userName = localStorage.getItem("userName")
+    if(userKey){
+        navigateToUserPage(userName);
+    }
+}
+
