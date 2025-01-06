@@ -33,6 +33,7 @@ async function loadAllUsers() {
             id: usersKeysArray[i],
             user: usersResponse[usersKeysArray[i]],
             color: getRandomColor(),
+            tasksAssignedTo: usersResponse[usersKeysArray[i]].tasksAssignedTo,
         });
     }
     return allUsers;
@@ -43,11 +44,11 @@ async function getAllUserNames() {
     loadUserInitials();
     await loadAllUsers();
     let usersNamesAndColors = allUsers.map((entry) => ({
-        name: entry.user.userData.name.replace(/[^a-zA-Z ]/g, ""),
+        name: entry.user.userData.name.replace(/[^a-zA-ZöüäÖÜÄ ]/g, ""),
         color: entry.color,
         id: entry.id,
+        tasksAssignedTo: entry.tasksAssignedTo,
     }));
-
     filteredNamesAndColors = usersNamesAndColors;
     addContactNamesToList(filteredNamesAndColors, TASK_CONTACT_LIST);
     console.log(filteredNamesAndColors);
@@ -221,19 +222,40 @@ async function createTask(event) {
     try {
         if (newTask["type"] !== "" && newTask["title"] !== "" && newTask["dueDate"] !== "") {
             await postData(PATH_TO_TASKS, newTask);
-            console.log("Aufgabe erfolgreich erstellt:", newTask);
-            if (checkedUsersNamesAndColors.length > 0) {
-                let newTaskId = await getIdOfNewTask();
-                for (let i = 0; i < checkedUsersNamesAndColors.length; i++) {
-                    //TODO - make sure, that tasks are not overwritten
-                    await updateData(PATH_TO_USERS, checkedUsersNamesAndColors[i].id, (data = { tasksAssignedTo: [newTaskId] }));
-                }
-            }
+            await addTaskToAssignedUsers();
             clearAllInputAddTask();
         }
     } catch (error) {
         console.error("Fehler beim Erstellen der Aufgabe:", error);
     }
+}
+
+async function addTaskToAssignedUsers() {
+    if (checkedUsersNamesAndColors.length > 0) {
+        let newTaskId = await getIdOfNewTask();
+        for (let i = 0; i < checkedUsersNamesAndColors.length; i++) {
+            let indexInAllUsers = allUsers.findIndex((user) => user.id == checkedUsersNamesAndColors[i].id);
+            addTaskToUserInAllUsersArray(allUsers[indexInAllUsers], "tasksAssignedTo", newTaskId);
+            let allAssignedToTasks = getAllTaskIdsOfUser(allUsers[indexInAllUsers], "tasksAssignedTo");
+            console.log(allAssignedToTasks);
+            await updateData(PATH_TO_USERS, checkedUsersNamesAndColors[i].id, (data = { tasksAssignedTo: allAssignedToTasks }));
+        }
+    }
+}
+
+function getAllTaskIdsOfUser(user, arrayOfIds) {
+    if (user.user[arrayOfIds]) {
+        return user.user[arrayOfIds];
+    }
+}
+
+function addTaskToUserInAllUsersArray(user, tasksAssignedTo, newTaskId) {
+    if (!user.user[tasksAssignedTo]) {
+        user.user[tasksAssignedTo] = [newTaskId];
+    } else if (!user.user[tasksAssignedTo].includes(newTaskId)) {
+        user.user[tasksAssignedTo].push(newTaskId);
+    }
+    console.log(user);
 }
 
 async function getIdOfNewTask() {
