@@ -18,3 +18,14 @@ function onlyLoadIfUserOrGuest(){
         window.location.href = 'login-page.html';
     }
 }
+
+function showSubmenu(){
+    document.getElementById('submenu').classList.remove('d-none');
+}
+
+document.addEventListener('mouseup', function (e) {
+    let submenuDiv = document.getElementById('submenu');
+    if (submenuDiv && !submenuDiv.contains(e.target)) {
+        submenuDiv.classList.add('d-none'); 
+    }
+});

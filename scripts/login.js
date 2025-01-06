@@ -110,6 +110,7 @@ function loadUserPage() {
 }
 
 function loadGuestPage() {
+    loadUserInitials();
     let date = new Date();
     let time = date.getHours();
     if (time >= 5 && time <= 11) {
@@ -136,4 +137,10 @@ async function setBackendJsonToSessionStorage() {
     let fetchedUsers = await response.json();
     sessionStorage.setItem("joinJson", JSON.stringify(fetchedUsers))
     console.log(fetchedUsers);
+}
+
+function userLogout(){
+    sessionStorage.removeItem("user");
+    sessionStorage.removeItem("loginStatus");
+    localStorage.removeItem("user");
 }

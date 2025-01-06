@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/styles/nav-bar.css">
     <link rel="stylesheet" href="/styles/style.css">
     <link rel="stylesheet" href="/styles/add-task.css">
+    <link rel="stylesheet" href="/styles/submenu-popup.css">
     <script src="/scripts/add_task.js" defer></script>
     <script src="/scripts/db_contacts.js" defer></script>
     <script src="/scripts/db_tasks.js" defer></script>
@@ -24,6 +25,14 @@
 </head>
 
 <body onload="getAllUserNames()">
+    <div id="submenu" class="submenu-popup-container d-none">
+        <div class="submenu-text-container">
+            <a href="">Help</a>
+            <a href="/pages/impressum.html">Legal Notice</a>
+            <a href="/pages/privacy-policy.html">Privacy Policy</a>
+            <a href="/pages/login-page.html">Log Out</a>
+        </div>
+    </div>
     <header>
         <section class="header">
             <a href="/index.html">

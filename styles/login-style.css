@@ -272,3 +272,13 @@ input:focus {
 .visibility-icon {
     cursor: pointer;
 }
+
+.remember-me-container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding-left: 21px;
+    padding-right: 21px;
+    color: var(--accent-text-color);
+    gap: 8px;
+}
