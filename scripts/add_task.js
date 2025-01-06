@@ -44,12 +44,11 @@ async function getAllUserNames() {
     loadUserInitials();
     await loadAllUsers();
     let usersNamesAndColors = allUsers.map((entry) => ({
-        name: entry.user.userData.name.replace(/[^a-zA-Z ]/g, ""),
+        name: entry.user.userData.name.replace(/[^a-zA-ZöüäÖÜÄ ]/g, ""),
         color: entry.color,
         id: entry.id,
         tasksAssignedTo: entry.tasksAssignedTo,
     }));
-
     filteredNamesAndColors = usersNamesAndColors;
     addContactNamesToList(filteredNamesAndColors, TASK_CONTACT_LIST);
     console.log(filteredNamesAndColors);
@@ -239,8 +238,6 @@ async function addTaskToAssignedUsers() {
             addTaskToUserInAllUsersArray(allUsers[indexInAllUsers], "tasksAssignedTo", newTaskId);
             let allAssignedToTasks = getAllTaskIdsOfUser(allUsers[indexInAllUsers], "tasksAssignedTo");
             console.log(allAssignedToTasks);
-
-            //TODO - make sure, that tasks are not overwritten
             await updateData(PATH_TO_USERS, checkedUsersNamesAndColors[i].id, (data = { tasksAssignedTo: allAssignedToTasks }));
         }
     }
