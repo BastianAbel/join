@@ -3,7 +3,6 @@ main {
 }
 
 #add-task-main {
-    width: 310px;
     display: flex;
     flex-direction: column;
     align-items: center;

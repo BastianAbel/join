@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/styles/standart.css">
     <link rel="stylesheet" href="/styles/contactlist.css">
     <link rel="stylesheet" href="/styles/basic-assets.css">
+    <link rel="stylesheet" href="/styles/submenu-popup.css" />
     <script src="/scripts/contact_list.js" defer></script>
     <script src="/scripts/firebase.js" defer></script>
     <script src="/scripts/contact_list_template.js" defer></script>
@@ -21,6 +22,14 @@
 </head>
 
 <body onload="initializeContactsList()">
+    <div id="submenu" class="submenu-popup-container d-none">
+        <div class="submenu-text-container">
+            <a href="">Help</a>
+            <a href="/pages/impressum.html">Legal Notice</a>
+            <a href="/pages/privacy-policy.html">Privacy Policy</a>
+            <a href="/pages/login-page.html">Log Out</a>
+        </div>
+    </div>
     <header>
         <section class="header">
             <a href="">
