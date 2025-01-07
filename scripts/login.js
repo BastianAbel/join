@@ -59,7 +59,7 @@ function setLoginInformationToSessionStorage(userName, userEmail, userPassword) 
         "email" : userEmail,
         "password" : userPassword,
     }
-    sessionStorage.setItem("user", JSON.stringify(userData));
+    localStorage.setItem("user", JSON.stringify(userData));
     sessionStorage.setItem("loginStatus", "user")
 }
 
@@ -84,14 +84,13 @@ function loadUserInitials(){
     }
 }
 
-
 function navigateToUserPage(userName) {
     window.location.href = `greeting-user.html?userName=${encodeURIComponent(userName)}`;
 }
 
 function setGuestToSessionStorage() {
     sessionStorage.setItem("loginStatus", "guest")
-    sessionStorage.setItem("guest", true)
+    localStorage.setItem("guest", true)
     window.location.href = "greeting-guest.html";
 }
 

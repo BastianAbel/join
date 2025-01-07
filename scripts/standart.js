@@ -10,8 +10,8 @@ function getBackToPreviousSite() {
 }
 
 function onlyLoadIfUserOrGuest() {
-    user = sessionStorage.getItem('user');
-    guest = sessionStorage.getItem('guest');
+    user = localStorage.getItem('user');
+    guest = localStorage.getItem('guest');
     if (guest || user) {
         return true;
     } else {
@@ -19,13 +19,41 @@ function onlyLoadIfUserOrGuest() {
     }
 }
 
+let submenuVisible = false;
+
 function showSubmenu() {
-    document.getElementById('submenu').classList.remove('d-none');
+    let submenu = document.getElementById('submenu');
+    submenu.classList.remove('d-none', 'hidden');
+    submenuVisible = true; 
 }
 
 document.addEventListener('mouseup', function (e) {
     let submenuDiv = document.getElementById('submenu');
-    if (submenuDiv && !submenuDiv.contains(e.target)) {
-        submenuDiv.classList.add('d-none');
+    if (submenuVisible && !submenuDiv.contains(e.target)) {
+        submenuDiv.classList.add('hidden');
+        setTimeout(() => {
+            submenuDiv.classList.add('d-none');
+            submenuVisible = false; 
+        }, 100); 
     }
 });
+
+let editDeleteMenuVisible = false;
+
+function showEditDeleteMenu(){
+    let editDeleteMenu = document.getElementById('edit-delete-menu');
+    editDeleteMenu.classList.remove('d-none', 'hidden');
+    editDeleteMenuVisible = true;
+}
+
+document.addEventListener('mouseup', function (e) {
+    let editDeleteMenuDiv = document.getElementById('edit-delete-menu');
+    if (editDeleteMenuVisible && !editDeleteMenuDiv.contains(e.target)) {
+        editDeleteMenuDiv.classList.add('hidden');
+        setTimeout(() => {
+            editDeleteMenuDiv.classList.add('d-none');
+            editDeleteMenuVisible = false; 
+        }, 100); 
+    }
+});
+
