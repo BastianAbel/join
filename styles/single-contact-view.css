@@ -44,9 +44,16 @@ span {
     padding-top: 34px;
 }
 
-.contact-name img {
+.contact-id {
     height: 80px;
-    width: 80px;
+    min-width: 80px;
+    border-radius: 70px;
+    border: 3px solid var(--light--accent) ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+
 }
 
 .contact-information {

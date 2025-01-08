@@ -14,6 +14,8 @@
     <script src="/scripts/main.js" defer></script>
     <script src="/scripts/standart.js" defer></script>
     <script src="/scripts/login.js" defer></script>
+    <script src="/scripts/contact_list.js" defer></script>
+    <script src="/scripts/contact_list_template.js" defer></script>
 </head>
 
 <body onload="loadUserInitials()">
@@ -41,32 +43,7 @@
             <button onclick="showSubmenu()" id="profileBtn" class="profile-button">G</button>
         </section>
     </header>
-    <div class="contact-container">
-        
-        <div class="contact-head">
-            <div>
-                <h1>Contacts</h1>
-            </div>
-            <div class="arrow-position">
-                <img onclick="getBackToPreviousSite()" class="" src="/assets/icons/blue-arrow-left.svg" alt="" />
-            </div>
-        </div>
-        <span class="border-bottom">Better with a team</span>
-        <div class="contact-name">
-            <img src="/assets/icons/single-contact.svg" alt="" />
-            <h2>Anton Mayer</h2>
-        </div>
-        <div class="contact-information">
-            <span>Contact Information</span>
-            <span class="small-span"><b>Email</b></span>
-            <a class="small-span" href="#">anton@gmail.com</a>
-            <span class="small-span"><b>Phone</b></span>
-            <span class="small-span">+49 1111 111 11 1</span>
-        </div>
-        <div onclick="showEditDeleteMenu()" class="options-icon-container">
-            <img src="/assets/icons/options-logo.svg" alt="" />
-        </div>
-    </div>
+   
     <div class="nav-bar-main-container">
         <div class="nav-bar">
             <a href="/pages/summary.html" id="nav-bar-container-summary" class="nav-bar-container"><img

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join</title>
+    <title>Contacts</title>
     <link rel="icon" href="/assets/icons/join-logo-white.svg" />
     <link rel="stylesheet" href="/styles/nav-bar.css" />
     <link rel="stylesheet" href="/styles/style.css">
@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/styles/contactlist.css">
     <link rel="stylesheet" href="/styles/basic-assets.css">
     <link rel="stylesheet" href="/styles/submenu-popup.css" />
+    <link rel="stylesheet" href="/styles/single-contact-view.css" />
     <script src="/scripts/contact_list.js" defer></script>
     <script src="/scripts/firebase.js" defer></script>
     <script src="/scripts/contact_list_template.js" defer></script>
@@ -38,7 +39,7 @@
             <button onclick="showSubmenu()" id="profileBtn" class="profile-button"></button>
         </section>
     </header>
-    <main>
+    <main id="main-content">
         <section id="contact-list-container" class="contactlist-container">
             <!-- <div class="contactlist-category">
                     <span>A</span>

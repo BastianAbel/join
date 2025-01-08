@@ -5,7 +5,6 @@
 
 main {
     overflow-x: auto;
-    margin: 0 12px;
 }
 
 .contactlist-container {
@@ -33,11 +32,17 @@ main {
     height: 78px;
     display: flex;
     align-items: center;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.contactlist-contact:hover {
+    background-color: var(--light-background);
 }
 
 .contactlist-contact .profile-picture {
     height: 42px;
-    width: 42px;
+    min-width: 42px;
     border-radius: 50%;
     display: flex;
     align-items: center;

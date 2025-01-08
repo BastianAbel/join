@@ -39,3 +39,12 @@ async function initializeContactsList() {
     await loadAllContacts();
     await getListSection();
 }
+
+function contactBigView(name, email, initials, id){
+    let color = allContacts.find((e) => e.id == id).color;
+    document.getElementById('main-content').innerHTML = renderSingleContactView(name, email, initials, id, color);
+}
+
+function navigateToContactList(){
+    window.location.href = "contactlist.html"
+}
