@@ -42,16 +42,18 @@ let editDeleteMenuVisible = false;
 
 function showEditDeleteMenu(){
     let editDeleteMenu = document.getElementById('edit-delete-menu');
+    document.getElementById('option-circle').style.display = "none";
     editDeleteMenu.classList.remove('d-none', 'hidden');
     editDeleteMenuVisible = true;
 }
 
-document.addEventListener('mouseup', function (e) {
+window.addEventListener('mouseup', function (e) {
     let editDeleteMenuDiv = document.getElementById('edit-delete-menu');
     if (editDeleteMenuVisible && !editDeleteMenuDiv.contains(e.target)) {
         editDeleteMenuDiv.classList.add('hidden');
         setTimeout(() => {
             editDeleteMenuDiv.classList.add('d-none');
+            document.getElementById('option-circle').style.display = "flex";
             editDeleteMenuVisible = false; 
         }, 100); 
     }

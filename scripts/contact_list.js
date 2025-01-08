@@ -45,6 +45,28 @@ function contactBigView(name, email, initials, id){
     document.getElementById('main-content').innerHTML = renderSingleContactView(name, email, initials, id, color);
 }
 
+function editBigView(initials, color){
+    document.getElementById('edit-delete-menu').style.display = "none";
+    document.getElementById('profileBtn').style.backgroundColor = "#b8b9bb";
+    document.getElementById('edit-contact-overlay').classList.remove('d-none')
+    document.getElementById('main-content').innerHTML += showEditContactView(initials, color);
+}
+
+function closeEditContactView(){
+    document.getElementById('edit-delete-menu').style.display = "flex";
+    document.getElementById('edit-contact-overlay').classList.add('d-none');
+    document.getElementById('profileBtn').style.backgroundColor = "white";
+    document.getElementById('editContactContainer').classList.add('d-none');
+}
+
+window.addEventListener('mouseup', function (e) {
+    let editContactDiv = document.getElementById('editContactContainer');
+    if (!editContactDiv.contains(e.target)) {
+        closeEditContactView();
+    }
+});
+
+
 function navigateToContactList(){
     window.location.href = "contactlist.html"
 }

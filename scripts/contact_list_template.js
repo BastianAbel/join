@@ -19,14 +19,8 @@ function renderContactListContact(contact, initials, id) {
 }
 
 function renderSingleContactView(name, email, initials, id, color) {
-    return ` <div id="edit-delete-menu" class="edit-popup-container d-none">
-                <div class="option-container">
-                    <div onclick="showEditContactView('${initials}', '${color}')" class="option-edit"></div><span>Edit</span>
-                 </div>
-                <div class="option-container">
-                    <div onclick="deleteContact()" class="option-delete"></div><span>Delete</span>
-                </div>
-            </div>
+    return ` 
+            <div id="edit-contact-overlay" class="d-none contact-overlay"></div>
             <div class="contact-container">
                 <div class="contact-head">
                     <div>
@@ -50,17 +44,25 @@ function renderSingleContactView(name, email, initials, id, color) {
                     <span class="small-span"><b>Phone</b></span>
                     <span class="small-span">+49 1111 111 11 1</span>
                 </div>
-                <div onclick="showEditDeleteMenu()" class="options-icon-container">
-                    <img src="/assets/icons/options-logo.svg" alt="" />
+                <div id="edit-delete-menu" class="edit-popup-container d-none">
+                <div onclick="editBigView('${initials}', '${color}')" class="option-container">
+                    <div  class="option-edit"></div><span>Edit</span>
                 </div>
+                <div class="option-container">
+                    <div onclick="deleteContact()" class="option-delete"></div><span>Delete</span>
+                </div>
+                </div>
+                    <div id="option-circle" onclick="showEditDeleteMenu()" class="options-icon-container">
+                        <img src="/assets/icons/options-logo.svg" alt="" />
+                    </div>
             </div>`;
 }
 
 function showEditContactView(initials, color){
-    document.getElementById('main-content').innerHTML += `<div class="edit-contact-overlay">
+     return `<div id="editContactContainer" class="edit-contact-container">
                 <div class="add-contact-container">
                     <div class="close-container">
-                        <img src="/assets/icons/cross-white.svg" alt="">
+                        <img onclick="closeEditContactView()" src="/assets/icons/cross-white.svg" alt="">
                     </div>
                     <div class="add-contact-head">
                         <h1 class="border-bottom">Edit contact</h1>
