@@ -21,10 +21,10 @@ function renderContactListContact(contact, initials, id) {
 function renderSingleContactView(name, email, initials, id, color) {
     return ` <div id="edit-delete-menu" class="edit-popup-container d-none">
                 <div class="option-container">
-                    <div class="option-edit"></div><span>Edit</span>
+                    <div onclick="showEditContactView('${initials}', '${color}')" class="option-edit"></div><span>Edit</span>
                  </div>
                 <div class="option-container">
-                    <div class="option-delete"></div><span>Delete</span>
+                    <div onclick="deleteContact()" class="option-delete"></div><span>Delete</span>
                 </div>
             </div>
             <div class="contact-container">
@@ -53,5 +53,45 @@ function renderSingleContactView(name, email, initials, id, color) {
                 <div onclick="showEditDeleteMenu()" class="options-icon-container">
                     <img src="/assets/icons/options-logo.svg" alt="" />
                 </div>
+            </div>`;
+}
+
+function showEditContactView(initials, color){
+    document.getElementById('main-content').innerHTML += `<div class="edit-contact-overlay">
+                <div class="add-contact-container">
+                    <div class="close-container">
+                        <img src="/assets/icons/cross-white.svg" alt="">
+                    </div>
+                    <div class="add-contact-head">
+                        <h1 class="border-bottom">Edit contact</h1>
+                    </div>
+                </div>
+                <div class="placeholder-container">
+                    <div class="placeholder-contact" style="background-color: ${color};">${initials} </div>
+                </div>
+                <form action="">
+                    <div class="create-contact-container">
+                        <div class="input-container">
+                            <input type="text" placeholder="Name" required>
+                            <img src="/assets/icons/contact-person.svg" alt="User Icon" class="input-icon">
+                        </div>
+                        <div class="input-container">
+                            <input type="email" placeholder="Email" required>
+                            <img src="/assets/icons/mail-icon.svg" alt="Mail Icon" class="input-icon">
+                        </div>
+                        <div class="input-container">
+                            <input type="tel" placeholder="Phone" required>
+                            <img src="/assets/icons/phone-icon.svg" alt="Phone Icon" class="input-icon">
+                        </div>
+                    </div>
+                    <div class="button-container">
+                        <div>
+                            <button class="delete-button">Delete</button>
+                        </div>
+                        <div>
+                            <button class="create-contact-button">Save <img src="/assets/icons/check.svg" alt=""></button>
+                        </div>
+                    </div>
+                </form>
             </div>`;
 }
