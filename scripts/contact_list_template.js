@@ -19,7 +19,15 @@ function renderContactListContact(contact, initials, id) {
 }
 
 function renderSingleContactView(name, email, initials, id, color) {
-    return `<div class="contact-container">
+    return ` <div id="edit-delete-menu" class="edit-popup-container d-none">
+                <div class="option-container">
+                    <div class="option-edit"></div><span>Edit</span>
+                 </div>
+                <div class="option-container">
+                    <div class="option-delete"></div><span>Delete</span>
+                </div>
+            </div>
+            <div class="contact-container">
                 <div class="contact-head">
                     <div>
                         <h1>Contacts</h1>
