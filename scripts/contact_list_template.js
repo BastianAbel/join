@@ -7,7 +7,7 @@ function renderContactSection(letter) {
 }
 
 function renderContactListContact(contact, initials, id) {
-    return `<div onclick="contactBigView('${contact.name}','${contact.email}', '${initials}', '${id}')" class="contactlist-contact">
+    return `<div onclick="contactBigView('${contact.name}','${contact.email}','${contact.phone}', '${initials}', '${id}')" class="contactlist-contact">
                     <div id="profile-picture(${id})" class="profile-picture test-profile-picture-background">
                         <span>${initials}</span>
                     </div>
@@ -18,7 +18,7 @@ function renderContactListContact(contact, initials, id) {
                 </div>`;
 }
 
-function renderSingleContactView(name, email, initials, id, color) {
+function renderSingleContactView(name, email,phone, initials, id, color, contactJSON) {
     return ` 
             <div id="contact-overlay" class="d-none contact-overlay"></div>
             <div class="contact-container">
@@ -33,23 +33,23 @@ function renderSingleContactView(name, email, initials, id, color) {
                 <span class="border-bottom">Better with a team</span>
                 <div class="contact-name">
                     <div id="profile-picture(${id})" class="contact-id profile-picture test-profile-picture-background" style="background-color: ${color};">
-                        <span>${initials}</span>
+                        <span id="userInitials">${initials}</span>
                     </div>
-                    <h2>${name}</h2>
+                    <h2 id="userName">${name}</h2>
                 </div>
                 <div class="contact-information">
                     <span>Contact Information</span>
                     <span class="small-span"><b>Email</b></span>
-                    <a class="small-span" href="#">${email}</a>
+                    <a id="userEmail" class="small-span" href="#">${email}</a>
                     <span class="small-span"><b>Phone</b></span>
-                    <span class="small-span">+49 1111 111 11 1</span>
+                    <span id="userPhone" class="small-span">+49 1111 111 11 1</span>
                 </div>
                 <div id="edit-delete-menu" class="edit-popup-container d-none">
-                <div onclick="editBigView('${initials}', '${color}')" class="option-container">
+                <div onclick="editBigView('${initials}', '${color}', '${id}', '${name}', '${email}', '${phone}')" class="option-container">
                     <div  class="option-edit"></div><span>Edit</span>
                 </div>
-                <div class="option-container">
-                    <div onclick="deleteContact()" class="option-delete"></div><span>Delete</span>
+                <div onclick="deleteContact()" class="option-container">
+                    <div class="option-delete"></div><span>Delete</span>
                 </div>
                 </div>
                     <div id="option-circle" onclick="showEditDeleteMenu()" class="options-icon-container">
@@ -58,7 +58,7 @@ function renderSingleContactView(name, email, initials, id, color) {
             </div>`;
 }
 
-function renderEditContactView(initials, color) {
+function renderEditContactView(initials, color, id) {
     return `<div id="editContactContainer" class="big-contact-container">
                 <div class="add-contact-container">
                     <div class="close-container">
@@ -71,18 +71,17 @@ function renderEditContactView(initials, color) {
                 <div class="placeholder-container">
                     <div class="placeholder-contact" style="background-color: ${color};">${initials} </div>
                 </div>
-                <form action="">
                     <div class="create-contact-container">
                         <div class="input-container">
-                            <input type="text" placeholder="Name" required>
+                            <input id="newName" type="text" placeholder="Name" required>
                             <img src="/assets/icons/contact-person.svg" alt="User Icon" class="input-icon">
                         </div>
                         <div class="input-container">
-                            <input type="email" placeholder="Email" required>
+                            <input id="newEmail" type="email" placeholder="Email" required>
                             <img src="/assets/icons/mail-icon.svg" alt="Mail Icon" class="input-icon">
                         </div>
                         <div class="input-container">
-                            <input type="tel" placeholder="Phone" required>
+                            <input id="newPhone" type="tel" placeholder="Phone" required>
                             <img src="/assets/icons/phone-icon.svg" alt="Phone Icon" class="input-icon">
                         </div>
                     </div>
@@ -91,10 +90,9 @@ function renderEditContactView(initials, color) {
                             <button class="delete-button">Delete</button>
                         </div>
                         <div>
-                            <button class="save-contact-button">Save <img src="/assets/icons/check.svg" alt=""></button>
+                            <button onclick="getEditedUserData('${id}')" class="save-contact-button">Save <img src="/assets/icons/check.svg" alt=""></button>
                         </div>
-                    </div>
-                </form>
+                </div>
             </div>`;
 }
 
