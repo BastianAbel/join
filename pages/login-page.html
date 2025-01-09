@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+    <!-- prettier-ignore -->
+    <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Log In</title>
@@ -12,61 +12,106 @@
     <link rel="stylesheet" href="/styles/signup-style.css">
     <link rel="stylesheet" href="/styles/start-site-style.css">
     <script src="/scripts/login.js" defer></script>
+    <script src="/scripts/main.js" defer></script>
     <script src="/scripts/register.js" defer></script>
     <script src="/scripts/firebase.js" defer></script>
     <script src="/scripts/standart.js" defer></script>
 </head>
 
-<body onload="autoLogin()">
-    <header></header>
-    <div class="start-site-container">
-        <img id="join-logo-white" src="/assets/icons/join-logo-white.svg" alt="Join Logo" />
-        <img id="join-logo-dark" src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
-        <main>
-            <div class="login-main-container">
-                <div class="head-container">
-                    <h1 class="border-bottom">Log in</h1>
+    <body onload="autoLogin()">
+        <header></header>
+        <div class="start-site-container">
+            <img
+                id="join-logo-white"
+                src="/assets/icons/join-logo-white.svg"
+                alt="Join Logo"
+            />
+            <img
+                id="join-logo-dark"
+                src="/assets/icons/join-logo-dark.svg"
+                alt="Join Logo"
+            />
+            <main>
+                <div class="login-main-container">
+                    <div class="head-container">
+                        <h1 class="border-bottom">Log in</h1>
+                    </div>
+                    <form onsubmit="userLogin(); return false;">
+                        <div class="input-main">
+                            <div class="input-container">
+                                <input
+                                    id="email"
+                                    type="email"
+                                    placeholder="Email"
+                                    required
+                                />
+                                <img
+                                    src="/assets/icons/mail-icon.svg"
+                                    alt="User Icon"
+                                    class="input-icon"
+                                />
+                            </div>
+                            <div class="input-container">
+                                <input
+                                    id="password"
+                                    type="password"
+                                    placeholder="Password"
+                                    onkeyup='resetLoginWarning(); togglePasswordVisibilityIcon(this, "first")'
+                                    required
+                                />
+                                <img
+                                    src="/assets/icons/lock.svg"
+                                    alt="User Icon"
+                                    class="input-icon"
+                                    id="password-lock-first"
+                                />
+                                <img
+                                    src="/assets/icons/visibility_off.svg"
+                                    alt="User Icon"
+                                    class="input-icon d-none visibility-icon"
+                                    id="password-visibility-first"
+                                    onclick="changePasswordVisibility('password', this)"
+                                />
+                            </div>
+                            <div
+                                class="check-password-style"
+                                id="pw-state-message"
+                            ></div>
+                            <div class="remember-me-container">
+                                <input
+                                    id="privacyCheckbox"
+                                    type="checkbox"
+                                />
+                                <label for="privacyCheckbox"></label>
+                                <span>Remember me</span>
+                            </div>
+                        </div>
+                        <div class="login-options-container">
+                            <button class="login-button">Log In</button>
+                        </div>
+                    </form>
+                    <button
+                        onclick="setGuestToSessionStorage()"
+                        class="guest-login-button"
+                    >
+                        Guest Log in
+                    </button>
                 </div>
-                <form onsubmit="userLogin(); return false;">
-                    <div class="input-main">
-                        <div class="input-container">
-                            <input id="email" type="email" placeholder="Email" required>
-                            <img src="/assets/icons/mail-icon.svg" alt="User Icon" class="input-icon">
-                        </div>
-                        <div class="input-container">
-                            <input id="password" type="password" placeholder="Password"
-                                onkeyup='resetLoginWarning(); togglePasswordVisibilityIcon(this, "first")' required>
-                            <img src="/assets/icons/lock.svg" alt="User Icon" class="input-icon" id="password-lock-first">
-                            <img src="/assets/icons/visibility_off.svg" alt="User Icon"
-                                class="input-icon d-none visibility-icon" id="password-visibility-first"
-                                onclick="changePasswordVisibility('password', this)">
-                        </div>
-                        <div class="check-password-style" id="pw-state-message"></div>
-                        <div class="remember-me-container">
-                            <input id="privacyCheckbox" type="checkbox"/>
-                            <label for="privacyCheckbox"></label>
-                            <span>Remember me</span> 
-                        </div>
-                    </div>
-                    <div class="login-options-container">
-                        <button class="login-button">Log In</button>
-                    </div>
-                </form>
-                <button onclick="setGuestToSessionStorage()" class="guest-login-button">Guest Log in</button>
-            </div>
-        </main>
-        <footer>
-            <div class="signup-container">
-                <span>Not a Join user?</span>
-                <a href="/pages/signup.html" class="signup-button">Sign up</a>
-            </div>
-            <div class="legal-container">
-                <a href="/pages/privacy-policy.html">Privacy Policy</a>
-                <a href="/pages/impressum.html">Legal notice</a>
-            </div>
-        </footer>
-    </div>
-    
-</body>
-
+            </main>
+            <footer>
+                <div class="signup-container">
+                    <span>Not a Join user?</span>
+                    <a
+                        href="/pages/signup.html"
+                        class="signup-button"
+                        >Sign up</a
+                    >
+                </div>
+                <div class="legal-container">
+                    <a href="/pages/privacy-policy.html">Privacy Policy</a>
+                    <a href="/pages/impressum.html">Legal notice</a>
+                </div>
+            </footer>
+        </div>
+    </body>
 </html>

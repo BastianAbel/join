@@ -60,11 +60,11 @@ input {
     border-radius: 3px;
 }
 
-.contact-img {
+/* .contact-img {
     display: flex;
     align-items: center;
     justify-content: center;
-}
+} */
 
 .placeholder-container {
     margin-top: -60px;
@@ -76,6 +76,25 @@ input {
 .placeholder-container img {
     height: 120px;
     width: 120px;
+}
+
+#add-contact-placeholder {
+    height: 120px;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+& #add-contact-initials-paragraph {
+    text-align: center;
+    font-size: 47px;
+    font-weight: 500;
+    color: white;
+}
+#add-contact-initials-paragraph {
+    color: white;
 }
 
 .create-contact-container {

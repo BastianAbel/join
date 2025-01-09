@@ -17,6 +17,7 @@ let upcomimgDeadline = "";
 function getAllTasksFromStoredObject() {
     let storedObject = getJsonObjectFromSessionStorage();
     allTasks = getArrayFromObject(storedObject.tasks);
+    console.table(allTasks);
 }
 
 function getCountOfValuesInArray(array, attribute, value) {

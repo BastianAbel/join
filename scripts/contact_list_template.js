@@ -7,7 +7,7 @@ function renderContactSection(letter) {
 }
 
 function renderContactListContact(contact, initials, id) {
-    return `<div onclick="contactBigView('${contact.name}','${contact.email}', '${initials}', '${id}')" class="contactlist-contact">
+    return `<div onclick="contactBigView('${contact.name}','${contact.email}', '${initials}', '${id}', '${contact.phone}')" class="contactlist-contact">
                     <div id="profile-picture(${id})" class="profile-picture test-profile-picture-background">
                         <span>${initials}</span>
                     </div>
@@ -18,7 +18,7 @@ function renderContactListContact(contact, initials, id) {
                 </div>`;
 }
 
-function renderSingleContactView(name, email, initials, id, color) {
+function renderSingleContactView(name, email, initials, id, color, phone) {
     return ` <div id="edit-delete-menu" class="edit-popup-container d-none">
                 <div class="option-container">
                     <div class="option-edit"></div><span>Edit</span>
@@ -48,7 +48,7 @@ function renderSingleContactView(name, email, initials, id, color) {
                     <span class="small-span"><b>Email</b></span>
                     <a class="small-span" href="#">${email}</a>
                     <span class="small-span"><b>Phone</b></span>
-                    <span class="small-span">+49 1111 111 11 1</span>
+                    <span class="small-span">${phone}</span>
                 </div>
                 <div onclick="showEditDeleteMenu()" class="options-icon-container">
                     <img src="/assets/icons/options-logo.svg" alt="" />
