@@ -4,7 +4,7 @@ async function userLogin() {
     await fetchUsers();
     checkIfUserExists();
 }
-//TODO - Pfad überprüfen
+
 async function fetchUsers() {
     let response = await fetch(BASE_URL + PATH_TO_USERS + ".json");
     let fetchedUsers = await response.json();
