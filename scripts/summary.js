@@ -17,8 +17,6 @@ let upcomimgDeadline = "";
 function getAllTasksFromStoredObject() {
     let storedObject = getJsonObjectFromSessionStorage();
     allTasks = getArrayFromObject(storedObject.tasks);
-    //TODO - Remove logging when everything works fine
-    console.table(allTasks);
 }
 
 function getCountOfValuesInArray(array, attribute, value) {
@@ -33,50 +31,36 @@ function getCountOfValuesInArray(array, attribute, value) {
 
 function getCountOfTasksInProgress() {
     let inProgress = getCountOfValuesInArray(allTasks, "state", "inProgress");
-    //TODO - remove logging
-    console.log("in Progress: " + inProgress);
     return inProgress;
 }
 
 function getCountOfToDo() {
     let toDo = getCountOfValuesInArray(allTasks, "state", "toDo");
-    //TODO - remove logging
-    console.log("to Do: " + toDo);
     return toDo;
 }
 
 function getCountOfDone() {
     let done = getCountOfValuesInArray(allTasks, "state", "done");
-    //TODO - remove logging
-    console.log("done: " + done);
     return done;
 }
 
 function getCountOfAwaitFeedback() {
     let awaitFeedback = getCountOfValuesInArray(allTasks, "state", "awaitFeedback");
-    //TODO - remove logging
-    console.log("awaiting feedback: " + awaitFeedback);
     return awaitFeedback;
 }
 
 function getCountOfPrioUrgent() {
     let prioUrgent = getCountOfValuesInArray(allTasks, "priority", "urgent");
-    //TODO - remove logging
-    console.log("Urgent: " + prioUrgent);
     return prioUrgent;
 }
 
 function getCountOfTaskInBoard() {
     let taskInBoard = toDoCount + taskInProgressCount + awaitingFeedbackCount;
-    //TODO - remove logging
-    console.log("task in board: " + taskInBoard);
     return taskInBoard;
 }
 
 function getUpcomingDeadline() {
     let allDeadlines = allTasks.map((task) => task.dueDate);
-    //TODO - remove logging
-    console.table(allDeadlines);
     let nearestDeadline;
     let smallestDiff = Infinity;
     let dateWithSmallestDiff;
@@ -92,8 +76,6 @@ function getUpcomingDeadline() {
         }
     }
     nearestDeadline = new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric", year: "numeric" }).format(dateWithSmallestDiff);
-    //TODO - remove logging
-    console.log(nearestDeadline);
     return nearestDeadline;
 }
 
