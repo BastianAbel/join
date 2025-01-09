@@ -45,6 +45,81 @@ function contactBigView(name, email, initials, id){
     document.getElementById('main-content').innerHTML = renderSingleContactView(name, email, initials, id, color);
 }
 
+function editBigView(initials, color){
+    document.getElementById('edit-delete-menu').style.display = "none";
+    document.getElementById('profileBtn').style.backgroundColor = "#b8b9bb";
+    document.getElementById('edit-contact-overlay').classList.remove('d-none');
+    document.getElementById('main-content').innerHTML += showEditContactView(initials, color);
+}
+
+function closeEditContactView(){
+    document.getElementById('edit-delete-menu').style.display = "flex";
+    document.getElementById('edit-contact-overlay').classList.add('d-none');
+    document.getElementById('profileBtn').style.backgroundColor = "white";
+    document.getElementById('editContactContainer').classList.add('d-none');
+}
+
+function EditContactViewSlideDown(){
+    document.getElementById('editContactContainer').classList.add('hidden');
+    setTimeout(() => {
+        closeEditContactView();
+    }, 300);
+}
+
+window.addEventListener('mouseup', function (e) {
+    let editContactDiv = document.getElementById('editContactContainer');
+    if (editContactDiv && !editContactDiv.contains(e.target)) {
+        editContactDiv.classList.add('hidden');
+        setTimeout(() => {
+            closeEditContactView();
+        }, 300); 
+    }
+});
+
 function navigateToContactList(){
     window.location.href = "contactlist.html"
+}
+
+let submenuVisible = false;
+
+function showSubmenu() {
+    let submenu = document.getElementById('submenu');
+    submenu.classList.remove('d-none', 'hidden');
+    submenuVisible = true; 
+}
+
+document.addEventListener('mouseup', function (e) {
+    let submenuDiv = document.getElementById('submenu');
+    if (submenuVisible && !submenuDiv.contains(e.target)) {
+        submenuDiv.classList.add('hidden');
+        setTimeout(() => {
+            submenuDiv.classList.add('d-none');
+            submenuVisible = false; 
+        }, 100); 
+    }
+});
+
+let editDeleteMenuVisible = false;
+
+function showEditDeleteMenu(){
+    let editDeleteMenu = document.getElementById('edit-delete-menu');
+    document.getElementById('option-circle').style.display = "none";
+    editDeleteMenu.classList.remove('d-none', 'hidden');
+    editDeleteMenuVisible = true;
+}
+
+window.addEventListener('mouseup', function (e) {
+    let editDeleteMenuDiv = document.getElementById('edit-delete-menu');
+    if (editDeleteMenuVisible && !editDeleteMenuDiv.contains(e.target)) {
+        editDeleteMenuDiv.classList.add('hidden');
+        setTimeout(() => {
+            editDeleteMenuDiv.classList.add('d-none');
+            document.getElementById('option-circle').style.display = "flex";
+            editDeleteMenuVisible = false; 
+        }, 100); 
+    }
+});
+
+function openAddContactView(){
+    document.getElementById('main-content').innerHTML += showEditContactView();
 }
