@@ -22,3 +22,36 @@ function setColorById(id, color) {
 function getContactFromArrayById(array, id) {
     return array.find((entry) => entry.id == id);
 }
+
+async function setBackendJsonToSessionStorage() {
+    let response = await fetch(BASE_URL + ".json");
+    let fetchedData = await response.json();
+    sessionStorage.setItem("joinJson", JSON.stringify(fetchedData));
+    console.log(fetchedData);
+}
+
+function loadUserInitials() {
+    onlyLoadIfUserOrGuest();
+    let userInitials = sessionStorage.getItem("userName");
+    let loginStatus = sessionStorage.getItem("loginStatus");
+    if (loginStatus === "user") {
+        document.getElementById("profileBtn").innerText = userInitials;
+    } else {
+        document.getElementById("profileBtn").innerText = "G";
+    }
+}
+
+function getJsonObjectFromSessionStorage() {
+    let completeJson = sessionStorage.getItem("joinJson");
+    let completeObject = JSON.parse(completeJson);
+    return completeObject;
+}
+
+function getArrayFromObject(object) {
+    let allKeys = Object.keys(object);
+    let array = [];
+    for (let i = 0; i < allKeys.length; i++) {
+        array.push(object[allKeys[i]]);
+    }
+    return array;
+}
