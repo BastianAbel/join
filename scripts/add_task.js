@@ -216,13 +216,14 @@ async function createTask(event) {
         "priority": taskPrio,
         "assignedTo": checkedUsersNamesAndColors,
         "subtasks": subtaskList,
-        "state": "backlog",
+        "state": "toDo",
     };
 
     try {
         if (newTask["type"] !== "" && newTask["title"] !== "" && newTask["dueDate"] !== "") {
             await postData(PATH_TO_TASKS, newTask);
             await addTaskToAssignedUsers();
+            setBackendJsonToSessionStorage();
             clearAllInputAddTask();
         }
     } catch (error) {
