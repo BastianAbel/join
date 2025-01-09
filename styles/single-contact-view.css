@@ -42,9 +42,11 @@ span {
     justify-content: start;
     gap: 13px;
     padding-top: 34px;
+    padding-bottom: 21px;
 }
 
 .contact-id {
+    color: white;
     height: 80px;
     min-width: 80px;
     border-radius: 70px;
@@ -53,7 +55,7 @@ span {
     align-items: center;
     justify-content: center;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
-
+    font-size: 27px !important;
 }
 
 .contact-information {

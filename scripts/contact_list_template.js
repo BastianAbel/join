@@ -20,7 +20,7 @@ function renderContactListContact(contact, initials, id) {
 
 function renderSingleContactView(name, email, initials, id, color) {
     return ` 
-            <div id="edit-contact-overlay" class="d-none contact-overlay"></div>
+            <div id="contact-overlay" class="d-none contact-overlay"></div>
             <div class="contact-container">
                 <div class="contact-head">
                     <div>
@@ -58,11 +58,11 @@ function renderSingleContactView(name, email, initials, id, color) {
             </div>`;
 }
 
-function showEditContactView(initials, color){
-     return `<div id="editContactContainer" class="edit-contact-container">
+function renderEditContactView(initials, color) {
+    return `<div id="editContactContainer" class="big-contact-container">
                 <div class="add-contact-container">
                     <div class="close-container">
-                        <img onclick="closeEditContactView()" src="/assets/icons/cross-white.svg" alt="">
+                        <img onclick="EditContactViewSlideDown()" src="/assets/icons/cross-white.svg" alt="">
                     </div>
                     <div class="add-contact-head">
                         <h1 class="border-bottom">Edit contact</h1>
@@ -91,9 +91,48 @@ function showEditContactView(initials, color){
                             <button class="delete-button">Delete</button>
                         </div>
                         <div>
-                            <button class="create-contact-button">Save <img src="/assets/icons/check.svg" alt=""></button>
+                            <button class="save-contact-button">Save <img src="/assets/icons/check.svg" alt=""></button>
                         </div>
                     </div>
                 </form>
             </div>`;
+}
+
+function renderAddContactView() {
+    return `
+    <div id="addContactContainer" class="big-contact-container">
+    <div  class="add-contact-container">
+    <div class="add-contact-container">
+        <div class="close-container">
+            <img onclick="AddContactViewSlideDown()" src="/assets/icons/cross-white.svg" alt="">
+        </div>
+        <div class="add-contact-head">
+            <h1>Add Contact</h1>
+            <span class="border-bottom">Tasks are better with a team!</span>
+        </div>
+    </div>
+    <div class="placeholder-container">
+        <img src="/assets/icons/contact-placeholder.svg" alt="">
+    </div>
+    <form action="">
+        <div class="create-contact-container">
+            <div class="input-container">
+                <input type="text" placeholder="Name" required>
+                <img src="/assets/icons/contact-person.svg" alt="User Icon" class="input-icon">
+            </div>
+            <div class="input-container">
+                <input type="email" placeholder="Email" required>
+                <img src="/assets/icons/mail-icon.svg" alt="Mail Icon" class="input-icon">
+            </div>
+            <div class="input-container">
+                <input type="tel" placeholder="Phone" required>
+                <img src="/assets/icons/phone-icon.svg" alt="Phone Icon" class="input-icon">
+            </div>
+        </div>
+        <div class="button-container">
+            <button type="submit" class="create-contact-button">Create contact<img src="/assets/icons/check.svg"alt=""></button>
+        </div>
+    </form>
+    </div>
+    `;
 }

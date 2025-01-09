@@ -48,13 +48,13 @@ function contactBigView(name, email, initials, id){
 function editBigView(initials, color){
     document.getElementById('edit-delete-menu').style.display = "none";
     document.getElementById('profileBtn').style.backgroundColor = "#b8b9bb";
-    document.getElementById('edit-contact-overlay').classList.remove('d-none');
-    document.getElementById('main-content').innerHTML += showEditContactView(initials, color);
+    document.getElementById('contact-overlay').classList.remove('d-none');
+    document.getElementById('main-content').innerHTML += renderEditContactView(initials, color);
 }
 
 function closeEditContactView(){
     document.getElementById('edit-delete-menu').style.display = "flex";
-    document.getElementById('edit-contact-overlay').classList.add('d-none');
+    document.getElementById('contact-overlay').classList.add('d-none');
     document.getElementById('profileBtn').style.backgroundColor = "white";
     document.getElementById('editContactContainer').classList.add('d-none');
 }
@@ -75,6 +75,35 @@ window.addEventListener('mouseup', function (e) {
         }, 300); 
     }
 });
+
+function closeAddContactView(){
+    document.getElementById('addContactContainer').classList.add('d-none');
+    document.getElementById('profileBtn').style.backgroundColor = "white";
+    document.getElementById('contact-overlay').classList.add('d-none');
+}
+
+function AddContactViewSlideDown(){
+    document.getElementById('addContactContainer').classList.add('hidden');
+    setTimeout(() => {
+        closeAddContactView();
+    }, 300);
+}
+
+window.addEventListener('mouseup', function (e) {
+    let addContactDiv = document.getElementById('addContactContainer');
+    if (addContactDiv && !addContactDiv.contains(e.target)) {
+        addContactDiv.classList.add('hidden');
+        setTimeout(() => {
+            closeAddContactView();
+        }, 300); 
+    }
+});
+
+function openAddContactView(){
+    document.getElementById('profileBtn').style.backgroundColor = "#b8b9bb";
+    document.getElementById('contact-overlay').classList.remove('d-none');
+    document.getElementById('main-content').innerHTML += renderAddContactView();
+}
 
 function navigateToContactList(){
     window.location.href = "contactlist.html"
@@ -120,6 +149,3 @@ window.addEventListener('mouseup', function (e) {
     }
 });
 
-function openAddContactView(){
-    document.getElementById('main-content').innerHTML += showEditContactView();
-}
