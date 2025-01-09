@@ -156,7 +156,7 @@ body {
     padding-bottom: 10px;
 }
 
-.section-five {
+.section-five, .section-six {
     max-width: 396px;
     margin: 0 16px;
 }

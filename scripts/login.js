@@ -142,12 +142,7 @@ function resetLoginWarning() {
     }
 }
 
-async function setBackendJsonToSessionStorage() {
-    let response = await fetch(BASE_URL + ".json");
-    let fetchedUsers = await response.json();
-    sessionStorage.setItem("joinJson", JSON.stringify(fetchedUsers))
-    console.log(fetchedUsers);
-}
+
 
 function userLogout(){
     sessionStorage.removeItem("user");

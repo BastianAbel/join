@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="/styles/nav-bar.css">
     <link rel="stylesheet" href="/styles/card.css">
     <link rel="stylesheet" href="/styles/submenu-popup.css" />
+    <script src="/scripts/main.js" defer></script>
+    <script src="/scripts/board_task_template.js" defer></script>
+    <script src="/scripts/task_search.js" defer></script>
     <script src="/scripts/login.js" defer></script>
     <script src="/scripts/standart.js" defer></script>
 </head>
@@ -39,12 +42,13 @@
         </section>
         <section class="section-two">
             <div class="user-input-section">
-                <input class="user-input-field" type="text" placeholder="Find Task" />
+                <input onkeyup="checkUserSearchInputAndRedirect()" oninput="searchTask(event)" id="user-search-input" class="user-input-field" type="text" placeholder="Find Task" />
                 <button>
                     <img src="/assets/icons/search.svg" alt="Search" />
                 </button>
             </div>
         </section>
+        <div id="card-overlay-wrapper">
         <section class="section-three">
             <div class="board-progress-state">
                 <h2>To do</h2>
@@ -101,12 +105,13 @@
             </div>
             <div class="await-feedback-content"></div>
         </section>
-        <section class="section-five">
+        <section class="section-six">
             <div class="board-progress-state">
                 <h2>Done</h2>
                 <img src="/assets/icons/plus-button.svg" alt="Add" />
             </div>
         </section>
+    </div>
     </main>
     <div class="nav-bar-main-container">
         <div class="nav-bar">
