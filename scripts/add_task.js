@@ -223,7 +223,7 @@ async function createTask(event) {
         if (newTask["type"] !== "" && newTask["title"] !== "" && newTask["dueDate"] !== "") {
             await postData(PATH_TO_TASKS, newTask);
             await addTaskToAssignedUsers();
-            setBackendJsonToSessionStorage();
+            await setBackendJsonToSessionStorage();
             clearAllInputAddTask();
         }
     } catch (error) {
