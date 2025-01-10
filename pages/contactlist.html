@@ -23,29 +23,51 @@
     <script src="/scripts/login.js" defer></script>
     <script src="/scripts/standart.js" defer></script>
 </head>
-<body onload="initializeContactsList()">
-    <div id="contact-overlay" class="d-none contact-overlay"></div>
-    <div id="submenu" class="submenu-popup-container d-none">
-        <div class="submenu-text-container">
-            <a href="">Help</a>
-            <a href="/pages/impressum.html">Legal Notice</a>
-            <a href="/pages/privacy-policy.html">Privacy Policy</a>
-            <a href="/pages/login-page.html">Log Out</a>
+    <body onload="initializeContactsList()">
+        <div
+            id="contact-overlay"
+            class="d-none contact-overlay"
+        ></div>
+        <div
+            id="submenu"
+            class="submenu-popup-container d-none"
+        >
+            <div class="submenu-text-container">
+                <a href="">Help</a>
+                <a href="/pages/impressum.html">Legal Notice</a>
+                <a href="/pages/privacy-policy.html">Privacy Policy</a>
+                <a href="/pages/login-page.html">Log Out</a>
+            </div>
         </div>
-    </div>
-    <header>
-        <section class="header">
-            <a href="">
-                <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
-            </a>
-            <button onclick="showSubmenu()" id="profileBtn" class="profile-button"></button>
-        </section>
-    </header>
-    <main id="main-content">
-        <section id="contact-list-container" class="contactlist-container">           
-        </section>
-        <div onclick="openAddContactView()" class="options-icon-container">
-            <img src="/assets/icons/add-contact.svg" alt="" />
-        </div>
+        <header>
+            <section class="header">
+                <a href="">
+                    <img
+                        src="/assets/icons/join-logo-dark.svg"
+                        alt="Join Logo"
+                    />
+                </a>
+                <button
+                    onclick="showSubmenu()"
+                    id="profileBtn"
+                    class="profile-button"
+                ></button>
+            </section>
+        </header>
+        <main id="main-content">
+            <section
+                id="contact-list-container"
+                class="contactlist-container"
+            ></section>
+            <div
+                onclick="openAddContactView()"
+                class="options-icon-container"
+            >
+                <img
+                    src="/assets/icons/add-contact.svg"
+                    alt=""
+                />
+            </div>
+        </main>
     </body>
 </html>
