@@ -1,4 +1,4 @@
-function taskCardTemplateToHtml(task, state, priorityImage, employeesName) {
+function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progressBarCalc) {
 
     return ` 
     <div class="card-main-container">
@@ -12,7 +12,7 @@ function taskCardTemplateToHtml(task, state, priorityImage, employeesName) {
                 </div>
                 <div class="status-bar-and-task-information">
                     <div class="progress-bar-wrapper">
-                    <div class="progress-bar" role="progressbar" style="width: 50%"></div>
+                    <div class="progress-bar" role="progressbar" style="width: ${progressBarCalc}"></div>
                 </div>
                     <span>${state.von}/${state.gesamt} Subtasks</span>
                 </div>

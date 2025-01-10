@@ -33,9 +33,8 @@ function renderSearchResultCard(task) {
     const subtaskState = getSubtaskStatus(task.subtasks);
     const priorityImg = getPriorityImage(task.priority);
     const employeesName = createUserContainer(task.assignedTo);
-    contentRef.innerHTML += taskCardTemplateToHtml(task, subtaskState, priorityImg, employeesName);
-
-    data = [];
+    const progressBarCalc = statusProgressBar(subtaskState);
+    contentRef.innerHTML += taskCardTemplateToHtml(task, subtaskState, priorityImg, employeesName, progressBarCalc);
 }
 
 function capitalizeFirstLetter(string) {
@@ -102,4 +101,11 @@ function getEmployeesInitials(EmployeesName) {
     return EmployeesName.split(" ")
         .map((name) => name[0].toUpperCase())
         .join("");
+}
+
+function statusProgressBar(subtaskState) {
+    let percent = subtaskState.von / subtaskState.gesamt;
+    percent = Math.round(percent * 100);
+
+    return `${percent}%`;
 }
