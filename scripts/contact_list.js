@@ -3,12 +3,12 @@ let allContacts = [];
 let firstLetters = [];
 
 async function loadAllContacts() {
-    let contactsResponse = await loadData(PATH_TO_CONTACTS);
-    let contactsKeysArray = Object.keys(contactsResponse);
+    let fullObjectInSessionStorage = getJsonObjectFromSessionStorage();
+    let contactsKeysArray = Object.keys(fullObjectInSessionStorage.contacts);
     for (let i = 0; i < contactsKeysArray.length; i++) {
         allContacts.push({
             id: contactsKeysArray[i],
-            contact: contactsResponse[contactsKeysArray[i]],
+            contact: fullObjectInSessionStorage.contacts[contactsKeysArray[i]],
             color: getRandomColor(),
         });
     }
@@ -40,6 +40,10 @@ async function initializeContactsList() {
     await getListSection();
 }
 
+
+function navigateToContactList() {
+    window.location.href = "contactlist.html";
+}
 function contactBigView(name, email, phone, initials, id, contact) {
     contactJSON = JSON.stringify(contact);
     console.log(contactJSON)

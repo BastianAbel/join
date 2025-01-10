@@ -142,8 +142,6 @@ function resetLoginWarning() {
     }
 }
 
-
-
 function userLogout() {
     sessionStorage.removeItem("user");
     sessionStorage.removeItem("loginStatus");

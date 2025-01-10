@@ -7,7 +7,9 @@ function renderContactSection(letter) {
 }
 
 function renderContactListContact(contact, initials, id) {
-    return `<div onclick="contactBigView('${contact.name}','${contact.email}','${contact.phone}', '${initials}', '${id}')" class="contactlist-contact">
+
+    return `<div onclick="contactBigView('${contact.name}','${contact.email}', '${initials}', '${id}', '${contact.phone}')" class="contactlist-contact">
+
                     <div id="profile-picture(${id})" class="profile-picture test-profile-picture-background">
                         <span>${initials}</span>
                     </div>
@@ -17,6 +19,7 @@ function renderContactListContact(contact, initials, id) {
                     </div>
                 </div>`;
 }
+
 
 function renderSingleContactView(name, email,phone, initials, id, color, contactJSON) {
     return ` 

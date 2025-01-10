@@ -1,7 +1,7 @@
 .contact-container {
     padding-left: 16px;
     padding-right: 16px;
-    background-color: #F6F7F8;
+    background-color: #f6f7f8;
     height: calc(100vh - 160px);
 }
 
@@ -50,12 +50,17 @@ span {
     height: 80px;
     min-width: 80px;
     border-radius: 70px;
-    border: 3px solid var(--light--accent) ;
+    border: 3px solid var(--light--accent);
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
-    font-size: 27px !important;
+    & span {
+  
+        font-weight: 400;
+        color: var(--light-text-color);
+        font-size: 27px !important;
+  }
 }
 
 .contact-information {
@@ -191,4 +196,3 @@ span {
 .options-icon-container:hover {
     background-color: var(--identity);
 }
-
