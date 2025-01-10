@@ -45,8 +45,6 @@ function navigateToContactList() {
     window.location.href = "contactlist.html";
 }
 function contactBigView(name, email, phone, initials, id, contact) {
-    contactJSON = JSON.stringify(contact);
-    console.log(contactJSON)
     let color = allContacts.find((e) => e.id == id).color;
     document.getElementById('main-content').innerHTML = renderSingleContactView(name, email, phone, initials, id, color, contact);
 }
@@ -173,3 +171,9 @@ function saveEditedUserData(newName, newEmail, newPhone, id) {
     EditContactViewSlideDown();
 }
 
+async function deleteContact(id){
+    await deleteData(path = PATH_TO_CONTACTS, id = id);
+    await setBackendJsonToSessionStorage();
+    loadAllContacts();
+    navigateToContactList();
+}

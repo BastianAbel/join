@@ -8,7 +8,7 @@ function renderContactSection(letter) {
 
 function renderContactListContact(contact, initials, id) {
 
-    return `<div onclick="contactBigView('${contact.name}','${contact.email}', '${initials}', '${id}', '${contact.phone}')" class="contactlist-contact">
+    return `<div onclick="contactBigView('${contact.name}','${contact.email}', '${contact.phone}','${initials}', '${id}', )" class="contactlist-contact">
 
                     <div id="profile-picture(${id})" class="profile-picture test-profile-picture-background">
                         <span>${initials}</span>
@@ -21,7 +21,7 @@ function renderContactListContact(contact, initials, id) {
 }
 
 
-function renderSingleContactView(name, email,phone, initials, id, color, contactJSON) {
+function renderSingleContactView(name, email,phone, initials, id, color) {
     return ` 
             <div id="contact-overlay" class="d-none contact-overlay"></div>
             <div class="contact-container">
@@ -51,7 +51,7 @@ function renderSingleContactView(name, email,phone, initials, id, color, contact
                 <div onclick="editBigView('${initials}', '${color}', '${id}', '${name}', '${email}', '${phone}')" class="option-container">
                     <div  class="option-edit"></div><span>Edit</span>
                 </div>
-                <div onclick="deleteContact()" class="option-container">
+                <div onclick="deleteContact('${id}')" class="option-container">
                     <div class="option-delete"></div><span>Delete</span>
                 </div>
                 </div>

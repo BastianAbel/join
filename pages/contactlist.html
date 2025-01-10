@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
-    <!-- prettier-ignore -->
-    <head>
+<!-- prettier-ignore -->
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
@@ -21,52 +22,45 @@
     <script src="/scripts/main.js" defer></script>
     <script src="/scripts/login.js" defer></script>
     <script src="/scripts/standart.js" defer></script>
+    <script src="/scripts/add_contact.js" defer></script>
 </head>
-    <body onload="initializeContactsList()">
-        <div
-            id="contact-overlay"
-            class="d-none contact-overlay"
-        ></div>
-        <div
-            id="submenu"
-            class="submenu-popup-container d-none"
-        >
-            <div class="submenu-text-container">
-                <a href="">Help</a>
-                <a href="/pages/impressum.html">Legal Notice</a>
-                <a href="/pages/privacy-policy.html">Privacy Policy</a>
-                <a href="/pages/login-page.html">Log Out</a>
-            </div>
+
+<body onload="initializeContactsList()">
+    <div id="contact-overlay" class="d-none contact-overlay"></div>
+    <div id="submenu" class="submenu-popup-container d-none">
+        <div class="submenu-text-container">
+            <a href="">Help</a>
+            <a href="/pages/impressum.html">Legal Notice</a>
+            <a href="/pages/privacy-policy.html">Privacy Policy</a>
+            <a href="/pages/login-page.html">Log Out</a>
         </div>
-        <header>
-            <section class="header">
-                <a href="">
-                    <img
-                        src="/assets/icons/join-logo-dark.svg"
-                        alt="Join Logo"
-                    />
-                </a>
-                <button
-                    onclick="showSubmenu()"
-                    id="profileBtn"
-                    class="profile-button"
-                ></button>
-            </section>
-        </header>
-        <main id="main-content">
-            <section
-                id="contact-list-container"
-                class="contactlist-container"
-            ></section>
-            <div
-                onclick="openAddContactView()"
-                class="options-icon-container"
-            >
-                <img
-                    src="/assets/icons/add-contact.svg"
-                    alt=""
-                />
-            </div>
-        </main>
-    </body>
+    </div>
+    <header>
+        <section class="header">
+            <a href="">
+                <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
+            </a>
+            <button onclick="showSubmenu()" id="profileBtn" class="profile-button"></button>
+        </section>
+    </header>
+    <main id="main-content">
+        <section id="contact-list-container" class="contactlist-container"></section>
+        <div onclick="openAddContactView()" class="options-icon-container">
+            <img src="/assets/icons/add-contact.svg" alt="" />
+        </div>
+    </main>
+    <div class="nav-bar-main-container">
+        <div class="nav-bar">
+            <a href="/pages/summary.html" id="nav-bar-container-summary" class="nav-bar-container"><img
+                    id="nav-bar-img-1" src="/assets/icons/summary.svg" alt="" /> <span>Summary</span></a>
+            <a href="/pages/board.html" id="nav-bar-container-board" class="nav-bar-container"><img id="nav-bar-img-2"
+                    src="/assets/icons/board.svg" alt="" /> <span>Board</span></a>
+            <a href="/pages/add-task.html" id="nav-bar-container-add-to-task" class="nav-bar-container"><img
+                    id="nav-bar-img-3" src="/assets/icons/add-to-task.svg" alt="" /> <span>Add Task</span></a>
+            <a href="/pages/contactlist.html" id="nav-bar-container-contacts" class="nav-bar-container"><img
+                    id="nav-bar-img-4" src="/assets/icons/contacts.svg" alt="" /> <span>Contacts</span></a>
+        </div>
+    </div>
+</body>
+
 </html>
