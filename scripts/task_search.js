@@ -4,14 +4,24 @@ let contentRef = document.getElementById("card-overlay-wrapper");
 let subtaskStatus = [];
 
 async function setBackendJsonToSessionStorage() {
-    let response = await fetch(BASE_URL + ".json");
-    let fetchedTasks = await response.json();
-    let taskKeys = Object.keys(fetchedTasks.tasks);
-    sessionStorage.setItem("joinJson", JSON.stringify(fetchedTasks));
-    for (let i = 0; i < taskKeys.length; i++) {
-        data.push({
-            task: fetchedTasks.tasks[taskKeys[i]],
-        });
+    try {
+        let response = await fetch(BASE_URL + ".json");
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        let fetchedTasks = await response.json();
+        if (!fetchedTasks.tasks) {
+            throw new Error("No tasks found in the response");
+        }
+        let taskKeys = Object.keys(fetchedTasks.tasks);
+        sessionStorage.setItem("joinJson", JSON.stringify(fetchedTasks));
+        for (let i = 0; i < taskKeys.length; i++) {
+            data.push({
+                task: fetchedTasks.tasks[taskKeys[i]],
+            });
+        }
+    } catch (error) {
+        console.error("Failed to fetch tasks:", error);
     }
 }
 setBackendJsonToSessionStorage();
@@ -43,6 +53,9 @@ function capitalizeFirstLetter(string) {
 }
 
 function createUserContainer(assignedUsers) {
+    if (!assignedUsers) {
+        return "";
+    }
     let userContainers = "";
     for (let i = 0; i < assignedUsers.length; i++) {
         let userContainer = document.createElement("div");
@@ -86,6 +99,7 @@ function getSubtaskStatus(subtasks) {
     subtaskStatus = [];
     if (!subtasks || subtasks.length === 0) {
         subtaskStatus.push({ von: 0, gesamt: 0 });
+        return subtaskStatus[0];
     }
 
     const completedSubtasks = subtasks.filter((subtask) => subtask.checked);
