@@ -40,26 +40,31 @@ async function initializeContactsList() {
     await getListSection();
 }
 
-function contactBigView(name, email, initials, id){
+function contactBigView(name, email, phone, initials, id, contact) {
+    contactJSON = JSON.stringify(contact);
+    console.log(contactJSON)
     let color = allContacts.find((e) => e.id == id).color;
-    document.getElementById('main-content').innerHTML = renderSingleContactView(name, email, initials, id, color);
+    document.getElementById('main-content').innerHTML = renderSingleContactView(name, email, phone, initials, id, color, contact);
 }
 
-function editBigView(initials, color){
+function editBigView(initials, color, id, name, email, phone) {
     document.getElementById('edit-delete-menu').style.display = "none";
     document.getElementById('profileBtn').style.backgroundColor = "#b8b9bb";
-    document.getElementById('edit-contact-overlay').classList.remove('d-none');
-    document.getElementById('main-content').innerHTML += showEditContactView(initials, color);
+    document.getElementById('contact-overlay').classList.remove('d-none');
+    document.getElementById('main-content').innerHTML += renderEditContactView(initials, color, id);
+    document.getElementById('newName').value = name;
+    document.getElementById('newEmail').value = email;
+    document.getElementById('newPhone').value = phone;
 }
 
-function closeEditContactView(){
+function closeEditContactView() {
     document.getElementById('edit-delete-menu').style.display = "flex";
-    document.getElementById('edit-contact-overlay').classList.add('d-none');
+    document.getElementById('contact-overlay').classList.add('d-none');
     document.getElementById('profileBtn').style.backgroundColor = "white";
     document.getElementById('editContactContainer').classList.add('d-none');
 }
 
-function EditContactViewSlideDown(){
+function EditContactViewSlideDown() {
     document.getElementById('editContactContainer').classList.add('hidden');
     setTimeout(() => {
         closeEditContactView();
@@ -72,11 +77,40 @@ window.addEventListener('mouseup', function (e) {
         editContactDiv.classList.add('hidden');
         setTimeout(() => {
             closeEditContactView();
-        }, 300); 
+        }, 300);
     }
 });
 
-function navigateToContactList(){
+function closeAddContactView() {
+    document.getElementById('addContactContainer').classList.add('d-none');
+    document.getElementById('profileBtn').style.backgroundColor = "white";
+    document.getElementById('contact-overlay').classList.add('d-none');
+}
+
+function AddContactViewSlideDown() {
+    document.getElementById('editContactContainer').classList.add('hidden');
+    setTimeout(() => {
+        closeAddContactView();
+    }, 300);
+}
+
+window.addEventListener('mouseup', function (e) {
+    let addContactDiv = document.getElementById('addContactContainer');
+    if (addContactDiv && !addContactDiv.contains(e.target)) {
+        addContactDiv.classList.add('hidden');
+        setTimeout(() => {
+            closeAddContactView();
+        }, 300);
+    }
+});
+
+function openAddContactView() {
+    document.getElementById('profileBtn').style.backgroundColor = "#b8b9bb";
+    document.getElementById('contact-overlay').classList.remove('d-none');
+    document.getElementById('main-content').innerHTML += renderAddContactView();
+}
+
+function navigateToContactList() {
     window.location.href = "contactlist.html"
 }
 
@@ -85,7 +119,7 @@ let submenuVisible = false;
 function showSubmenu() {
     let submenu = document.getElementById('submenu');
     submenu.classList.remove('d-none', 'hidden');
-    submenuVisible = true; 
+    submenuVisible = true;
 }
 
 document.addEventListener('mouseup', function (e) {
@@ -94,14 +128,14 @@ document.addEventListener('mouseup', function (e) {
         submenuDiv.classList.add('hidden');
         setTimeout(() => {
             submenuDiv.classList.add('d-none');
-            submenuVisible = false; 
-        }, 100); 
+            submenuVisible = false;
+        }, 100);
     }
 });
 
 let editDeleteMenuVisible = false;
 
-function showEditDeleteMenu(){
+function showEditDeleteMenu() {
     let editDeleteMenu = document.getElementById('edit-delete-menu');
     document.getElementById('option-circle').style.display = "none";
     editDeleteMenu.classList.remove('d-none', 'hidden');
@@ -115,11 +149,23 @@ window.addEventListener('mouseup', function (e) {
         setTimeout(() => {
             editDeleteMenuDiv.classList.add('d-none');
             document.getElementById('option-circle').style.display = "flex";
-            editDeleteMenuVisible = false; 
-        }, 100); 
+            editDeleteMenuVisible = false;
+        }, 100);
     }
 });
 
-function openAddContactView(){
-    document.getElementById('main-content').innerHTML += showEditContactView();
+function getEditedUserData(id) {
+    let newName = document.getElementById('newName').value;
+    let newEmail = document.getElementById('newEmail').value;
+    let newPhone = document.getElementById('newPhone').value;
+    saveEditedUserData(newName, newEmail, newPhone, id);
 }
+
+function saveEditedUserData(newName, newEmail, newPhone, id) {
+    document.getElementById('userName').innerHTML = newName;
+    document.getElementById('userEmail').innerHTML = newEmail;
+    document.getElementById('userPhone').innerHTML = newPhone;
+    updateData(path = PATH_TO_CONTACTS, id = id, data = { "email": newEmail, "name": newName, "phone": newPhone });
+    EditContactViewSlideDown();
+}
+

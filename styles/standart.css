@@ -38,7 +38,6 @@ button {
     margin: 0;
     box-sizing: border-box;
     font-family: inter, sans-serif;
-    overflow-x: hidden;
 }
 
 .d-flex {
