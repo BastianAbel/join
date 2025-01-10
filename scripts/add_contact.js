@@ -49,14 +49,13 @@ async function createContact(event) {
                 contact: newContact,
                 color: newColor,
             });
-            navigateToContactList();
-            contactBigView(newContact.name, newContact.email, initials, id, newContact.phone);
+            //TODO - setup complete innerhtml for body like new header, footer and rendersingleview
+            document.getElementById("add-contact-body").innerHTML = renderNewContact(newContact.name, newContact.email, initials, newId, newColor, newContact.phone);
+            setTimeout(() => {
+                document.getElementById("add-contact-success-div").classList.add("slide-down");
+            }, 1500);
         }
     } catch (error) {
         console.error("Fehler beim Erstellen des Kontaktes:", error);
     }
-
-    console.log(newContact);
-
-    //TODO - Post Contact to DB
 }
