@@ -1,7 +1,6 @@
 const BASE_URL = "https://join-10cdc-default-rtdb.europe-west1.firebasedatabase.app/";
 let data = [];
 let contentRef = document.getElementById("card-overlay-wrapper");
-let subtaskStatus = [];
 
 async function setBackendJsonToSessionStorage() {
     try {
