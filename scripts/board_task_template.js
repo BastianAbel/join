@@ -1,5 +1,4 @@
-function taskCardTemplateToHtml(task, status) {
-    const priorityImage = getPriorityImage(task.priority);
+function taskCardTemplateToHtml(task, state, priorityImage, employeesName) {
 
     return ` 
     <div class="card-main-container">
@@ -15,11 +14,11 @@ function taskCardTemplateToHtml(task, status) {
                     <div class="progress-bar-wrapper">
                     <div class="progress-bar" role="progressbar" style="width: 50%"></div>
                 </div>
-                    <span>${status[0].von}/${status[0].gesamt} Subtasks</span>
+                    <span>${state.von}/${state.gesamt} Subtasks</span>
                 </div>
                 <div class="user-and-card-mover-container">
                     <div id="user-main-container" class="user-main">
-                        
+                       <div class="user-main"> ${employeesName}</div>
                     </div>
                     <div class="move-card-button"><img src="${priorityImage}" alt="${task.priority}"></div>
                 </div>

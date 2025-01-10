@@ -25,17 +25,17 @@ function searchTask(event) {
     let results = data.filter((data) => data.task.title.toLowerCase().includes(searchInput));
     contentRef.innerHTML = "";
     results.forEach((result) => {
-        
-        getSubtaskStatus(result.task.subtasks);
-        getPriorityImage(result.task.priority);
         renderSearchResultCard(result.task);
-        
     });
 }
 
 function renderSearchResultCard(task) {
-    contentRef.innerHTML += taskCardTemplateToHtml(task, subtaskStatus);
-    createUserContainer(task.assignedTo);
+    const subtaskState = getSubtaskStatus(task.subtasks);
+    const priorityImg = getPriorityImage(task.priority);
+    const employeesName = createUserContainer(task.assignedTo);
+    contentRef.innerHTML += taskCardTemplateToHtml(task, subtaskState, priorityImg, employeesName);
+
+    data = [];
 }
 
 function capitalizeFirstLetter(string) {
@@ -44,13 +44,17 @@ function capitalizeFirstLetter(string) {
 }
 
 function createUserContainer(assignedUsers) {
-    let userContainer = document.getElementById("user-main-container");
-    userContainer.innerHTML = "";
+    let userContainers = "";
     for (let i = 0; i < assignedUsers.length; i++) {
-        let initials = getContactInitials(assignedUsers[i]);
-        userContainer.innerHTML += `<div class="user-container"><div id="user${i}" class="user">${initials}</div></div>`;
-        changeBgColorByUserIcons(i);
+        let userContainer = document.createElement("div");
+        userContainer.className = "user";
+        userContainer.style.backgroundColor = getRandomColor();
+        let initials = getEmployeesInitials(assignedUsers[i]);
+        userContainer.innerHTML = initials;
+
+        userContainers += userContainer.outerHTML;
     }
+    return userContainers;
 }
 
 function changeBgColorByUserIcons(i) {
@@ -88,6 +92,14 @@ function getSubtaskStatus(subtasks) {
     const completedSubtasks = subtasks.filter((subtask) => subtask.checked);
     const totalSubtasks = subtasks.length;
 
-    subtaskStatus.push({ von: completedSubtasks.length, gesamt: totalSubtasks });
-   
+    return { von: completedSubtasks.length, gesamt: totalSubtasks };
+}
+
+function getEmployeesInitials(EmployeesName) {
+    if (typeof EmployeesName !== "string") {
+        throw new Error("EmployeesName must be a string");
+    }
+    return EmployeesName.split(" ")
+        .map((name) => name[0].toUpperCase())
+        .join("");
 }
