@@ -101,10 +101,7 @@
     width: 80px;
     height: 32px;
     display: flex;
-}
-
-.user-container {
-    margin-left: -7px;
+    flex: 1;
 }
 
 .user {
@@ -119,6 +116,7 @@
     font-size: 12px;
     font-weight: 400;
     cursor: pointer;
+    margin-left: -7px;
 }
 
 .move-card-button {

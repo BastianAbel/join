@@ -1,17 +1,26 @@
 const BASE_URL = "https://join-10cdc-default-rtdb.europe-west1.firebasedatabase.app/";
 let data = [];
 let contentRef = document.getElementById("card-overlay-wrapper");
-let subtaskStatus = [];
 
 async function setBackendJsonToSessionStorage() {
-    let response = await fetch(BASE_URL + ".json");
-    let fetchedTasks = await response.json();
-    let taskKeys = Object.keys(fetchedTasks.tasks);
-    sessionStorage.setItem("joinJson", JSON.stringify(fetchedTasks));
-    for (let i = 0; i < taskKeys.length; i++) {
-        data.push({
-            task: fetchedTasks.tasks[taskKeys[i]],
-        });
+    try {
+        let response = await fetch(BASE_URL + ".json");
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        let fetchedTasks = await response.json();
+        if (!fetchedTasks.tasks) {
+            throw new Error("No tasks found in the response");
+        }
+        let taskKeys = Object.keys(fetchedTasks.tasks);
+        sessionStorage.setItem("joinJson", JSON.stringify(fetchedTasks));
+        for (let i = 0; i < taskKeys.length; i++) {
+            data.push({
+                task: fetchedTasks.tasks[taskKeys[i]],
+            });
+        }
+    } catch (error) {
+        console.error("Failed to fetch tasks:", error);
     }
 }
 setBackendJsonToSessionStorage();
@@ -25,17 +34,16 @@ function searchTask(event) {
     let results = data.filter((data) => data.task.title.toLowerCase().includes(searchInput));
     contentRef.innerHTML = "";
     results.forEach((result) => {
-        
-        getSubtaskStatus(result.task.subtasks);
-        getPriorityImage(result.task.priority);
         renderSearchResultCard(result.task);
-        
     });
 }
 
 function renderSearchResultCard(task) {
-    contentRef.innerHTML += taskCardTemplateToHtml(task, subtaskStatus);
-    createUserContainer(task.assignedTo);
+    const subtaskState = getSubtaskStatus(task.subtasks);
+    const priorityImg = getPriorityImage(task.priority);
+    const employeesName = createUserContainer(task.assignedTo);
+    const progressBarCalc = statusProgressBar(subtaskState);
+    contentRef.innerHTML += taskCardTemplateToHtml(task, subtaskState, priorityImg, employeesName, progressBarCalc);
 }
 
 function capitalizeFirstLetter(string) {
@@ -44,13 +52,20 @@ function capitalizeFirstLetter(string) {
 }
 
 function createUserContainer(assignedUsers) {
-    let userContainer = document.getElementById("user-main-container");
-    userContainer.innerHTML = "";
-    for (let i = 0; i < assignedUsers.length; i++) {
-        let initials = getContactInitials(assignedUsers[i]);
-        userContainer.innerHTML += `<div class="user-container"><div id="user${i}" class="user">${initials}</div></div>`;
-        changeBgColorByUserIcons(i);
+    if (!assignedUsers) {
+        return "";
     }
+    let userContainers = "";
+    for (let i = 0; i < assignedUsers.length; i++) {
+        let userContainer = document.createElement("div");
+        userContainer.className = "user";
+        userContainer.style.backgroundColor = getRandomColor();
+        let initials = getEmployeesInitials(assignedUsers[i]);
+        userContainer.innerHTML = initials;
+
+        userContainers += userContainer.outerHTML;
+    }
+    return userContainers;
 }
 
 function changeBgColorByUserIcons(i) {
@@ -83,11 +98,27 @@ function getSubtaskStatus(subtasks) {
     subtaskStatus = [];
     if (!subtasks || subtasks.length === 0) {
         subtaskStatus.push({ von: 0, gesamt: 0 });
+        return subtaskStatus[0];
     }
 
     const completedSubtasks = subtasks.filter((subtask) => subtask.checked);
     const totalSubtasks = subtasks.length;
 
-    subtaskStatus.push({ von: completedSubtasks.length, gesamt: totalSubtasks });
-   
+    return { von: completedSubtasks.length, gesamt: totalSubtasks };
+}
+
+function getEmployeesInitials(EmployeesName) {
+    if (typeof EmployeesName !== "string") {
+        throw new Error("EmployeesName must be a string");
+    }
+    return EmployeesName.split(" ")
+        .map((name) => name[0].toUpperCase())
+        .join("");
+}
+
+function statusProgressBar(subtaskState) {
+    let percent = subtaskState.von / subtaskState.gesamt;
+    percent = Math.round(percent * 100);
+
+    return `${percent}%`;
 }
