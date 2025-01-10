@@ -36,6 +36,7 @@ async function getListSection() {
 async function initializeContactsList() {
     loadUserInitials();
     onlyLoadIfUserOrGuest();
+    await setBackendJsonToSessionStorage();
     await loadAllContacts();
     await getListSection();
 }
