@@ -42,7 +42,7 @@ function renderSingleContactView(name, email,phone, initials, id, color, contact
                     <span class="small-span"><b>Email</b></span>
                     <a id="userEmail" class="small-span" href="#">${email}</a>
                     <span class="small-span"><b>Phone</b></span>
-                    <span id="userPhone" class="small-span">+49 1111 111 11 1</span>
+                    <span id="userPhone" class="small-span">${phone}</span>
                 </div>
                 <div id="edit-delete-menu" class="edit-popup-container d-none">
                 <div onclick="editBigView('${initials}', '${color}', '${id}', '${name}', '${email}', '${phone}')" class="option-container">
