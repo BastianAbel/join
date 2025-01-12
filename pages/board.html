@@ -11,12 +11,21 @@
     <link rel="stylesheet" href="/styles/nav-bar.css">
     <link rel="stylesheet" href="/styles/card.css">
     <link rel="stylesheet" href="/styles/submenu-popup.css" />
+    <link rel="stylesheet" href="/styles/task-overlay.css" />
+    <link rel="stylesheet" href="/styles/single-contact-view.css" />
+    <link rel="stylesheet" href="/styles/edit-contact-style.css" />
+    <link rel="stylesheet" href="/styles/add-contact-style.css" />
+    <link rel="stylesheet" href="/styles/contactlist.css">
+    <link rel="stylesheet" href="/styles/basic-assets.css">
+    <link rel="stylesheet" href="/styles/signup-style.css">
     <script src="/scripts/main.js" defer></script>
     <script src="/scripts/board_task_template.js" defer></script>
     <script src="/scripts/task_search.js" defer></script>
     <script src="/scripts/login.js" defer></script>
     <script src="/scripts/standart.js" defer></script>
     <script src="/scripts/contact_list.js" defer></script>
+    <script src="/scripts/board.js" defer></script>
+    <script src="/scripts/board_template.js" defer></script>
 </head>
 <body onload="loadUserInitials()">
     <div id="submenu" class="submenu-popup-container d-none">
@@ -39,7 +48,7 @@
             <div>
                 <h2>Board</h2>
             </div>
-            <div><img src="/assets/icons/plus-add-task.svg" alt="Add Task" /></div>
+            <div><img onclick="addNewTask()" src="/assets/icons/plus-add-task.svg" alt="Add Task" /></div>
         </section>
         <section class="section-two">
             <div class="user-input-section">
@@ -53,19 +62,22 @@
         <section class="section-three">
             <div class="board-progress-state">
                 <h2>To do</h2>
-                <img src="/assets/icons/plus-button.svg" alt="Add" />
+                <img onclick="addNewTask()" src="/assets/icons/plus-button.svg" alt="Add" />
             </div>
-            <div class="to-do-content">
+            <div id="todo" class="progress-content">
                 <span>No tasks To do</span>
             </div>
         </section>
         <section class="section-four">
             <div class="board-progress-state">
                 <h2>In progress</h2>
-                <img src="/assets/icons/plus-button.svg" alt="Add" />
+                <img onclick="addNewTask()" src="/assets/icons/plus-button.svg" alt="Add" />
+            </div>
+            <div id="inProgress" class="progress-content">
+                <span>No tasks in progress</span>
             </div>
             <div class="in-progress-content">
-                <div class="card-main-container">
+                <!-- <div class="card-main-container">
                     <div class="card-main-container-content">
                         <div class="labels-board-card-label">
                             <div class="card-label"><span>User Story</span></div>
@@ -96,20 +108,26 @@
                             <div class="move-card-button"><img src="/assets/icons/medium.svg" alt="Medium"></div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </section>
         <section class="section-five">
             <div class="board-progress-state">
                 <h2>Await feedback</h2>
-                <img src="/assets/icons/plus-button.svg" alt="Add" />
+                <img onclick="addNewTask()" src="/assets/icons/plus-button.svg" alt="Add" />
+            </div>
+            <div id="awaitingFeedback" class="progress-content">
+                <span>No tasks awaiting Feedback</span>
             </div>
             <div class="await-feedback-content"></div>
         </section>
         <section class="section-six">
             <div class="board-progress-state">
                 <h2>Done</h2>
-                <img src="/assets/icons/plus-button.svg" alt="Add" />
+                <img onclick="addNewTask()" src="/assets/icons/plus-button.svg" alt="Add" />
+            </div>
+            <div id="done" class="progress-content">
+                <span>No tasks Done</span>
             </div>
         </section>
     </div>

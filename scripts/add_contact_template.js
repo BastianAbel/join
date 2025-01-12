@@ -1,21 +1,7 @@
 function renderNewContact(name, email, initials, id, color, phone) {
-    return `<header>
-        <section class="header">
-            <a href="/index.html"> <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
-            </a>
-            <button class="profile-button">G</button>
-        </section>
-    </header>
-    <main id="new-contact-main">
+    return `
 	<!-- popup -->
-        <div
-            id="add-contact-success-div"
-            class="big-popup-container"
-        >
-            <div class="big-popup">
-                <span>Contact successfully created</span>
-            </div>
-        </div>
+        
 	<div id="edit-delete-menu" class="edit-popup-container d-none">
                 <div class="option-container">
                     <div class="option-edit"></div><span>Edit</span>
@@ -51,7 +37,6 @@ function renderNewContact(name, email, initials, id, color, phone) {
                     <img src="/assets/icons/options-logo.svg" alt="" />
                 </div>
             </div>
-	</main>
     <div class="nav-bar-main-container">
         <div class="nav-bar">
             <a href="/pages/summary.html" id="nav-bar-container-summary" class="nav-bar-container"><img id="nav-bar-img-1"

@@ -74,7 +74,7 @@ function EditContactViewSlideDown() {
     }, 300);
 }
 
-window.addEventListener('mouseup', function (e) {
+document.addEventListener('mouseup', function (e) {
     let editContactDiv = document.getElementById('editContactContainer');
     if (editContactDiv && !editContactDiv.contains(e.target)) {
         editContactDiv.classList.add('hidden');
@@ -91,13 +91,13 @@ function closeAddContactView() {
 }
 
 function AddContactViewSlideDown() {
-    document.getElementById('editContactContainer').classList.add('hidden');
+    document.getElementById('addContactContainer').classList.add('hidden');
     setTimeout(() => {
         closeAddContactView();
     }, 300);
 }
 
-window.addEventListener('mouseup', function (e) {
+document.addEventListener('mouseup', function (e) {
     let addContactDiv = document.getElementById('addContactContainer');
     if (addContactDiv && !addContactDiv.contains(e.target)) {
         addContactDiv.classList.add('hidden');
@@ -145,7 +145,7 @@ function showEditDeleteMenu() {
     editDeleteMenuVisible = true;
 }
 
-window.addEventListener('mouseup', function (e) {
+document.addEventListener('mouseup', function (e) {
     let editDeleteMenuDiv = document.getElementById('edit-delete-menu');
     if (editDeleteMenuVisible && !editDeleteMenuDiv.contains(e.target)) {
         editDeleteMenuDiv.classList.add('hidden');

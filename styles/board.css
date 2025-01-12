@@ -123,7 +123,7 @@ body {
     height: 30px;
 }
 
-.to-do-content {
+.progress-content {
     display: flex;
     align-items: center;
     justify-content: center;
