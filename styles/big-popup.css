@@ -35,10 +35,10 @@
 
 @keyframes slide-up-success {
     from {
-        transform: translateY( 400%);
+        transform: translateY(400%);
     }
     to {
-        transform: translateY( 0);
+        transform: translateY(0);
     }
 }
 
