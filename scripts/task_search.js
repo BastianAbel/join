@@ -53,19 +53,30 @@ function capitalizeFirstLetter(string) {
 
 function createUserContainer(assignedUsers) {
     if (!assignedUsers) {
-        return "";
+        return console.log("No assigned users found");
     }
     let userContainers = "";
     for (let i = 0; i < assignedUsers.length; i++) {
         let userContainer = document.createElement("div");
         userContainer.className = "user";
         userContainer.style.backgroundColor = getRandomColor();
-        let initials = getEmployeesInitials(assignedUsers[i]);
+        let userName = checkUserFolder(assignedUsers[i]);
+        let initials = getEmployeesInitials(userName);
         userContainer.innerHTML = initials;
 
         userContainers += userContainer.outerHTML;
     }
     return userContainers;
+}
+
+function checkUserFolder(assignedUser) {
+    if (assignedUser && assignedUser.name) {
+        return assignedUser.name;
+    } else if (typeof assignedUser === "string") {
+        return assignedUser;
+    } else {
+        return "";
+    }
 }
 
 function changeBgColorByUserIcons(i) {
@@ -95,10 +106,9 @@ function checkUserSearchInputAndRedirect() {
 }
 
 function getSubtaskStatus(subtasks) {
-    subtaskStatus = [];
     if (!subtasks || subtasks.length === 0) {
-        subtaskStatus.push({ von: 0, gesamt: 0 });
-        return subtaskStatus[0];
+        ({ von: 0, gesamt: 0 });
+        return { von: 0, gesamt: 0 };
     }
 
     const completedSubtasks = subtasks.filter((subtask) => subtask.checked);
@@ -117,6 +127,9 @@ function getEmployeesInitials(EmployeesName) {
 }
 
 function statusProgressBar(subtaskState) {
+    if (!subtaskState || subtaskState.gesamt === 0) {
+        return "0%";
+    }
     let percent = subtaskState.von / subtaskState.gesamt;
     percent = Math.round(percent * 100);
 
