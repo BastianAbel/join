@@ -15,6 +15,7 @@
     border-radius: 24px;
     padding: 16px;
     margin-left: 16px;
+    margin-bottom: 16px;
 }
 
 .card-main-container-content {
@@ -50,7 +51,7 @@
 }
 
 .card-headline h2 {
-    font-size: 16px;
+    font-size: 16px !important;
     font-weight: 700;
     color: rgba(42, 54, 71, 1);
     margin-bottom: 8px;

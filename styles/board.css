@@ -22,6 +22,11 @@ body {
     overflow: auto;
 }
 
+h2{
+    font-size: 27px !important;
+    font-weight: 700 !important;
+}
+
 .section-one {
     max-width: 396px;
     display: flex;
@@ -36,8 +41,6 @@ body {
 .section-one h2 {
     width: 136px;
     height: 56px;
-    font-size: 47px;
-    font-weight: 700;
 }
 
 .section-one img {
@@ -122,8 +125,6 @@ body {
 .section-three h2 {
     width: 73px;
     height: 32px;
-    font-size: 27px;
-    font-weight: 700;
 }
 
 .section-three img {
