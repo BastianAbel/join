@@ -82,19 +82,10 @@ h2{
     border: solid 1px var(--identity) !important;
 }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
 input:focus {
     border:none !important;
 }
 
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 .user-input-field {
     width: 100%;
     font-size: 20px;
