@@ -208,6 +208,8 @@ function removeEditClass(event) {
 
 async function createTask(event) {
     event.preventDefault();
+    let param = new URLSearchParams(window.location.search);
+    let state = param.get("state" || "toDo");
     newTask = {
         "type": document.getElementById("task-category-select").value,
         "title": document.getElementById("task-title").value,
@@ -216,7 +218,7 @@ async function createTask(event) {
         "priority": taskPrio,
         "assignedTo": checkedUsersNamesAndColors,
         "subtasks": subtaskList,
-        "state": "toDo",
+        "state": state,
     };
 
     try {
