@@ -51,7 +51,7 @@
 }
 
 .card-headline h2 {
-    font-size: 16px;
+    font-size: 16px !important;
     font-weight: 700;
     color: rgba(42, 54, 71, 1);
     margin-bottom: 8px;
