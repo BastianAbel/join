@@ -49,7 +49,6 @@ async function createContact(event) {
                 contact: newContact,
                 color: newColor,
             });
-            //TODO - setup complete innerhtml for body like new header, footer and rendersingleview
             document.getElementById("add-contact-body").innerHTML = renderNewContact(newContact.name, newContact.email, initials, newId, newColor, newContact.phone);
             setTimeout(() => {
                 document.getElementById("add-contact-success-div").classList.add("slide-down");
