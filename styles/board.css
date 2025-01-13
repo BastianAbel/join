@@ -79,6 +79,13 @@ body {
     border: solid 1px var(--identity) !important;
 }
 
+<<<<<<< Updated upstream
+=======
+input:focus {
+    border:none !important;
+}
+
+>>>>>>> Stashed changes
 .user-input-field {
     width: 100%;
     font-size: 20px;
