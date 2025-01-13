@@ -1,28 +1,14 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Task Overlay</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel="shortcut icon" href="/assets/icons/join-logo-white.svg" type="image/x-icon">
-    <link rel='stylesheet' type='text/css' media='screen' href='/styles/task-overlay.css'>
-    <link rel='stylesheet' type='text/css' media='screen' href='/styles/card.css'>
-    <link rel='stylesheet' type='text/css' media='screen' href='/styles/standart.css'>
-    <link rel='stylesheet' type='text/css' media='screen' href='/styles/signup-style.css'>
-</head>
-
-<body>
-    <main>
-        <div class="task-overlay-container">
+function renderTaskBigView(){
+    return `
+    <div id="contact-overlay" class="d-none contact-overlay"></div>
+        <div id="task-big-container" class=" task-overlay-container">
             <div class="userstory-close-container">
                 <div class="labels-board-card-label">
                     <div class="card-label"><span>User Story</span></div>
                 </div>
-                <img src="../assets/icons/close-black.svg" alt="">
+                <img onclick="closeTaskBigView()" src="../assets/icons/close-black.svg" alt="">
             </div>
-            <h1>Kochwelt Page & Recipe Recommender</h1>
+            <h1 class="task-overlay-head">Kochwelt Page & Recipe Recommender</h1>
             <span>Build start page with recipe recommendation.</span>
             <div class="date-container">
                 <span class="info-text">Due date:</span><span>10/05/2023</span>
@@ -78,7 +64,5 @@
                 </div>
             </div>
         </div>
-    </main>
-</body>
-
-</html>
+    `;
+}

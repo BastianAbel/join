@@ -33,3 +33,10 @@ async function updateData(path = "", id = "", data = {}) {
     let responseToJson = await response.json();
     return responseToJson;
 }
+
+async function deleteData(path = "", id = "") {
+    let response = await fetch(`${BASE_URL}${path}${id}.json`, {
+        method: "DELETE",
+    });
+    return responseToJson = await response.json();
+}

@@ -36,6 +36,7 @@ async function getListSection() {
 async function initializeContactsList() {
     loadUserInitials();
     onlyLoadIfUserOrGuest();
+    await setBackendJsonToSessionStorage();
     await loadAllContacts();
     await getListSection();
 }
@@ -45,8 +46,6 @@ function navigateToContactList() {
     window.location.href = "contactlist.html";
 }
 function contactBigView(name, email, phone, initials, id, contact) {
-    contactJSON = JSON.stringify(contact);
-    console.log(contactJSON)
     let color = allContacts.find((e) => e.id == id).color;
     document.getElementById('main-content').innerHTML = renderSingleContactView(name, email, phone, initials, id, color, contact);
 }
@@ -75,7 +74,7 @@ function EditContactViewSlideDown() {
     }, 300);
 }
 
-window.addEventListener('mouseup', function (e) {
+document.addEventListener('mouseup', function (e) {
     let editContactDiv = document.getElementById('editContactContainer');
     if (editContactDiv && !editContactDiv.contains(e.target)) {
         editContactDiv.classList.add('hidden');
@@ -92,13 +91,13 @@ function closeAddContactView() {
 }
 
 function AddContactViewSlideDown() {
-    document.getElementById('editContactContainer').classList.add('hidden');
+    document.getElementById('addContactContainer').classList.add('hidden');
     setTimeout(() => {
         closeAddContactView();
     }, 300);
 }
 
-window.addEventListener('mouseup', function (e) {
+document.addEventListener('mouseup', function (e) {
     let addContactDiv = document.getElementById('addContactContainer');
     if (addContactDiv && !addContactDiv.contains(e.target)) {
         addContactDiv.classList.add('hidden');
@@ -146,7 +145,7 @@ function showEditDeleteMenu() {
     editDeleteMenuVisible = true;
 }
 
-window.addEventListener('mouseup', function (e) {
+document.addEventListener('mouseup', function (e) {
     let editDeleteMenuDiv = document.getElementById('edit-delete-menu');
     if (editDeleteMenuVisible && !editDeleteMenuDiv.contains(e.target)) {
         editDeleteMenuDiv.classList.add('hidden');
@@ -173,3 +172,9 @@ function saveEditedUserData(newName, newEmail, newPhone, id) {
     EditContactViewSlideDown();
 }
 
+async function deleteContact(id){
+    await deleteData(path = PATH_TO_CONTACTS, id = id);
+    await setBackendJsonToSessionStorage();
+    loadAllContacts();
+    navigateToContactList();
+}
