@@ -215,7 +215,7 @@ async function createTask(event) {
         "title": document.getElementById("task-title").value,
         "description": document.getElementById("task-description").value,
         "dueDate": document.getElementById("task-due-date").value,
-        "priority": taskPrio,
+        "priority": taskPrio || "low",
         "assignedTo": checkedUsersNamesAndColors,
         "subtasks": subtaskList,
         "state": state,
