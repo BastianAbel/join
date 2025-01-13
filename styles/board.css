@@ -22,6 +22,11 @@ body {
     overflow: auto;
 }
 
+h2{
+    font-size: 27px !important;
+    font-weight: 700 !important;
+}
+
 .section-one {
     max-width: 396px;
     display: flex;
@@ -36,8 +41,6 @@ body {
 .section-one h2 {
     width: 136px;
     height: 56px;
-    font-size: 47px;
-    font-weight: 700;
 }
 
 .section-one img {
@@ -94,7 +97,6 @@ input:focus {
     height: 32px;
     border: none;
     flex: 1;
-    
 }
 .user-input-field:focus {
     border: none;
@@ -121,15 +123,15 @@ input:focus {
 
 .board-progress-state {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    gap: 16px;
     margin: 12px 0;
 }
 
 .section-three h2 {
     width: 73px;
     height: 32px;
-    font-size: 27px;
-    font-weight: 700;
 }
 
 .section-three img {
@@ -140,14 +142,16 @@ input:focus {
 
 .progress-content {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 48px;
+    /* height: 48px; */
     border: dotted 1px rgba(168, 168, 168, 1);
     border-radius: 10px;
     background-color: rgba(231, 231, 231, 1);
     color: rgba(168, 168, 168, 1);
+    gap: 16px;
 }
 
 .to-do-content span {
@@ -179,4 +183,15 @@ input:focus {
 
 .section-five-headline img {
     cursor: pointer;
+}
+
+#card-overlay-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.board-prio-headline-div {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
 }
