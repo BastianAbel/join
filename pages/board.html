@@ -62,7 +62,7 @@
                 </div>
                 <div>
                     <img
-                        onclick="addNewTask()"
+                        onclick="addNewTask('')"
                         src="/assets/icons/plus-add-task.svg"
                         alt="Add Task"
                     />
@@ -95,7 +95,7 @@
                         <div class="board-prio-headline-div">
                             <h2>To do</h2>
                             <img
-                                onclick="addNewTask()"
+                                onclick="addNewTask('toDo')"
                                 src="/assets/icons/plus-button.svg"
                                 alt="Add"
                             />
@@ -116,7 +116,7 @@
                         <div class="board-prio-headline-div">
                             <h2>In progress</h2>
                             <img
-                                onclick="addNewTask()"
+                                onclick="addNewTask('inProgress')"
                                 src="/assets/icons/plus-button.svg"
                                 alt="Add"
                             />
@@ -138,7 +138,7 @@
                         <div class="board-prio-headline-div">
                             <h2>Await feedback</h2>
                             <img
-                                onclick="addNewTask()"
+                                onclick="addNewTask('awaitFeedback')"
                                 src="/assets/icons/plus-button.svg"
                                 alt="Add"
                             />
@@ -159,18 +159,12 @@
                     >
                         <div class="board-prio-headline-div">
                             <h2>Done</h2>
-                            <img
-                                onclick="addNewTask()"
-                                src="/assets/icons/plus-button.svg"
-                                alt="Add"
-                            />
                         </div>
                     </div>
                     <div
                         id="done"
                         class="progress-content"
                     >
-
                         <span>No tasks Done</span>
                     </div>
                 </section>
@@ -178,18 +172,49 @@
         </main>
         <div class="nav-bar-main-container">
             <div class="nav-bar">
-
-                <a href="/pages/summary.html" id="nav-bar-container-summary" class="nav-bar-container"
-                    ><img id="nav-bar-img-1" src="/assets/icons/summary.svg" alt="" /> <span>Summary</span></a
+                <a
+                    href="/pages/summary.html"
+                    id="nav-bar-container-summary"
+                    class="nav-bar-container"
+                    ><img
+                        id="nav-bar-img-1"
+                        src="/assets/icons/summary.svg"
+                        alt=""
+                    />
+                    <span>Summary</span></a
                 >
-                <a href="/pages/board.html" id="nav-bar-container-board" class="nav-bar-container"
-                    ><img id="nav-bar-img-2" src="/assets/icons/board.svg" alt="" /> <span>Board</span></a
+                <a
+                    href="/pages/board.html"
+                    id="nav-bar-container-board"
+                    class="nav-bar-container"
+                    ><img
+                        id="nav-bar-img-2"
+                        src="/assets/icons/board.svg"
+                        alt=""
+                    />
+                    <span>Board</span></a
                 >
-                <a href="/pages/add-task.html" id="nav-bar-container-add-to-task" class="nav-bar-container"
-                    ><img id="nav-bar-img-3" src="/assets/icons/add-to-task.svg" alt="" /> <span>Add Task</span></a
+                <a
+                    href="/pages/add-task.html"
+                    id="nav-bar-container-add-to-task"
+                    class="nav-bar-container"
+                    ><img
+                        id="nav-bar-img-3"
+                        src="/assets/icons/add-to-task.svg"
+                        alt=""
+                    />
+                    <span>Add Task</span></a
                 >
-                <a href="/pages/contactlist.html" id="nav-bar-container-contacts" class="nav-bar-container"
-                    ><img id="nav-bar-img-4" src="/assets/icons/contacts.svg" alt="" /> <span>Contacts</span></a
+                <a
+                    href="/pages/contactlist.html"
+                    id="nav-bar-container-contacts"
+                    class="nav-bar-container"
+                    ><img
+                        id="nav-bar-img-4"
+                        src="/assets/icons/contacts.svg"
+                        alt=""
+                    />
+                    <span>Contacts</span></a
                 >
             </div>
         </div>

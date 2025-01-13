@@ -12,8 +12,8 @@ function navigateToBoard() {
     window.location.href = "board.html";
 }
 
-function addNewTask() {
-    window.location.href = "add-task.html";
+function addNewTask(state) {
+    window.location.href = `add-task.html?state=${state}`;
 }
 
 function getAllTaskFromSessionStorage() {
