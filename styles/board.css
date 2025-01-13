@@ -75,6 +75,10 @@ body {
     }
 }
 
+.user-input-section:focus-within {
+    border: solid 1px var(--identity) !important;
+}
+
 .user-input-field {
     width: 100%;
     font-size: 20px;
@@ -83,6 +87,10 @@ body {
     height: 32px;
     border: none;
     flex: 1;
+    
+}
+.user-input-field:focus {
+    border: none;
 }
 
 .user-input-section button {
@@ -156,7 +164,8 @@ body {
     padding-bottom: 10px;
 }
 
-.section-five, .section-six {
+.section-five,
+.section-six {
     max-width: 396px;
     margin: 0 16px;
 }
