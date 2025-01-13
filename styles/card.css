@@ -54,6 +54,7 @@
     font-weight: 700;
     color: rgba(42, 54, 71, 1);
     margin-bottom: 8px;
+    width: 100%;
 }
 
 .card-headline span {
@@ -130,4 +131,31 @@
     cursor: pointer;
     width: 32px;
     height: 32px;
+}
+
+.card-under-headline {
+    overflow-x: auto;
+    height: 64px;
+}
+
+::-webkit-scrollbar {
+    height: 100%;
+    width: 3px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: darkgray;
+}
+
+::-webkit-scrollbar-button {
+    display: none !important;
 }
