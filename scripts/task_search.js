@@ -127,7 +127,7 @@ function getEmployeesInitials(EmployeesName) {
 }
 
 function statusProgressBar(subtaskState) {
-    if (!subtaskState || subtaskState.gesamt === 0) {
+    if (!subtaskState || subtaskState.inFrom === 0) {
         return "0%";
     }
     let percent = subtaskState.from / subtaskState.inFrom;
