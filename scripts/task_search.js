@@ -107,14 +107,14 @@ function checkUserSearchInputAndRedirect() {
 
 function getSubtaskStatus(subtasks) {
     if (!subtasks || subtasks.length === 0) {
-        ({ von: 0, gesamt: 0 });
-        return { von: 0, gesamt: 0 };
+        ({ from: 0, inFrom: 0 });
+        return { from: 0, inFrom: 0 };
     }
 
     const completedSubtasks = subtasks.filter((subtask) => subtask.checked);
     const totalSubtasks = subtasks.length;
 
-    return { von: completedSubtasks.length, gesamt: totalSubtasks };
+    return { from: completedSubtasks.length, inFrom: totalSubtasks };
 }
 
 function getEmployeesInitials(EmployeesName) {
@@ -130,7 +130,7 @@ function statusProgressBar(subtaskState) {
     if (!subtaskState || subtaskState.gesamt === 0) {
         return "0%";
     }
-    let percent = subtaskState.von / subtaskState.gesamt;
+    let percent = subtaskState.from / subtaskState.inFrom;
     percent = Math.round(percent * 100);
 
     return `${percent}%`;
