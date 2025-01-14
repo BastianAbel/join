@@ -22,7 +22,7 @@ body {
     overflow: auto;
 }
 
-h2{
+h2 {
     font-size: 27px !important;
     font-weight: 700 !important;
 }
@@ -83,7 +83,7 @@ h2{
 }
 
 input:focus {
-    border:none !important;
+    border: none !important;
 }
 
 .user-input-field {
@@ -118,12 +118,14 @@ input:focus {
     margin-right: 16px;
 }
 
-.board-progress-state{
+.board-progress-state {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-between;
     gap: 16px;
     padding: 12px 0;
-    overflow-x: auto   ;
+    overflow-x: auto;
 }
 
 .section-three h2 {
