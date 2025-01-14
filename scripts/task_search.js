@@ -106,10 +106,10 @@ function checkUserSearchInputAndRedirect() {
 }
 
 function getSubtaskStatus(subtasks) {
-    let completedSubtasks = 0;
-    let totalSubtasks = 0;
     if (subtasks === undefined) {
-        statusProgressBar(completedSubtasks, totalSubtasks)
+        let completedSubtasks = 0;
+        let totalSubtasks = 0;
+        statusProgressBar(completedSubtasks, totalSubtasks);
         return `<span>Keine Subtasks</span>`;
     }
 
