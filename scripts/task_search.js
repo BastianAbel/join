@@ -10,9 +10,6 @@ async function setBackendJsonToSessionStorage() {
             throw new Error("Network response was not ok");
         }
         let fetchedTasks = await response.json();
-        if (!fetchedTasks.tasks) {
-            throw new Error("No tasks found in the response");
-        }
         let taskKeys = Object.keys(fetchedTasks.tasks);
         sessionStorage.setItem("joinJson", JSON.stringify(fetchedTasks));
         for (let i = 0; i < taskKeys.length; i++) {
