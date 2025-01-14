@@ -25,30 +25,32 @@ function getAllTaskFromSessionStorage() {
     console.table(allTasks);
 }
 
+// prettier-ignore
 function writeCardsToBoardSectionsFromArray(array) {
     for (let j = 0; j < array.length; j++) {
-        let prioImg = getPriorityImage(array[j].priority);
-        let subtaskState = getSubtaskStatus(array[j].subtasks);
-        let employeesName = createUserContainer(array[j].assignedTo);
+        let renderValuesObject = getObjectWithValuesNeedeInBoardCard(array[j]);
         if (array[j].state === "toDo") {
-            document.getElementById("todo").classList.add("d-none");
-            document.getElementById("board-to-do-section").innerHTML += taskCardTemplateToHtml(array[j], subtaskState, prioImg, employeesName, progressBarCalc);
+            hideElementAndRenderAnother("todo", "board-to-do-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc);
         } else if (array[j].state === "inProgress") {
-            document.getElementById("inProgress").classList.add("d-none");
-            document.getElementById("board-in-progress-section").innerHTML += taskCardTemplateToHtml(array[j], subtaskState, prioImg, employeesName, progressBarCalc);
+            hideElementAndRenderAnother("inProgress", "board-in-progress-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc);
         } else if (array[j].state === "awaitFeedback") {
-            document.getElementById("awaitingFeedback").classList.add("d-none");
-            document.getElementById("board-await-feedback-section").innerHTML += taskCardTemplateToHtml(array[j], subtaskState, prioImg, employeesName, progressBarCalc);
+            hideElementAndRenderAnother("awaitingFeedback", "board-await-feedback-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc);
         } else if (array[j].state === "done") {
-            document.getElementById("done").classList.add("d-none");
-            document.getElementById("board-done-section").innerHTML += taskCardTemplateToHtml(array[j], subtaskState, prioImg, employeesName, progressBarCalc);
+            hideElementAndRenderAnother("done", "board-done-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc);
         }
     }
 }
 
-function renderSearchResultCard(task) {
-    const subtaskState = getSubtaskStatus(task.subtasks);
-    const priorityImg = getPriorityImage(task.priority);
-    const employeesName = createUserContainer(task.assignedTo);
-    contentRef.innerHTML += taskCardTemplateToHtml(task, subtaskState, priorityImg, employeesName, progressBarCalc);
+function getObjectWithValuesNeedeInBoardCard(task) {
+    return {
+        task: task,
+        subtaskState: getSubtaskStatus(task.subtasks),
+        prioImg: getPriorityImage(task.priority),
+        employeesName: createUserContainer(task.assignedTo),
+    };
+}
+
+function hideElementAndRenderAnother(elementToHide, parentToRenderCardsIn, renderParam_1, renderParam_2, renderParam_3, renderParam_4, renderParam_5) {
+    document.getElementById(elementToHide).classList.add("d-none");
+    document.getElementById(parentToRenderCardsIn).innerHTML += taskCardTemplateToHtml(renderParam_1, renderParam_2, renderParam_3, renderParam_4, renderParam_5);
 }
