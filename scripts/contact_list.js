@@ -84,6 +84,22 @@ document.addEventListener('mouseup', function (e) {
     }
 });
 
+function openAddContactView() {
+    document.getElementById('profileBtn').style.backgroundColor = "#b8b9bb";
+    document.getElementById('contact-overlay').classList.remove('d-none');
+    document.getElementById('main-content').innerHTML += renderAddContactView();
+}
+
+document.addEventListener('mouseup', function (e) {
+    let addContactDiv = document.getElementById('addContactContainer');
+    if (!addContactDiv.contains(e.target)) {
+        addContactDiv.classList.add('hidden');
+        setTimeout(() => {
+            closeAddContactView();
+        }, 300);
+    }
+});
+
 function closeAddContactView() {
     document.getElementById('addContactContainer').classList.add('d-none');
     document.getElementById('profileBtn').style.backgroundColor = "white";
@@ -95,22 +111,6 @@ function AddContactViewSlideDown() {
     setTimeout(() => {
         closeAddContactView();
     }, 300);
-}
-
-document.addEventListener('mouseup', function (e) {
-    let addContactDiv = document.getElementById('addContactContainer');
-    if (addContactDiv && !addContactDiv.contains(e.target)) {
-        addContactDiv.classList.add('hidden');
-        setTimeout(() => {
-            closeAddContactView();
-        }, 300);
-    }
-});
-
-function openAddContactView() {
-    document.getElementById('profileBtn').style.backgroundColor = "#b8b9bb";
-    document.getElementById('contact-overlay').classList.remove('d-none');
-    document.getElementById('main-content').innerHTML += renderAddContactView();
 }
 
 function navigateToContactList() {
