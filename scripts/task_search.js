@@ -1,6 +1,7 @@
 const BASE_URL = "https://join-10cdc-default-rtdb.europe-west1.firebasedatabase.app/";
 let data = [];
 let contentRef = document.getElementById("card-overlay-wrapper");
+let progressBarCalc = "";
 
 async function setBackendJsonToSessionStorage() {
     try {
@@ -42,7 +43,6 @@ function renderSearchResultCard(task) {
     const subtaskState = getSubtaskStatus(task.subtasks);
     const priorityImg = getPriorityImage(task.priority);
     const employeesName = createUserContainer(task.assignedTo);
-    const progressBarCalc = statusProgressBar(subtaskState);
     contentRef.innerHTML += taskCardTemplateToHtml(task, subtaskState, priorityImg, employeesName, progressBarCalc);
 }
 
@@ -107,14 +107,13 @@ function checkUserSearchInputAndRedirect() {
 
 function getSubtaskStatus(subtasks) {
     if (!subtasks || subtasks.length === 0) {
-        ({ from: 0, inFrom: 0 });
-        return { from: 0, inFrom: 0 };
+        return `<span>Keine Subtasks</span>`;
     }
 
-    const completedSubtasks = subtasks.filter((subtask) => subtask.checked);
+    const completedSubtasks = subtasks.filter((subtask) => subtask.checked).length;
     const totalSubtasks = subtasks.length;
-
-    return { from: completedSubtasks.length, inFrom: totalSubtasks };
+    statusProgressBar(completedSubtasks, totalSubtasks);
+    return `<span id="state">${completedSubtasks}/${totalSubtasks} Subtasks</span>`;
 }
 
 function getEmployeesInitials(EmployeesName) {
@@ -126,12 +125,13 @@ function getEmployeesInitials(EmployeesName) {
         .join("");
 }
 
-function statusProgressBar(subtaskState) {
-    if (!subtaskState || subtaskState.inFrom === 0) {
-        return "0%";
+function statusProgressBar(completedSubtasks, totalSubtasks) {
+    if (!completedSubtasks || totalSubtasks === 0) {
+        progressBarCalc = "0%";
+        return;
     }
-    let percent = subtaskState.from / subtaskState.inFrom;
+    let percent = completedSubtasks / totalSubtasks;
     percent = Math.round(percent * 100);
 
-    return `${percent}%`;
+    progressBarCalc = `${percent}%`;
 }
