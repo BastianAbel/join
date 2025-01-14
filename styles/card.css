@@ -69,6 +69,10 @@
     height: 16px;
 }
 
+#state{
+    white-space: nowrap !important;
+}
+
 .progress-bar-wrapper {
     width: 128px;
     background-color: rgb(244, 244, 244, 1);

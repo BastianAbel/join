@@ -30,7 +30,6 @@ function writeCardsToBoardSectionsFromArray(array) {
         let prioImg = getPriorityImage(array[j].priority);
         let subtaskState = getSubtaskStatus(array[j].subtasks);
         let employeesName = createUserContainer(array[j].assignedTo);
-        let progressBarCalc = statusProgressBar(subtaskState);
         if (array[j].state === "toDo") {
             document.getElementById("todo").classList.add("d-none");
             document.getElementById("board-to-do-section").innerHTML += taskCardTemplateToHtml(array[j], subtaskState, prioImg, employeesName, progressBarCalc);
@@ -51,6 +50,5 @@ function renderSearchResultCard(task) {
     const subtaskState = getSubtaskStatus(task.subtasks);
     const priorityImg = getPriorityImage(task.priority);
     const employeesName = createUserContainer(task.assignedTo);
-    const progressBarCalc = statusProgressBar(subtaskState);
     contentRef.innerHTML += taskCardTemplateToHtml(task, subtaskState, priorityImg, employeesName, progressBarCalc);
 }

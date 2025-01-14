@@ -106,12 +106,19 @@ function checkUserSearchInputAndRedirect() {
 }
 
 function getSubtaskStatus(subtasks) {
+    if (subtasks === undefined) {
+        let completedSubtasks = 0;
+        let totalSubtasks = 0;
+        statusProgressBar(completedSubtasks, totalSubtasks);
+        return `<span>Keine Subtasks</span>`;
+    }
+
     if (!subtasks || subtasks.length === 0) {
         return `<span>Keine Subtasks</span>`;
     }
 
-    const completedSubtasks = subtasks.filter((subtask) => subtask.checked).length;
-    const totalSubtasks = subtasks.length;
+    completedSubtasks = subtasks.filter((subtask) => subtask.checked).length;
+    totalSubtasks = subtasks.length;
     statusProgressBar(completedSubtasks, totalSubtasks);
     return `<span id="state">${completedSubtasks}/${totalSubtasks} Subtasks</span>`;
 }
