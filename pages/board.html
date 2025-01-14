@@ -1,34 +1,38 @@
 <!DOCTYPE html>
 <html lang="de">
+    <!-- prettier-ignore -->
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Join</title>
-        <link rel="shortcut icon" href="/assets/icons/join-logo-white.svg" type="image/x-icon" />
-        <link rel="stylesheet" href="/styles/board.css" />
-        <link rel="stylesheet" href="/styles/standart.css" />
-        <link rel="stylesheet" href="/styles/style.css" />
-        <link rel="stylesheet" href="/styles/nav-bar.css" />
-        <link rel="stylesheet" href="/styles/card.css" />
-        <link rel="stylesheet" href="/styles/submenu-popup.css" />
-        <link rel="stylesheet" href="/styles/task-overlay.css" />
-        <link rel="stylesheet" href="/styles/single-contact-view.css" />
-        <link rel="stylesheet" href="/styles/edit-contact-style.css" />
-        <link rel="stylesheet" href="/styles/add-contact-style.css" />
-        <link rel="stylesheet" href="/styles/contactlist.css" />
-        <link rel="stylesheet" href="/styles/basic-assets.css" />
-        <link rel="stylesheet" href="/styles/signup-style.css" />
-        <script src="/scripts/main.js" defer></script>
-        <script src="/scripts/board_task_template.js" defer></script>
-        <script src="/scripts/task_search.js" defer></script>
-        <script src="/scripts/login.js" defer></script>
-        <script src="/scripts/standart.js" defer></script>
-        <script src="/scripts/contact_list.js" defer></script>
-        <script src="/scripts/board.js" defer></script>
-        <script src="/scripts/board_template.js" defer></script>
-    </head>
-    <body onload="loadUserInitials()">
-        <div id="submenu" class="submenu-popup-container d-none">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join</title>
+    <link rel="shortcut icon" href="/assets/icons/join-logo-white.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="/styles/board.css" />
+    <link rel="stylesheet" href="/styles/standart.css" />
+    <link rel="stylesheet" href="/styles/style.css" />
+    <link rel="stylesheet" href="/styles/nav-bar.css">
+    <link rel="stylesheet" href="/styles/card.css">
+    <link rel="stylesheet" href="/styles/submenu-popup.css" />
+    <link rel="stylesheet" href="/styles/task-overlay.css" />
+    <link rel="stylesheet" href="/styles/single-contact-view.css" />
+    <link rel="stylesheet" href="/styles/edit-contact-style.css" />
+    <link rel="stylesheet" href="/styles/add-contact-style.css" />
+    <link rel="stylesheet" href="/styles/contactlist.css">
+    <link rel="stylesheet" href="/styles/basic-assets.css">
+    <link rel="stylesheet" href="/styles/signup-style.css">
+    <script src="/scripts/main.js" defer></script>
+    <script src="/scripts/board_task_template.js" defer></script>
+    <script src="/scripts/task_search.js" defer></script>
+    <script src="/scripts/login.js" defer></script>
+    <script src="/scripts/standart.js" defer></script>
+    <script src="/scripts/contact_list.js" defer></script>
+    <script src="/scripts/board.js" defer></script>
+    <script src="/scripts/board_template.js" defer></script>
+</head>
+    <body onload="loadUserInitials(); getAllTaskFromSessionStorage()">
+        <div
+            id="submenu"
+            class="submenu-popup-container d-none"
+        >
             <div class="submenu-text-container">
                 <a href="">Help</a>
                 <a href="/pages/impressum.html">Legal Notice</a>
@@ -38,8 +42,17 @@
         </div>
         <header>
             <section class="header">
-                <a href=""> <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" /> </a>
-                <button onclick="showSubmenu()" id="profileBtn" class="profile-button"></button>
+                <a href="">
+                    <img
+                        src="/assets/icons/join-logo-dark.svg"
+                        alt="Join Logo"
+                    />
+                </a>
+                <button
+                    onclick="showSubmenu()"
+                    id="profileBtn"
+                    class="profile-button"
+                ></button>
             </section>
         </header>
         <main id="board-main">
@@ -47,7 +60,13 @@
                 <div>
                     <h2>Board</h2>
                 </div>
-                <div><img onclick="addNewTask()" src="/assets/icons/plus-add-task.svg" alt="Add Task" /></div>
+                <div>
+                    <img
+                        onclick="addNewTask('')"
+                        src="/assets/icons/plus-add-task.svg"
+                        alt="Add Task"
+                    />
+                </div>
             </section>
             <section class="section-two">
                 <div class="user-input-section">
@@ -60,77 +79,92 @@
                         placeholder="Find Task"
                     />
                     <button>
-                        <img src="/assets/icons/search.svg" alt="Search" />
+                        <img
+                            src="/assets/icons/search.svg"
+                            alt="Search"
+                        />
                     </button>
                 </div>
             </section>
             <div id="card-overlay-wrapper">
                 <section class="section-three">
-                    <div class="board-progress-state">
-                        <h2>To do</h2>
-                        <img onclick="addNewTask()" src="/assets/icons/plus-button.svg" alt="Add" />
+                    <div
+                        id="board-to-do-section"
+                        class="board-progress-state"
+                    >
+                        <div class="board-prio-headline-div">
+                            <h2>To do</h2>
+                            <img
+                                onclick="addNewTask('toDo')"
+                                src="/assets/icons/plus-button.svg"
+                                alt="Add"
+                            />
+                        </div>
                     </div>
-                    <div id="todo" class="progress-content">
+                    <div
+                        id="todo"
+                        class="progress-content"
+                    >
                         <span>No tasks To do</span>
                     </div>
                 </section>
                 <section class="section-four">
-                    <div class="board-progress-state">
-                        <h2>In progress</h2>
-                        <img onclick="addNewTask()" src="/assets/icons/plus-button.svg" alt="Add" />
+                    <div
+                        id="board-in-progress-section"
+                        class="board-progress-state"
+                    >
+                        <div class="board-prio-headline-div">
+                            <h2>In progress</h2>
+                            <img
+                                onclick="addNewTask('inProgress')"
+                                src="/assets/icons/plus-button.svg"
+                                alt="Add"
+                            />
+                        </div>
                     </div>
-                    <div id="inProgress" class="progress-content">
+                    <div
+                        id="inProgress"
+                        class="progress-content"
+                    >
                         <span>No tasks in progress</span>
                     </div>
-                    <!-- <div class="in-progress-content"> -->
-                    <!-- <div class="card-main-container">
-                    <div class="card-main-container-content">
-                        <div class="labels-board-card-label">
-                            <div class="card-label"><span>User Story</span></div>
-                        </div>
-                        <div class="card-headline">
-                            <h2>Kochwelt Page & Recipe Recommender</h2>
-                            <div class="card-under-headline"><span>Build start page with recipe recommendation...</span>
-                            </div>
-                        </div>
-                        <div class="status-bar-and-task-information">
-                            <div class="progress-bar-wrapper">
-                                <div class="progress-bar" role="progressbar" style="width: 50%"></div>
-                            </div>
-                            <span>1/2 Subtask</span>
-                        </div>
-                        <div class="user-and-card-mover-container">
-                            <div class="user-main">
-                                <div>
-                                    <div class="user test-profile-picture-background">AM</div>
-                                </div>
-                                <div class="user-container">
-                                    <div class="user test-profile-picture-background">EM</div>
-                                </div>
-                                <div class="user-container">
-                                    <div class="user test-profile-picture-background">MB</div>
-                                </div>
-                            </div>
-                            <div class="move-card-button"><img src="/assets/icons/medium.svg" alt="Medium"></div>
-                        </div>
-                    </div>
-                </div> -->
-                    <!-- </div> -->
+                    <div class="in-progress-content"></div>
                 </section>
                 <section class="section-five">
-                    <div class="board-progress-state">
-                        <h2>Await feedback</h2>
-                        <img onclick="addNewTask()" src="/assets/icons/plus-button.svg" alt="Add" />
+                    <div
+                        id="board-await-feedback-section"
+                        class="board-progress-state"
+                    >
+                        <div class="board-prio-headline-div">
+                            <h2>Await feedback</h2>
+                            <img
+                                onclick="addNewTask('awaitFeedback')"
+                                src="/assets/icons/plus-button.svg"
+                                alt="Add"
+                            />
+                        </div>
                     </div>
-                    <div id="awaitingFeedback" class="progress-content">
+                    <div
+                        id="awaitingFeedback"
+                        class="progress-content"
+                    >
                         <span>No tasks awaiting Feedback</span>
                     </div>
+                    <div class="await-feedback-content"></div>
                 </section>
                 <section class="section-six">
-                    <div class="board-progress-state">
-                        <h2>Done</h2>
+                    <div
+                        id="board-done-section"
+                        class="board-progress-state"
+                    >
+                        <div class="board-prio-headline-div">
+                            <h2>Done</h2>
+                        </div>
                     </div>
-                    <div id="done" class="progress-content">
+                    <div
+                        id="done"
+                        class="progress-content"
+                    >
                         <span>No tasks Done</span>
                     </div>
                 </section>
@@ -138,17 +172,49 @@
         </main>
         <div class="nav-bar-main-container">
             <div class="nav-bar">
-                <a href="/pages/summary.html" id="nav-bar-container-summary" class="nav-bar-container"
-                    ><img id="nav-bar-img-1" src="/assets/icons/summary.svg" alt="" /> <span>Summary</span></a
+                <a
+                    href="/pages/summary.html"
+                    id="nav-bar-container-summary"
+                    class="nav-bar-container"
+                    ><img
+                        id="nav-bar-img-1"
+                        src="/assets/icons/summary.svg"
+                        alt=""
+                    />
+                    <span>Summary</span></a
                 >
-                <a href="/pages/board.html" id="nav-bar-container-board" class="nav-bar-container"
-                    ><img id="nav-bar-img-2" src="/assets/icons/board.svg" alt="" /> <span>Board</span></a
+                <a
+                    href="/pages/board.html"
+                    id="nav-bar-container-board"
+                    class="nav-bar-container"
+                    ><img
+                        id="nav-bar-img-2"
+                        src="/assets/icons/board.svg"
+                        alt=""
+                    />
+                    <span>Board</span></a
                 >
-                <a href="/pages/add-task.html" id="nav-bar-container-add-to-task" class="nav-bar-container"
-                    ><img id="nav-bar-img-3" src="/assets/icons/add-to-task.svg" alt="" /> <span>Add Task</span></a
+                <a
+                    href="/pages/add-task.html"
+                    id="nav-bar-container-add-to-task"
+                    class="nav-bar-container"
+                    ><img
+                        id="nav-bar-img-3"
+                        src="/assets/icons/add-to-task.svg"
+                        alt=""
+                    />
+                    <span>Add Task</span></a
                 >
-                <a href="/pages/contactlist.html" id="nav-bar-container-contacts" class="nav-bar-container"
-                    ><img id="nav-bar-img-4" src="/assets/icons/contacts.svg" alt="" /> <span>Contacts</span></a
+                <a
+                    href="/pages/contactlist.html"
+                    id="nav-bar-container-contacts"
+                    class="nav-bar-container"
+                    ><img
+                        id="nav-bar-img-4"
+                        src="/assets/icons/contacts.svg"
+                        alt=""
+                    />
+                    <span>Contacts</span></a
                 >
             </div>
         </div>
