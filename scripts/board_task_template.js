@@ -17,7 +17,7 @@ function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progr
                 </div>
                 <div class="user-and-card-mover-container">
                     <div id="user-main-container" class="user-main">
-                    <div class="user-main"> ${employeesName}</div>
+                     ${employeesName}
                     </div>
                     <div class="move-card-button"><img src="${priorityImage}" alt="${task.priority}"></div>
                 </div>
