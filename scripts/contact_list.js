@@ -41,10 +41,10 @@ async function initializeContactsList() {
     await getListSection();
 }
 
-
 function navigateToContactList() {
     window.location.href = "contactlist.html";
 }
+
 function contactBigView(name, email, phone, initials, id, contact) {
     let color = allContacts.find((e) => e.id == id).color;
     document.getElementById('main-content').innerHTML = renderSingleContactView(name, email, phone, initials, id, color, contact);
@@ -65,6 +65,14 @@ function closeEditContactView() {
     document.getElementById('contact-overlay').classList.add('d-none');
     document.getElementById('profileBtn').style.backgroundColor = "white";
     document.getElementById('editContactContainer').classList.add('d-none');
+    document.getElementById('editContactContainer').outerHTML = "";
+}
+
+function closeAddContactView() {
+    document.getElementById('profileBtn').style.backgroundColor = "white";
+    document.getElementById('contact-overlay').classList.add('d-none');
+    document.getElementById('addContactContainer').classList.add('d-none');
+    document.getElementById('addContactContainer').outerHTML = '';
 }
 
 function EditContactViewSlideDown() {
@@ -92,7 +100,7 @@ function openAddContactView() {
 
 document.addEventListener('mouseup', function (e) {
     let addContactDiv = document.getElementById('addContactContainer');
-    if (!addContactDiv.contains(e.target)) {
+    if (addContactDiv && !addContactDiv.contains(e.target)) {
         addContactDiv.classList.add('hidden');
         setTimeout(() => {
             closeAddContactView();
@@ -100,11 +108,6 @@ document.addEventListener('mouseup', function (e) {
     }
 });
 
-function closeAddContactView() {
-    document.getElementById('addContactContainer').classList.add('d-none');
-    document.getElementById('profileBtn').style.backgroundColor = "white";
-    document.getElementById('contact-overlay').classList.add('d-none');
-}
 
 function AddContactViewSlideDown() {
     document.getElementById('addContactContainer').classList.add('hidden');
@@ -140,7 +143,7 @@ let editDeleteMenuVisible = false;
 
 function showEditDeleteMenu() {
     let editDeleteMenu = document.getElementById('edit-delete-menu');
-    document.getElementById('option-circle').style.display = "none";
+    document.getElementById('option-circle').classList.add('d-none');
     editDeleteMenu.classList.remove('d-none', 'hidden');
     editDeleteMenuVisible = true;
 }
@@ -151,7 +154,7 @@ document.addEventListener('mouseup', function (e) {
         editDeleteMenuDiv.classList.add('hidden');
         setTimeout(() => {
             editDeleteMenuDiv.classList.add('d-none');
-            document.getElementById('option-circle').style.display = "flex";
+            document.getElementById('option-circle').classList.remove('d-none');
             editDeleteMenuVisible = false;
         }, 100);
     }
@@ -165,9 +168,9 @@ function getEditedUserData(id) {
 }
 
 function saveEditedUserData(newName, newEmail, newPhone, id) {
-    document.getElementById('userName').innerHTML = newName;
-    document.getElementById('userEmail').innerHTML = newEmail;
-    document.getElementById('userPhone').innerHTML = newPhone;
+    document.getElementById('newName').innerHTML = newName;
+    document.getElementById('newEmail').innerHTML = newEmail;
+    document.getElementById('newPhone').innerHTML = newPhone;
     updateData(path = PATH_TO_CONTACTS, id = id, data = { "email": newEmail, "name": newName, "phone": newPhone });
     EditContactViewSlideDown();
 }

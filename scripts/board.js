@@ -5,7 +5,7 @@ function taskBigView() {
 }
 
 function closeTaskBigView() {
-    document.getElementById("task-big-container").classList.add("d-none");
+    document.getElementById("task-big-container").outerHTML = "";
 }
 
 function navigateToBoard() {
@@ -30,7 +30,7 @@ function writeCardsToBoardSectionsFromArray(array) {
     for (let j = 0; j < array.length; j++) {
         let renderValuesObject = getObjectWithValuesNeedeInBoardCard(array[j]);
         if (array[j].state === "toDo") {
-            hideElementAndRenderAnother("todo", "board-to-do-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc);
+            hideElementAndRenderAnother("todo", "board-to-do-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc, array[j].type, j);
         } else if (array[j].state === "inProgress") {
             hideElementAndRenderAnother("inProgress", "board-in-progress-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc);
         } else if (array[j].state === "awaitFeedback") {
@@ -52,5 +52,5 @@ function getObjectWithValuesNeedeInBoardCard(task) {
 
 function hideElementAndRenderAnother(elementToHide, parentToRenderCardsIn, renderParam_1, renderParam_2, renderParam_3, renderParam_4, renderParam_5) {
     document.getElementById(elementToHide).classList.add("d-none");
-    document.getElementById(parentToRenderCardsIn).innerHTML += taskCardTemplateToHtml(renderParam_1, renderParam_2, renderParam_3, renderParam_4, renderParam_5);
+    document.getElementById(parentToRenderCardsIn).innerHTML += taskCardTemplateToHtml(renderParam_1, renderParam_2, renderParam_3, renderParam_4, renderParam_5); 
 }

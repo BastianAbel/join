@@ -3,10 +3,10 @@ function renderNewContact(name, email, initials, id, color, phone) {
 	<!-- popup -->
         
 	<div id="edit-delete-menu" class="edit-popup-container d-none">
-                <div class="option-container">
+                <div onclick="editBigView('${initials}', '${color}', '${id}', '${name}', '${email}', '${phone}' )" class="option-container">
                     <div class="option-edit"></div><span>Edit</span>
                  </div>
-                <div class="option-container">
+                <div onclick="deleteContact('${id}')" class="option-container">
                     <div class="option-delete"></div><span>Delete</span>
                 </div>
             </div>
@@ -29,11 +29,11 @@ function renderNewContact(name, email, initials, id, color, phone) {
                 <div class="contact-information">
                     <span>Contact Information</span>
                     <span class="small-span"><b>Email</b></span>
-                    <a class="small-span" href="#">${email}</a>
+                    <a class="small-span" href="">${email}</a>
                     <span class="small-span"><b>Phone</b></span>
                     <span class="small-span">${phone}</span>
                 </div>
-                <div onclick="showEditDeleteMenu()" class="options-icon-container">
+                <div id="option-circle" onclick="showEditDeleteMenu()" class="options-icon-container">
                     <img src="/assets/icons/options-logo.svg" alt="" />
                 </div>
             </div>

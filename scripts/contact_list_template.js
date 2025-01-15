@@ -90,7 +90,7 @@ function renderEditContactView(initials, color, id) {
                     </div>
                     <div class="button-container">
                         <div>
-                            <button class="delete-button">Delete</button>
+                            <button onclick="deleteContact('${id}')" class="delete-button">Delete</button>
                         </div>
                         <div>
                             <button onclick="getEditedUserData('${id}')" class="save-contact-button">Save <img src="/assets/icons/check.svg" alt=""></button>
