@@ -1,8 +1,8 @@
-function taskCardTemplateToHtml(task, state, priorityImage, employeesName = "", progressBarCalc) {
+function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progressBarCalc, cardTypeColor) {
     return ` 
     <div onclick="taskBigView()" class="card-main-container">
             <div class="card-main-container-content">
-                <div class="labels-board-card-label">
+                <div style=" ${cardTypeColor}" class="labels-board-card-label">
                     <div class="card-label"><span>${capitalizeFirstLetter(task.type)}</span></div>
                 </div>
                 <div class="card-headline">
