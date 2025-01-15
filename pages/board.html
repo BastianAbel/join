@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="de">
-<!-- prettier-ignore -->
+    <!-- prettier-ignore -->
 
-<head>
+    <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join</title>
@@ -30,106 +30,192 @@
     <script src="/scripts/board_template.js" defer></script>
 </head>
 
-<body onload="loadUserInitials(); getAllTaskFromSessionStorage()">
-    <div id="submenu" class="submenu-popup-container d-none">
-        <div class="submenu-text-container">
-            <a href="">Help</a>
-            <a href="/pages/impressum.html">Legal Notice</a>
-            <a href="/pages/privacy-policy.html">Privacy Policy</a>
-            <a href="/pages/login-page.html">Log Out</a>
+    <body onload="loadUserInitials(); getAllTaskFromSessionStorage()">
+        <div
+            id="submenu"
+            class="submenu-popup-container d-none"
+        >
+            <div class="submenu-text-container">
+                <a href="">Help</a>
+                <a href="/pages/impressum.html">Legal Notice</a>
+                <a href="/pages/privacy-policy.html">Privacy Policy</a>
+                <a href="/pages/login-page.html">Log Out</a>
+            </div>
         </div>
-    </div>
-    <header>
-        <section class="header">
-            <a href="">
-                <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
-            </a>
-            <button onclick="showSubmenu()" id="profileBtn" class="profile-button"></button>
-        </section>
-    </header>
-    <main id="board-main">
-        <section class="section-one">
-            <div>
-                <h1>Board</h1>
-            </div>
-            <div>
-                <img onclick="addNewTask('')" src="/assets/icons/plus-add-task.svg" alt="Add Task" />
-            </div>
-        </section>
-        <section class="section-two">
-            <div class="user-input-section">
-                <input onkeyup="checkUserSearchInputAndRedirect()" oninput="searchTask(event)" id="user-search-input"
-                    class="user-input-field" type="text" placeholder="Find Task" />
-                <button>
-                    <img src="/assets/icons/search.svg" alt="Search" />
-                </button>
-            </div>
-        </section>
-        <div id="card-overlay-wrapper">
-            <section class="section-three">
-                
-                <div class="board-prio-headline-div">
-                    <h2>To do</h2>
-                    <img onclick="addNewTask('toDo')" src="/assets/icons/plus-button.svg" alt="Add" />
+        <header>
+            <section class="header">
+                <a href="">
+                    <img
+                        src="/assets/icons/join-logo-dark.svg"
+                        alt="Join Logo"
+                    />
+                </a>
+                <button
+                    onclick="showSubmenu()"
+                    id="profileBtn"
+                    class="profile-button"
+                ></button>
+            </section>
+        </header>
+        <main id="board-main">
+            <section class="section-one">
+                <div>
+                    <h1>Board</h1>
                 </div>
-                <div id="board-to-do-section" class="board-progress-state"></div>
-                </div>
-                <div id="todo" class="progress-content">
-                    <span>No tasks To do</span>
+                <div>
+                    <img
+                        onclick="addNewTask('')"
+                        src="/assets/icons/plus-add-task.svg"
+                        alt="Add Task"
+                    />
                 </div>
             </section>
-            <section class="section-four">
-                
+            <section class="section-two">
+                <div class="user-input-section">
+                    <input
+                        onkeyup="checkUserSearchInputAndRedirect()"
+                        oninput="searchTask(event)"
+                        id="user-search-input"
+                        class="user-input-field"
+                        type="text"
+                        placeholder="Find Task"
+                    />
+                    <button>
+                        <img
+                            src="/assets/icons/search.svg"
+                            alt="Search"
+                        />
+                    </button>
+                </div>
+            </section>
+            <div id="card-overlay-wrapper">
+                <section class="section-three">
                     <div class="board-prio-headline-div">
-                        <h2>In progress</h2>
-                        <img onclick="addNewTask('inProgress')" src="/assets/icons/plus-button.svg" alt="Add" />
+                        <h2>To do</h2>
+                        <img
+                            onclick="addNewTask('toDo')"
+                            src="/assets/icons/plus-button.svg"
+                            alt="Add"
+                        />
                     </div>
-                    <div id="board-in-progress-section" class="board-progress-state"></div>
-                <div id="inProgress" class="progress-content">
+                    <div
+                        id="board-to-do-section"
+                        class="board-progress-state"
+                    ></div>
+
+                    <div
+                        id="todo"
+                        class="progress-content"
+                    >
+                        <span>No tasks To do</span>
+                    </div>
+                </section>
+            </div>
+            <section class="section-four">
+                <div class="board-prio-headline-div">
+                    <h2>In progress</h2>
+                    <img
+                        onclick="addNewTask('inProgress')"
+                        src="/assets/icons/plus-button.svg"
+                        alt="Add"
+                    />
+                </div>
+                <div
+                    id="board-in-progress-section"
+                    class="board-progress-state"
+                ></div>
+                <div
+                    id="inProgress"
+                    class="progress-content"
+                >
                     <span>No tasks in progress</span>
                 </div>
                 <div class="in-progress-content"></div>
             </section>
             <section class="section-five">
-                
-                    <div class="board-prio-headline-div">
-                        <h2>Await feedback</h2>
-                        <img onclick="addNewTask('awaitFeedback')" src="/assets/icons/plus-button.svg" alt="Add" />
-                    </div>
-                    <div id="board-await-feedback-section" class="board-progress-state"></div>
-                <div id="awaitingFeedback" class="progress-content">
+                <div class="board-prio-headline-div">
+                    <h2>Await feedback</h2>
+                    <img
+                        onclick="addNewTask('awaitFeedback')"
+                        src="/assets/icons/plus-button.svg"
+                        alt="Add"
+                    />
+                </div>
+                <div
+                    id="board-await-feedback-section"
+                    class="board-progress-state"
+                ></div>
+                <div
+                    id="awaitingFeedback"
+                    class="progress-content"
+                >
                     <span>No tasks awaiting Feedback</span>
                 </div>
                 <div class="await-feedback-content"></div>
             </section>
             <section class="section-six">
-                
-                    <div class="board-prio-headline-div">
-                        <h2>Done</h2>
-                    </div>
-                    <div id="board-done-section" class="board-progress-state"></div>
-                <div id="done" class="progress-content">
+                <div class="board-prio-headline-div">
+                    <h2>Done</h2>
+                </div>
+                <div
+                    id="board-done-section"
+                    class="board-progress-state"
+                ></div>
+                <div
+                    id="done"
+                    class="progress-content"
+                >
                     <span>No tasks Done</span>
                 </div>
             </section>
+        </main>
+        <div class="nav-bar-main-container">
+            <div class="nav-bar">
+                <a
+                    href="/pages/summary.html"
+                    id="nav-bar-container-summary"
+                    class="nav-bar-container"
+                    ><img
+                        id="nav-bar-img-1"
+                        src="/assets/icons/summary.svg"
+                        alt=""
+                    />
+                    <span>Summary</span></a
+                >
+                <a
+                    href="/pages/board.html"
+                    id="nav-bar-container-board"
+                    class="nav-bar-container"
+                    ><img
+                        id="nav-bar-img-2"
+                        src="/assets/icons/board.svg"
+                        alt=""
+                    />
+                    <span>Board</span></a
+                >
+                <a
+                    href="/pages/add-task.html"
+                    id="nav-bar-container-add-to-task"
+                    class="nav-bar-container"
+                    ><img
+                        id="nav-bar-img-3"
+                        src="/assets/icons/add-to-task.svg"
+                        alt=""
+                    />
+                    <span>Add Task</span></a
+                >
+                <a
+                    href="/pages/contactlist.html"
+                    id="nav-bar-container-contacts"
+                    class="nav-bar-container"
+                    ><img
+                        id="nav-bar-img-4"
+                        src="/assets/icons/contacts.svg"
+                        alt=""
+                    />
+                    <span>Contacts</span></a
+                >
+            </div>
         </div>
-    </main>
-    <div class="nav-bar-main-container">
-        <div class="nav-bar">
-            <a href="/pages/summary.html" id="nav-bar-container-summary" class="nav-bar-container"><img
-                    id="nav-bar-img-1" src="/assets/icons/summary.svg" alt="" />
-                <span>Summary</span></a>
-            <a href="/pages/board.html" id="nav-bar-container-board" class="nav-bar-container"><img id="nav-bar-img-2"
-                    src="/assets/icons/board.svg" alt="" />
-                <span>Board</span></a>
-            <a href="/pages/add-task.html" id="nav-bar-container-add-to-task" class="nav-bar-container"><img
-                    id="nav-bar-img-3" src="/assets/icons/add-to-task.svg" alt="" />
-                <span>Add Task</span></a>
-            <a href="/pages/contactlist.html" id="nav-bar-container-contacts" class="nav-bar-container"><img
-                    id="nav-bar-img-4" src="/assets/icons/contacts.svg" alt="" />
-                <span>Contacts</span></a>
-        </div>
-    </div>
-</body>
-
+    </body>
 </html>
