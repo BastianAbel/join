@@ -120,6 +120,7 @@ input:focus {
 
 .board-progress-state {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
