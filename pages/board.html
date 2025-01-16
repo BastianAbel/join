@@ -30,7 +30,7 @@
     <script src="/scripts/board_template.js" defer></script>
 </head>
 
-    <body onload="loadUserInitials(); getAllTaskFromSessionStorage()">
+    <body onload="loadUserInitials(); getAllTasksAndUsersFromSessionStorage()">
         <div
             id="submenu"
             class="submenu-popup-container d-none"
@@ -101,6 +101,8 @@
                     <div
                         id="board-to-do-section"
                         class="board-progress-state"
+                        ondrop="moveTaskToState('toDo')"
+                        ondragover="allowDrop(event)"
                     ></div>
 
                     <div

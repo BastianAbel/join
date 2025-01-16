@@ -2,6 +2,7 @@ const SCROLL_MARGIN = 50; // Abstand vom Rand, ab dem gescrollt wird
 const SCROLL_SPEED = 20; // Geschwindigkeit des Scrollens
 let scrollInterval;
 let allTasks = [];
+let allUsers = [];
 
 function taskBigView() {
     document.getElementById("board-main").innerHTML += renderTaskBigView();
@@ -19,13 +20,16 @@ function addNewTask(state) {
     window.location.href = `add-task.html?state=${state}`;
 }
 
-function getAllTaskFromSessionStorage() {
+function getAllTasksAndUsersFromSessionStorage() {
     let sessionResponse = sessionStorage.getItem("joinJson");
     let sessionResponseJson = JSON.parse(sessionResponse);
     let tasks = sessionResponseJson["tasks"];
     allTasks = getArrayFromObject(tasks);
+    let users = sessionResponseJson["users"];
+    allUsers = getArrayFromObject(users);
     writeCardsToBoardSectionsFromArray(allTasks);
     console.table(allTasks);
+    console.table(allUsers);
 }
 
 // prettier-ignore
