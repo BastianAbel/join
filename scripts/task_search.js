@@ -56,6 +56,7 @@ function createUserContainer(assignedUsers) {
     for (let i = 0; i < assignedUsers.length; i++) {
         let userContainer = document.createElement("div");
         userContainer.className = "user";
+        userContainer.id = `user${i}`;
         userContainer.style.backgroundColor = getRandomColor();
         let userName = checkUserFolder(assignedUsers[i]);
         let initials = getEmployeesInitials(userName);

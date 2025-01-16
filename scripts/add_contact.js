@@ -49,7 +49,7 @@ async function createContact(event) {
                 contact: newContact,
                 color: newColor,
             });
-            document.getElementById('contact-overlay').classList.add('d-none');
+            document.getElementById('window-overlay').classList.add('d-none');
             document.getElementById('profileBtn').style.backgroundColor = "white";
             document.getElementById("main-content").innerHTML = renderNewContact(newContact.name, newContact.email, initials, newId, newColor, newContact.phone);
             document.getElementById('add-contact-success-div').classList.remove('d-none');
