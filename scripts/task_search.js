@@ -1,11 +1,11 @@
-const BASE_URL = "https://join-10cdc-default-rtdb.europe-west1.firebasedatabase.app/";
+let base_url = "https://join-10cdc-default-rtdb.europe-west1.firebasedatabase.app/";
 let data = [];
 let contentRef = document.getElementById("card-overlay-wrapper");
 let progressBarCalc = "";
 
 async function setBackendJsonToSessionStorage() {
     try {
-        let response = await fetch(BASE_URL + ".json");
+        let response = await fetch(base_url + ".json");
         if (!response.ok) {
             throw new Error("Network response was not ok");
         }
