@@ -51,6 +51,7 @@ function getArrayFromObject(object) {
     let allKeys = Object.keys(object);
     let array = [];
     for (let i = 0; i < allKeys.length; i++) {
+        object[allKeys[i]].id = allKeys[i];
         array.push(object[allKeys[i]]);
     }
     return array;

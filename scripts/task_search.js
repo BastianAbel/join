@@ -58,6 +58,7 @@ function createUserContainer(assignedUsers) {
         let userContainer = document.createElement("div");
         userContainer.className = "user";
         userContainer.id = `user${i}`;
+        userContainer.style = setUser0Style(userContainer.id);
         userContainer.style.backgroundColor = getRandomColor();
         let userName = checkUserFolder(assignedUsers[i]);
         let initials = getEmployeesInitials(userName);
@@ -66,6 +67,13 @@ function createUserContainer(assignedUsers) {
         userContainers += userContainer.outerHTML;
     }
     return userContainers;
+}
+
+function setUser0Style(userContainer) {
+    if (userContainer == "user0") {
+        style = "margin:0;";
+        return style;
+    }
 }
 
 function checkUserFolder(assignedUser) {
@@ -146,4 +154,8 @@ function changeColorCardType(taskType) {
     if (taskType === "userStory") {
         return (style = "background-color:rgba(0,56,255,1)");
     }
+}
+
+function stopEventBubbling(event) {
+    event.stopPropagation();
 }

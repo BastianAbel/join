@@ -17,10 +17,19 @@ function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progr
                 </div>
                 <div class="user-and-card-mover-container">
                     <div id="user-main-container" class="user-main">
-                    <div class="user-main"> ${employeesName}</div>
+                     ${employeesName}
                     </div>
                     <div class="move-card-button"><img src="${priorityImage}" alt="${task.priority}"></div>
-                </div>
+                </div> 
+                <div class="dropdown-main-container">
+                    <select class="dropdown-container" onclick="stopEventBubbling(event)" name="options">
+                        <option class="dropdown-options" value="" selected>Verschieben in </option>
+                        <option value="first">Todo</option>
+                        <option value="second">In Progress</option>
+                        <option value="third">Await feedback</option>
+                        <option value="four">Done</option>
+                        </select>  
+                    </div>           
             </div>
         </div>
         `;
