@@ -1,4 +1,8 @@
+const SCROLL_MARGIN = 50; // Abstand vom Rand, ab dem gescrollt wird
+const SCROLL_SPEED = 20; // Geschwindigkeit des Scrollens
+let scrollInterval;
 let allTasks = [];
+let allUsers = [];
 
 function taskBigView(j, taskDate, taskPriority, priorityImage, assignedUsers) {
 
@@ -68,13 +72,16 @@ function addNewTask(state) {
     window.location.href = `add-task.html?state=${state}`;
 }
 
-function getAllTaskFromSessionStorage() {
+function getAllTasksAndUsersFromSessionStorage() {
     let sessionResponse = sessionStorage.getItem("joinJson");
     let sessionResponseJson = JSON.parse(sessionResponse);
     let tasks = sessionResponseJson["tasks"];
     allTasks = getArrayFromObject(tasks);
+    let users = sessionResponseJson["users"];
+    allUsers = getArrayFromObject(users);
     writeCardsToBoardSectionsFromArray(allTasks);
     console.table(allTasks);
+    console.table(allUsers);
 }
 
 // prettier-ignore
@@ -109,11 +116,53 @@ function hideElementAndRenderAnother(elementToHide, parentToRenderCardsIn, rende
 }
 
 function makeItDraggable() {
-    //TODO - alle Karten brauchen draggable=true;
     //TODO - alle Karten brauchen onDragStart;
     //TODO - alle Ziellbereich brauchen allowDrop und onDrop;
     //TODO - Scroll-Mechanik steht in Dev-Test
     //TODO - bei Drop muss der neue State in Firebase gespeichert werden. Dann müssen die neuen Werte in den Sessionstorage. Und danach muss das Board geupdatet werden
     //TODO - Wenn alles klappt, erhalten die Cards den Drag-Effekt (leicht schräg)
     //TODO - onDragEnd wird der Drag-Effekt wieder entnommen (gerade Karte)
+}
+
+function checkMousePosition(event) {
+    if (!event.clientX || !event.clientY) return; // Event hat keine Koordinaten
+
+    // Ermittelt die Größe von Board-Main
+    let boardContainer = document.getElementById("board-main");
+    const boardWidth = boardContainer.offsetWidth;
+    const boardHeight = boardContainer.offsetHeight;
+
+    // Scroll nach unten, wenn die Maus nahe am unteren Rand ist
+    if (event.clientY > boardHeight - SCROLL_MARGIN) {
+        startScrolling(0, SCROLL_SPEED);
+    }
+    // Scroll nach oben, wenn die Maus nahe am oberen Rand ist
+    else if (event.clientY < SCROLL_MARGIN) {
+        startScrolling(0, -SCROLL_SPEED);
+    }
+    // Scroll nach rechts, wenn die Maus nahe am rechten Rand ist
+    else if (event.clientX > boardWidth - SCROLL_MARGIN) {
+        startScrolling(SCROLL_SPEED, 0);
+    }
+    // Scroll nach links, wenn die Maus nahe am linken Rand ist
+    else if (event.clientX < SCROLL_MARGIN) {
+        startScrolling(-SCROLL_SPEED, 0);
+    } else {
+        stopScrolling();
+    }
+}
+
+// Startet das Scrollen
+function startScrolling(x, y) {
+    let boardContainer = document.getElementById("board-main");
+    if (scrollInterval) return; // Verhindert doppeltes Intervall
+    scrollInterval = setInterval(() => {
+        boardContainer.scrollBy(x, y);
+    }, 15);
+}
+
+// Stoppt das Scrollen
+function stopScrolling() {
+    clearInterval(scrollInterval);
+    scrollInterval = null;
 }
