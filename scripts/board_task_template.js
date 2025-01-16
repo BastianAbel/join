@@ -24,17 +24,27 @@ function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progr
                     <div class="move-card-button"><img src="${priorityImage}" alt="${task.priority}"></div>
                 </div> 
                 <div class="dropdown-main-container">
-                    <select class="dropdown-container" onclick="stopEventBubbling(event)" name="options">
+                    <select class="dropdown-container" onclick="stopEventBubbling(event)" name="options" onchange="handleDropdownChange(event, '${
+                        task.id
+                    }')">
                         <option class="dropdown-options" value="" selected>Verschieben in </option>
-                        <option value="first">Todo</option>
-                        <option value="second">In Progress</option>
-                        <option value="third">Await feedback</option>
-                        <option value="four">Done</option>
+                        <option value="toDo">Todo</option>
+                        <option value="inProgress">In Progress</option>
+                        <option value="awaitFeedback">Await feedback</option>
+                        <option value="done">Done</option>
                         </select>  
                     </div>           
             </div>
         </div>
         `;
+}
+
+function handleDropdownChange(event, taskId) {
+    currentDraggedTask = allTasks.find((task) => task.id === taskId);
+    const value = event.target.value;
+    if (value) {
+        moveTaskToState(value);
+    }
 }
 
 function renderInfoNothingInBoardSection(id, text) {
