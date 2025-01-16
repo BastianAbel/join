@@ -40,7 +40,8 @@ function renderSearchResultCard(task) {
     const subtaskState = getSubtaskStatus(task.subtasks);
     const priorityImg = getPriorityImage(task.priority);
     const employeesName = createUserContainer(task.assignedTo);
-    contentRef.innerHTML += taskCardTemplateToHtml(task, subtaskState, priorityImg, employeesName, progressBarCalc);
+    const cardTypeColor = changeColorCardType(task.type);
+    contentRef.innerHTML += taskCardTemplateToHtml(task, subtaskState, priorityImg, employeesName, progressBarCalc, cardTypeColor);
 }
 
 function capitalizeFirstLetter(string) {
@@ -115,7 +116,7 @@ function getSubtaskStatus(subtasks) {
     completedSubtasks = subtasks.filter((subtask) => subtask.checked).length;
     statusProgressBar(completedSubtasks, totalSubtasks);
 
-    return `<span id="state">${completedSubtasks}/${totalSubtasks} ${totalSubtasks === 1 ? 'Subtask' : 'Subtasks'}</span>`;
+    return `<span id="state">${completedSubtasks}/${totalSubtasks} ${totalSubtasks === 1 ? "Subtask" : "Subtasks"}</span>`;
 }
 
 function getEmployeesInitials(EmployeesName) {
@@ -136,4 +137,13 @@ function statusProgressBar(completedSubtasks, totalSubtasks) {
     percent = Math.round(percent * 100);
 
     progressBarCalc = `${percent}%`;
+}
+
+function changeColorCardType(taskType) {
+    if (taskType === "technicalTask") {
+        return (style = "background-color:rgba(31,215,193,1)");
+    }
+    if (taskType === "userStory") {
+        return (style = "background-color:rgba(0,56,255,1)");
+    }
 }
