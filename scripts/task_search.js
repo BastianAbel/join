@@ -62,7 +62,6 @@ function createUserContainer(assignedUsers) {
         userContainer.style.backgroundColor = getRandomColor();
         let userName = checkUserFolder(assignedUsers[i]);
         let initials = getEmployeesInitials(userName);
-        ;
         userContainer.innerHTML = initials;
 
         userContainers += userContainer.outerHTML;
@@ -155,4 +154,8 @@ function changeColorCardType(taskType) {
     if (taskType === "userStory") {
         return (style = "background-color:rgba(0,56,255,1)");
     }
+}
+
+function stopEventBubbling(event) {
+    event.stopPropagation();
 }
