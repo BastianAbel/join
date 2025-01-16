@@ -1,13 +1,13 @@
-function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progressBarCalc, cardTypeColor) {
+function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progressBarCalc, cardTypeColor, j) {
     return ` 
-    <div onclick="taskBigView()" class="card-main-container draggable" draggable="true" ondrag="checkMousePosition(event)">
+    <div id="cardId${j}" onclick="taskBigView('${j}', '${task.dueDate}', '${task.priority}', '${priorityImage}', '${task.assignedTo}'  )" class="card-main-container">
             <div class="card-main-container-content">
                 <div style=" ${cardTypeColor}" class="labels-board-card-label">
-                    <div class="card-label"><span>${capitalizeFirstLetter(task.type)}</span></div>
+                    <div id="task-type${j}" class="card-label"><span>${capitalizeFirstLetter(task.type)}</span></div>
                 </div>
                 <div class="card-headline">
-                    <h2>${task.title}</h2>
-                    <div class="card-under-headline"><span>${task.description}</span></div>
+                    <h2 id="task-title${j}">${task.title}</h2>
+                    <div id="task-description${j}" class="card-under-headline"><span>${task.description}</span></div>
                 </div>
                 <div class="status-bar-and-task-information">
                     <div class="progress-bar-wrapper">
@@ -17,10 +17,19 @@ function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progr
                 </div>
                 <div class="user-and-card-mover-container">
                     <div id="user-main-container" class="user-main">
-                    <div class="user-main"> ${employeesName}</div>
+                     ${employeesName}
                     </div>
                     <div class="move-card-button"><img src="${priorityImage}" alt="${task.priority}"></div>
-                </div>
+                </div> 
+                <div class="dropdown-main-container">
+                    <select class="dropdown-container" onclick="stopEventBubbling(event)" name="options">
+                        <option class="dropdown-options" value="" selected>Verschieben in </option>
+                        <option value="first">Todo</option>
+                        <option value="second">In Progress</option>
+                        <option value="third">Await feedback</option>
+                        <option value="four">Done</option>
+                        </select>  
+                    </div>           
             </div>
         </div>
         `;

@@ -18,9 +18,7 @@
 }
 
 .slide-out-task-big {
-    animation: slide-out 0.1s ease-out forwards;
-    visibility: hidden;
-    opacity: 0;
+    animation: slide-out 0.3s ease-out forwards;
 }
 
 h1 {
@@ -85,7 +83,7 @@ tr {
 
 .priority-state-container img {
     width: 17px;
-    height: 6.33px;
+    height: 12px;
 }
 
 .assigned-contacts-container {

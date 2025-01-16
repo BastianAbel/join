@@ -4,13 +4,65 @@ let scrollInterval;
 let allTasks = [];
 let allUsers = [];
 
-function taskBigView() {
-    document.getElementById("board-main").innerHTML += renderTaskBigView();
+function taskBigView(j, taskDate, taskPriority, priorityImage, assignedUsers) {
+
+    document.getElementById('profileBtn').style.backgroundColor = "#b8b9bb";
+    document.getElementById('window-overlay').classList.remove('d-none');
+    getSmallCardInfo(j, taskDate, taskPriority, priorityImage, assignedUsers);
+}
+
+function getSmallCardInfo(j, taskDate, taskPriority, priorityImage, assignedUsers) {
+    let taskTitle = document.getElementById(`task-title${j}`).innerHTML;
+    let taskDescription = document.getElementById(`task-description${j}`).innerHTML;
+    let taskType = document.getElementById(`task-type${j}`).innerHTML;
+
+
+    setInfoToBigCard(taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers)
+}
+
+function setInfoToBigCard(taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers) {
+    document.getElementById("board-main").innerHTML += renderTaskBigView(taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage);
+    getEmployeeInfo(assignedUsers);
+}
+
+function getEmployeeInfo(assignedUsers) {
+    if (typeof assignedUsers === "string") {
+        assignedUsers = assignedUsers.split(",");
+    }
+    for (let index = 0; index < assignedUsers.length; index++) {
+        let bgColor = document.getElementById(`user${index}`).style.backgroundColor;
+        document.getElementById('assignedContacts').innerHTML += `
+        <div class="contact">
+            <div class="contact-info">
+                <div style="background-color: ${bgColor}" class="contact-img">${getEmployeesInitials(assignedUsers[index])}</div><span>${assignedUsers[index]}</span>
+            </div>
+        </div>
+        `
+    }
 }
 
 function closeTaskBigView() {
-    document.getElementById("task-big-container").classList.add("d-none");
+    document.getElementById('window-overlay').classList.add('d-none');
+    document.getElementById('profileBtn').style.backgroundColor = "white";
+    document.getElementById("task-big-container").outerHTML = "";
 }
+
+function bigTaskSlideOut() {
+    document.getElementById('task-big-container').classList.add('slide-out-task-big')
+    setTimeout(() => {
+        closeTaskBigView();
+    }, 300);
+}
+
+document.addEventListener('mouseup', function (e) {
+    let bigTaskDiv = document.getElementById('task-big-container');
+    if (bigTaskDiv && !bigTaskDiv.contains(e.target)) {
+        bigTaskDiv.classList.add('slide-out-task-big');
+        setTimeout(() => {
+            closeTaskBigView();
+        }, 300);
+    }
+});
 
 function navigateToBoard() {
     window.location.href = "board.html";
@@ -37,13 +89,13 @@ function writeCardsToBoardSectionsFromArray(array) {
     for (let j = 0; j < array.length; j++) {
         let renderValuesObject = getObjectWithValuesNeedeInBoardCard(array[j]);
         if (array[j].state === "toDo") {
-            hideElementAndRenderAnother("todo", "board-to-do-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc, renderValuesObject.color);
+            hideElementAndRenderAnother("todo", "board-to-do-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc, renderValuesObject.color, j);
         } else if (array[j].state === "inProgress") {
-            hideElementAndRenderAnother("inProgress", "board-in-progress-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc, renderValuesObject.color);
+            hideElementAndRenderAnother("inProgress", "board-in-progress-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc, renderValuesObject.color, j);
         } else if (array[j].state === "awaitFeedback") {
-            hideElementAndRenderAnother("awaitingFeedback", "board-await-feedback-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc, renderValuesObject.color);
+            hideElementAndRenderAnother("awaitingFeedback", "board-await-feedback-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc, renderValuesObject.color, j);
         } else if (array[j].state === "done") {
-            hideElementAndRenderAnother("done", "board-done-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc, renderValuesObject.color);
+            hideElementAndRenderAnother("done", "board-done-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc, renderValuesObject.color, j);
         }
     }
 }
@@ -58,9 +110,9 @@ function getObjectWithValuesNeedeInBoardCard(task) {
     };
 }
 
-function hideElementAndRenderAnother(elementToHide, parentToRenderCardsIn, renderParam_1, renderParam_2, renderParam_3, renderParam_4, renderParam_5, renderParam_6) {
+function hideElementAndRenderAnother(elementToHide, parentToRenderCardsIn, renderParam_1, renderParam_2, renderParam_3, renderParam_4, renderParam_5, renderParam_6, j) {
     document.getElementById(elementToHide).classList.add("d-none");
-    document.getElementById(parentToRenderCardsIn).innerHTML += taskCardTemplateToHtml(renderParam_1, renderParam_2, renderParam_3, renderParam_4, renderParam_5, renderParam_6);
+    document.getElementById(parentToRenderCardsIn).innerHTML += taskCardTemplateToHtml(renderParam_1, renderParam_2, renderParam_3, renderParam_4, renderParam_5, renderParam_6, j);
 }
 
 function makeItDraggable() {

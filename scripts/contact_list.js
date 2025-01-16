@@ -53,7 +53,7 @@ function contactBigView(name, email, phone, initials, id, contact) {
 function editBigView(initials, color, id, name, email, phone) {
     document.getElementById('edit-delete-menu').style.display = "none";
     document.getElementById('profileBtn').style.backgroundColor = "#b8b9bb";
-    document.getElementById('contact-overlay').classList.remove('d-none');
+    document.getElementById('window-overlay').classList.remove('d-none');
     document.getElementById('main-content').innerHTML += renderEditContactView(initials, color, id);
     document.getElementById('newName').value = name;
     document.getElementById('newEmail').value = email;
@@ -62,7 +62,7 @@ function editBigView(initials, color, id, name, email, phone) {
 
 function closeEditContactView() {
     document.getElementById('edit-delete-menu').style.display = "flex";
-    document.getElementById('contact-overlay').classList.add('d-none');
+    document.getElementById('window-overlay').classList.add('d-none');
     document.getElementById('profileBtn').style.backgroundColor = "white";
     document.getElementById('editContactContainer').classList.add('d-none');
     document.getElementById('editContactContainer').outerHTML = "";
@@ -70,7 +70,7 @@ function closeEditContactView() {
 
 function closeAddContactView() {
     document.getElementById('profileBtn').style.backgroundColor = "white";
-    document.getElementById('contact-overlay').classList.add('d-none');
+    document.getElementById('window-overlay').classList.add('d-none');
     document.getElementById('addContactContainer').classList.add('d-none');
     document.getElementById('addContactContainer').outerHTML = '';
 }
@@ -94,7 +94,7 @@ document.addEventListener('mouseup', function (e) {
 
 function openAddContactView() {
     document.getElementById('profileBtn').style.backgroundColor = "#b8b9bb";
-    document.getElementById('contact-overlay').classList.remove('d-none');
+    document.getElementById('window-overlay').classList.remove('d-none');
     document.getElementById('main-content').innerHTML += renderAddContactView();
 }
 
