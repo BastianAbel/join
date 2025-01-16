@@ -23,7 +23,7 @@ function renderContactListContact(contact, initials, id) {
 
 function renderSingleContactView(name, email,phone, initials, id, color) {
     return ` 
-            <div id="contact-overlay" class="d-none contact-overlay"></div>
+            <div id="window-overlay" class="d-none window-overlay"></div>
             <div class="contact-container">
                 <div class="contact-head">
                     <div>
