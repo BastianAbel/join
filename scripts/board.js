@@ -71,6 +71,7 @@ function addNewTask(state) {
 function getAllTaskFromSessionStorage() {
     let sessionResponse = sessionStorage.getItem("joinJson");
     let sessionResponseJson = JSON.parse(sessionResponse);
+    console.log(sessionResponseJson)
     let tasks = sessionResponseJson["tasks"];
     allTasks = getArrayFromObject(tasks);
     writeCardsToBoardSectionsFromArray(allTasks);
@@ -79,6 +80,7 @@ function getAllTaskFromSessionStorage() {
 
 // prettier-ignore
 function writeCardsToBoardSectionsFromArray(array) {
+    console.log(array)
     for (let j = 0; j < array.length; j++) {
         let renderValuesObject = getObjectWithValuesNeedeInBoardCard(array[j]);
         if (array[j].state === "toDo") {
