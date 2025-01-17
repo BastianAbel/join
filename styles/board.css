@@ -198,8 +198,13 @@ input:focus {
 
 .draggable {
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
 }
 
 .draggable:active {
     cursor: grabbing;
+}
+
+.rotate-on-drag {
+    transform: rotate(5deg);
 }

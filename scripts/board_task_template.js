@@ -2,7 +2,7 @@ function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progr
     return ` 
     <div id="cardId${j}" onclick="taskBigView('${j}', '${task.dueDate}', '${task.priority}', '${priorityImage}', '${
         task.assignedTo
-    }')" class="card-main-container draggable" draggable="true" ondragstart="startDragging(event, '${task.id}')" ondrag="checkMousePosition(event)">
+    }')" class="card-main-container draggable" draggable="true" ondragstart="startDragging(event, '${task.id}')" ondrag="checkMousePosition(event)" onmousedown="rotate(event)">
             <div class="card-main-container-content">
                 <div style=" ${cardTypeColor}" class="labels-board-card-label">
                     <div id="task-type${j}" class="card-label"><span>${capitalizeFirstLetter(task.type)}</span></div>
@@ -35,13 +35,4 @@ function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progr
             </div>
         </div>
         `;
-}
-
-function renderInfoNothingInBoardSection(id, text) {
-    return `<div
-                    id="${id}"
-                    class="progress-content"
-                >
-                    <span>No tasks ${text}</span>
-                </div>`;
 }
