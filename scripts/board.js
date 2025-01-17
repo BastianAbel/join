@@ -278,6 +278,14 @@ function startDragging(event, taskId) {
     draggedElement = event.target;
 }
 
+function handleDropdownChange(event, taskId) {
+    currentDraggedTask = allTasks.find((task) => task.id === taskId);
+    const value = event.target.value;
+    if (value) {
+        moveTaskToState(value);
+    }
+}
+
 async function updateSessionStorage() {
     let response = await fetch(BASE_URL + ".json");
     let fetchedData = await response.json();
