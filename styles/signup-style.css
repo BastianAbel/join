@@ -35,8 +35,6 @@ input[type="checkbox"] {
     opacity: 0;
     height: 1px;
     width: 1px;
-    top: 20px;
-    left: 12px;
 }
 
 input[type="checkbox"] + label {

@@ -1,4 +1,4 @@
-const BASE_URL = "https://join-10cdc-default-rtdb.europe-west1.firebasedatabase.app/";
+// const BASE_URL = "https://join-10cdc-default-rtdb.europe-west1.firebasedatabase.app/";
 let data = [];
 let contentRef = document.getElementById("card-overlay-wrapper");
 let progressBarCalc = "";
@@ -57,7 +57,6 @@ function createUserContainer(assignedUsers) {
     for (let i = 0; i < assignedUsers.length; i++) {
         let userContainer = document.createElement("div");
         userContainer.className = "user";
-        userContainer.id = `user${i}`;
         userContainer.style = setUser0Style(userContainer.id);
         userContainer.style.backgroundColor = getRandomColor();
         let userName = checkUserFolder(assignedUsers[i]);
