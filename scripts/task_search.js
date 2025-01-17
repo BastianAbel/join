@@ -56,7 +56,6 @@ function createUserContainer(assignedUsers) {
     for (let i = 0; i < assignedUsers.length; i++) {
         let userContainer = document.createElement("div");
         userContainer.className = "user";
-        userContainer.style = setUser0Style(userContainer.id);
         userContainer.style.backgroundColor = getRandomColor();
         let userName = checkUserFolder(assignedUsers[i]);
         let initials = getEmployeesInitials(userName);
@@ -65,13 +64,6 @@ function createUserContainer(assignedUsers) {
         userContainers += userContainer.outerHTML;
     }
     return userContainers;
-}
-
-function setUser0Style(userContainer) {
-    if (userContainer == "user0") {
-        style = "margin:0;";
-        return style;
-    }
 }
 
 function checkUserFolder(assignedUser) {

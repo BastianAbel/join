@@ -122,6 +122,10 @@
     margin-left: -7px;
 }
 
+.user:first-child {
+    margin-left: 0;
+}
+
 .move-card-button {
     display: flex;
     justify-content: center;
@@ -175,7 +179,6 @@
 
 .dropdown-main-container:hover {
     border: solid 1px rgb(237, 237, 237);
-    border-radius: 8px;
 }
 
 .dropdown-container {
