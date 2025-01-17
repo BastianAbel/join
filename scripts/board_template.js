@@ -1,9 +1,9 @@
-function renderTaskBigView(taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, taskTypeColor){
+function renderTaskBigView(taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage){
     return `
     <div id="window-overlay" class="d-none window-overlay"></div>
         <div id="task-big-container" class=" task-overlay-container">
             <div class="userstory-close-container">
-                <div  style="${taskTypeColor}" class="labels-board-card-label">
+                <div class="labels-board-card-label">
                     <div class="card-label"><span>${taskType}</span></div>
                 </div>
                 <img onclick="bigTaskSlideOut()" src="../assets/icons/close-black.svg" alt="">

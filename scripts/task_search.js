@@ -148,19 +148,12 @@ function statusProgressBar(completedSubtasks, totalSubtasks) {
 }
 
 function changeColorCardType(taskType) {
-    let cleanTaskType = removeSpanTags(taskType);
-    let incomeTaskType = cleanTaskType.toLowerCase();
-
-    if (incomeTaskType === "technicaltask") {
+    if (taskType === "technicalTask") {
         return "background-color:rgba(31,215,193,1)";
     }
-    if (incomeTaskType === "userstory") {
+    if (taskType === "userStory") {
         return "background-color:rgba(0,56,255,1)";
     }
-}
-
-function removeSpanTags(taskType) {
-    return taskType.replace(/<\/?span[^>]*>/g, '');
 }
 
 function stopEventBubbling(event) {

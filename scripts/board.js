@@ -16,13 +16,13 @@ function getSmallCardInfo(j, taskDate, taskPriority, priorityImage, assignedUser
     let taskTitle = document.getElementById(`task-title${j}`).innerHTML;
     let taskDescription = document.getElementById(`task-description${j}`).innerHTML;
     let taskType = document.getElementById(`task-type${j}`).innerHTML;
-    let taskTypeColor = changeColorCardType(taskType);
+   
 
-    setInfoToBigCard(taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, taskTypeColor);
+    setInfoToBigCard(taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers);
 }
 
-function setInfoToBigCard(taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, taskTypeColor) {
-    document.getElementById("board-main").innerHTML += renderTaskBigView(taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, taskTypeColor);
+function setInfoToBigCard(taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers) {
+    document.getElementById("board-main").innerHTML += renderTaskBigView(taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage);
     getEmployeeInfo(assignedUsers);
 }
 
