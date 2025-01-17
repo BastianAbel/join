@@ -6,23 +6,30 @@ let draggedElement;
 let allTasks = [];
 let allUsers = [];
 
-function taskBigView(j, taskDate, taskPriority, priorityImage, assignedUsers) {
-    document.getElementById("profileBtn").style.backgroundColor = "#b8b9bb";
-    document.getElementById("window-overlay").classList.remove("d-none");
-    getSmallCardInfo(j, taskDate, taskPriority, priorityImage, assignedUsers);
+function taskBigView(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, subtasks, cardTypeColor) {
+    document.getElementById('profileBtn').style.backgroundColor = "#b8b9bb";
+    document.getElementById('window-overlay').classList.remove('d-none');
+    if (subtasks !== "undefined") {
+        const decodedSubtasks = JSON.parse(decodeURIComponent(subtasks));
+        getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks);
+    } else {
+        getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor);
+    }
 }
 
-function getSmallCardInfo(j, taskDate, taskPriority, priorityImage, assignedUsers) {
+function getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor, subtasks) {
     let taskTitle = document.getElementById(`task-title${j}`).innerHTML;
     let taskDescription = document.getElementById(`task-description${j}`).innerHTML;
     let taskType = document.getElementById(`task-type${j}`).innerHTML;
+   
 
-    setInfoToBigCard(taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers);
+    setInfoToBigCard(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, subtasks)
 }
 
-function setInfoToBigCard(taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers) {
-    document.getElementById("board-main").innerHTML += renderTaskBigView(taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage);
+function setInfoToBigCard(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, subtasks) {
+    document.getElementById("board-main").innerHTML += renderTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, cardTypeColor);
     getEmployeeInfo(assignedUsers);
+    getSubtaskInfo(subtasks, taskId);
 }
 
 function getEmployeeInfo(assignedUsers) {
@@ -30,8 +37,8 @@ function getEmployeeInfo(assignedUsers) {
         assignedUsers = assignedUsers.split(",");
     }
     for (let index = 0; index < assignedUsers.length; index++) {
-        let bgColor = document.getElementById(`user${index}`).style.backgroundColor;
-        document.getElementById("assignedContacts").innerHTML += `
+        let bgColor = getRandomColor();
+        document.getElementById('assignedContacts').innerHTML += `
         <div class="contact">
             <div class="contact-info">
                 <div style="background-color: ${bgColor}" class="contact-img">${getEmployeesInitials(assignedUsers[index])}</div><span>${assignedUsers[index]}</span>
@@ -41,9 +48,97 @@ function getEmployeeInfo(assignedUsers) {
     }
 }
 
+async function getSubtaskInfo(subtasks, taskId) {
+    if (subtasks === undefined) {
+        document.getElementById('subtaskContainer').innerHTML = "Keine Subtasks";
+    } else {
+        for (let i = 0; i < subtasks.length; i++) {
+            document.getElementById('subtaskContainer').innerHTML += `
+            <div class="subtask-element-container">
+                <input id="privacyCheckbox${i}" type="checkbox" onchange="changeStateofCheckbox(${i}, '${taskId}')" required>
+                <label id="checkboxLabel${i}" for="privacyCheckbox${i}"></label>
+                <span>${subtasks[i].description}</span>
+            </div>
+        `;
+            await getCheckboxBg(taskId, i);
+        }
+    }
+}
+
+async function getCheckboxBg(taskId, i) {
+    let subtaskResponse = await loadData(path = `${PATH_TO_TASKS}${taskId}/subtasks/${i}/checked`);
+    if (subtaskResponse === true) {
+        document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-checked.svg")';
+    } else if (subtaskResponse === false) {
+        document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-not-checked.svg")';
+    }
+}
+
+function changeStateofCheckbox(i, taskId) {
+
+    let isChecked = document.getElementById(`privacyCheckbox${i}`).checked;
+    if (isChecked) {
+        updateData(path = PATH_TO_TASKS, id = `${taskId}/subtasks/${i}`, data = { "checked": true });
+        document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-checked.svg") no-repeat';
+    } else {
+        updateData(path = PATH_TO_TASKS, id = `${taskId}/subtasks/${i}`, data = { "checked": false })
+        document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-not-checked.svg") no-repeat';
+    }
+}
+
+
+function openEditTaskBigView() {
+    document.getElementById('window-overlay').outerHTML = "";
+    document.getElementById('board-main').innerHTML = renderEditTaskBigView();
+}
+
+async function getSubtaskInfo(subtasks, taskId) {
+    if (subtasks === undefined) {
+        document.getElementById('subtaskContainer').innerHTML = "Keine Subtasks";
+    } else {
+        for (let i = 0; i < subtasks.length; i++) {
+            document.getElementById('subtaskContainer').innerHTML += `
+            <div class="subtask-element-container">
+                <input id="privacyCheckbox${i}" type="checkbox" onchange="changeStateofCheckbox(${i}, '${taskId}')" required>
+                <label id="checkboxLabel${i}" for="privacyCheckbox${i}"></label>
+                <span>${subtasks[i].description}</span>
+            </div>
+        `;
+            await getCheckboxBg(taskId, i);
+        }
+    }
+}
+
+async function getCheckboxBg(taskId, i) {
+    let subtaskResponse = await loadData(path = `${PATH_TO_TASKS}${taskId}/subtasks/${i}/checked`);
+    if (subtaskResponse === true) {
+        document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-checked.svg")';
+    } else if (subtaskResponse === false) {
+        document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-not-checked.svg")';
+    }
+}
+
+function changeStateofCheckbox(i, taskId) {
+
+    let isChecked = document.getElementById(`privacyCheckbox${i}`).checked;
+    if (isChecked) {
+        updateData(path = PATH_TO_TASKS, id = `${taskId}/subtasks/${i}`, data = { "checked": true });
+        document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-checked.svg") no-repeat';
+    } else {
+        updateData(path = PATH_TO_TASKS, id = `${taskId}/subtasks/${i}`, data = { "checked": false })
+        document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-not-checked.svg") no-repeat';
+    }
+}
+
+
+function openEditTaskBigView() {
+    document.getElementById('window-overlay').outerHTML = "";
+    document.getElementById('board-main').innerHTML = renderEditTaskBigView();
+}
+
 function closeTaskBigView() {
-    document.getElementById("window-overlay").classList.add("d-none");
-    document.getElementById("profileBtn").style.backgroundColor = "white";
+    document.getElementById('window-overlay').outerHTML = "";
+    document.getElementById('profileBtn').style.backgroundColor = "white";
     document.getElementById("task-big-container").outerHTML = "";
 }
 
@@ -72,6 +167,12 @@ function addNewTask(state) {
     window.location.href = `add-task.html?state=${state}`;
 }
 
+async function deleteTask(taskId) {
+    await deleteData(path = PATH_TO_TASKS, id = taskId);
+    await setBackendJsonToSessionStorage();
+    navigateToBoard();
+}
+
 function getAllTasksAndUsersFromSessionStorage() {
     let sessionResponse = sessionStorage.getItem("joinJson");
     let sessionResponseJson = JSON.parse(sessionResponse);
@@ -85,9 +186,9 @@ function getAllTasksAndUsersFromSessionStorage() {
 // prettier-ignore
 function writeCardsToBoardSectionsFromArray(array) {
     for (let j = 0; j < array.length; j++) {
-        let renderValuesObject = getObjectWithValuesNeedeInBoardCard(array[j]);
+        let renderValuesObject = getObjectWithValuesNeededInBoardCard(array[j]);
         if (array[j].state === "toDo") {
-            hideElementAndRenderAnother("todo", "board-to-do-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc, renderValuesObject.color, j);
+            hideElementAndRenderAnother("todo", "board-to-do-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc, renderValuesObject.color, j)
         } else if (array[j].state === "inProgress") {
             hideElementAndRenderAnother("inProgress", "board-in-progress-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc, renderValuesObject.color, j);
         } else if (array[j].state === "awaitFeedback") {
@@ -98,7 +199,7 @@ function writeCardsToBoardSectionsFromArray(array) {
     }
 }
 
-function getObjectWithValuesNeedeInBoardCard(task) {
+function getObjectWithValuesNeededInBoardCard(task) {
     return {
         task: task,
         subtaskState: getSubtaskStatus(task.subtasks),

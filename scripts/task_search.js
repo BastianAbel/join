@@ -1,11 +1,10 @@
-let base_url = "https://join-10cdc-default-rtdb.europe-west1.firebasedatabase.app/";
 let data = [];
 let contentRef = document.getElementById("card-overlay-wrapper");
 let progressBarCalc = "";
 
 async function setBackendJsonToSessionStorage() {
     try {
-        let response = await fetch(base_url + ".json");
+        let response = await fetch(BASE_URL + ".json");
         if (!response.ok) {
             throw new Error("Network response was not ok");
         }
@@ -57,7 +56,6 @@ function createUserContainer(assignedUsers) {
     for (let i = 0; i < assignedUsers.length; i++) {
         let userContainer = document.createElement("div");
         userContainer.className = "user";
-        userContainer.id = `user${i}`;
         userContainer.style = setUser0Style(userContainer.id);
         userContainer.style.backgroundColor = getRandomColor();
         let userName = checkUserFolder(assignedUsers[i]);
@@ -149,10 +147,10 @@ function statusProgressBar(completedSubtasks, totalSubtasks) {
 
 function changeColorCardType(taskType) {
     if (taskType === "technicalTask") {
-        return (style = "background-color:rgba(31,215,193,1)");
+        return "background-color:rgba(31,215,193,1)";
     }
     if (taskType === "userStory") {
-        return (style = "background-color:rgba(0,56,255,1)");
+        return "background-color:rgba(0,56,255,1)";
     }
 }
 
