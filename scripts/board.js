@@ -75,7 +75,7 @@ function addNewTask(state) {
 function getAllTasksAndUsersFromSessionStorage() {
     let sessionResponse = sessionStorage.getItem("joinJson");
     let sessionResponseJson = JSON.parse(sessionResponse);
-    console.log(sessionResponseJson)
+    console.log(sessionResponseJson);
     let tasks = sessionResponseJson["tasks"];
     allTasks = getArrayFromObject(tasks);
     let users = sessionResponseJson["users"];
@@ -225,5 +225,17 @@ function removeRotations() {
     let rotatedCards = document.getElementsByClassName("rotate-on-drag");
     for (let j = 0; j < rotatedCards.length; j++) {
         rotatedCards[j].classList.remove("rotate-on-drag");
+    }
+}
+
+function enableScrollByMouseposition(event) {
+    let container = event.target.parentElement;
+    let rect = container.getBoundingClientRect();
+    let mouseX = event.clientX;
+
+    if (mouseX > rect.right - 20) {
+        container.scrollBy({ left: 248, behavior: "smooth" });
+    } else if (mouseX < rect.left + 20) {
+        container.scrollBy({ left: -248, behavior: "smooth" });
     }
 }
