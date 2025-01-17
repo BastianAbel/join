@@ -75,7 +75,7 @@ function addNewTask(state) {
 function getAllTasksAndUsersFromSessionStorage() {
     let sessionResponse = sessionStorage.getItem("joinJson");
     let sessionResponseJson = JSON.parse(sessionResponse);
-    console.log(sessionResponseJson)
+    console.log(sessionResponseJson);
     let tasks = sessionResponseJson["tasks"];
     allTasks = getArrayFromObject(tasks);
     let users = sessionResponseJson["users"];
@@ -123,6 +123,7 @@ function checkMousePosition(event) {
     let boardContainer = document.getElementById("board-main");
     const boardWidth = boardContainer.offsetWidth;
     const boardHeight = boardContainer.offsetHeight;
+
     // Scroll nach unten, wenn die Maus nahe am unteren Rand ist
     if (event.clientY > boardHeight - SCROLL_MARGIN) {
         startScrolling(0, SCROLL_SPEED);
@@ -174,7 +175,6 @@ async function moveTaskToState(newState) {
 function startDragging(event, taskId) {
     currentDraggedTask = allTasks.find((task) => task.id == taskId);
     draggedElement = event.target;
-    console.log(event.target);
 }
 
 async function updateSessionStorage() {
@@ -196,14 +196,46 @@ function checkSectionForChildNodes() {
     for (let i = 0; i < boardSections.length; i++) {
         if (boardSections[i].children.length == 0) {
             if (i == 0) {
-                boardSections[i].innerHTML += renderInfoNothingInBoardSection("todo", "To do");
+                document.getElementById("todo").classList.remove("d-none");
             } else if (i == 1) {
-                boardSections[i].innerHTML += renderInfoNothingInBoardSection("inProgress", "in progress");
+                document.getElementById("inProgress").classList.remove("d-none");
             } else if (i == 2) {
-                boardSections[i].innerHTML += renderInfoNothingInBoardSection("awaitingFeedback", "awaiting Feedback");
+                document.getElementById("awaitingFeedback").classList.remove("d-none");
             } else if (i == 3) {
-                boardSections[i].innerHTML += renderInfoNothingInBoardSection("done", "Done");
+                document.getElementById("done").classList.remove("d-none");
             }
         }
+    }
+}
+
+function rotate(event) {
+    event.target.classList.add("rotate-on-drag");
+    if (event.dataTransfer) {
+        let dragGhost = event.target.cloneNode(true);
+        dragGhost.style.transform = "rotate(5deg)";
+        dragGhost.style.position = "absolute";
+        dragGhost.style.top = "-9999px";
+        document.body.appendChild(dragGhost);
+        event.dataTransfer.setDragImage(dragGhost, dragGhost.offsetWidth / 2, dragGhost.offsetHeight / 2);
+        setTimeout(() => document.body.removeChild(dragGhost), 0);
+    }
+}
+
+function removeRotations() {
+    let rotatedCards = document.getElementsByClassName("rotate-on-drag");
+    for (let j = 0; j < rotatedCards.length; j++) {
+        rotatedCards[j].classList.remove("rotate-on-drag");
+    }
+}
+
+function enableScrollByMouseposition(event) {
+    let container = event.target.parentElement;
+    let rect = container.getBoundingClientRect();
+    let mouseX = event.clientX;
+
+    if (mouseX > rect.right - 20) {
+        container.scrollBy({ left: 248, behavior: "smooth" });
+    } else if (mouseX < rect.left + 20) {
+        container.scrollBy({ left: -248, behavior: "smooth" });
     }
 }
