@@ -75,19 +75,15 @@ function addNewTask(state) {
 function getAllTasksAndUsersFromSessionStorage() {
     let sessionResponse = sessionStorage.getItem("joinJson");
     let sessionResponseJson = JSON.parse(sessionResponse);
-    console.log(sessionResponseJson);
     let tasks = sessionResponseJson["tasks"];
     allTasks = getArrayFromObject(tasks);
     let users = sessionResponseJson["users"];
     allUsers = getArrayFromObject(users);
     writeCardsToBoardSectionsFromArray(allTasks);
-    console.table(allTasks);
-    console.table(allUsers);
 }
 
 // prettier-ignore
 function writeCardsToBoardSectionsFromArray(array) {
-    console.log(array)
     for (let j = 0; j < array.length; j++) {
         let renderValuesObject = getObjectWithValuesNeedeInBoardCard(array[j]);
         if (array[j].state === "toDo") {
@@ -181,7 +177,6 @@ async function updateSessionStorage() {
     let response = await fetch(BASE_URL + ".json");
     let fetchedData = await response.json();
     sessionStorage.setItem("joinJson", JSON.stringify(fetchedData));
-    console.log(fetchedData);
 }
 
 function clearBoard() {
