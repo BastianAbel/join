@@ -159,7 +159,6 @@ function changeColorCardType(taskType) {
     }
 }
 
-
 function removeSpanTags(taskType) {
     return taskType.replace(/<\/?span[^>]*>/g, '');
 }
