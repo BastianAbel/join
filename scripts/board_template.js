@@ -6,7 +6,7 @@ function renderTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskTyp
                 <div style=" ${cardTypeColor}" class="labels-board-card-label">
                     <div class="card-label"><span>${taskType}</span></div>
                 </div>
-                <img onclick="bigTaskSlideOut()" src="../assets/icons/close-black.svg" alt="">
+                <img onclick="bigTaskSlideOut()" onmousedown="removeRotations()" src="../assets/icons/close-black.svg" alt="">
             </div>
             <h1 class="task-overlay-head">${taskTitle}</h1>
             <span>${taskDescription}</span>

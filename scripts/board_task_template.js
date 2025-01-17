@@ -2,6 +2,11 @@ function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progr
     console.log(task.subtasks)
     return ` 
     <div id="${task.id}" onclick="taskBigView('${task.id}','${j}', '${task.dueDate}', '${task.priority}', '${priorityImage}', '${task.assignedTo}', '${encodeURIComponent(JSON.stringify(task.subtasks))}', '${cardTypeColor}')" class="card-main-container">
+    <div id="cardId${j}" onclick="taskBigView('${j}', '${task.dueDate}', '${task.priority}', '${priorityImage}', '${
+        task.assignedTo
+    }')" class="card-main-container draggable" draggable="true" ondragstart="startDragging(event, '${
+        task.id
+    }')" ondrag="checkMousePosition(event)" onmousedown="rotate(event)" onmouseover="enableScrollByMouseposition(event)">
             <div class="card-main-container-content">
                 <div style=" ${cardTypeColor}" class="labels-board-card-label">
                     <div id="task-type${j}" class="card-label"><span>${capitalizeFirstLetter(task.type)}</span></div>
@@ -18,17 +23,19 @@ function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progr
                 </div>
                 <div class="user-and-card-mover-container">
                     <div id="user-main-container" class="user-main">
-                     ${employeesName}
+                    ${employeesName}
                     </div>
                     <div class="move-card-button"><img src="${priorityImage}" alt="${task.priority}"></div>
                 </div> 
                 <div class="dropdown-main-container">
-                    <select class="dropdown-container" onclick="stopEventBubbling(event)" name="options">
+                    <select class="dropdown-container" onclick="stopEventBubbling(event)" name="options" onchange="handleDropdownChange(event, '${
+                        task.id
+                    }')">
                         <option class="dropdown-options" value="" selected>Verschieben in </option>
-                        <option value="first">Todo</option>
-                        <option value="second">In Progress</option>
-                        <option value="third">Await feedback</option>
-                        <option value="four">Done</option>
+                        <option value="toDo">Todo</option>
+                        <option value="inProgress">In Progress</option>
+                        <option value="awaitFeedback">Await feedback</option>
+                        <option value="done">Done</option>
                         </select>  
                     </div>           
             </div>

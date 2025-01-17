@@ -1,6 +1,8 @@
-const SCROLL_MARGIN = 50; // Abstand vom Rand, ab dem gescrollt wird
-const SCROLL_SPEED = 20; // Geschwindigkeit des Scrollens
+const SCROLL_MARGIN = 5; // Abstand vom Rand, ab dem gescrollt wird
+const SCROLL_SPEED = 15; // Geschwindigkeit des Scrollens
 let scrollInterval;
+let currentDraggedTask;
+let draggedElement;
 let allTasks = [];
 let allUsers = [];
 
@@ -19,7 +21,7 @@ function getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assi
     let taskTitle = document.getElementById(`task-title${j}`).innerHTML;
     let taskDescription = document.getElementById(`task-description${j}`).innerHTML;
     let taskType = document.getElementById(`task-type${j}`).innerHTML;
-
+   
 
     setInfoToBigCard(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, subtasks)
 }
@@ -42,8 +44,52 @@ function getEmployeeInfo(assignedUsers) {
                 <div style="background-color: ${bgColor}" class="contact-img">${getEmployeesInitials(assignedUsers[index])}</div><span>${assignedUsers[index]}</span>
             </div>
         </div>
-        `
+        `;
     }
+}
+
+async function getSubtaskInfo(subtasks, taskId) {
+    if (subtasks === undefined) {
+        document.getElementById('subtaskContainer').innerHTML = "Keine Subtasks";
+    } else {
+        for (let i = 0; i < subtasks.length; i++) {
+            document.getElementById('subtaskContainer').innerHTML += `
+            <div class="subtask-element-container">
+                <input id="privacyCheckbox${i}" type="checkbox" onchange="changeStateofCheckbox(${i}, '${taskId}')" required>
+                <label id="checkboxLabel${i}" for="privacyCheckbox${i}"></label>
+                <span>${subtasks[i].description}</span>
+            </div>
+        `;
+            await getCheckboxBg(taskId, i);
+        }
+    }
+}
+
+async function getCheckboxBg(taskId, i) {
+    let subtaskResponse = await loadData(path = `${PATH_TO_TASKS}${taskId}/subtasks/${i}/checked`);
+    if (subtaskResponse === true) {
+        document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-checked.svg")';
+    } else if (subtaskResponse === false) {
+        document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-not-checked.svg")';
+    }
+}
+
+function changeStateofCheckbox(i, taskId) {
+
+    let isChecked = document.getElementById(`privacyCheckbox${i}`).checked;
+    if (isChecked) {
+        updateData(path = PATH_TO_TASKS, id = `${taskId}/subtasks/${i}`, data = { "checked": true });
+        document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-checked.svg") no-repeat';
+    } else {
+        updateData(path = PATH_TO_TASKS, id = `${taskId}/subtasks/${i}`, data = { "checked": false })
+        document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-not-checked.svg") no-repeat';
+    }
+}
+
+
+function openEditTaskBigView() {
+    document.getElementById('window-overlay').outerHTML = "";
+    document.getElementById('board-main').innerHTML = renderEditTaskBigView();
 }
 
 async function getSubtaskInfo(subtasks, taskId) {
@@ -97,16 +143,16 @@ function closeTaskBigView() {
 }
 
 function bigTaskSlideOut() {
-    document.getElementById('task-big-container').classList.add('slide-out-task-big')
+    document.getElementById("task-big-container").classList.add("slide-out-task-big");
     setTimeout(() => {
         closeTaskBigView();
     }, 300);
 }
 
-document.addEventListener('mouseup', function (e) {
-    let bigTaskDiv = document.getElementById('task-big-container');
+document.addEventListener("mouseup", function (e) {
+    let bigTaskDiv = document.getElementById("task-big-container");
     if (bigTaskDiv && !bigTaskDiv.contains(e.target)) {
-        bigTaskDiv.classList.add('slide-out-task-big');
+        bigTaskDiv.classList.add("slide-out-task-big");
         setTimeout(() => {
             closeTaskBigView();
         }, 300);
@@ -130,7 +176,7 @@ async function deleteTask(taskId) {
 function getAllTasksAndUsersFromSessionStorage() {
     let sessionResponse = sessionStorage.getItem("joinJson");
     let sessionResponseJson = JSON.parse(sessionResponse);
-    console.log(sessionResponseJson)
+    console.log(sessionResponseJson);
     let tasks = sessionResponseJson["tasks"];
     allTasks = getArrayFromObject(tasks);
     let users = sessionResponseJson["users"];
@@ -172,18 +218,8 @@ function hideElementAndRenderAnother(elementToHide, parentToRenderCardsIn, rende
     document.getElementById(parentToRenderCardsIn).innerHTML += taskCardTemplateToHtml(renderParam_1, renderParam_2, renderParam_3, renderParam_4, renderParam_5, renderParam_6, j);
 }
 
-function makeItDraggable() {
-    //TODO - alle Karten brauchen onDragStart;
-    //TODO - alle Ziellbereich brauchen allowDrop und onDrop;
-    //TODO - Scroll-Mechanik steht in Dev-Test
-    //TODO - bei Drop muss der neue State in Firebase gespeichert werden. Dann müssen die neuen Werte in den Sessionstorage. Und danach muss das Board geupdatet werden
-    //TODO - Wenn alles klappt, erhalten die Cards den Drag-Effekt (leicht schräg)
-    //TODO - onDragEnd wird der Drag-Effekt wieder entnommen (gerade Karte)
-}
-
 function checkMousePosition(event) {
     if (!event.clientX || !event.clientY) return; // Event hat keine Koordinaten
-
     // Ermittelt die Größe von Board-Main
     let boardContainer = document.getElementById("board-main");
     const boardWidth = boardContainer.offsetWidth;
@@ -222,4 +258,85 @@ function startScrolling(x, y) {
 function stopScrolling() {
     clearInterval(scrollInterval);
     scrollInterval = null;
+}
+
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+async function moveTaskToState(newState) {
+    currentDraggedTask.state = newState;
+    await updateData(PATH_TO_TASKS, currentDraggedTask.id, (data = currentDraggedTask));
+    await updateSessionStorage();
+    clearBoard();
+    getAllTasksAndUsersFromSessionStorage();
+    checkSectionForChildNodes();
+}
+
+function startDragging(event, taskId) {
+    currentDraggedTask = allTasks.find((task) => task.id == taskId);
+    draggedElement = event.target;
+}
+
+async function updateSessionStorage() {
+    let response = await fetch(BASE_URL + ".json");
+    let fetchedData = await response.json();
+    sessionStorage.setItem("joinJson", JSON.stringify(fetchedData));
+    console.log(fetchedData);
+}
+
+function clearBoard() {
+    let boardSections = document.getElementsByClassName("board-progress-state");
+    for (let i = 0; i < boardSections.length; i++) {
+        boardSections[i].innerHTML = "";
+    }
+}
+
+function checkSectionForChildNodes() {
+    let boardSections = document.getElementsByClassName("board-progress-state");
+    for (let i = 0; i < boardSections.length; i++) {
+        if (boardSections[i].children.length == 0) {
+            if (i == 0) {
+                document.getElementById("todo").classList.remove("d-none");
+            } else if (i == 1) {
+                document.getElementById("inProgress").classList.remove("d-none");
+            } else if (i == 2) {
+                document.getElementById("awaitingFeedback").classList.remove("d-none");
+            } else if (i == 3) {
+                document.getElementById("done").classList.remove("d-none");
+            }
+        }
+    }
+}
+
+function rotate(event) {
+    event.target.classList.add("rotate-on-drag");
+    if (event.dataTransfer) {
+        let dragGhost = event.target.cloneNode(true);
+        dragGhost.style.transform = "rotate(5deg)";
+        dragGhost.style.position = "absolute";
+        dragGhost.style.top = "-9999px";
+        document.body.appendChild(dragGhost);
+        event.dataTransfer.setDragImage(dragGhost, dragGhost.offsetWidth / 2, dragGhost.offsetHeight / 2);
+        setTimeout(() => document.body.removeChild(dragGhost), 0);
+    }
+}
+
+function removeRotations() {
+    let rotatedCards = document.getElementsByClassName("rotate-on-drag");
+    for (let j = 0; j < rotatedCards.length; j++) {
+        rotatedCards[j].classList.remove("rotate-on-drag");
+    }
+}
+
+function enableScrollByMouseposition(event) {
+    let container = event.target.parentElement;
+    let rect = container.getBoundingClientRect();
+    let mouseX = event.clientX;
+
+    if (mouseX > rect.right - 20) {
+        container.scrollBy({ left: 248, behavior: "smooth" });
+    } else if (mouseX < rect.left + 20) {
+        container.scrollBy({ left: -248, behavior: "smooth" });
+    }
 }

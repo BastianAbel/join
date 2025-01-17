@@ -1,4 +1,3 @@
-// const BASE_URL = "https://join-10cdc-default-rtdb.europe-west1.firebasedatabase.app/";
 let data = [];
 let contentRef = document.getElementById("card-overlay-wrapper");
 let progressBarCalc = "";
@@ -148,10 +147,10 @@ function statusProgressBar(completedSubtasks, totalSubtasks) {
 
 function changeColorCardType(taskType) {
     if (taskType === "technicalTask") {
-        return (style = "background-color:rgba(31,215,193,1)");
+        return "background-color:rgba(31,215,193,1)";
     }
     if (taskType === "userStory") {
-        return (style = "background-color:rgba(0,56,255,1)");
+        return "background-color:rgba(0,56,255,1)";
     }
 }
 
