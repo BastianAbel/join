@@ -9,13 +9,13 @@ function taskBigView(taskId, j, taskDate, taskPriority, priorityImage, assignedU
     document.getElementById('window-overlay').classList.remove('d-none');
     if (subtasks !== "undefined") {
         const decodedSubtasks = JSON.parse(decodeURIComponent(subtasks));
-        getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks );
+        getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks);
     } else {
         getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor);
     }
 }
 
-function getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor, subtasks ) {
+function getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor, subtasks) {
     let taskTitle = document.getElementById(`task-title${j}`).innerHTML;
     let taskDescription = document.getElementById(`task-description${j}`).innerHTML;
     let taskType = document.getElementById(`task-type${j}`).innerHTML;
@@ -46,34 +46,46 @@ function getEmployeeInfo(assignedUsers) {
     }
 }
 
-function getSubtaskInfo(subtasks, taskId) {
+async function getSubtaskInfo(subtasks, taskId) {
     if (subtasks === undefined) {
         document.getElementById('subtaskContainer').innerHTML = "Keine Subtasks";
     } else {
         for (let i = 0; i < subtasks.length; i++) {
-            console.log(subtasks[i].description)
             document.getElementById('subtaskContainer').innerHTML += `
             <div class="subtask-element-container">
                 <input id="privacyCheckbox${i}" type="checkbox" onchange="changeStateofCheckbox(${i}, '${taskId}')" required>
-                <label for="privacyCheckbox${i}"></label>
+                <label id="checkboxLabel${i}" for="privacyCheckbox${i}"></label>
                 <span>${subtasks[i].description}</span>
             </div>
         `;
+            await getCheckboxBg(taskId, i);
         }
     }
 }
 
+async function getCheckboxBg(taskId, i) {
+    let subtaskResponse = await loadData(path = `${PATH_TO_TASKS}${taskId}/subtasks/${i}/checked`);
+    if (subtaskResponse === true) {
+        document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-checked.svg")';
+    } else if (subtaskResponse === false) {
+        document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-not-checked.svg")';
+    }
+}
+
 function changeStateofCheckbox(i, taskId) {
+
     let isChecked = document.getElementById(`privacyCheckbox${i}`).checked;
-    if(isChecked){
-        updateData(path = PATH_TO_TASKS, id = `${taskId}/subtasks/${i}`, data = { "checked": true }) 
+    if (isChecked) {
+        updateData(path = PATH_TO_TASKS, id = `${taskId}/subtasks/${i}`, data = { "checked": true });
+        document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-checked.svg") no-repeat';
     } else {
-        updateData(path = PATH_TO_TASKS, id = `${taskId}/subtasks/${i}`, data = { "checked": false }) 
+        updateData(path = PATH_TO_TASKS, id = `${taskId}/subtasks/${i}`, data = { "checked": false })
+        document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-not-checked.svg") no-repeat';
     }
 }
 
 
-function openEditTaskBigView(){
+function openEditTaskBigView() {
     document.getElementById('window-overlay').outerHTML = "";
     document.getElementById('board-main').innerHTML = renderEditTaskBigView();
 }
@@ -109,7 +121,7 @@ function addNewTask(state) {
     window.location.href = `add-task.html?state=${state}`;
 }
 
-async function deleteTask(taskId){
+async function deleteTask(taskId) {
     await deleteData(path = PATH_TO_TASKS, id = taskId);
     await setBackendJsonToSessionStorage();
     navigateToBoard();

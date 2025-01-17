@@ -42,7 +42,6 @@
     background-color: #b8b9bb;
     inset: 0;
     display: flex;
-    z-index: 1000;
 }
 
 h1 {
