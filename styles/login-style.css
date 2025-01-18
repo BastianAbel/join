@@ -1,24 +1,37 @@
+html {
+    background-color: var(--light-background);
+    display: flex;
+    justify-content: center;
+}
+
 body {
     margin: 0px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-}
-
-main {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 0;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1920px;
     position: relative;
 }
 
-footer {
+header {
+    height: 100px;
+}
+
+main {
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    position: relative;
+}
+
+section, footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-self: flex-end;
     z-index: 1;
 }
 
@@ -32,11 +45,10 @@ h1 {
 
 a {
     color: #A8A8A8;
-}
-
-a:hover {
-    color: var(--identity);
-    font-weight: bold;
+    &&:hover {
+        color: var(--identity);
+        font-weight: bold;
+    }    
 }
 
 .join-logo {
@@ -46,21 +58,6 @@ a:hover {
     gap: 10px;
     opacity: 0px;
     margin: 37px 0 0 38px;
-}
-
-.head-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    position: relative;
-}
-
-.head-container button {
-    background-color: transparent;
-    border: none;
-    position: absolute;
-    left: 21px;
 }
 
 .login-main-container {
@@ -81,23 +78,23 @@ a:hover {
 .border-bottom {
     position: relative;
     padding-bottom: 16px;
-}
-
-.border-bottom::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 88px;
-    border-bottom: 3px solid #01bee8;
-    border-radius: 3px;
+    &&::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 88px;
+        border-bottom: 3px solid #01bee8;
+        border-radius: 3px;    
+    }
 }
 
 .input-main {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    align-items: center;
+    gap: 16px !important;
     padding-bottom: 32px;
     width: 100%;
 }
@@ -126,11 +123,10 @@ input {
     cursor: pointer;
     height: 48px;
     width: 100%;
-}
-
-input:focus {
-    outline: transparent;
-    border: 1px solid var(--identity);
+    &&:focus {
+        outline: transparent;
+        border: 1px solid var(--identity);    
+    }
 }
 
 .input-icon {
@@ -146,7 +142,6 @@ input:focus {
 }
 
 .login-options-container {
-    width: 180px;
     display: flex;
     flex-direction: column;
     gap: 21px;
@@ -176,11 +171,10 @@ input:focus {
     width: 180px;
     height: 51px;
     border: none;
-}
-
-.login-button:hover {
-    background-color: var(--identity);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    &&:hover {
+        background-color: var(--identity);
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);     
+    }
 }
 
 .guest-login-button {
@@ -198,13 +192,12 @@ input:focus {
     border-radius: 8px;
     width: 180px;
     height: 51px;
-    border: 1px solid rgba(42, 54, 71, 1)
-}
-
-.guest-login-button:hover {
-    border-color: var(--identity);
-    color: var(--identity);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(42, 54, 71, 1);
+    &&:hover {
+        border-color: var(--identity);
+        color: var(--identity);
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);     
+    }
 }
 
 .signup-container {
@@ -216,7 +209,6 @@ input:focus {
     gap: 35px;
     font-size: 20px;
     font-weight: 400;
-    padding-bottom: 40px;
 }
 
 .signup-button {
@@ -277,8 +269,42 @@ input:focus {
     display: flex;
     align-items: center;
     justify-content: start;
-    padding-left: 21px;
-    padding-right: 21px;
     color: var(--accent-text-color);
     gap: 8px;
+    margin-top: -16px;
+}
+
+@media(min-width:920px) {
+    .signup-container {
+        position: absolute;
+        top: 40px;
+        right: 40px;
+    }
+
+    .login-main-container {
+        width: 652px;
+        height: 449px;
+        justify-content: center;
+    }    
+
+    .login-options-container {
+        display: flex;
+        flex-direction: row;
+        gap: 21px;
+        opacity: 0px;
+    }
+
+    .input-container {
+        width: 422px;
+    }
+
+    .login-button {
+        width: 110px;
+        height: 48px;
+    }
+
+    .guest-login-button {
+        width: 177px;
+        height: 48px;
+    }
 }

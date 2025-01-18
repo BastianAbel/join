@@ -12,6 +12,21 @@
     border-radius: 50%;
 }
 
+.head-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.head-container button {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    left: 21px;
+}
+
 .input-main {
     gap: 24px;
 }

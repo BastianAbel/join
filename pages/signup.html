@@ -41,7 +41,8 @@
                     </div>
                     <div class="input-container">
                         <input id="password" type="password" placeholder="Password"
-                            onkeyup='visualizeIfPasswordsMatch(); togglePasswordVisibilityIcon(this, "first")' required />
+                            onkeyup='visualizeIfPasswordsMatch(); togglePasswordVisibilityIcon(this, "first")'
+                            required />
                         <img src="/assets/icons/lock.svg" alt="User Icon" class="input-icon" id="password-lock-first" />
                         <img src="/assets/icons/visibility_off.svg" alt="User Icon"
                             class="input-icon d-none visibility-icon" id="password-visibility-first"
@@ -49,7 +50,8 @@
                     </div>
                     <div class="input-container">
                         <input id="confirmPassword" type="password" placeholder="Confirm Password"
-                            onkeyup='visualizeIfPasswordsMatch(); togglePasswordVisibilityIcon(this, "second")' required />
+                            onkeyup='visualizeIfPasswordsMatch(); togglePasswordVisibilityIcon(this, "second")'
+                            required />
                         <img src="/assets/icons/lock.svg" alt="User Icon" class="input-icon"
                             id="password-lock-second" />
                         <img src="/assets/icons/visibility_off.svg" alt="User Icon"
@@ -58,17 +60,17 @@
                     </div>
                     <div class="check-password-style d-none" id="pw-state-message""></div>
                 </div>
-                <div class="check-privacy-container">
-                    <input id="privacyCheckbox" type="checkbox" required />
-                    <label for="privacyCheckbox"></label>
-                    <span style="color: #a8a8a8">I accept the
-                        <a class="privacy-link" href="/pages/privacy-policy.html">Privacy policy</a></span>
-                </div>
-                <div class="login-options-container">
-                    <button id="submitBtn" class="login-button">
-                        Sign up
-                    </button>
-                </div>
+                <div class=" check-privacy-container">
+                        <input id="privacyCheckbox" type="checkbox" required />
+                        <label for="privacyCheckbox"></label>
+                        <span style="color: #a8a8a8">I accept the
+                            <a class="privacy-link" href="/pages/privacy-policy.html">Privacy policy</a></span>
+                    </div>
+                    <div class="login-options-container">
+                        <button id="submitBtn" class="login-button">
+                            Sign up
+                        </button>
+                    </div>
             </form>
         </div>
     </main>
