@@ -35,10 +35,10 @@
     }
 }
 
-.contact-overlay {
+.window-overlay {
     position: fixed;
     height: 100vh;
-    width: 100vh;
+    width: 100vw;
     background-color: #b8b9bb;
     inset: 0;
     display: flex;

@@ -12,6 +12,7 @@
 body {
     display: flex;
     flex-direction: column;
+    overflow: auto;
 }
 
 #board-main {
@@ -19,7 +20,12 @@ body {
     padding: 0;
     background-color: rgb(246, 247, 248);
     height: calc(100vh - 160px);
-    overflow: auto;
+    overflow-x: auto !important;
+}
+
+h2 {
+    font-size: 27px !important;
+    font-weight: 700 !important;
 }
 
 .section-one {
@@ -36,8 +42,6 @@ body {
 .section-one h2 {
     width: 136px;
     height: 56px;
-    font-size: 47px;
-    font-weight: 700;
 }
 
 .section-one img {
@@ -75,6 +79,14 @@ body {
     }
 }
 
+.user-input-section:focus-within {
+    border: solid 1px var(--identity) !important;
+}
+
+input:focus {
+    border: none !important;
+}
+
 .user-input-field {
     width: 100%;
     font-size: 20px;
@@ -83,6 +95,9 @@ body {
     height: 32px;
     border: none;
     flex: 1;
+}
+.user-input-field:focus {
+    border: none;
 }
 
 .user-input-section button {
@@ -106,15 +121,16 @@ body {
 
 .board-progress-state {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    margin: 12px 0;
+    gap: 16px;
+    padding: 12px 0;
+    overflow: auto !important;
 }
 
 .section-three h2 {
     width: 73px;
     height: 32px;
-    font-size: 27px;
-    font-weight: 700;
 }
 
 .section-three img {
@@ -123,16 +139,18 @@ body {
     height: 30px;
 }
 
-.to-do-content {
+.progress-content {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 48px;
     border: dotted 1px rgba(168, 168, 168, 1);
     border-radius: 10px;
     background-color: rgba(231, 231, 231, 1);
     color: rgba(168, 168, 168, 1);
+    gap: 16px;
+    margin-bottom: 48px;
 }
 
 .to-do-content span {
@@ -156,11 +174,37 @@ body {
     padding-bottom: 10px;
 }
 
-.section-five, .section-six {
+.section-five,
+.section-six {
     max-width: 396px;
     margin: 0 16px;
 }
 
 .section-five-headline img {
     cursor: pointer;
+}
+
+#card-overlay-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.board-prio-headline-div {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: sticky;
+}
+
+.draggable {
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.draggable:active {
+    cursor: grabbing;
+}
+
+.rotate-on-drag {
+    transform: rotate(5deg);
 }

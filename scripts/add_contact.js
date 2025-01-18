@@ -1,17 +1,14 @@
-const PLACEHOLDER_CIRCLE = document.getElementById("add-contact-placeholder");
-const CONTACT_INITIALS = document.getElementById("add-contact-initials-paragraph");
-const CONTACT_PLACEHOLDER_IMG = document.getElementById("add-contact-placeholder-img");
-const NAME_INPUT = document.getElementById("add-contact-name-input-field");
-const EMAIL_INPUT = document.getElementById("add-contact-email-input-field");
-const PHONE_INPUT = document.getElementById("add-contact-phone-input-field");
-const SUCCESS_MESSAGE = document.getElementById("add-contact-success-div");
+
 let initials = "";
 let newColor = getRandomColor();
 function fillPlaceholderBubble() {
-    const name = NAME_INPUT.value;
-    if (name) {
+    const PLACEHOLDER_CIRCLE = document.getElementById("add-contact-placeholder");
+    const CONTACT_INITIALS = document.getElementById("add-contact-initials-paragraph");
+    const CONTACT_PLACEHOLDER_IMG = document.getElementById("add-contact-placeholder-img");
+    const NAME_INPUT = document.getElementById("add-contact-name-input-field");
+    if (NAME_INPUT.value) {
         PLACEHOLDER_CIRCLE.classList.remove("d-none");
-        initials = getContactInitials(name);
+        initials = getContactInitials(NAME_INPUT.value);
         setColorById("add-contact-placeholder", newColor);
         CONTACT_PLACEHOLDER_IMG.classList.add("d-none");
         CONTACT_INITIALS.innerHTML = initials;
@@ -33,6 +30,9 @@ async function getIdOfNewContact() {
 
 async function createContact(event) {
     event.preventDefault();
+    const EMAIL_INPUT = document.getElementById("add-contact-email-input-field");
+    const PHONE_INPUT = document.getElementById("add-contact-phone-input-field");
+    const NAME_INPUT = document.getElementById("add-contact-name-input-field");
     let newContact = {
         "email": EMAIL_INPUT.value,
         "name": NAME_INPUT.value,
@@ -49,10 +49,14 @@ async function createContact(event) {
                 contact: newContact,
                 color: newColor,
             });
-            //TODO - setup complete innerhtml for body like new header, footer and rendersingleview
-            document.getElementById("add-contact-body").innerHTML = renderNewContact(newContact.name, newContact.email, initials, newId, newColor, newContact.phone);
+            document.getElementById('window-overlay').classList.add('d-none');
+            document.getElementById('profileBtn').style.backgroundColor = "white";
+            document.getElementById("main-content").innerHTML = renderNewContact(newContact.name, newContact.email, initials, newId, newColor, newContact.phone);
+            document.getElementById('add-contact-success-div').classList.remove('d-none');
+            document.getElementById('add-contact-success-div').classList.add('slide-up-success');
             setTimeout(() => {
-                document.getElementById("add-contact-success-div").classList.add("slide-down");
+                document.getElementById('add-contact-success-div').classList.remove('slide-up-success');
+                document.getElementById("add-contact-success-div").classList.add("slide-down-success");
             }, 1500);
         }
     } catch (error) {

@@ -13,26 +13,32 @@
     <link rel="stylesheet" href="/styles/contactlist.css">
     <link rel="stylesheet" href="/styles/basic-assets.css">
     <link rel="stylesheet" href="/styles/submenu-popup.css" />
+    <link rel="stylesheet" href="/styles/big-popup.css" />
     <link rel="stylesheet" href="/styles/single-contact-view.css" />
     <link rel="stylesheet" href="/styles/edit-contact-style.css" />
     <link rel="stylesheet" href="/styles/add-contact-style.css" />
-    <script src="/scripts/contact_list.js" defer></script>
-    <script src="/scripts/firebase.js" defer></script>
-    <script src="/scripts/contact_list_template.js" defer></script>
-    <script src="/scripts/main.js" defer></script>
-    <script src="/scripts/login.js" defer></script>
     <script src="/scripts/standart.js" defer></script>
+    <script src="/scripts/firebase.js" defer></script>
+    <script src="/scripts/main.js" defer></script>
+    <script src="/scripts/contact_list.js" defer></script>
+    <script src="/scripts/contact_list_template.js" defer></script>
     <script src="/scripts/add_contact.js" defer></script>
+    <script src="/scripts/login.js" defer></script>
+    <script src="/scripts/add_contact_template.js" defer></script>
 </head>
-
 <body onload="initializeContactsList()">
-    <div id="contact-overlay" class="d-none contact-overlay"></div>
+    <div id="window-overlay" class="d-none window-overlay"></div>
     <div id="submenu" class="submenu-popup-container d-none">
         <div class="submenu-text-container">
             <a href="">Help</a>
             <a href="/pages/impressum.html">Legal Notice</a>
             <a href="/pages/privacy-policy.html">Privacy Policy</a>
             <a href="/pages/login-page.html">Log Out</a>
+        </div>
+    </div>
+    <div id="add-contact-success-div" class="big-popup-container d-none">
+        <div class="big-popup">
+            <span>Contact successfully created</span>
         </div>
     </div>
     <header>
@@ -62,5 +68,4 @@
         </div>
     </div>
 </body>
-
 </html>

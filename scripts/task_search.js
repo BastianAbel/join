@@ -1,6 +1,6 @@
-const BASE_URL = "https://join-10cdc-default-rtdb.europe-west1.firebasedatabase.app/";
 let data = [];
 let contentRef = document.getElementById("card-overlay-wrapper");
+let progressBarCalc = "";
 
 async function setBackendJsonToSessionStorage() {
     try {
@@ -9,9 +9,6 @@ async function setBackendJsonToSessionStorage() {
             throw new Error("Network response was not ok");
         }
         let fetchedTasks = await response.json();
-        if (!fetchedTasks.tasks) {
-            throw new Error("No tasks found in the response");
-        }
         let taskKeys = Object.keys(fetchedTasks.tasks);
         sessionStorage.setItem("joinJson", JSON.stringify(fetchedTasks));
         for (let i = 0; i < taskKeys.length; i++) {
@@ -42,8 +39,8 @@ function renderSearchResultCard(task) {
     const subtaskState = getSubtaskStatus(task.subtasks);
     const priorityImg = getPriorityImage(task.priority);
     const employeesName = createUserContainer(task.assignedTo);
-    const progressBarCalc = statusProgressBar(subtaskState);
-    contentRef.innerHTML += taskCardTemplateToHtml(task, subtaskState, priorityImg, employeesName, progressBarCalc);
+    const cardTypeColor = changeColorCardType(task.type);
+    contentRef.innerHTML += taskCardTemplateToHtml(task, subtaskState, priorityImg, employeesName, progressBarCalc, cardTypeColor);
 }
 
 function capitalizeFirstLetter(string) {
@@ -53,19 +50,30 @@ function capitalizeFirstLetter(string) {
 
 function createUserContainer(assignedUsers) {
     if (!assignedUsers) {
-        return "";
+        return console.log("No assigned users found");
     }
     let userContainers = "";
     for (let i = 0; i < assignedUsers.length; i++) {
         let userContainer = document.createElement("div");
         userContainer.className = "user";
         userContainer.style.backgroundColor = getRandomColor();
-        let initials = getEmployeesInitials(assignedUsers[i]);
+        let userName = checkUserFolder(assignedUsers[i]);
+        let initials = getEmployeesInitials(userName);
         userContainer.innerHTML = initials;
 
         userContainers += userContainer.outerHTML;
     }
     return userContainers;
+}
+
+function checkUserFolder(assignedUser) {
+    if (assignedUser && assignedUser.name) {
+        return assignedUser.name;
+    } else if (typeof assignedUser === "string") {
+        return assignedUser;
+    } else {
+        return "";
+    }
 }
 
 function changeBgColorByUserIcons(i) {
@@ -95,16 +103,18 @@ function checkUserSearchInputAndRedirect() {
 }
 
 function getSubtaskStatus(subtasks) {
-    subtaskStatus = [];
-    if (!subtasks || subtasks.length === 0) {
-        subtaskStatus.push({ von: 0, gesamt: 0 });
-        return subtaskStatus[0];
+    let completedSubtasks = 0;
+    let totalSubtasks = subtasks ? subtasks.length : 0;
+
+    if (totalSubtasks === 0) {
+        statusProgressBar(completedSubtasks, totalSubtasks);
+        return `<span>Keine Subtasks</span>`;
     }
 
-    const completedSubtasks = subtasks.filter((subtask) => subtask.checked);
-    const totalSubtasks = subtasks.length;
+    completedSubtasks = subtasks.filter((subtask) => subtask.checked).length;
+    statusProgressBar(completedSubtasks, totalSubtasks);
 
-    return { von: completedSubtasks.length, gesamt: totalSubtasks };
+    return `<span id="state">${completedSubtasks}/${totalSubtasks} ${totalSubtasks === 1 ? "Subtask" : "Subtasks"}</span>`;
 }
 
 function getEmployeesInitials(EmployeesName) {
@@ -116,9 +126,26 @@ function getEmployeesInitials(EmployeesName) {
         .join("");
 }
 
-function statusProgressBar(subtaskState) {
-    let percent = subtaskState.von / subtaskState.gesamt;
+function statusProgressBar(completedSubtasks, totalSubtasks) {
+    if (!completedSubtasks || totalSubtasks === 0) {
+        progressBarCalc = "0%";
+        return;
+    }
+    let percent = completedSubtasks / totalSubtasks;
     percent = Math.round(percent * 100);
 
-    return `${percent}%`;
+    progressBarCalc = `${percent}%`;
+}
+
+function changeColorCardType(taskType) {
+    if (taskType === "technicalTask") {
+        return "background-color:rgba(31,215,193,1)";
+    }
+    if (taskType === "userStory") {
+        return "background-color:rgba(0,56,255,1)";
+    }
+}
+
+function stopEventBubbling(event) {
+    event.stopPropagation();
 }

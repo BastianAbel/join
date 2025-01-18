@@ -23,7 +23,7 @@ function renderContactListContact(contact, initials, id) {
 
 function renderSingleContactView(name, email,phone, initials, id, color) {
     return ` 
-            <div id="contact-overlay" class="d-none contact-overlay"></div>
+            <div id="window-overlay" class="d-none window-overlay"></div>
             <div class="contact-container">
                 <div class="contact-head">
                     <div>
@@ -90,7 +90,7 @@ function renderEditContactView(initials, color, id) {
                     </div>
                     <div class="button-container">
                         <div>
-                            <button class="delete-button">Delete</button>
+                            <button onclick="deleteContact('${id}')" class="delete-button">Delete</button>
                         </div>
                         <div>
                             <button onclick="getEditedUserData('${id}')" class="save-contact-button">Save <img src="/assets/icons/check.svg" alt=""></button>
@@ -113,20 +113,24 @@ function renderAddContactView() {
         </div>
     </div>
     <div class="placeholder-container">
-        <img src="/assets/icons/contact-placeholder.svg" alt="">
+        <div id="add-contact-placeholder" class="d-none">
+            <p id="add-contact-initials-paragraph"></p>
+        </div>
+        <img id="add-contact-placeholder-img" src="/assets/icons/contact-placeholder.svg" alt="" />
     </div>
-    <form action="">
+    <form onsubmit="createContact(event)">
         <div class="create-contact-container">
             <div class="input-container">
-                <input type="text" placeholder="Name" required>
+                <input id="add-contact-name-input-field" type="text" placeholder="Name" onblur="fillPlaceholderBubble()"
+                    required />
                 <img src="/assets/icons/contact-person.svg" alt="User Icon" class="input-icon">
             </div>
             <div class="input-container">
-                <input type="email" placeholder="Email" required>
+                <input id="add-contact-email-input-field" type="email" placeholder="Email" required />
                 <img src="/assets/icons/mail-icon.svg" alt="Mail Icon" class="input-icon">
             </div>
             <div class="input-container">
-                <input type="tel" placeholder="Phone" required>
+                <input id="add-contact-phone-input-field" type="tel" placeholder="Phone" required />
                 <img src="/assets/icons/phone-icon.svg" alt="Phone Icon" class="input-icon">
             </div>
         </div>

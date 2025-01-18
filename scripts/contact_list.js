@@ -41,10 +41,10 @@ async function initializeContactsList() {
     await getListSection();
 }
 
-
 function navigateToContactList() {
     window.location.href = "contactlist.html";
 }
+
 function contactBigView(name, email, phone, initials, id, contact) {
     let color = allContacts.find((e) => e.id == id).color;
     document.getElementById('main-content').innerHTML = renderSingleContactView(name, email, phone, initials, id, color, contact);
@@ -53,7 +53,7 @@ function contactBigView(name, email, phone, initials, id, contact) {
 function editBigView(initials, color, id, name, email, phone) {
     document.getElementById('edit-delete-menu').style.display = "none";
     document.getElementById('profileBtn').style.backgroundColor = "#b8b9bb";
-    document.getElementById('contact-overlay').classList.remove('d-none');
+    document.getElementById('window-overlay').classList.remove('d-none');
     document.getElementById('main-content').innerHTML += renderEditContactView(initials, color, id);
     document.getElementById('newName').value = name;
     document.getElementById('newEmail').value = email;
@@ -62,9 +62,17 @@ function editBigView(initials, color, id, name, email, phone) {
 
 function closeEditContactView() {
     document.getElementById('edit-delete-menu').style.display = "flex";
-    document.getElementById('contact-overlay').classList.add('d-none');
+    document.getElementById('window-overlay').classList.add('d-none');
     document.getElementById('profileBtn').style.backgroundColor = "white";
     document.getElementById('editContactContainer').classList.add('d-none');
+    document.getElementById('editContactContainer').outerHTML = "";
+}
+
+function closeAddContactView() {
+    document.getElementById('profileBtn').style.backgroundColor = "white";
+    document.getElementById('window-overlay').classList.add('d-none');
+    document.getElementById('addContactContainer').classList.add('d-none');
+    document.getElementById('addContactContainer').outerHTML = '';
 }
 
 function EditContactViewSlideDown() {
@@ -74,7 +82,7 @@ function EditContactViewSlideDown() {
     }, 300);
 }
 
-window.addEventListener('mouseup', function (e) {
+document.addEventListener('mouseup', function (e) {
     let editContactDiv = document.getElementById('editContactContainer');
     if (editContactDiv && !editContactDiv.contains(e.target)) {
         editContactDiv.classList.add('hidden');
@@ -84,20 +92,13 @@ window.addEventListener('mouseup', function (e) {
     }
 });
 
-function closeAddContactView() {
-    document.getElementById('addContactContainer').classList.add('d-none');
-    document.getElementById('profileBtn').style.backgroundColor = "white";
-    document.getElementById('contact-overlay').classList.add('d-none');
+function openAddContactView() {
+    document.getElementById('profileBtn').style.backgroundColor = "#b8b9bb";
+    document.getElementById('window-overlay').classList.remove('d-none');
+    document.getElementById('main-content').innerHTML += renderAddContactView();
 }
 
-function AddContactViewSlideDown() {
-    document.getElementById('editContactContainer').classList.add('hidden');
-    setTimeout(() => {
-        closeAddContactView();
-    }, 300);
-}
-
-window.addEventListener('mouseup', function (e) {
+document.addEventListener('mouseup', function (e) {
     let addContactDiv = document.getElementById('addContactContainer');
     if (addContactDiv && !addContactDiv.contains(e.target)) {
         addContactDiv.classList.add('hidden');
@@ -107,10 +108,12 @@ window.addEventListener('mouseup', function (e) {
     }
 });
 
-function openAddContactView() {
-    document.getElementById('profileBtn').style.backgroundColor = "#b8b9bb";
-    document.getElementById('contact-overlay').classList.remove('d-none');
-    document.getElementById('main-content').innerHTML += renderAddContactView();
+
+function AddContactViewSlideDown() {
+    document.getElementById('addContactContainer').classList.add('hidden');
+    setTimeout(() => {
+        closeAddContactView();
+    }, 300);
 }
 
 function navigateToContactList() {
@@ -140,18 +143,18 @@ let editDeleteMenuVisible = false;
 
 function showEditDeleteMenu() {
     let editDeleteMenu = document.getElementById('edit-delete-menu');
-    document.getElementById('option-circle').style.display = "none";
+    document.getElementById('option-circle').classList.add('d-none');
     editDeleteMenu.classList.remove('d-none', 'hidden');
     editDeleteMenuVisible = true;
 }
 
-window.addEventListener('mouseup', function (e) {
+document.addEventListener('mouseup', function (e) {
     let editDeleteMenuDiv = document.getElementById('edit-delete-menu');
     if (editDeleteMenuVisible && !editDeleteMenuDiv.contains(e.target)) {
         editDeleteMenuDiv.classList.add('hidden');
         setTimeout(() => {
             editDeleteMenuDiv.classList.add('d-none');
-            document.getElementById('option-circle').style.display = "flex";
+            document.getElementById('option-circle').classList.remove('d-none');
             editDeleteMenuVisible = false;
         }, 100);
     }
@@ -165,9 +168,9 @@ function getEditedUserData(id) {
 }
 
 function saveEditedUserData(newName, newEmail, newPhone, id) {
-    document.getElementById('userName').innerHTML = newName;
-    document.getElementById('userEmail').innerHTML = newEmail;
-    document.getElementById('userPhone').innerHTML = newPhone;
+    document.getElementById('newName').innerHTML = newName;
+    document.getElementById('newEmail').innerHTML = newEmail;
+    document.getElementById('newPhone').innerHTML = newPhone;
     updateData(path = PATH_TO_CONTACTS, id = id, data = { "email": newEmail, "name": newName, "phone": newPhone });
     EditContactViewSlideDown();
 }

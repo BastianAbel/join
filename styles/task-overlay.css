@@ -1,12 +1,24 @@
-main {
-    height: fit-content !important;
-    border-radius: 30px;
+.task-overlay-container {
     padding: 32px 24px;
     gap: 16px;
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
     display: flex;
     flex-direction: column;
-    overflow-y: unset !important;
+    height: calc(100vh - 180px);
+    width: calc(100vw - 32px);
+    border-radius: 30px;
+    position: absolute;
+    top: 80px;
+    bottom: 80px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    margin: 8px 16px 8px 16px;
+    background-color: white;
+    z-index: 1000;
+    overflow-y: auto;
+    animation: slide-in 0.3s ease-out forwards;
+}
+
+.slide-out-task-big {
+    animation: slide-out 0.3s ease-out forwards;
 }
 
 h1 {
@@ -23,7 +35,6 @@ tr {
 }
 
 .userstory-close-container {
-    width: 348px;
     height: 32px;
     display: flex;
     justify-content: space-between;
@@ -34,6 +45,7 @@ tr {
     height: 24px;
     width: 24px;
     cursor: pointer;
+    z-index: 9999;
 }
 
 .userstory-close-container img:hover {
@@ -61,7 +73,6 @@ tr {
 .priority-state-container {
     display: flex;
     align-items: center;
-    width: 124px;
     height: 27px;
     padding: 4px 18px 4px 18px;
     gap: 10px;
@@ -72,7 +83,7 @@ tr {
 
 .priority-state-container img {
     width: 17px;
-    height: 6.33px;
+    height: 12px;
 }
 
 .assigned-contacts-container {
@@ -93,7 +104,6 @@ tr {
 }
 
 .contact {
-    width: 348px;
     height: 56px;
     padding: 7px 16px 7px 16px;
     gap: 0px;
@@ -127,7 +137,6 @@ tr {
 
 .subtasks-head {
     color: #42526E;
-    width: 348px;
     height: 19px;
 }
 
@@ -138,7 +147,6 @@ tr {
 }
 
 .subtasks-container {
-    width: 348px;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -147,7 +155,7 @@ tr {
 .subtask-element-container {
     display: flex;
     align-items: center;
-    height: 32px;
+    height: fit-content;
     padding: 6px 16px 6px 16px;
     gap: 16px;
     font-size: 16px;
@@ -206,4 +214,10 @@ tr {
     background: url(../assets/icons/delete.svg) no-repeat;
     height: 24px;
     width: 24px;
+}
+
+@media (max-width: 480px) {
+    .task-overlay-head {
+        font-size: 36px;
+    }
 }
