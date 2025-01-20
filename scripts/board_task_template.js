@@ -1,10 +1,8 @@
 function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progressBarCalc, cardTypeColor, j) {
     return ` 
-    <div id="${task.id}" onclick="taskBigView('${task.id}','${j}', '${task.dueDate}', '${task.priority}', '${priorityImage}', '${task.assignedTo}', '${encodeURIComponent(
-        JSON.stringify(task.subtasks)
-    )}', '${cardTypeColor}')" class="card-main-container draggable" draggable="true" ondragstart="startDragging(event, '${
+    <div id="${task.id}" onclick="taskBigView('${task.id}','${j}', '${task.dueDate}', '${task.priority}', '${priorityImage}', '${task.assignedTo}', '${encodeURIComponent(JSON.stringify(task.subtasks))}', '${cardTypeColor}')" class="card-main-container draggable" draggable="true" ondragstart="startDragging(event, '${
         task.id
-    }')" ondrag="checkMousePosition(event)" onmousedown="rotate(event)" onmouseover="enableScrollByMouseposition(event)">
+    }')" ondrag="enableScrollByDragging(event)" onmousedown="rotate(event)" onmouseup="removeRotations()" onmouseover="enableScrollByMouseposition(event)">
             <div class="card-main-container-content">
                 <div style=" ${cardTypeColor}" class="labels-board-card-label">
                     <div id="task-type${j}" class="card-label"><span>${capitalizeFirstLetter(task.type)}</span></div>
