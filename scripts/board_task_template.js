@@ -1,8 +1,7 @@
 function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progressBarCalc, cardTypeColor, j) {
     return ` 
-    <div id="${task.id}" onclick="taskBigView('${task.id}','${j}', '${task.dueDate}', '${task.priority}', '${priorityImage}', '${task.assignedTo}', '${encodeURIComponent(JSON.stringify(task.subtasks))}', '${cardTypeColor}')" class="card-main-container draggable" draggable="true" ondragstart="startDragging(event, '${
-        task.id
-    }')" ondrag="enableScrollByDragging(event)" onmousedown="rotate(event)" onmouseup="removeRotations()" onmouseover="enableScrollByMouseposition(event)">
+    <div id="${task.id}" onclick="taskBigView('${task.id}','${j}', '${task.dueDate}', '${task.priority}', '${priorityImage}', '${task.assignedTo}', '${encodeURIComponent(JSON.stringify(task.subtasks))}', '${cardTypeColor}')" class="card-main-container draggable" draggable="true" ondragstart="startDragging(event, '${task.id
+        }')" ondrag="enableScrollByDragging(event)" onmousedown="rotate(event)" onmouseup="removeRotations()" onmouseover="enableScrollByMouseposition(event)">
             <div class="card-main-container-content">
                 <div style=" ${cardTypeColor}" class="labels-board-card-label">
                     <div id="task-type${j}" class="card-label"><span>${capitalizeFirstLetter(task.type)}</span></div>
@@ -38,11 +37,10 @@ function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progr
 }
 
 function renderEditTaskBigView() {
-return /*html*/`
-<div id="window-overlay" class="d-none window-overlay"></div>
-<div id="task-big-container" class="edit-task-container">
+    return /*html*/`
+<div onclick="stopEventBubbling(event)" id="edit-task-big-container" class="edit-task-container">
             <div class="edit-task-close-container">
-                <img onclick="bigTaskSlideOut()" onmousedown="removeRotations()" src="../assets/icons/close-black.svg" alt="">
+                <img onclick="editTaskSlideOut()" onmousedown="removeRotations()" src="../assets/icons/close-black.svg" alt="">
             </div>
     <div id="inner-form-container">
         <div class="add-task-attribute-container">
@@ -66,7 +64,7 @@ return /*html*/`
         </div>
 
         <div class="add-task-attribute-container">
-            <label for="task-due-date">Due date<span class="require-asterisk">*</span></label>
+            <label for="task-due-date">Due date</label>
             <div id="add-task-date-container" class="add-task-input-img-container">
                 <input
                     id="task-due-date"
@@ -162,8 +160,8 @@ return /*html*/`
                 <ul id="subtask-list"></ul>
             </div>
         </div>
-        <div>
-            
+        <div id="edit-submit-changes-btn-container">
+            <button type="submit" id="create-task-btn" class="add-task-btn">Ok<img src="/assets/icons/check.svg" alt="" /></button>
         </div>
     </div>
 </div>`;

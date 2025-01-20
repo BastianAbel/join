@@ -22,7 +22,6 @@
     gap: 16px;
     display: flex;
     flex-direction: column;
-    height: 864px;
     width: calc(100vw - 32px);
     border-radius: 30px;
     position: absolute;

@@ -79,11 +79,6 @@ function changeStateofCheckbox(i, taskId) {
     }
 }
 
-function openEditTaskBigView() {
-    document.getElementById("window-overlay").outerHTML = "";
-    document.getElementById("board-main").innerHTML = renderEditTaskBigView();
-}
-
 async function getSubtaskInfo(subtasks, taskId) {
     if (subtasks === undefined) {
         document.getElementById("subtaskContainer").innerHTML = "Keine Subtasks";
@@ -122,14 +117,31 @@ function changeStateofCheckbox(i, taskId) {
 }
 
 function openEditTaskBigView() {
+    document.getElementById("window-overlay").classList.remove('d-none');
     document.getElementById('task-big-container').classList.add('d-none');
     document.getElementById('board-main').innerHTML += renderEditTaskBigView();
 }
 
+function closeEditTaskBigView() {
+    document.getElementById('task-big-container').classList.remove('d-none');
+}
 function closeTaskBigView() {
     document.getElementById("window-overlay").outerHTML = "";
     document.getElementById("profileBtn").style.backgroundColor = "white";
     document.getElementById("task-big-container").outerHTML = "";
+}
+
+function closeEditTaskBigView(){
+    document.getElementById("window-overlay").outerHTML = "";
+    document.getElementById("profileBtn").style.backgroundColor = "white";
+    document.getElementById('edit-task-big-container').outerHTML = "";
+}
+
+function editTaskSlideOut(){
+    document.getElementById('edit-task-big-container').classList.add('slide-out-task-big');
+    setTimeout(() => {
+        closeEditTaskBigView();
+    }, 300);
 }
 
 function bigTaskSlideOut() {

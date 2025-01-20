@@ -136,6 +136,22 @@ main {
     padding-bottom: 8px;
 }
 
+#edit-submit-changes-btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    padding-bottom: 8px;
+    position: absolute;
+    bottom: 18px;
+    right: 18px;
+}
+
+#edit-submit-changes-btn-container button {
+    height: 61px;
+    width: 77px;
+}
+
 .add-task-btn {
     font-size: 16px;
     font-weight: 700;
