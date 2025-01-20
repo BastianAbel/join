@@ -40,12 +40,15 @@ function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progr
 }
 
 function renderEditTaskBigView() {
-return `
+return /*html*/`
 <div id="window-overlay" class="d-none window-overlay"></div>
-<div id="task-big-container" class="task-overlay-container-task">
+<div id="task-big-container" class="edit-task-container">
+            <div class="edit-task-close-container">
+                <img onclick="bigTaskSlideOut()" onmousedown="removeRotations()" src="../assets/icons/close-black.svg" alt="">
+            </div>
     <div id="inner-form-container">
         <div class="add-task-attribute-container">
-            <label for="task-title">Title<span class="require-asterisk">*</span></label>
+            <label for="task-title">Title</label>
             <input
                 id="task-title"
                 class="add-task-attribute-input grey-placeholder"
@@ -62,6 +65,39 @@ return `
                 class="add-task-attribute-input grey-placeholder"
                 placeholder="Enter a Description"
             ></textarea>
+        </div>
+
+        <div class="add-task-attribute-container">
+            <label for="task-due-date">Due date<span class="require-asterisk">*</span></label>
+            <div id="add-task-date-container" class="add-task-input-img-container">
+                <input
+                    id="task-due-date"
+                    class="add-task-attribute-input grey-placeholder"
+                    type="text"
+                    placeholder="dd/mm/yyyy"
+                    oninput="formatDateInput()"
+                    required
+                />
+                <img src="/assets/icons/calender.svg" alt="calender icon" />
+            </div>
+        </div>
+
+        <div class="add-task-attribute-container">
+            <span>Priority</span>
+            <div id="prio-container">
+                <div id="prio-urgent-btn" class="prio-btn" onclick="setUrgentPrio()">
+                    <span>Urgent</span>
+                    <img src="/assets/icons/prio-alta-red.svg" alt="" />
+                </div>
+                <div id="prio-medium-btn" class="prio-btn" onclick="setMediumPrio()">
+                    <span>Medium</span>
+                    <img src="/assets/icons/prio-media-orange.svg" alt="" />
+                </div>
+                <div id="prio-low-btn" class="prio-btn" onclick="setLowPrio()">
+                    <span>Low</span>
+                    <img src="/assets/icons/prio-baja-green.svg" alt="" />
+                </div>
+            </div>
         </div>
 
         <div class="add-task-attribute-container">
@@ -90,48 +126,6 @@ return `
                 <ul id="add-task-contacts-list"></ul>
             </div>
             <div id="name-circle-container" class="d_none"></div>
-        </div>
-
-        <div class="add-task-attribute-container">
-            <label for="task-due-date">Due date<span class="require-asterisk">*</span></label>
-            <div id="add-task-date-container" class="add-task-input-img-container">
-                <input
-                    id="task-due-date"
-                    class="add-task-attribute-input grey-placeholder"
-                    type="text"
-                    placeholder="dd/mm/yyyy"
-                    oninput="formatDateInput()"
-                    required
-                />
-                <img src="/assets/icons/calender.svg" alt="calender icon" />
-            </div>
-        </div>
-
-        <div class="add-task-attribute-container">
-            <span>Prio</span>
-            <div id="prio-container">
-                <div id="prio-urgent-btn" class="prio-btn" onclick="setUrgentPrio()">
-                    <span>Urgent</span>
-                    <img src="/assets/icons/prio-alta-red.svg" alt="" />
-                </div>
-                <div id="prio-medium-btn" class="prio-btn" onclick="setMediumPrio()">
-                    <span>Medium</span>
-                    <img src="/assets/icons/prio-media-orange.svg" alt="" />
-                </div>
-                <div id="prio-low-btn" class="prio-btn" onclick="setLowPrio()">
-                    <span>Low</span>
-                    <img src="/assets/icons/prio-baja-green.svg" alt="" />
-                </div>
-            </div>
-        </div>
-
-        <div class="add-task-attribute-container">
-            <label for="task-category-select">Category<span class="require-asterisk">*</span></label>
-            <select id="task-category-select" class="add-task-attribute-input" required>
-                <option value="" disabled selected>Select task category</option>
-                <option value="userStory">User Story</option>
-                <option value="technicalTask">Technical Task</option>
-            </select>
         </div>
 
         <div class="add-task-attribute-container">
@@ -170,10 +164,8 @@ return `
                 <ul id="subtask-list"></ul>
             </div>
         </div>
-
-        <div id="require-info-container">
-            <span class="require-asterisk">*</span>
-            <p>This field is required</p>
+        <div>
+            
         </div>
     </div>
 </div>`;

@@ -132,9 +132,7 @@ function changeStateofCheckbox(i, taskId) {
 
 
 function openEditTaskBigView() {
-    document.getElementById('window-overlay').outerHTML = "";
-    document.getElementById()
-    document.getElementById('window-overlay').classList.remove('d-none');
+    document.getElementById('task-big-container').classList.add('d-none');
     document.getElementById('board-main').innerHTML += renderEditTaskBigView();
 }
 
