@@ -56,3 +56,26 @@ function getArrayFromObject(object) {
     }
     return array;
 }
+
+function getGreetingTextByTime() {
+    let greetingText = "";
+    let date = new Date();
+    let time = date.getHours();
+    if (time >= 5 && time <= 11) {
+        greetingText = "Good morning!";
+    } else if (time >= 11 && time <= 18) {
+        greetingText = "Good afternoon!";
+    } else {
+        greetingText = "Good evening!";
+    }
+    return greetingText;
+}
+
+function getUserNameFromLocalStorage() {
+    let userName = "";
+    userName = localStorage.getItem("userName");
+    if (!userName) {
+        userName = "";
+    }
+    return userName;
+}
