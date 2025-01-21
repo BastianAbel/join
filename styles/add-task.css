@@ -30,17 +30,18 @@ main {
 }
 
 .add-task-attribute-input {
-    border: 2px solid rgba(209, 209, 209);
+    border: 1px solid rgba(209, 209, 209);
     border-radius: 10px;
     min-height: 40px;
     margin-top: 8px;
     margin-bottom: 24px;
     font-size: 16px;
     padding-left: 8px;
+    font-family: inter;
 }
 
 #task-description {
-    height: 64px;
+    height: 88px;
     resize: none;
 }
 
@@ -64,9 +65,8 @@ main {
 }
 
 .prio-btn {
-    border: 2px solid rgba(209, 209, 209);
+    border: 1px solid rgba(209, 209, 209);
     border-radius: 10px;
-    height: 24px;
     width: 80px;
     display: flex;
     align-items: center;
@@ -136,6 +136,22 @@ main {
     padding-bottom: 8px;
 }
 
+#edit-submit-changes-btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    padding-bottom: 8px;
+    position: absolute;
+    bottom: 18px;
+    right: 18px;
+}
+
+#edit-submit-changes-btn-container button {
+    height: 61px;
+    width: 77px;
+}
+
 .add-task-btn {
     font-size: 16px;
     font-weight: 700;
@@ -196,7 +212,7 @@ select {
 }
 
 .add-task-input-img-container {
-    border: 2px solid rgba(209, 209, 209);
+    border: 1px solid rgba(209, 209, 209);
     border-radius: 10px;
     display: flex;
     justify-content: space-between;
@@ -207,7 +223,6 @@ select {
 }
 
 #add-task-contact-container {
-    height: 40px;
     margin-bottom: 24px;
 }
 

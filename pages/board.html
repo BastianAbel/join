@@ -22,7 +22,6 @@
     <link rel="stylesheet" href="/styles/signup-style.css">
     <link rel="stylesheet" href="/styles/add-task.css">
     <script src="/scripts/main.js" defer></script>
-    
     <script src="/scripts/board_task_template.js" defer></script>
     <script src="/scripts/firebase.js" defer></script>
     <script src="/scripts/task_search.js" defer></script>
@@ -30,19 +29,16 @@
     <script src="/scripts/standart.js" defer></script>
     <script src="/scripts/contact_list.js" defer></script>
     <script src="/scripts/board.js" defer></script>
+    <script src="/scripts/nav-bar-media-query-template.js" defer></script>
+    <script src="/scripts/media-query-nav-bar.js" defer></script> 
     <script src="/scripts/board_template.js" defer></script>
+    <script src="/scripts/scroll_functionality.js" defer></script>
 </head>
     <body onload="loadUserInitials(); getAllTasksAndUsersFromSessionStorage()">
-        <div
-            id="window-overlay"
-            class="d-none window-overlay"
-        ></div>
-        <div
-            id="submenu"
-            class="submenu-popup-container d-none"
-        >
+        <div id="window-overlay" class="d-none window-overlay"></div>
+        <div id="submenu" class="submenu-popup-container d-none">
             <div class="submenu-text-container">
-                <a href="">Help</a>
+                <a href="/pages/help.html">Help</a>
                 <a href="/pages/impressum.html">Legal Notice</a>
                 <a href="/pages/privacy-policy.html">Privacy Policy</a>
                 <a href="/pages/login-page.html">Log Out</a>
@@ -51,16 +47,9 @@
         <header>
             <section class="header">
                 <a href="">
-                    <img
-                        src="/assets/icons/join-logo-dark.svg"
-                        alt="Join Logo"
-                    />
+                    <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
                 </a>
-                <button
-                    onclick="showSubmenu()"
-                    id="profileBtn"
-                    class="profile-button"
-                ></button>
+                <button onclick="showSubmenu()" id="profileBtn" class="profile-button"></button>
             </section>
         </header>
         <main id="board-main">
@@ -69,11 +58,7 @@
                     <h1>Board</h1>
                 </div>
                 <div>
-                    <img
-                        onclick="addNewTask('')"
-                        src="/assets/icons/plus-add-task.svg"
-                        alt="Add Task"
-                    />
+                    <img onclick="addNewTask('')" src="/assets/icons/plus-add-task.svg" alt="Add Task" />
                 </div>
             </section>
             <section class="section-two">
@@ -87,10 +72,7 @@
                         placeholder="Find Task"
                     />
                     <button>
-                        <img
-                            src="/assets/icons/search.svg"
-                            alt="Search"
-                        />
+                        <img src="/assets/icons/search.svg" alt="Search" />
                     </button>
                 </div>
             </section>
@@ -98,23 +80,11 @@
                 <section class="section-three">
                     <div class="board-prio-headline-div">
                         <h2>To do</h2>
-                        <img
-                            onclick="addNewTask('toDo')"
-                            src="/assets/icons/plus-button.svg"
-                            alt="Add"
-                        />
+                        <img onclick="addNewTask('toDo')" src="/assets/icons/plus-button.svg" alt="Add" />
                     </div>
-                    <div
-                        id="board-to-do-section"
-                        class="board-progress-state"
-                        ondrop="moveTaskToState('toDo')"
-                        ondragover="allowDrop(event)"
-                    ></div>
+                    <div id="board-to-do-section" class="board-progress-state" ondrop="moveTaskToState('toDo')" ondragover="allowDrop(event)"></div>
 
-                    <div
-                        id="todo"
-                        class="progress-content"
-                    >
+                    <div id="todo" class="progress-content">
                         <span>No tasks To do</span>
                     </div>
                 </section>
@@ -122,11 +92,7 @@
             <section class="section-four">
                 <div class="board-prio-headline-div">
                     <h2>In progress</h2>
-                    <img
-                        onclick="addNewTask('inProgress')"
-                        src="/assets/icons/plus-button.svg"
-                        alt="Add"
-                    />
+                    <img onclick="addNewTask('inProgress')" src="/assets/icons/plus-button.svg" alt="Add" />
                 </div>
                 <div
                     id="board-in-progress-section"
@@ -134,21 +100,14 @@
                     ondrop="moveTaskToState('inProgress')"
                     ondragover="allowDrop(event)"
                 ></div>
-                <div
-                    id="inProgress"
-                    class="progress-content"
-                >
+                <div id="inProgress" class="progress-content">
                     <span>No tasks in progress</span>
                 </div>
             </section>
             <section class="section-five">
                 <div class="board-prio-headline-div">
                     <h2>Await feedback</h2>
-                    <img
-                        onclick="addNewTask('awaitFeedback')"
-                        src="/assets/icons/plus-button.svg"
-                        alt="Add"
-                    />
+                    <img onclick="addNewTask('awaitFeedback')" src="/assets/icons/plus-button.svg" alt="Add" />
                 </div>
                 <div
                     id="board-await-feedback-section"
@@ -156,10 +115,7 @@
                     ondrop="moveTaskToState('awaitFeedback')"
                     ondragover="allowDrop(event)"
                 ></div>
-                <div
-                    id="awaitingFeedback"
-                    class="progress-content"
-                >
+                <div id="awaitingFeedback" class="progress-content">
                     <span>No tasks awaiting Feedback</span>
                 </div>
             </section>
@@ -167,67 +123,13 @@
                 <div class="board-prio-headline-div">
                     <h2>Done</h2>
                 </div>
-                <div
-                    id="board-done-section"
-                    class="board-progress-state"
-                    ondrop="moveTaskToState('done')"
-                    ondragover="allowDrop(event)"
-                ></div>
-                <div
-                    id="done"
-                    class="progress-content"
-                >
+                <div id="board-done-section" class="board-progress-state" ondrop="moveTaskToState('done')" ondragover="allowDrop(event)"></div>
+                <div id="done" class="progress-content">
                     <span>No tasks Done</span>
                 </div>
             </section>
         </main>
-        <div class="nav-bar-main-container">
-            <div class="nav-bar">
-                <a
-                    href="/pages/summary.html"
-                    id="nav-bar-container-summary"
-                    class="nav-bar-container"
-                    ><img
-                        id="nav-bar-img-1"
-                        src="/assets/icons/summary.svg"
-                        alt=""
-                    />
-                    <span>Summary</span></a
-                >
-                <a
-                    href="/pages/board.html"
-                    id="nav-bar-container-board"
-                    class="nav-bar-container"
-                    ><img
-                        id="nav-bar-img-2"
-                        src="/assets/icons/board.svg"
-                        alt=""
-                    />
-                    <span>Board</span></a
-                >
-                <a
-                    href="/pages/add-task.html"
-                    id="nav-bar-container-add-to-task"
-                    class="nav-bar-container"
-                    ><img
-                        id="nav-bar-img-3"
-                        src="/assets/icons/add-to-task.svg"
-                        alt=""
-                    />
-                    <span>Add Task</span></a
-                >
-                <a
-                    href="/pages/contactlist.html"
-                    id="nav-bar-container-contacts"
-                    class="nav-bar-container"
-                    ><img
-                        id="nav-bar-img-4"
-                        src="/assets/icons/contacts.svg"
-                        alt=""
-                    />
-                    <span>Contacts</span></a
-                >
-            </div>
-        </div>
+        <div id="desktop-nav-bar"></div>
+        <div id="mobile-nav-bar"></div>
     </body>
 </html>
