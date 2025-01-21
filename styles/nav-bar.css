@@ -150,7 +150,6 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    width: 100%;
     height: 46px;
     padding-left: 53px;
     border-radius: 0;
@@ -161,6 +160,11 @@ body {
     background-color: rgb(9, 25, 49);
     color: white;
     border-radius: 0;
+}
+
+.desktop-nav-bar-container span {
+    font-size: 16px !important;
+    font-weight: 400;
 }
 
 .desktop-nav-bar-container img {
