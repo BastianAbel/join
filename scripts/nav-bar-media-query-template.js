@@ -1,5 +1,6 @@
 function desktopNavBarTemplate() {
     return `
+    <div class="nav-bar-wrapper">
             <div class="join-logo-desktop-nav-bar">
                <a href="#"><img src="/assets/icons/join-logo-white.svg" alt=""></a> 
             </div>
@@ -17,12 +18,13 @@ function desktopNavBarTemplate() {
                     ><img id="nav-bar-img-4" src="/assets/icons/contacts.svg" alt="" /> <span>Contacts</span></a
                 >
             </div>
-            
+            </div>
                 <div class="legal-main-container-desktop-nav-bar">
                 <div class="legal-container-desktop-nav-bar">
                     <a href="/pages/privacy-policy.html">Privacy Policy</a>
                     <a href="/pages/impressum.html">Legal notice</a>
                     </div>
+                
                 
            
     `;

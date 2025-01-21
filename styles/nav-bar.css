@@ -65,11 +65,11 @@ body {
 
 .legal-main-container-desktop-nav-bar {
     width: 232px;
-    height: 317px;
     display: flex;
     justify-content: center;
     gap: 4px;
     padding-top: 243px;
+    margin-bottom: 64px;
 }
 
 .legal-container-desktop-nav-bar a {
@@ -77,13 +77,11 @@ body {
     height: 35px;
 }
 
-.legal-container-desktop-nav-bar{
+.legal-container-desktop-nav-bar {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
-
-
 
 #nav-bar-container-summary:hover {
     #nav-bar-img-1 {
@@ -120,17 +118,22 @@ body {
 /* Media Query for Desktop Variant */
 
 .desktop-nav-bar-main-container {
-    display: flex;	
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: absolute;
     background-color: #293647;
     width: 232px;
     height: 100vh;
-    padding-top: 64px;
-    padding-bottom: 64px;
     z-index: 1000;
     top: 0;
+}
+
+.nav-bar-wrapper {
+    margin-top: 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 115px;
 }
 
 .join-logo-desktop-nav-bar {
@@ -153,7 +156,7 @@ body {
     height: 46px;
     padding-left: 53px;
     border-radius: 0;
-    color:rgb(205, 205, 205) ;
+    color: rgb(205, 205, 205);
 }
 
 .desktop-nav-bar-container:hover {
