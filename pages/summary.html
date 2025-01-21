@@ -17,7 +17,10 @@
         <script src="/scripts/contact_list.js" defer ></script>
         <script src="/scripts/login.js" defer ></script>
     </head>
-    <body onload="initSummary()">
+    <body
+        id="summary-body"
+        onload="initSummary()"
+    >
         <div
             id="submenu"
             class="submenu-popup-container d-none"
@@ -49,117 +52,129 @@
             </section>
         </header>
         <main class="summary-main-container">
-            <div class="join-headline-main-container">
-                <div class="join-headline">
-                    <div>
-                        <h2>Join 360</h2>
+            <div id="summary-info-and-greeting-container">
+                <div id="summary-info-container">
+                    <div class="join-headline-main-container">
+                        <div class="join-headline">
+                            <div>
+                                <h2>Join 360</h2>
+                            </div>
+                            <div id="summary-headline-seperator"></div>
+                            <div>
+                                <span id="headline-span">Key Metrics at a Glance</span>
+                            </div>
+                        </div>
+                        <div
+                            id="summary-head-underline"
+                            class="head-blue-underline"
+                        ></div>
                     </div>
-                    <div>
-                        <span>Key Metrics at a Glance</span>
+                    <div class="task-management-area">
+                        <div class="task-main-overview">
+                            <div class="to-do-container">
+                                <div>
+                                    <img
+                                        id="to-do-img-hover"
+                                        src="/assets/icons/pencil-rectangle.svg"
+                                        alt=""
+                                    />
+                                </div>
+                                <div>
+                                    <div class="to-do-number-container">
+                                        <span
+                                            id="to-do-counter-span"
+                                            class="to-do-number"
+                                            >1</span
+                                        >
+                                    </div>
+                                    <div><span>To-do</span></div>
+                                </div>
+                            </div>
+                            <div class="done-container">
+                                <div>
+                                    <img
+                                        id="done-img-hover"
+                                        src="/assets/icons/check-rectangle.svg"
+                                        alt=""
+                                    />
+                                </div>
+                                <div>
+                                    <div class="done-number-container">
+                                        <span
+                                            id="done-counter-span"
+                                            class="done-number"
+                                            >1</span
+                                        >
+                                    </div>
+                                    <div><span>Done</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="important-reminder-main-container">
+                            <div class="urgent-task-container">
+                                <div class="urgent-task-img">
+                                    <img
+                                        src="/assets/icons/urgency-summary.svg"
+                                        alt=""
+                                    />
+                                </div>
+                                <div>
+                                    <div class="urgent-task-number-container">
+                                        <span
+                                            id="urgent-counter-span"
+                                            class="urgent-task-number"
+                                            >1</span
+                                        >
+                                    </div>
+                                    <div><span>Urgent</span></div>
+                                </div>
+                            </div>
+                            <div class="dividing-line"></div>
+                            <div class="urgent-deadline">
+                                <div>
+                                    <h3 id="due-time-field">October 16, 2022</h3>
+                                </div>
+                                <div><span>Upcoming Deadline</span></div>
+                            </div>
+                        </div>
+                        <div class="task-overview">
+                            <div class="task-in-board-container">
+                                <div
+                                    id="task-in-board-counter-div"
+                                    class="number"
+                                >
+                                    5
+                                </div>
+                                <div class="title">
+                                    <span>Task In<br />Board</span>
+                                </div>
+                            </div>
+                            <div class="task-in-progress-container">
+                                <div
+                                    id="task-in-progress-counter-div"
+                                    class="number"
+                                >
+                                    2
+                                </div>
+                                <div class="title">
+                                    <span>Task In<br />Progress</span>
+                                </div>
+                            </div>
+                            <div class="awaiting-feedback-container">
+                                <div
+                                    id="awaiting-feedback-counter-div"
+                                    class="number"
+                                >
+                                    2
+                                </div>
+                                <div class="title"><span>Awaiting feedback</span></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="head-blue-underline"></div>
-            </div>
-            <div class="task-management-area">
-                <div class="task-main-overview">
-                    <div class="to-do-container">
-                        <div>
-                            <img
-                                id="to-do-img-hover"
-                                src="/assets/icons/pencil-rectangle.svg"
-                                alt=""
-                            />
-                        </div>
-                        <div>
-                            <div class="to-do-number-container">
-                                <span
-                                    id="to-do-counter-span"
-                                    class="to-do-number"
-                                    >1</span
-                                >
-                            </div>
-                            <div><span>To-do</span></div>
-                        </div>
-                    </div>
-                    <div class="done-container">
-                        <div>
-                            <img
-                                id="done-img-hover"
-                                src="/assets/icons/check-rectangle.svg"
-                                alt=""
-                            />
-                        </div>
-                        <div>
-                            <div class="done-number-container">
-                                <span
-                                    id="done-counter-span"
-                                    class="done-number"
-                                    >1</span
-                                >
-                            </div>
-                            <div><span>Done</span></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="important-reminder-main-container">
-                    <div class="urgent-task-container">
-                        <div class="urgent-task-img">
-                            <img
-                                src="/assets/icons/urgency-summary.svg"
-                                alt=""
-                            />
-                        </div>
-                        <div>
-                            <div class="urgent-task-number-container">
-                                <span
-                                    id="urgent-counter-span"
-                                    class="urgent-task-number"
-                                    >1</span
-                                >
-                            </div>
-                            <div><span>Urgent</span></div>
-                        </div>
-                    </div>
-                    <div class="dividing-line"></div>
-                    <div class="urgent-deadline">
-                        <div>
-                            <h3 id="due-time-field">October 16, 2022</h3>
-                        </div>
-                        <div><span>Upcoming Deadline</span></div>
-                    </div>
-                </div>
-                <div class="task-overview">
-                    <div class="task-in-board-container">
-                        <div
-                            id="task-in-board-counter-div"
-                            class="number"
-                        >
-                            5
-                        </div>
-                        <div class="title">
-                            <span>Task In<br />Board</span>
-                        </div>
-                    </div>
-                    <div class="task-in-progress-container">
-                        <div
-                            id="task-in-progress-counter-div"
-                            class="number"
-                        >
-                            2
-                        </div>
-                        <div class="title">
-                            <span>Task In<br />Progress</span>
-                        </div>
-                    </div>
-                    <div class="awaiting-feedback-container">
-                        <div
-                            id="awaiting-feedback-counter-div"
-                            class="number"
-                        >
-                            2
-                        </div>
-                        <div class="title"><span>Awaiting feedback</span></div>
-                    </div>
+                <div id="summary-greeting-container">
+                    <span id="summary-greeting"></span>
+                    <h1 id="summary-user-name"></h1>
                 </div>
             </div>
         </main>

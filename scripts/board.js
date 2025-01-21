@@ -1,5 +1,5 @@
 let allTasks = [];
-let allUsers = [];
+let allTaskUsers = [];
 
 function taskBigView(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, subtasks, cardTypeColor) {
     document.getElementById("profileBtn").style.backgroundColor = "#b8b9bb";
@@ -117,13 +117,13 @@ function changeStateofCheckbox(i, taskId) {
 }
 
 function openEditTaskBigView() {
-    document.getElementById("window-overlay").classList.remove('d-none');
-    document.getElementById('task-big-container').classList.add('d-none');
-    document.getElementById('board-main').innerHTML += renderEditTaskBigView();
+    document.getElementById("window-overlay").classList.remove("d-none");
+    document.getElementById("task-big-container").classList.add("d-none");
+    document.getElementById("board-main").innerHTML += renderEditTaskBigView();
 }
 
 function closeEditTaskBigView() {
-    document.getElementById('task-big-container').classList.remove('d-none');
+    document.getElementById("task-big-container").classList.remove("d-none");
 }
 function closeTaskBigView() {
     document.getElementById("window-overlay").outerHTML = "";
@@ -131,14 +131,14 @@ function closeTaskBigView() {
     document.getElementById("task-big-container").outerHTML = "";
 }
 
-function closeEditTaskBigView(){
+function closeEditTaskBigView() {
     document.getElementById("window-overlay").outerHTML = "";
     document.getElementById("profileBtn").style.backgroundColor = "white";
-    document.getElementById('edit-task-big-container').outerHTML = "";
+    document.getElementById("edit-task-big-container").outerHTML = "";
 }
 
-function editTaskSlideOut(){
-    document.getElementById('edit-task-big-container').classList.add('slide-out-task-big');
+function editTaskSlideOut() {
+    document.getElementById("edit-task-big-container").classList.add("slide-out-task-big");
     setTimeout(() => {
         closeEditTaskBigView();
     }, 300);
@@ -181,7 +181,7 @@ function getAllTasksAndUsersFromSessionStorage() {
     let tasks = sessionResponseJson["tasks"];
     allTasks = getArrayFromObject(tasks);
     let users = sessionResponseJson["users"];
-    allUsers = getArrayFromObject(users);
+    allTaskUsers = getArrayFromObject(users);
     writeCardsToBoardSectionsFromArray(allTasks);
 }
 
