@@ -23,8 +23,11 @@
     <title>Add Task</title>
 </head>
 
-    <body onload="getAllUserNames()">
-        <div id="submenu" class="submenu-popup-container d-none">
+    <body onload="getAllContactsNames()">
+        <div
+            id="submenu"
+            class="submenu-popup-container d-none"
+        >
             <div class="submenu-text-container">
                 <a href="/pages/help.html">Help</a>
                 <a href="/pages/impressum.html">Legal Notice</a>
@@ -35,9 +38,16 @@
         <header>
             <section class="header">
                 <a href="/index.html">
-                    <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
+                    <img
+                        src="/assets/icons/join-logo-dark.svg"
+                        alt="Join Logo"
+                    />
                 </a>
-                <button onclick="showSubmenu()" id="profileBtn" class="profile-button"></button>
+                <button
+                    onclick="showSubmenu()"
+                    id="profileBtn"
+                    class="profile-button"
+                ></button>
             </section>
         </header>
         <main>
@@ -46,7 +56,10 @@
                     <h1>Add Task</h1>
                 </div>
                 <div class="create-task-container">
-                    <form id="create-task-form" onsubmit="createTask(event)">
+                    <form
+                        id="create-task-form"
+                        onsubmit="createTask(event)"
+                    >
                         <div id="inner-form-container">
                             <div class="add-task-attribute-container">
                                 <label for="task-title">Title<span class="require-asterisk">*</span></label>
@@ -68,7 +81,11 @@
                             </div>
                             <div class="add-task-attribute-container">
                                 <label for="task-contact-input">Assigned to</label>
-                                <div id="add-task-contact-container" class="add-task-input-img-container" onclick="showContactList()">
+                                <div
+                                    id="add-task-contact-container"
+                                    class="add-task-input-img-container"
+                                    onclick="showContactList()"
+                                >
                                     <input
                                         type="text"
                                         id="task-contact-input"
@@ -84,14 +101,23 @@
                                         onclick="showContactList()"
                                     />
                                 </div>
-                                <div id="add-task-contact-list-container" class="d_none">
+                                <div
+                                    id="add-task-contact-list-container"
+                                    class="d_none"
+                                >
                                     <ul id="add-task-contacts-list"></ul>
                                 </div>
-                                <div id="name-circle-container" class="d_none"></div>
+                                <div
+                                    id="name-circle-container"
+                                    class="d_none"
+                                ></div>
                             </div>
                             <div class="add-task-attribute-container">
                                 <label for="task-due-date">Due date<span class="require-asterisk">*</span></label>
-                                <div id="add-task-date-container" class="add-task-input-img-container">
+                                <div
+                                    id="add-task-date-container"
+                                    class="add-task-input-img-container"
+                                >
                                     <input
                                         id="task-due-date"
                                         class="add-task-attribute-input grey-placeholder"
@@ -100,34 +126,74 @@
                                         oninput="formatDateInput()"
                                         required
                                     />
-                                    <img src="/assets/icons/calender.svg" alt="calender icon" />
+                                    <img
+                                        src="/assets/icons/calender.svg"
+                                        alt="calender icon"
+                                    />
                                 </div>
                             </div>
                             <div class="add-task-attribute-container">
                                 <span>Prio</span>
                                 <div id="prio-container">
-                                    <div id="prio-urgent-btn" class="prio-btn" onclick="setUrgentPrio()">
-                                        <span>Urgent</span><img src="/assets/icons/prio-alta-red.svg" alt="" />
+                                    <div
+                                        id="prio-urgent-btn"
+                                        class="prio-btn"
+                                        onclick="setUrgentPrio()"
+                                    >
+                                        <span>Urgent</span
+                                        ><img
+                                            src="/assets/icons/prio-alta-red.svg"
+                                            alt=""
+                                        />
                                     </div>
-                                    <div id="prio-medium-btn" class="prio-btn" onclick="setMediumPrio()">
-                                        <span>Medium</span><img src="/assets/icons/prio-media-orange.svg" alt="" />
+                                    <div
+                                        id="prio-medium-btn"
+                                        class="prio-btn"
+                                        onclick="setMediumPrio()"
+                                    >
+                                        <span>Medium</span
+                                        ><img
+                                            src="/assets/icons/prio-media-orange.svg"
+                                            alt=""
+                                        />
                                     </div>
-                                    <div id="prio-low-btn" class="prio-btn" onclick="setLowPrio()">
-                                        <span>Low</span><img src="/assets/icons/prio-baja-green.svg" alt="" />
+                                    <div
+                                        id="prio-low-btn"
+                                        class="prio-btn"
+                                        onclick="setLowPrio()"
+                                    >
+                                        <span>Low</span
+                                        ><img
+                                            src="/assets/icons/prio-baja-green.svg"
+                                            alt=""
+                                        />
                                     </div>
                                 </div>
                             </div>
                             <div class="add-task-attribute-container">
                                 <label for="task-category-select">Category<span class="require-asterisk">*</span></label>
-                                <select id="task-category-select" class="add-task-attribute-input" required>
-                                    <option value="" disabled selected>Select task category</option>
+                                <select
+                                    id="task-category-select"
+                                    class="add-task-attribute-input"
+                                    required
+                                >
+                                    <option
+                                        value=""
+                                        disabled
+                                        selected
+                                    >
+                                        Select task category
+                                    </option>
                                     <option value="userStory">User Story</option>
                                     <option value="technicalTask">Technical Task</option>
                                 </select>
                             </div>
                             <div class="add-task-attribute-container">
                                 <label for="subtask-title">Subtasks</label>
-                                <div id="sub-task-input-container" class="add-task-input-img-container">
+                                <div
+                                    id="sub-task-input-container"
+                                    class="add-task-input-img-container"
+                                >
                                     <input
                                         id="subtask-title"
                                         class="add-task-attribute-input grey-placeholder"
@@ -135,14 +201,23 @@
                                         placeholder="Add new Subtask"
                                         oninput="showAndHideIcons()"
                                     />
-                                    <img id="sub-task-icon-plus" src="/assets/icons/plus-subtask.svg" alt="plus-icon" />
+                                    <img
+                                        id="sub-task-icon-plus"
+                                        src="/assets/icons/plus-subtask.svg"
+                                        alt="plus-icon"
+                                    />
                                     <img
                                         id="sub-task-icon-cross"
                                         src="/assets/icons/subtask-cross.svg"
                                         alt="cross icon"
                                         onclick="clearSubtaskInputField()"
                                         class="d_none"
-                                    /><img id="sub-task-icon-vector" src="/assets/icons/subtask-vektor.svg" alt="vector icon" class="d_none" /><img
+                                    /><img
+                                        id="sub-task-icon-vector"
+                                        src="/assets/icons/subtask-vektor.svg"
+                                        alt="vector icon"
+                                        class="d_none"
+                                    /><img
                                         id="sub-task-icon-check"
                                         src="/assets/icons/subtask-check.svg"
                                         alt="checked icon"
@@ -162,13 +237,27 @@
                         <div id="sticky-bottom-container">
                             <div class="add-task-attribute-container">
                                 <div id="add-task-btn-container">
-                                    <button id="add-task-clear-btn" class="add-task-btn" onclick="clearAllInputAddTask()">
+                                    <button
+                                        id="add-task-clear-btn"
+                                        class="add-task-btn"
+                                        onclick="clearAllInputAddTask()"
+                                    >
                                         Clear
-                                        <img src="/assets/icons/close-black.svg" alt="" />
+                                        <img
+                                            src="/assets/icons/close-black.svg"
+                                            alt=""
+                                        />
                                     </button>
-                                    <button type="submit" id="create-task-btn" class="add-task-btn">
+                                    <button
+                                        type="submit"
+                                        id="create-task-btn"
+                                        class="add-task-btn"
+                                    >
                                         Create Task
-                                        <img src="/assets/icons/check.svg" alt="" />
+                                        <img
+                                            src="/assets/icons/check.svg"
+                                            alt=""
+                                        />
                                     </button>
                                 </div>
                             </div>
