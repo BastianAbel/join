@@ -4,11 +4,12 @@ let allTaskUsers = [];
 function taskBigView(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, subtasks, cardTypeColor) {
     document.getElementById("profileBtn").style.backgroundColor = "#b8b9bb";
     document.getElementById("window-overlay").classList.remove("d-none");
+    const decodedAssignedUsers = JSON.parse(decodeURIComponent(assignedUsers));
     if (subtasks !== "undefined") {
         const decodedSubtasks = JSON.parse(decodeURIComponent(subtasks));
-        getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks);
+        getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, decodedAssignedUsers, cardTypeColor, decodedSubtasks);
     } else {
-        getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor);
+        getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, decodedAssignedUsers, cardTypeColor);
     }
 }
 
@@ -133,7 +134,7 @@ function closeTaskBigView() {
 function closeEditTaskBigView() {
     document.getElementById("window-overlay").classList.add('d-none');
     document.getElementById("profileBtn").style.backgroundColor = "white";
-    document.getElementById('edit-task-big-container').outerHTML = "";
+    document.getElementById("edit-task-big-container").outerHTML = "";
 }
 
 function editTaskSlideOut() {
@@ -180,6 +181,7 @@ function getAllTasksAndUsersFromSessionStorage() {
     let tasks = sessionResponseJson["tasks"];
     allTasks = getArrayFromObject(tasks);
     let users = sessionResponseJson["users"];
+    allTaskUsers = getArrayFromObject(users);
     allTaskUsers = getArrayFromObject(users);
     writeCardsToBoardSectionsFromArray(allTasks);
 }

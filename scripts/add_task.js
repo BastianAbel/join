@@ -21,35 +21,38 @@ let contactNames = [];
 let filteredNamesAndColors = [];
 let checkedContactNamesAndColors = [];
 let subtaskList = [];
-let allUsers = [];
-let checkedUsersNamesAndColors = [];
+// let allUsers = [];
+// let allContacts = [];
+// let checkedUsersNamesAndColors = [];
 let taskPrio = "";
 
-async function loadAllUsers() {
-    let usersResponse = await loadData(PATH_TO_USERS);
-    let usersKeysArray = Object.keys(usersResponse);
-    for (let i = 0; i < usersKeysArray.length; i++) {
-        allUsers.push({
-            id: usersKeysArray[i],
-            user: usersResponse[usersKeysArray[i]],
+async function loadAllContacts() {
+    //TODO - remove setBackendJsonToSessionStorage()
+    await setBackendJsonToSessionStorage();
+    let contactsResponse = await loadData(PATH_TO_CONTACTS);
+    let contactsKeysArray = Object.keys(contactsResponse);
+    for (let i = 0; i < contactsKeysArray.length; i++) {
+        allContacts.push({
+            id: contactsKeysArray[i],
+            user: contactsResponse[contactsKeysArray[i]],
             color: getRandomColor(),
-            tasksAssignedTo: usersResponse[usersKeysArray[i]].tasksAssignedTo,
+            tasksAssignedTo: contactsResponse[contactsKeysArray[i]].tasksAssignedTo,
         });
     }
-    return allUsers;
+    return allContacts;
 }
 
-async function getAllUserNames() {
+async function getAllContactsNames() {
     onlyLoadIfUserOrGuest();
     loadUserInitials();
-    await loadAllUsers();
-    let usersNamesAndColors = allUsers.map((entry) => ({
-        name: entry.user.userData.name.replace(/[^a-zA-ZöüäÖÜÄ ]/g, ""),
+    await loadAllContacts();
+    let contactsNamesAndColors = allContacts.map((entry) => ({
+        name: entry.contact.name.replace(/[^a-zA-ZöüäÖÜÄ ]/g, ""),
         color: entry.color,
         id: entry.id,
         tasksAssignedTo: entry.tasksAssignedTo,
     }));
-    filteredNamesAndColors = usersNamesAndColors;
+    filteredNamesAndColors = contactsNamesAndColors;
     addContactNamesToList(filteredNamesAndColors, TASK_CONTACT_LIST);
     console.log(filteredNamesAndColors);
 }
@@ -118,9 +121,9 @@ function checkContact(event, data) {
     let currentContact = getContactFromArrayById(filteredNamesAndColors, data.id);
     container.classList.toggle("checked-contact");
     if (container.classList.contains("checked-contact")) {
-        checkedUsersNamesAndColors.push(currentContact);
+        checkedContactNamesAndColors.push(currentContact);
     } else {
-        checkedUsersNamesAndColors.splice(checkedUsersNamesAndColors.indexOf(currentContact), 1);
+        checkedContactNamesAndColors.splice(checkedContactNamesAndColors.indexOf(currentContact), 1);
     }
 }
 
@@ -134,7 +137,7 @@ function showContactList() {
             NAME_CIRCLE_CONTAINER.classList.remove("d_none");
             NAME_CIRCLE_CONTAINER.classList.add("open-circle-container");
             NAME_CIRCLE_CONTAINER.innerHTML = "";
-            addNameCircles(checkedUsersNamesAndColors, NAME_CIRCLE_CONTAINER, `contact-name-circle`);
+            addNameCircles(checkedContactNamesAndColors, NAME_CIRCLE_CONTAINER, `contact-name-circle`);
         }
         if (!NAME_CIRCLE_CONTAINER.classList.contains("d_none") && !NAME_CIRCLE_CONTAINER.hasChildNodes()) {
             NAME_CIRCLE_CONTAINER.classList.add("d_none");
@@ -209,6 +212,7 @@ function removeEditClass(event) {
 async function createTask(event) {
     event.preventDefault();
     let param = new URLSearchParams(window.location.search);
+    console.log(param)
     let state = param.get("state" || "toDo");
     newTask = {
         "type": document.getElementById("task-category-select").value,
@@ -216,7 +220,7 @@ async function createTask(event) {
         "description": document.getElementById("task-description").value,
         "dueDate": document.getElementById("task-due-date").value,
         "priority": taskPrio || "low",
-        "assignedTo": checkedUsersNamesAndColors,
+        "assignedTo": checkedContactNamesAndColors,
         "subtasks": subtaskList,
         "state": state,
     };
@@ -224,7 +228,7 @@ async function createTask(event) {
     try {
         if (newTask["type"] !== "" && newTask["title"] !== "" && newTask["dueDate"] !== "") {
             await postData(PATH_TO_TASKS, newTask);
-            await addTaskToAssignedUsers();
+            await addTaskToAssignedContacts();
             await setBackendJsonToSessionStorage();
             clearAllInputAddTask();
         }
@@ -233,32 +237,32 @@ async function createTask(event) {
     }
 }
 
-async function addTaskToAssignedUsers() {
-    if (checkedUsersNamesAndColors.length > 0) {
+async function addTaskToAssignedContacts() {
+    if (checkedContactNamesAndColors.length > 0) {
         let newTaskId = await getIdOfNewTask();
-        for (let i = 0; i < checkedUsersNamesAndColors.length; i++) {
-            let indexInAllUsers = allUsers.findIndex((user) => user.id == checkedUsersNamesAndColors[i].id);
-            addTaskToUserInAllUsersArray(allUsers[indexInAllUsers], "tasksAssignedTo", newTaskId);
-            let allAssignedToTasks = getAllTaskIdsOfUser(allUsers[indexInAllUsers], "tasksAssignedTo");
+        for (let i = 0; i < checkedContactNamesAndColors.length; i++) {
+            let indexInAllContacts = allContacts.findIndex((contact) => contact.id == checkedContactNamesAndColors[i].id);
+            addTaskToContactInAllContactsArray(allContacts[indexInAllContacts], "tasksAssignedTo", newTaskId);
+            let allAssignedToTasks = getAllTaskIdsOfUser(allContacts[indexInAllContacts], "tasksAssignedTo");
             console.log(allAssignedToTasks);
-            await updateData(PATH_TO_USERS, checkedUsersNamesAndColors[i].id, (data = { tasksAssignedTo: allAssignedToTasks }));
+            await updateData(PATH_TO_CONTACTS, checkedContactNamesAndColors[i].id, (data = { tasksAssignedTo: allAssignedToTasks }));
         }
     }
 }
 
-function getAllTaskIdsOfUser(user, arrayOfIds) {
-    if (user.user[arrayOfIds]) {
-        return user.user[arrayOfIds];
+function getAllTaskIdsOfUser(contact, arrayOfIds) {
+    if (contact.contact[arrayOfIds]) {
+        return contact.contact[arrayOfIds];
     }
 }
 
-function addTaskToUserInAllUsersArray(user, tasksAssignedTo, newTaskId) {
-    if (!user.user[tasksAssignedTo]) {
-        user.user[tasksAssignedTo] = [newTaskId];
-    } else if (!user.user[tasksAssignedTo].includes(newTaskId)) {
-        user.user[tasksAssignedTo].push(newTaskId);
+function addTaskToContactInAllContactsArray(contact, tasksAssignedTo, newTaskId) {
+    if (!contact.contact[tasksAssignedTo]) {
+        contact.contact[tasksAssignedTo] = [newTaskId];
+    } else if (!contact.contact[tasksAssignedTo].includes(newTaskId)) {
+        contact.contact[tasksAssignedTo].push(newTaskId);
     }
-    console.log(user);
+    console.log(contact);
 }
 
 async function getIdOfNewTask() {

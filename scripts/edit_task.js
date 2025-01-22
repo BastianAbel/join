@@ -8,8 +8,8 @@ let editFilteredNamesAndColors = [];
 async function editGetAllUserNames() {
     onlyLoadIfUserOrGuest();
     loadUserInitials();
-    await loadAllUsers();
-    let usersNamesAndColors = allUsers.map((entry) => ({
+    await loadAllContacts();
+    let usersNamesAndColors = allContacts.map((entry) => ({
         name: entry.user.userData.name.replace(/[^a-zA-ZöüäÖÜÄ ]/g, ""),
         color: entry.color,
         id: entry.id,

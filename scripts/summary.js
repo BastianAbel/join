@@ -99,10 +99,16 @@ function writeValuesToElements() {
     TASK_IN_BOARD_COUNTER.innerHTML = taskInBoardCount;
 }
 
+function setGreetingInformations() {
+    document.getElementById("summary-greeting").innerHTML = getGreetingTextByTime();
+    document.getElementById("summary-user-name").innerHTML = getUserNameFromLocalStorage();
+}
+
 function initSummary() {
     loadUserInitials();
     getJsonObjectFromSessionStorage();
     getAllTasksFromStoredObject();
     setNeededValues();
     writeValuesToElements();
+    setGreetingInformations();
 }
