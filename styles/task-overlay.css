@@ -12,7 +12,7 @@
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
     margin: 8px 16px 8px 16px;
     background-color: white;
-    z-index: 9999;
+    z-index: 1000;
     overflow-y: auto;
     animation: slide-in 0.3s ease-out forwards;
 }
@@ -26,7 +26,7 @@
     border-radius: 30px;
     position: absolute;
     top: 24px;
-    bottom: 80px;
+    bottom: 24px;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
     margin: 8px 16px 8px 16px;
     background-color: white;
