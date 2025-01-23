@@ -40,6 +40,10 @@ main {
     font-family: inter;
 }
 
+.add-task-attribute-input input {
+    border: none !important;
+}
+
 #task-description {
     height: 88px;
     resize: none;
@@ -49,7 +53,8 @@ main {
     color: rgba(209, 209, 209);
 }
 
-#prio-container {
+#prio-container,
+#edit-prio-container {
     margin: 0;
     padding: 0;
     display: flex;
@@ -77,6 +82,7 @@ main {
 }
 
 #prio-urgent-btn:hover,
+#edit-prio-urgent-btn:hover,
 .active-urgent {
     color: var(--light-text-color);
     background-color: var(--icon-urgent-red);
@@ -86,6 +92,7 @@ main {
 }
 
 #prio-medium-btn:hover,
+#edit-prio-medium-btn:hover,
 .active-medium {
     color: var(--light-text-color);
     background-color: var(--icon-medium-yellow);
@@ -95,6 +102,7 @@ main {
 }
 
 #prio-low-btn:hover,
+#edit-prio-low-btn:hover,
 .active-low {
     color: var(--light-text-color);
     background-color: var(--icon-low-green);
@@ -107,7 +115,8 @@ main {
     cursor: pointer;
 }
 
-#subtask-title {
+#subtask-title,
+#edit-subtask-title {
     border: none;
     margin: 0;
     outline: none;
@@ -142,9 +151,9 @@ main {
     justify-content: flex-end;
     gap: 16px;
     padding-bottom: 8px;
-    position: absolute;
     bottom: 18px;
     right: 18px;
+    padding-top: 166px;
 }
 
 #edit-submit-changes-btn-container button {
@@ -179,7 +188,8 @@ main {
     }
 }
 
-#create-task-btn {
+#create-task-btn,
+#edit-create-task-btn {
     background-color: var(--accent-text-color);
     color: white;
 
@@ -199,7 +209,8 @@ select {
     }
 }
 
-#task-contact-input {
+#task-contact-input,
+#edit-contact-input {
     border: 0;
     outline: none;
     margin: 0;
@@ -207,7 +218,8 @@ select {
 
 #sub-task-input-container:has(input:focus),
 #add-task-contact-container:has(input:focus),
-#add-task-date-container:has(input:focus) {
+#add-task-date-container:has(input:focus),
+#add-task-clear-btn:has(input:focus) {
     border: 2px solid var(--identity);
 }
 
@@ -219,14 +231,16 @@ select {
     align-items: center;
     height: fit-content;
     margin-top: 8px;
+    margin-bottom: 8px;
     padding-right: 4px;
 }
 
-#add-task-contact-container {
+#add-task-contact-container{
     margin-bottom: 24px;
 }
 
-#add-task-contacts-list {
+#add-task-contacts-list,
+#edit-task-contacts-list {
     list-style: none;
 }
 
@@ -244,7 +258,8 @@ select {
     }
 }
 
-#add-task-contact-list-container {
+#add-task-contact-list-container,
+#edit-task-contact-list-container {
     height: 240px;
     overflow-y: auto;
     margin-bottom: 24px;
@@ -285,7 +300,8 @@ select {
     display: none;
 }
 
-#name-circle-container {
+#name-circle-container,
+#edit-name-circle-container {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -294,10 +310,10 @@ select {
 .open-circle-container {
     gap: 8px;
     padding: 8px;
-    margin-bottom: 24px;
 }
 
-#task-due-date {
+#task-due-date,
+#edit-task-due-date {
     border: 0;
     outline: none;
     margin: 0;
@@ -324,15 +340,21 @@ select {
     z-index: 10;
 }
 
-#sub-task-icon-cross {
+#sub-task-icon-cross,
+#edit-sub-task-icon-cross {
     margin-right: 4px;
+}
+
+#edit-subtask-list-container {
+    margin-left: 32px;
+    margin-right: 16px;
 }
 
 .subtask-text-img-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 310px;
+    flex: 1;
 }
 
 .subtask-img-container {
@@ -374,4 +396,10 @@ select {
     width: calc(100% - 32px);
     margin: 0;
     padding: 0;
+}   
+
+@media (max-width: 320px) {
+    .prio-btn span {
+        font-size: 12px;
+    }
 }

@@ -111,7 +111,7 @@ function setLowPrio() {
 }
 
 function filterInput(event) {
-    filteredNamesAndColors = filterInputFromArray(usersNamesAndColorsNamesAndColors, event.target.value);
+    filteredNamesAndColors = filterInputFromArray(NamesAndColors, event.target.value);
     console.log(filteredNamesAndColors);
     addContactNamesToList(filteredNamesAndColors, TASK_CONTACT_LIST);
 }
