@@ -111,7 +111,7 @@ function setLowPrio() {
 }
 
 function filterInput(event) {
-    filteredNamesAndColors = filterInputFromArray(usersNamesAndColorsNamesAndColors, event.target.value);
+    filteredNamesAndColors = filterInputFromArray(NamesAndColors, event.target.value);
     console.log(filteredNamesAndColors);
     addContactNamesToList(filteredNamesAndColors, TASK_CONTACT_LIST);
 }
@@ -122,8 +122,10 @@ function checkContact(event, data) {
     container.classList.toggle("checked-contact");
     if (container.classList.contains("checked-contact")) {
         checkedContactNamesAndColors.push(currentContact);
+        contactNames.push(currentContact.name);
     } else {
         checkedContactNamesAndColors.splice(checkedContactNamesAndColors.indexOf(currentContact), 1);
+        contactNames.splice(contactNames.indexOf(currentContact.name), 1);
     }
 }
 
@@ -212,15 +214,19 @@ function removeEditClass(event) {
 async function createTask(event) {
     event.preventDefault();
     let param = new URLSearchParams(window.location.search);
-    console.log(param)
-    let state = param.get("state" || "toDo");
+    let state = "";
+    if (param.has("state")) {
+        state = param.get("state");
+    } else {
+        state = "toDo";
+    }
     newTask = {
         "type": document.getElementById("task-category-select").value,
         "title": document.getElementById("task-title").value,
         "description": document.getElementById("task-description").value,
         "dueDate": document.getElementById("task-due-date").value,
         "priority": taskPrio || "low",
-        "assignedTo": checkedContactNamesAndColors,
+        "assignedTo": contactNames,
         "subtasks": subtaskList,
         "state": state,
     };

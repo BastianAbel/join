@@ -108,7 +108,8 @@ function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority,
     document.getElementById('edit-task-due-date').value = taskDate;
     editTaskGetEmployeeInfo(assignedUsers);
     loadRightPriorityColor(taskPriority);
-    editGetAllUserNames();
+    // editGetSubtaskInfo(subtasks, taskId);
+    editGetAllContactsNames();
 }
 
 function loadRightPriorityColor(taskPriority){

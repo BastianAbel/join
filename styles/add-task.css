@@ -396,4 +396,10 @@ select {
     width: calc(100% - 32px);
     margin: 0;
     padding: 0;
+}   
+
+@media (max-width: 320px) {
+    .prio-btn span {
+        font-size: 12px;
+    }
 }

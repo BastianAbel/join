@@ -1,34 +1,22 @@
-let editTaskPrio = "";
 let editCheckedUsersNamesAndColors = [];
 let editCheckedContactNamesAndColors = [];
 let editNewTask = {};
 let editContactNames = [];
 let editFilteredNamesAndColors = [];
 
-async function editGetAllUserNames() {
+async function editGetAllContactsNames() {
     onlyLoadIfUserOrGuest();
     loadUserInitials();
     await loadAllContacts();
-    let usersNamesAndColors = allContacts.map((entry) => ({
-        name: entry.user.userData.name.replace(/[^a-zA-ZöüäÖÜÄ ]/g, ""),
+    let contactsNamesAndColors = allContacts.map((entry) => ({
+        name: entry.user.name.replace(/[^a-zA-ZöüäÖÜÄ ]/g, ""),
         color: entry.color,
         id: entry.id,
         tasksAssignedTo: entry.tasksAssignedTo,
     }));
-    editFilteredNamesAndColors = usersNamesAndColors;
+    editFilteredNamesAndColors = contactsNamesAndColors;
     addContactNamesToList(editFilteredNamesAndColors, document.getElementById('edit-task-contacts-list'));
     console.log(editFilteredNamesAndColors);
-}
-
-function checkContact(event, data) {
-    const container = event.currentTarget;
-    let currentContact = getContactFromArrayById(editFilteredNamesAndColors, data.id);
-    container.classList.toggle("checked-contact");
-    if (container.classList.contains("checked-contact")) {
-        editCheckedUsersNamesAndColors.push(currentContact);
-    } else {
-        editCheckedUsersNamesAndColors.splice(editCheckedUsersNamesAndColors.indexOf(currentContact), 1);
-    }
 }
 
 function addContactNamesToList(array, element) {
@@ -59,7 +47,7 @@ function editSetUrgentPrio() {
     editPrioUrgentButton.classList.add("active-urgent");
     editPrioMediumButton.classList.remove("active-medium");
     editPrioLowButton.classList.remove("active-low");
-    editTaskPrio = "urgent";
+    taskPrio = "urgent";
 }
 
 function editSetMediumPrio() {
@@ -69,7 +57,7 @@ function editSetMediumPrio() {
     prioUrgentButton.classList.remove("active-urgent");
     prioMediumButton.classList.add("active-medium");
     prioLowButton.classList.remove("active-low");
-    editTaskPrio = "medium";
+    taskPrio = "medium";
 }
 
 function editSetLowPrio() {
@@ -79,7 +67,27 @@ function editSetLowPrio() {
     prioUrgentButton.classList.remove("active-urgent");
     prioMediumButton.classList.remove("active-medium");
     prioLowButton.classList.add("active-low");
-    editTaskPrio = "low";
+    taskPrio = "low";
+}
+
+function editFilterInput(event) {
+    let editTaskContactList = document.getElementById("edit-task-contact-list");
+    editFilteredNamesAndColors = filterInputFromArray(NamesAndColors, event.target.value);
+    console.log(editFilteredNamesAndColors);
+    addContactNamesToList(editFilteredNamesAndColors, editTaskContactList);
+}
+
+function checkContact(event, data) {
+    const container = event.currentTarget;
+    let currentContact = getContactFromArrayById(editFilteredNamesAndColors, data.id);
+    container.classList.toggle("checked-contact");
+    if (container.classList.contains("checked-contact")) {
+        checkedContactNamesAndColors.push(currentContact);
+        contactNames.push(currentContact.name);
+    } else {
+        checkedContactNamesAndColors.splice(checkedContactNamesAndColors.indexOf(currentContact), 1);
+        contactNames.splice(contactNames.indexOf(currentContact.name), 1);
+    }
 }
 
 function editShowContactList() {
@@ -95,7 +103,7 @@ function editShowContactList() {
             editNameCircleContainer.classList.remove("d_none");
             editNameCircleContainer.classList.add("open-circle-container");
             editNameCircleContainer.innerHTML = "";
-            addNameCircles(editCheckedUsersNamesAndColors, editNameCircleContainer, `contact-name-circle`);
+            addNameCircles(checkedContactNamesAndColors, editNameCircleContainer, `contact-name-circle`);
         }
         if (!editNameCircleContainer.classList.contains("d_none") && !editNameCircleContainer.hasChildNodes()) {
             editNameCircleContainer.classList.add("d_none");
@@ -153,4 +161,46 @@ function editTaskGetEmployeeInfo(assignedUsers) {
         `;
     }
 }
+
+async function editGetSubtaskInfo(subtasks, taskId) {
+    if (subtasks === undefined) {
+        document.getElementById("subtaskContainer").innerHTML = "Keine Subtasks";
+    } else {
+        for (let i = 0; i < subtasks.length; i++) {
+            document.getElementById("subtaskContainer").innerHTML += `<li>
+				<div class="subtask-text-img-container">
+					<span onblur="removeEditClass(event)">${subtasks[i].description}</span>
+					<div class="subtask-img-container">
+						<img 
+							src="/assets/icons/edit-symbol.svg"
+							alt="pencil icon"
+							onclick="editContent(event)"
+						/>
+						<img
+							id="sub-task-icon-vector"
+							src="/assets/icons/subtask-vektor.svg"
+							alt="vector icon"
+						/>
+						<img
+							src="/assets/icons/trashcan.svg"
+							alt="trashcan-logo"
+							onclick="deleteSubtask(event)"
+						/>
+					</div>
+				</div>
+			</li>`;
+            await getCheckboxBg(taskId, i);
+        }
+    }
+}
+
+function setChangedDataOfTaskToBackend() {
+    let changedTaskTitle = document.getElementById('edit-task-title').value;
+    let changedTaskDescription = document.getElementById('edit-task-description').value;
+    let changedTaskDate = document.getElementById('edit-task-due-date').value;
+    let changedTaskPrio = taskPrio;
+    let changedContacts = contactNames;
+
+}
+
 
