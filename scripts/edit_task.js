@@ -15,7 +15,8 @@ async function editGetAllContactsNames() {
         tasksAssignedTo: entry.tasksAssignedTo,
     }));
     editFilteredNamesAndColors = contactsNamesAndColors;
-    addContactNamesToList(editFilteredNamesAndColors, document.getElementById('edit-task-contacts-list'));
+    addContactNamesToList(editFilteredNamesAndColors, document.getElementById("edit-task-contacts-list"));
+
     console.log(editFilteredNamesAndColors);
 }
 
@@ -29,8 +30,22 @@ function addContactNamesToList(array, element) {
     }
 }
 
+function setContactAssignedToChecked(taskArrayOfAssignedContacts, arrayOfAllContactNames) {
+    let listElementDiv;
+    for (let i = 0; i < arrayOfAllContactNames.length; i++) {
+        for (let j = 0; j < taskArrayOfAssignedContacts.length; j++) {
+            {
+                if (arrayOfAllContactNames[i].name == taskArrayOfAssignedContacts[j]) {
+                    listElementDiv = document.getElementById(`check-box-assign-contact-id(${arrayOfAllContactNames[i].id})`);
+                    listElementDiv.classList.add("checked-contact");
+                }
+            }
+        }
+    }
+}
+
 function editFormatDateInput() {
-    let dueDateInput = document.getElementById('edit-task-due-date');
+    let dueDateInput = document.getElementById("edit-task-due-date");
     if (dueDateInput.value.length == 2 || dueDateInput.value.length == 5) {
         dueDateInput.value += `/`;
     }
@@ -41,9 +56,9 @@ function editFormatDateInput() {
 }
 
 function editSetUrgentPrio() {
-    let editPrioUrgentButton = document.getElementById('edit-prio-urgent-btn');
-    let editPrioMediumButton = document.getElementById('edit-prio-medium-btn');
-    let editPrioLowButton = document.getElementById('edit-prio-low-btn');
+    let editPrioUrgentButton = document.getElementById("edit-prio-urgent-btn");
+    let editPrioMediumButton = document.getElementById("edit-prio-medium-btn");
+    let editPrioLowButton = document.getElementById("edit-prio-low-btn");
     editPrioUrgentButton.classList.add("active-urgent");
     editPrioMediumButton.classList.remove("active-medium");
     editPrioLowButton.classList.remove("active-low");
@@ -51,9 +66,9 @@ function editSetUrgentPrio() {
 }
 
 function editSetMediumPrio() {
-    let prioUrgentButton = document.getElementById('edit-prio-urgent-btn');
-    let prioMediumButton = document.getElementById('edit-prio-medium-btn');
-    let prioLowButton = document.getElementById('edit-prio-low-btn');
+    let prioUrgentButton = document.getElementById("edit-prio-urgent-btn");
+    let prioMediumButton = document.getElementById("edit-prio-medium-btn");
+    let prioLowButton = document.getElementById("edit-prio-low-btn");
     prioUrgentButton.classList.remove("active-urgent");
     prioMediumButton.classList.add("active-medium");
     prioLowButton.classList.remove("active-low");
@@ -61,9 +76,9 @@ function editSetMediumPrio() {
 }
 
 function editSetLowPrio() {
-    let prioUrgentButton = document.getElementById('edit-prio-urgent-btn');
-    let prioMediumButton = document.getElementById('edit-prio-medium-btn');
-    let prioLowButton = document.getElementById('edit-prio-low-btn');
+    let prioUrgentButton = document.getElementById("edit-prio-urgent-btn");
+    let prioMediumButton = document.getElementById("edit-prio-medium-btn");
+    let prioLowButton = document.getElementById("edit-prio-low-btn");
     prioUrgentButton.classList.remove("active-urgent");
     prioMediumButton.classList.remove("active-medium");
     prioLowButton.classList.add("active-low");
@@ -90,10 +105,15 @@ function checkContact(event, data) {
     }
 }
 
-function editShowContactList() {
+function getTaskFromArrayById(array, id) {
+    return array.find((entry) => entry.id == id);
+}
+
+function editShowContactList(taskId) {
     let editTaskContactListContainer = document.getElementById("edit-task-contact-list-container");
     let editTaskDropDownIcon = document.getElementById("edit-task-contact-drop-down-icon");
     let editNameCircleContainer = document.getElementById("edit-name-circle-container");
+    let currentTask = getTaskFromArrayById(allTasks, taskId);
     if (event.currentTarget == event.target) {
         editTaskContactListContainer.classList.toggle("d_none");
         if (!editTaskContactListContainer.classList.contains("d_none")) {
@@ -110,13 +130,14 @@ function editShowContactList() {
             editNameCircleContainer.classList.remove("open-circle-container");
         }
     }
+    setContactAssignedToChecked(currentTask.assignedTo, editFilteredNamesAndColors);
 }
 
 function editAddSubTask() {
     let subtaskTitle = "";
     let subTaskObject = {};
     let editSubtaskInput = document.getElementById("edit-subtask-title");
-    let editSubtaskList = document.getElementById("edit-subtask-list")
+    let editSubtaskList = document.getElementById("edit-subtask-list");
     if (editSubtaskInput.value) {
         subtaskTitle = editSubtaskInput.value;
         editSubtaskList.innerHTML += renderSubtask(subtaskTitle);
@@ -195,13 +216,11 @@ async function editGetSubtaskInfo(decodedSubtasks) {
 }
 
 function setChangedDataOfTaskToBackend() {
-    let changedTaskTitle = document.getElementById('edit-task-title').value;
-    let changedTaskDescription = document.getElementById('edit-task-description').value;
-    let changedTaskDate = document.getElementById('edit-task-due-date').value;
+    let changedTaskTitle = document.getElementById("edit-task-title").value;
+    let changedTaskDescription = document.getElementById("edit-task-description").value;
+    let changedTaskDate = document.getElementById("edit-task-due-date").value;
     let changedTaskPrio = taskPrio;
     let changedContacts = contactNames;
     let changedSubtaskList = subtaskList;
 
 }
-
-
