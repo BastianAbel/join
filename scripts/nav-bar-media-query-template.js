@@ -8,11 +8,12 @@ function desktopNavBarTemplate() {
                 <a href="/pages/summary.html" id="nav-bar-container-summary" class="desktop-nav-bar-container"
                     ><img id="nav-bar-img-1" src="/assets/icons/summary.svg" alt="" /> <span>Summary</span></a
                 >
-                <a href="/pages/board.html" id="nav-bar-container-board" class="desktop-nav-bar-container"
-                    ><img id="nav-bar-img-2" src="/assets/icons/board.svg" alt="" /> <span>Board</span></a
-                >
+                
                 <a href="/pages/add-task.html" id="nav-bar-container-add-to-task" class="desktop-nav-bar-container"
                     ><img id="nav-bar-img-3" src="/assets/icons/add-to-task.svg" alt="" /> <span>Add Task</span></a
+                >
+                <a href="/pages/board.html" id="nav-bar-container-board" class="desktop-nav-bar-container"
+                    ><img id="nav-bar-img-2" src="/assets/icons/board.svg" alt="" /> <span>Board</span></a
                 >
                 <a href="/pages/contactlist.html" id="nav-bar-container-contacts" class="desktop-nav-bar-container"
                     ><img id="nav-bar-img-4" src="/assets/icons/contacts.svg" alt="" /> <span>Contacts</span></a
