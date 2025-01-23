@@ -222,12 +222,6 @@
     }
 }
 
-@media (min-width: 430px) {
-    .summary-main-container {
-        padding-left: 260px;
-        height: 100vh;
-    }
-}
 @media (min-width: 455px) {
     #headline-span {
         font-size: 20px;

@@ -16,7 +16,7 @@ body {
 }
 
 #board-main {
-    width: 100% !important;
+    /* width: 100% !important; */
     padding: 0;
     background-color: rgb(246, 247, 248);
     height: calc(100vh - 160px);
@@ -37,6 +37,48 @@ h2 {
     margin-right: 16px;
     padding-top: 32px;
     padding-bottom: 32px;
+}
+
+.add-task-btn-desktop {
+    display: none;
+}
+
+.add-task-btn-desktop {
+    fill: currentColor;
+    cursor: pointer;
+    width: 160px;
+    height: 48px;
+}
+
+.add-task-btn-desktop rect {
+    stroke: currentColor;
+    transition: color 0.1s ease-in-out;
+}
+
+.add-task-btn-desktop rect:hover {
+    color: rgba(41, 171, 226, 1);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.category-add-task-btn {
+    color: black;
+    transition: color 0.1s ease-out;
+    cursor: pointer;
+}
+
+.category-add-task-btn:hover {
+    color: rgba(41, 171, 226, 1);
+    cursor: pointer;
+}
+
+.category-add-task-btn rect {
+    stroke: currentColor;
+    transition: color 0.1s ease-out;
+}
+
+.category-add-task-btn rect:hover {
+    color: rgba(41, 171, 226, 1);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .section-one h2 {
@@ -69,14 +111,13 @@ h2 {
     border: solid 1px rgba(168, 168, 168, 1);
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
-
     padding: 8px 16px 8px 16px;
+}
 
-    ::placeholder {
-        color: rgba(209, 209, 209, 1);
-        font-size: 20px;
-        font-weight: 400;
-    }
+.user-input-section::placeholder {
+    color: rgba(209, 209, 209, 1);
+    font-size: 20px;
+    font-weight: 400;
 }
 
 .user-input-section:focus-within {
@@ -97,7 +138,7 @@ input:focus {
     flex: 1;
 }
 .user-input-field:focus {
-    border: none;
+    border: none !important;
 }
 
 .user-input-section button {
@@ -109,6 +150,11 @@ input:focus {
     justify-content: end;
     border-left: solid 1px rgba(209, 209, 209, 1);
     background-color: transparent;
+}
+
+.search-btn:hover {
+    background-color: rgba(205, 205, 205, 0.5);
+    border-radius: 25px;
 }
 
 .section-three {
@@ -191,9 +237,8 @@ input:focus {
 
 .board-prio-headline-div {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
-    position: sticky;
 }
 
 .draggable {
@@ -207,4 +252,88 @@ input:focus {
 
 .rotate-on-drag {
     transform: rotate(5deg);
+}
+
+/* Media Query */
+
+@media (min-width: 1330px) {
+    #board-main {
+        overflow-x: auto;
+    }
+}
+
+@media (min-width: 920px) {
+    #board-main {
+        height: 100vh;
+        overflow: auto;
+    }
+
+    .board-header {
+        max-width: 1056px;
+        height: 73px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 96px;
+    }
+
+    .section-one{
+        margin-left: 0;
+    }
+
+    .add-task-btn-mobile {
+        display: none;
+    }
+
+    .section-two {
+        display: flex;
+        gap: 32px;
+        max-width: 504px !important;
+        height: 48px;
+    }
+
+    .user-input-section {
+        width: 312px;
+        height: 48px;
+    }
+
+    .add-task-btn-desktop {
+        display: block;
+    }
+
+    .board-content {
+        max-width: 1056px;
+        height: 688px;
+        display: flex;
+        gap: 26px;
+        padding-top: 75px;
+        padding-right: 64px;
+    }
+
+    .board-progress-state {
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 16px;
+    }
+
+    .progress-content {
+        width: 264px !important;
+        height: 48px;
+    }
+
+    .progress-content span {
+        font-size: 16px;
+    }
+
+    .section-six{
+        padding-right: 16px;
+    }
+
+    .section-three,
+    .section-four,
+    .section-five,
+    .section-six {
+        margin: 0;
+        width: 252px;
+    }
 }
