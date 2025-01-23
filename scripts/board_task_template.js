@@ -1,7 +1,8 @@
 function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progressBarCalc, cardTypeColor, j) {
     return ` 
-    <div id="${task.id}" onclick="taskBigView('${task.id}','${j}', '${task.dueDate}', '${task.priority}', '${priorityImage}', '${encodeURIComponent(JSON.stringify(task.assignedTo))}', '${encodeURIComponent(JSON.stringify(task.subtasks))}', '${cardTypeColor}')" class="card-main-container draggable" draggable="true" ondragstart="startDragging(event, '${task.id
-        }')" ondrag="enableScrollByDragging(event)" onmousedown="rotate(event)" onmouseup="removeRotations()" onmouseover="enableScrollByMouseposition(event)">
+    <div id="${task.id}" onclick="taskBigView('${task.id}','${j}', '${task.dueDate}', '${task.priority}', '${priorityImage}', '${encodeURIComponent(JSON.stringify(task.assignedTo))}', '${encodeURIComponent(JSON.stringify(task.subtasks))}', '${cardTypeColor}')" class="card-main-container draggable" draggable="true" ondragstart="startDragging(event, '${
+        task.id
+    }')" ondrag="enableScrollByDragging(event)" onmousedown="rotate(event)" onmouseup="removeRotations()" onmouseover="enableScrollByMouseposition(event)">
             <div class="card-main-container-content">
                 <div style=" ${cardTypeColor}" class="labels-board-card-label">
                     <div id="task-type${j}" class="card-label"><span>${capitalizeFirstLetter(task.type)}</span></div>
@@ -36,8 +37,8 @@ function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progr
         `;
 }
 
-function renderEditTaskBigView() {
-    return /*html*/`
+function renderEditTaskBigView(taskId, taskTitle, taskDescription, taskDate) {
+    return /*html*/ `
 <div id="edit-task-big-container" class="edit-task-container">
             <div class="edit-task-close-container">
                 <img onclick="editTaskSlideOut()" onmousedown="removeRotations()" src="../assets/icons/close-black.svg" alt="">
@@ -101,7 +102,7 @@ function renderEditTaskBigView() {
             <div
                 id="edit-task-contact-container"
                 class="add-task-input-img-container"
-                onclick="editShowContactList()"
+                onclick="editShowContactList('${taskId}')"
             >
                 <input
                     type="text"
@@ -109,13 +110,13 @@ function renderEditTaskBigView() {
                     class="add-task-attribute-input"
                     placeholder="Select contacts to assign"
                     oninput="filterInput(event)"
-                    onclick="editShowContactList()"
+                    onclick="editShowContactList('${taskId}')"
                 />
                 <img
                     src="/assets/icons/arrow-drop-down.svg"
                     alt="closed drop down logo"
                     id="edit-task-contact-drop-down-icon"
-                    onclick="editShowContactList()"
+                    onclick="editShowContactList('${taskId}')"
                 />
             </div>
             <div id="edit-task-contact-list-container" class="d_none">

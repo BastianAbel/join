@@ -99,47 +99,47 @@ function EditShowContactList() {
     }
 }
 
-function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority, assignedUsers) {
-    document.getElementById("window-overlay").classList.remove('d-none');
-    document.getElementById('task-big-container').outerHTML = "";
-    document.getElementById('board-main').innerHTML += renderEditTaskBigView(taskTitle, taskDescription, taskDate);
-    document.getElementById('edit-task-title').value = taskTitle;
-    document.getElementById('edit-task-description').value = taskDescription;
-    document.getElementById('edit-task-due-date').value = taskDate;
+function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority, assignedUsers, taskId) {
+    document.getElementById("window-overlay").classList.remove("d-none");
+    document.getElementById("task-big-container").outerHTML = "";
+    document.getElementById("board-main").innerHTML += renderEditTaskBigView(taskId, taskTitle, taskDescription, taskDate);
+    document.getElementById("edit-task-title").value = taskTitle;
+    document.getElementById("edit-task-description").value = taskDescription;
+    document.getElementById("edit-task-due-date").value = taskDate;
     editTaskGetEmployeeInfo(assignedUsers);
     loadRightPriorityColor(taskPriority);
     // editGetSubtaskInfo(subtasks, taskId);
     editGetAllContactsNames();
 }
 
-function loadRightPriorityColor(taskPriority){
-    if(taskPriority == "urgent"){
-        document.getElementById('edit-prio-urgent-btn').classList.add("active-urgent");
-    } else if(taskPriority == "medium"){
-        document.getElementById('edit-prio-medium-btn').classList.add("active-medium");
-    } else if(taskPriority == "low"){
-        document.getElementById('edit-prio-low-btn').classList.add("active-low");
+function loadRightPriorityColor(taskPriority) {
+    if (taskPriority == "urgent") {
+        document.getElementById("edit-prio-urgent-btn").classList.add("active-urgent");
+    } else if (taskPriority == "medium") {
+        document.getElementById("edit-prio-medium-btn").classList.add("active-medium");
+    } else if (taskPriority == "low") {
+        document.getElementById("edit-prio-low-btn").classList.add("active-low");
     }
 }
 
 function closeEditTaskBigView() {
-    document.getElementById("window-overlay").classList.add('d-none');
-    document.getElementById('task-big-container').classList.remove('d-none');
+    document.getElementById("window-overlay").classList.add("d-none");
+    document.getElementById("task-big-container").classList.remove("d-none");
 }
 function closeTaskBigView() {
-    document.getElementById("window-overlay").classList.add('d-none');
+    document.getElementById("window-overlay").classList.add("d-none");
     document.getElementById("profileBtn").style.backgroundColor = "white";
     document.getElementById("task-big-container").outerHTML = "";
 }
 
 function closeEditTaskBigView() {
-    document.getElementById("window-overlay").classList.add('d-none');
+    document.getElementById("window-overlay").classList.add("d-none");
     document.getElementById("profileBtn").style.backgroundColor = "white";
     document.getElementById("edit-task-big-container").outerHTML = "";
 }
 
 function editTaskSlideOut() {
-    document.getElementById('edit-task-big-container').classList.add('slide-out-task-big');
+    document.getElementById("edit-task-big-container").classList.add("slide-out-task-big");
     setTimeout(() => {
         closeEditTaskBigView();
     }, 300);
@@ -276,9 +276,9 @@ function checkSectionForChildNodes() {
 
 function EditShowContactList() {
     if (event.currentTarget == event.target) {
-        let editTaskContactListContainer = document.getElementById('edit-task-contact-list-container');
-        let editTaskContactListIcon = document.getElementById('edit-task-contact-drop-down-icon');
-        let editNameCircleContainer = document.getElementById('edit-name-circle-container');
+        let editTaskContactListContainer = document.getElementById("edit-task-contact-list-container");
+        let editTaskContactListIcon = document.getElementById("edit-task-contact-drop-down-icon");
+        let editNameCircleContainer = document.getElementById("edit-name-circle-container");
         editTaskContactListContainer.classList.toggle("d_none");
         if (!editTaskContactListContainer.classList.contains("d_none")) {
             editTaskContactListIcon.src = "/assets/icons/arrow-drop-up.svg";
