@@ -120,8 +120,8 @@ function editAddSubTask() {
     if (editSubtaskInput.value) {
         subtaskTitle = editSubtaskInput.value;
         editSubtaskList.innerHTML += renderSubtask(subtaskTitle);
-        subTaskObject["description"] = subtaskTitle;
         subTaskObject["checked"] = false;
+        subTaskObject["description"] = subtaskTitle;
         subtaskList.push(subTaskObject);
         editSubtaskInput.value = "";
         editClearSubtaskInputField();
@@ -162,14 +162,15 @@ function editTaskGetEmployeeInfo(assignedUsers) {
     }
 }
 
-async function editGetSubtaskInfo(subtasks, taskId) {
-    if (subtasks === undefined) {
-        document.getElementById("subtaskContainer").innerHTML = "Keine Subtasks";
+async function editGetSubtaskInfo(decodedSubtasks) {
+    if (decodedSubtasks === undefined) {
+        document.getElementById("edit-subtask-list").innerHTML = "Keine Subtasks";
     } else {
-        for (let i = 0; i < subtasks.length; i++) {
-            document.getElementById("subtaskContainer").innerHTML += `<li>
+        for (let i = 0; i < decodedSubtasks.length; i++) {
+            subtaskList.push(decodedSubtasks[i]);
+            document.getElementById("edit-subtask-list").innerHTML += `<li>
 				<div class="subtask-text-img-container">
-					<span onblur="removeEditClass(event)">${subtasks[i].description}</span>
+					<span onblur="removeEditClass(event)">${decodedSubtasks[i].description}</span>
 					<div class="subtask-img-container">
 						<img 
 							src="/assets/icons/edit-symbol.svg"
@@ -189,7 +190,6 @@ async function editGetSubtaskInfo(subtasks, taskId) {
 					</div>
 				</div>
 			</li>`;
-            await getCheckboxBg(taskId, i);
         }
     }
 }
@@ -200,6 +200,7 @@ function setChangedDataOfTaskToBackend() {
     let changedTaskDate = document.getElementById('edit-task-due-date').value;
     let changedTaskPrio = taskPrio;
     let changedContacts = contactNames;
+    let changedSubtaskList = subtaskList;
 
 }
 

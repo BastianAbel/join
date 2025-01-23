@@ -161,7 +161,7 @@ function renderEditTaskBigView() {
             </div>
         </div>
         <div id="edit-submit-changes-btn-container">
-            <button type="submit" id="edit-create-task-btn" class="add-task-btn">Ok<img src="/assets/icons/check.svg" alt="" /></button>
+            <button onclick="saveEditedTask()" type="submit" id="edit-change-task-btn" class="add-task-btn">Ok<img src="/assets/icons/check.svg" alt="" /></button>
         </div>
     </div>
 </div>`;

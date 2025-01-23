@@ -13,18 +13,18 @@ function taskBigView(taskId, j, taskDate, taskPriority, priorityImage, assignedU
     }
 }
 
-function getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor, subtasks) {
+function getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks) {
     let taskTitle = document.getElementById(`task-title${j}`).innerHTML;
     let taskDescription = document.getElementById(`task-description${j}`).innerHTML;
     let taskType = document.getElementById(`task-type${j}`).innerHTML;
 
-    setInfoToBigCard(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, subtasks);
+    setInfoToBigCard(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks);
 }
 
-function setInfoToBigCard(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, subtasks) {
-    document.getElementById("board-main").innerHTML += renderTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, cardTypeColor, assignedUsers);
+function setInfoToBigCard(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks) {
+    document.getElementById("board-main").innerHTML += renderTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, cardTypeColor, assignedUsers, decodedSubtasks);
     getEmployeeInfo(assignedUsers);
-    getSubtaskInfo(subtasks, taskId);
+    getSubtaskInfo(decodedSubtasks, taskId);
 }
 
 function getEmployeeInfo(assignedUsers) {
@@ -99,7 +99,8 @@ function EditShowContactList() {
     }
 }
 
-function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority, assignedUsers) {
+function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority, assignedUsers, taskId, decodedSubtasks) {
+    const decodedSubtasksForEditTaskBigView = JSON.parse(decodeURIComponent(decodedSubtasks));
     document.getElementById("window-overlay").classList.remove('d-none');
     document.getElementById('task-big-container').outerHTML = "";
     document.getElementById('board-main').innerHTML += renderEditTaskBigView(taskTitle, taskDescription, taskDate);
@@ -108,7 +109,7 @@ function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority,
     document.getElementById('edit-task-due-date').value = taskDate;
     editTaskGetEmployeeInfo(assignedUsers);
     loadRightPriorityColor(taskPriority);
-    // editGetSubtaskInfo(subtasks, taskId);
+    editGetSubtaskInfo(decodedSubtasksForEditTaskBigView, taskId);
     editGetAllContactsNames();
 }
 
