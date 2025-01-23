@@ -132,10 +132,6 @@ body {
     flex-direction: row-reverse;
  }
 
- .main-container {
-    flex: 1;
- }
-
  .nav-bar-main-container {
     display: flex;
     flex-direction: column;

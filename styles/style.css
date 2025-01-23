@@ -15,6 +15,13 @@ header {
     z-index: 1000;
 }
 
+.header span {
+    display: none;
+    margin-left: 116px;
+    font-weight: 400;
+    font-size: 20;
+}
+
 .header img {
     height: 40px;
     margin: 0 16px;
@@ -35,3 +42,12 @@ header {
     }
 }
 
+@media (min-width: 920px) {
+    .header a {
+        display: none;
+    }
+
+    .header span {
+        display: block;
+    }
+}

@@ -46,9 +46,25 @@ button {
     justify-content: center;
 }
 
+body {
+    min-height: 100vh;
+}
+
 main {
     height: calc(100vh - 160px);
     overflow-y: auto;
+}
+
+@media (min-width: 920px) {
+    main {
+        height: 100vh;
+    }
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 button {
