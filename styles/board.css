@@ -43,16 +43,42 @@ h2 {
     display: none;
 }
 
-.add-task-btn-desktop img {
+.add-task-btn-desktop {
+    fill: currentColor;
     cursor: pointer;
     width: 160px;
     height: 48px;
 }
 
-.add-task-btn-desktop img:hover{
-    width: 160px;
-    height: 48px;
-    content: url(../assets/icons/add-task-desktop-edition-hover.svg);
+.add-task-btn-desktop rect {
+    stroke: currentColor;
+    transition: color 0.1s ease-in-out;
+}
+
+.add-task-btn-desktop rect:hover {
+    color: rgba(41, 171, 226, 1);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.category-add-task-btn {
+    color: black;
+    transition: color 0.1s ease-out;
+    cursor: pointer;
+}
+
+.category-add-task-btn:hover {
+    color: rgba(41, 171, 226, 1);
+    cursor: pointer;
+}
+
+.category-add-task-btn rect {
+    stroke: currentColor;
+    transition: color 0.1s ease-out;
+}
+
+.category-add-task-btn rect:hover {
+    color: rgba(41, 171, 226, 1);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .section-one h2 {
@@ -127,7 +153,7 @@ input:focus {
 }
 
 .search-btn:hover {
-    background-color:rgba(205, 205, 205, 0.5);
+    background-color: rgba(205, 205, 205, 0.5);
     border-radius: 25px;
 }
 
@@ -211,9 +237,8 @@ input:focus {
 
 .board-prio-headline-div {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
-    position: sticky;
 }
 
 .draggable {
@@ -231,10 +256,17 @@ input:focus {
 
 /* Media Query */
 
-@media (min-width: 428px) {
+@media (min-width: 1330px) {
+    #board-main {
+        overflow-x: auto;
+    }
+}
+
+@media (min-width: 431px) {
     #board-main {
         height: 100vh;
         padding-left: 285px;
+        overflow: auto;
     }
 
     .board-header {
@@ -244,8 +276,10 @@ input:focus {
         align-items: center;
         justify-content: space-between;
         padding-top: 96px;
-        padding-right: 64px;
-        margin-right: 40px;
+    }
+
+    .section-one{
+        margin-left: 0;
     }
 
     .add-task-btn-mobile {
@@ -272,14 +306,28 @@ input:focus {
         max-width: 1056px;
         height: 688px;
         display: flex;
-        gap: 16px;
-        padding-top: 85px;
+        gap: 26px;
+        padding-top: 75px;
         padding-right: 64px;
     }
 
     .board-progress-state {
         flex-direction: column;
         gap: 16px;
+        margin-top: 16px;
+    }
+
+    .progress-content {
+        width: 264px !important;
+        height: 48px;
+    }
+
+    .progress-content span {
+        font-size: 16px;
+    }
+
+    .section-six{
+        padding-right: 16px;
     }
 
     .section-three,
@@ -287,5 +335,6 @@ input:focus {
     .section-five,
     .section-six {
         margin: 0;
+        width: 252px;
     }
 }

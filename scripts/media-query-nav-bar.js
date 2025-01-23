@@ -17,7 +17,7 @@ function handleMediaQueryChange(width) {
 }
 
 // Media Query erstellen
-const mediaQuery = window.matchMedia("(min-width: 428px)");
+const mediaQuery = window.matchMedia("(min-width: 431px)");
 
 // Event Listener hinzufügen
 mediaQuery.addListener(handleMediaQueryChange);
