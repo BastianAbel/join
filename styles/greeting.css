@@ -2,6 +2,32 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: fadeOutAnimation;
+    animation-delay: 1200ms;
+    animation-duration: 400ms;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes fadeOutAnimation {
+    0% {
+        opacity: 1;
+    }
+
+    99% {
+        opacity: 0;
+    }
+
+    100% {
+        z-index: -1;
+
+    }
 }
 
 #greeting {
@@ -14,22 +40,4 @@
     font-size: 47px;
     font-weight: 700;
     color: var(--identity);
-}
-
-main {
-    animation: fadeOutAnimation;
-    animation-delay: 1500ms;
-    animation-duration: 400ms;
-    animation-timing-function: ease-in;
-}
-@keyframes fadeOutAnimation
-{
-   0%
-   { 
-   opacity: 1;
-   }
-   100% 
-   {
-   opacity: 0;
-   }
 }
