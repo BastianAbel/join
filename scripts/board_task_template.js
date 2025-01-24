@@ -162,7 +162,7 @@ function renderEditTaskBigView(taskId, taskTitle, taskDescription, taskDate) {
             </div>
         </div>
         <div id="edit-submit-changes-btn-container">
-            <button type="submit" id="edit-create-task-btn" class="add-task-btn">Ok<img src="/assets/icons/check.svg" alt="" /></button>
+            <button type="submit" id="edit-create-task-btn" class="add-task-btn" onclick="removeTaskIdFromUncheckedContacts('${taskId}')">Ok<img src="/assets/icons/check.svg" alt="" /></button>
         </div>
     </div>
 </div>`;

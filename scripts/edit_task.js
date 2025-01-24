@@ -133,6 +133,19 @@ function editShowContactList(taskId) {
     setContactAssignedToChecked(currentTask.assignedTo, editFilteredNamesAndColors);
 }
 
+async function removeTaskIdFromUncheckedContacts(taskId) {
+    let uncheckedContacts = editFilteredNamesAndColors.filter((contact) => !contactNames.includes(contact.name));
+    for (let i = 0; i < uncheckedContacts.length; i++) {
+        let contact = uncheckedContacts[i];
+        let contactTasks = contact.tasksAssignedTo || [];
+        let taskIndex = contactTasks.indexOf(taskId);
+        if (taskIndex !== -1) {
+            contactTasks.splice(taskIndex, 1);
+            await updateData(PATH_TO_CONTACTS, contact.id, contact);
+        }
+    }
+}
+
 function editAddSubTask() {
     let subtaskTitle = "";
     let subTaskObject = {};
