@@ -295,3 +295,11 @@ function EditShowContactList() {
         }
     }
 }
+
+function highlight(id) {
+    document.getElementById(id).classList.add("highlight-drag-area");
+}
+
+function removeHighlight(id) {
+    document.getElementById(id).classList.remove("highlight-drag-area");
+}

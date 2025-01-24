@@ -194,8 +194,9 @@
                             <div
                                 id="board-to-do-section"
                                 class="board-progress-state"
-                                ondrop="moveTaskToState('toDo')"
-                                ondragover="allowDrop(event)"
+                                ondrop="moveTaskToState('toDo'); removeHighlight('board-to-do-section')"
+                                ondragover="allowDrop(event); highlight('board-to-do-section')"
+                                ondragleave="removeHighlight('board-to-do-section')"
                             ></div>
 
                             <div
@@ -244,8 +245,9 @@
                         <div
                             id="board-in-progress-section"
                             class="board-progress-state"
-                            ondrop="moveTaskToState('inProgress')"
-                            ondragover="allowDrop(event)"
+                            ondrop="moveTaskToState('inProgress'); removeHighlight('board-to-do-section')"
+                            ondragover="allowDrop(event); highlight('board-in-progress-section')"
+                            ondragleave="removeHighlight('board-in-progress-section')"
                         ></div>
                         <div
                             id="inProgress"
@@ -292,8 +294,9 @@
                         <div
                             id="board-await-feedback-section"
                             class="board-progress-state"
-                            ondrop="moveTaskToState('awaitFeedback')"
-                            ondragover="allowDrop(event)"
+                            ondrop="moveTaskToState('awaitFeedback'); removeHighlight('board-to-do-section')"
+                            ondragover="allowDrop(event); highlight('board-await-feedback-section')"
+                            ondragleave="removeHighlight('board-await-feedback-section')"
                         ></div>
                         <div
                             id="awaitingFeedback"
@@ -309,8 +312,9 @@
                         <div
                             id="board-done-section"
                             class="board-progress-state"
-                            ondrop="moveTaskToState('done')"
-                            ondragover="allowDrop(event)"
+                            ondrop="moveTaskToState('done'); removeHighlight('board-to-do-section')"
+                            ondragover="allowDrop(event); highlight('board-done-section')"
+                            ondragleave="removeHighlight('board-done-section')"
                         ></div>
                         <div
                             id="done"
