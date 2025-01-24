@@ -116,7 +116,8 @@ function setGreetingName() {
     document.getElementById("animation-userName").innerHTML = userName;
 }
 
-function initSummary() {
+async function initSummary() {
+    await setBackendJsonToSessionStorage()
     loadUserInitials();
     getJsonObjectFromSessionStorage();
     getAllTasksFromStoredObject();
