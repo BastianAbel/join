@@ -2,36 +2,23 @@ let data = [];
 let contentRef = document.getElementById("card-overlay-wrapper");
 let progressBarCalc = "";
 
-async function setBackendJsonToSessionStorage() {
-    try {
-        let response = await fetch(BASE_URL + ".json");
-        if (!response.ok) {
-            throw new Error("Network response was not ok");
-        }
-        let fetchedTasks = await response.json();
-        let taskKeys = Object.keys(fetchedTasks.tasks);
-        sessionStorage.setItem("joinJson", JSON.stringify(fetchedTasks));
-        for (let i = 0; i < taskKeys.length; i++) {
-            data.push({
-                task: fetchedTasks.tasks[taskKeys[i]],
-            });
-        }
-    } catch (error) {
-        console.error("Failed to fetch tasks:", error);
-    }
+async function getDataFromSessionStorage() {
+    let sessionResponse = sessionStorage.getItem("joinJson");
+    let sessionResponseJson = JSON.parse(sessionResponse);
+    let tasks = sessionResponseJson["tasks"];
+    data = getArrayFromObject(tasks);
 }
-setBackendJsonToSessionStorage();
+getDataFromSessionStorage();
 
 function searchTask(event) {
     let searchInput = event.target.value.toLowerCase();
-
     if (searchInput.length < 4) {
         return;
     }
-    let results = data.filter((data) => data.task.title.toLowerCase().includes(searchInput));
+    let results = data.filter((entry) => entry.title.toLowerCase().includes(searchInput));
     contentRef.innerHTML = "";
-    results.forEach((result) => {
-        renderSearchResultCard(result.task);
+    results.forEach((task) => {
+        renderSearchResultCard(task);
     });
 }
 

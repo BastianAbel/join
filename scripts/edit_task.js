@@ -3,6 +3,7 @@ let editCheckedContactNamesAndColors = [];
 let editNewTask = {};
 let editContactNames = [];
 let editFilteredNamesAndColors = [];
+let helperArray = [];
 
 async function editGetAllContactsNames() {
     onlyLoadIfUserOrGuest();
@@ -16,8 +17,6 @@ async function editGetAllContactsNames() {
     }));
     editFilteredNamesAndColors = contactsNamesAndColors;
     addContactNamesToList(editFilteredNamesAndColors, document.getElementById("edit-task-contacts-list"));
-
-    console.log(editFilteredNamesAndColors);
 }
 
 function addContactNamesToList(array, element) {
@@ -88,7 +87,6 @@ function editSetLowPrio() {
 function editFilterInput(event) {
     let editTaskContactList = document.getElementById("edit-task-contact-list");
     editFilteredNamesAndColors = filterInputFromArray(NamesAndColors, event.target.value);
-    console.log(editFilteredNamesAndColors);
     addContactNamesToList(editFilteredNamesAndColors, editTaskContactList);
 }
 
@@ -97,11 +95,13 @@ function checkContact(event, data) {
     let currentContact = getContactFromArrayById(editFilteredNamesAndColors, data.id);
     container.classList.toggle("checked-contact");
     if (container.classList.contains("checked-contact")) {
-        checkedContactNamesAndColors.push(currentContact);
+        editCheckedContactNamesAndColors.push(currentContact);
         contactNames.push(currentContact.name);
+        helperArray.push(currentContact.name);
     } else {
-        checkedContactNamesAndColors.splice(checkedContactNamesAndColors.indexOf(currentContact), 1);
+        editCheckedContactNamesAndColors.splice(editCheckedContactNamesAndColors.indexOf(currentContact), 1);
         contactNames.splice(contactNames.indexOf(currentContact.name), 1);
+        helperArray.splice(helperArray.indexOf(currentContact.name), 1);
     }
 }
 
@@ -114,6 +114,9 @@ function editShowContactList(event, taskId) {
     let editTaskDropDownIcon = document.getElementById("edit-task-contact-drop-down-icon");
     let editNameCircleContainer = document.getElementById("edit-name-circle-container");
     let currentTask = getTaskFromArrayById(allTasks, taskId);
+    helperArray = currentTask.assignedTo;
+    editCheckedContactNamesAndColors = editFilteredNamesAndColors.filter((contact) => helperArray.includes(contact.name));
+
     if (event.currentTarget == event.target) {
         editTaskContactListContainer.classList.toggle("d_none");
         if (!editTaskContactListContainer.classList.contains("d_none")) {
@@ -123,7 +126,8 @@ function editShowContactList(event, taskId) {
             editNameCircleContainer.classList.remove("d_none");
             editNameCircleContainer.classList.add("open-circle-container");
             editNameCircleContainer.innerHTML = "";
-            addNameCircles(checkedContactNamesAndColors, editNameCircleContainer, `contact-name-circle`);
+
+            addNameCircles(editCheckedContactNamesAndColors, editNameCircleContainer, `contact-name-circle`);
         }
         if (!editNameCircleContainer.classList.contains("d_none") && !editNameCircleContainer.hasChildNodes()) {
             editNameCircleContainer.classList.add("d_none");
@@ -233,10 +237,19 @@ async function getChangedTaskData(taskId) {
     let changedTaskDescription = document.getElementById("edit-task-description").value;
     let changedTaskDate = document.getElementById("edit-task-due-date").value;
     let changedTaskPrio = taskPrio;
-    let changedContacts = contactNames;
+    let changedContacts = getNewNames();
     let changedSubtaskList = subtaskList;
     await setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTaskDescription, changedTaskDate, changedTaskPrio, changedContacts, changedSubtaskList);
 }
+
+function getNewNames() {
+    let newNames = []; 
+    for (let i = 0; i < editCheckedContactNamesAndColors.length; i++) {
+        newNames.push(editCheckedContactNamesAndColors[i].name); 
+    }
+    return newNames; 
+}
+
 
 async function setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTaskDescription, changedTaskDate, changedTaskPrio, changedContacts, changedSubtaskList) {
     updateData((path = PATH_TO_TASKS), (id = taskId), (data = {
@@ -244,7 +257,7 @@ async function setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTask
         "description": changedTaskDescription,
         "dueDate": changedTaskDate,
         "priority": changedTaskPrio,
-        // "assignedTo": changedContacts,
+        "assignedTo": changedContacts,
         "subtasks": changedSubtaskList,
     }));
     await addTaskToAssignedContacts();

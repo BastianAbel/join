@@ -1,5 +1,5 @@
 let users = [];
-// User werden geladen und gepusht
+
 async function userLogin() {
     await fetchUsers();
     checkIfUserExists();
@@ -25,7 +25,6 @@ function checkIfUserExists() {
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
     let user = users.find((user) => user.user.email === email && user.user.password === password);
-    console.log(user);
     if (user) {
         userName = user.user.name;
         localStorage.setItem("userName", userName);
