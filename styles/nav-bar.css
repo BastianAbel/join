@@ -132,10 +132,6 @@ body {
     flex-direction: row-reverse;
  }
 
- .main-container {
-    flex: 1;
- }
-
  .nav-bar-main-container {
     display: flex;
     flex-direction: column;
@@ -210,17 +206,23 @@ body {
     flex: 1;
     max-height: 320px;
     margin-bottom: 64px;
-    padding-left:52px;
-    width: calc(100% - 52px);
-    gap: 16px;
+    width: 100%;
 }
 
 .legal-container-nav-bar a {
     color: #A8A8A8;
+    padding-left:52px;
+    height: 35px;
+    display: flex;
+    align-items: center;
     &:hover {
         font-weight: 600;
         color: var(--identity);
     }
+}
+
+.current-site {
+    border-radius: 0;
 }
 }
 

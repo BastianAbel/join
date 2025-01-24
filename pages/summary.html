@@ -1,52 +1,41 @@
 <!DOCTYPE html>
 <html lang="de">
-    <!-- prettier-ignore -->
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Join</title>
-        <link rel="shortcut icon" href="/assets/icons/join-logo-white.svg" type="image/x-icon" />
-        <link rel="stylesheet" href="/styles/nav-bar.css" />
-        <link rel="stylesheet" href="/styles/standart.css" />
-        <link rel="stylesheet" href="/styles/style.css" />
-        <link rel="stylesheet" href="/styles/summary-page.css" />
-        <link rel="stylesheet" href="/styles/submenu-popup.css" />
-        <script src="/scripts/standart.js" defer ></script>
-        <script src="/scripts/main.js" defer></script>
-        <script src="/scripts/summary.js" defer ></script>
-        <script src="/scripts/contact_list.js" defer ></script>
-        <script src="/scripts/login.js" defer ></script>
-    </head>
-    <body onload="initSummary()">
-        <section class="main-container">
-            <div
-            id="submenu"
-            class="submenu-popup-container d-none"
-        >
+<!-- prettier-ignore -->
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join</title>
+    <link rel="shortcut icon" href="/assets/icons/join-logo-white.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="/styles/nav-bar.css" />
+    <link rel="stylesheet" href="/styles/standart.css" />
+    <link rel="stylesheet" href="/styles/style.css" />
+    <link rel="stylesheet" href="/styles/summary-page.css" />
+    <link rel="stylesheet" href="/styles/submenu-popup.css" />
+    <script src="/scripts/standart.js" defer></script>
+    <script src="/scripts/main.js" defer></script>
+    <script src="/scripts/summary.js" defer></script>
+    <script src="/scripts/contact_list.js" defer></script>
+    <script src="/scripts/login.js" defer></script>
+</head>
+
+<body onload="initSummary()">
+    <section class="main-container">
+        <div id="submenu" class="submenu-popup-container d-none">
             <div class="submenu-text-container">
                 <a href="/pages/help.html">Help</a>
                 <a href="/pages/impressum.html">Legal Notice</a>
                 <a href="/pages/privacy-policy.html">Privacy Policy</a>
-                <a
-                    onclick="userLogout()"
-                    href="/pages/login-page.html"
-                    >Log Out</a
-                >
+                <a onclick="userLogout()" href="/pages/login-page.html">Log Out</a>
             </div>
         </div>
         <header>
             <section class="header">
                 <a href="">
-                    <img
-                        src="/assets/icons/join-logo-dark.svg"
-                        alt="Join Logo"
-                    />
+                    <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
                 </a>
-                <button
-                    onclick="showSubmenu()"
-                    id="profileBtn"
-                    class="profile-button"
-                ></button>
+                <span>Kanban Project Management Tool</span>
+                <button onclick="showSubmenu()" id="profileBtn" class="profile-button"></button>
             </section>
         </header>
         <main class="summary-main-container">
@@ -62,47 +51,28 @@
                                 <span id="headline-span">Key Metrics at a Glance</span>
                             </div>
                         </div>
-                        <div
-                            id="summary-head-underline"
-                            class="head-blue-underline"
-                        ></div>
+                        <div id="summary-head-underline" class="head-blue-underline"></div>
                     </div>
                     <div class="task-management-area">
                         <div class="task-main-overview">
                             <div class="to-do-container">
                                 <div>
-                                    <img
-                                        id="to-do-img-hover"
-                                        src="/assets/icons/pencil-rectangle.svg"
-                                        alt=""
-                                    />
+                                    <img id="to-do-img-hover" src="/assets/icons/pencil-rectangle.svg" alt="" />
                                 </div>
                                 <div>
                                     <div class="to-do-number-container">
-                                        <span
-                                            id="to-do-counter-span"
-                                            class="to-do-number"
-                                            >1</span
-                                        >
+                                        <span id="to-do-counter-span" class="to-do-number">1</span>
                                     </div>
                                     <div><span>To-do</span></div>
                                 </div>
                             </div>
                             <div class="done-container">
                                 <div>
-                                    <img
-                                        id="done-img-hover"
-                                        src="/assets/icons/check-rectangle.svg"
-                                        alt=""
-                                    />
+                                    <img id="done-img-hover" src="/assets/icons/check-rectangle.svg" alt="" />
                                 </div>
                                 <div>
                                     <div class="done-number-container">
-                                        <span
-                                            id="done-counter-span"
-                                            class="done-number"
-                                            >1</span
-                                        >
+                                        <span id="done-counter-span" class="done-number">1</span>
                                     </div>
                                     <div><span>Done</span></div>
                                 </div>
@@ -111,18 +81,11 @@
                         <div class="important-reminder-main-container">
                             <div class="urgent-task-container">
                                 <div class="urgent-task-img">
-                                    <img
-                                        src="/assets/icons/urgency-summary.svg"
-                                        alt=""
-                                    />
+                                    <img src="/assets/icons/urgency-summary.svg" alt="" />
                                 </div>
                                 <div>
                                     <div class="urgent-task-number-container">
-                                        <span
-                                            id="urgent-counter-span"
-                                            class="urgent-task-number"
-                                            >1</span
-                                        >
+                                        <span id="urgent-counter-span" class="urgent-task-number">1</span>
                                     </div>
                                     <div><span>Urgent</span></div>
                                 </div>
@@ -137,10 +100,7 @@
                         </div>
                         <div class="task-overview">
                             <div class="task-in-board-container">
-                                <div
-                                    id="task-in-board-counter-div"
-                                    class="number"
-                                >
+                                <div id="task-in-board-counter-div" class="number">
                                     5
                                 </div>
                                 <div class="title">
@@ -148,10 +108,7 @@
                                 </div>
                             </div>
                             <div class="task-in-progress-container">
-                                <div
-                                    id="task-in-progress-counter-div"
-                                    class="number"
-                                >
+                                <div id="task-in-progress-counter-div" class="number">
                                     2
                                 </div>
                                 <div class="title">
@@ -159,10 +116,7 @@
                                 </div>
                             </div>
                             <div class="awaiting-feedback-container">
-                                <div
-                                    id="awaiting-feedback-counter-div"
-                                    class="number"
-                                >
+                                <div id="awaiting-feedback-counter-div" class="number">
                                     2
                                 </div>
                                 <div class="title"><span>Awaiting feedback</span></div>
@@ -176,43 +130,44 @@
                 </div>
             </div>
         </main>
-        </section>
-        <div class="nav-bar-main-container">
-            <div class="nav-bar-wrapper">
-                <div class="join-logo-nav-bar">
-                    <a href="/pages/summary.html"><img src="/assets/icons/join-logo-white.svg" alt=""></a>
-                </div>
-                <div class="nav-bar">
-                    <a href="/pages/summary.html" id="nav-bar-container-summary"  class="nav-bar-container current-site">
-                        <div>
-                            <img id="nav-bar-img-1" src="/assets/icons/summary.svg" alt="" /> 
-                            <span>Summary</span>
-                        </div>
-                    </a>
-                    <a href="/pages/board.html" id="nav-bar-container-board" class="nav-bar-container">
-                        <div>
-                            <img id="nav-bar-img-2" src="/assets/icons/board.svg" alt="" /> 
-                            <span>Board</span>    
-                        </div>
-                    </a>
-                    <a href="/pages/add-task.html" id="nav-bar-container-add-to-task" class="nav-bar-container">
-                        <div>
-                        <img id="nav-bar-img-3" src="/assets/icons/add-to-task.svg" alt="" /> 
-                        <span>Add Task</span>
-                        </div>
-                    </a>
-                    <a href="/pages/contactlist.html" id="nav-bar-container-contacts" class="nav-bar-container">
-                        <div>
-                        <img id="nav-bar-img-4" src="/assets/icons/contacts.svg" alt="" /> 
-                        <span>Contacts</span>
-                        </div>
-                    </a>
-                </div>
+    </section>
+    <div class="nav-bar-main-container">
+        <div class="nav-bar-wrapper">
+            <div class="join-logo-nav-bar">
+                <a href="/pages/summary.html"><img src="/assets/icons/join-logo-white.svg" alt=""></a>
             </div>
-            <div class="legal-container-nav-bar">
-                <a href="/pages/privacy-policy.html">Privacy Policy</a>
-                <a href="/pages/impressum.html">Legal notice</a>
+            <div class="nav-bar">
+                <a href="/pages/summary.html" id="nav-bar-container-summary" class="nav-bar-container current-site">
+                    <div>
+                        <img id="nav-bar-img-1" src="/assets/icons/summary.svg" alt="" />
+                        <span>Summary</span>
+                    </div>
+                </a>
+                <a href="/pages/board.html" id="nav-bar-container-board" class="nav-bar-container">
+                    <div>
+                        <img id="nav-bar-img-2" src="/assets/icons/board.svg" alt="" />
+                        <span>Board</span>
+                    </div>
+                </a>
+                <a href="/pages/add-task.html" id="nav-bar-container-add-to-task" class="nav-bar-container">
+                    <div>
+                        <img id="nav-bar-img-3" src="/assets/icons/add-to-task.svg" alt="" />
+                        <span>Add Task</span>
+                    </div>
+                </a>
+                <a href="/pages/contactlist.html" id="nav-bar-container-contacts" class="nav-bar-container">
+                    <div>
+                        <img id="nav-bar-img-4" src="/assets/icons/contacts.svg" alt="" />
+                        <span>Contacts</span>
+                    </div>
+                </a>
             </div>
         </div>
-        </body>
+        <div class="legal-container-nav-bar">
+            <a href="/pages/privacy-policy.html">Privacy Policy</a>
+            <a href="/pages/impressum.html">Legal notice</a>
+        </div>
+    </div>
+</body>
+
 </html>

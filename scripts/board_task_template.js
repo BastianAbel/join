@@ -1,6 +1,6 @@
 function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progressBarCalc, cardTypeColor, j) {
     return ` 
-    <div id="${task.id}" onclick="taskBigView('${task.id}','${j}', '${task.dueDate}', '${task.priority}', '${priorityImage}', '${encodeURIComponent(JSON.stringify(task.assignedTo))}', '${encodeURIComponent(JSON.stringify(task.subtasks))}', '${cardTypeColor}')" class="card-main-container draggable" draggable="true" ondragstart="startDragging(event, '${
+    <div id="${task.id}" onclick="taskBigView('${task.id}','${j}', '${task.dueDate}', '${task.priority}', '${priorityImage}', '${task.assignedTo}', '${encodeURIComponent(JSON.stringify(task.subtasks))}', '${cardTypeColor}')" class="card-main-container draggable" draggable="true" ondragstart="startDragging(event, '${
         task.id
     }')" ondrag="enableScrollByDragging(event)" onmousedown="rotate(event)" onmouseup="removeRotations()" onmouseover="enableScrollByMouseposition(event)">
             <div class="card-main-container-content">
@@ -102,7 +102,7 @@ function renderEditTaskBigView(taskId, taskTitle, taskDescription, taskDate) {
             <div
                 id="edit-task-contact-container"
                 class="add-task-input-img-container"
-                onclick="editShowContactList('${taskId}')"
+                onclick="editShowContactList(event,'${taskId}')"
             >
                 <input
                     type="text"
@@ -110,13 +110,13 @@ function renderEditTaskBigView(taskId, taskTitle, taskDescription, taskDate) {
                     class="add-task-attribute-input"
                     placeholder="Select contacts to assign"
                     oninput="filterInput(event)"
-                    onclick="editShowContactList('${taskId}')"
+                    onclick="editShowContactList(event,'${taskId}')"
                 />
                 <img
                     src="/assets/icons/arrow-drop-down.svg"
                     alt="closed drop down logo"
                     id="edit-task-contact-drop-down-icon"
-                    onclick="editShowContactList('${taskId}')"
+                    onclick="editShowContactList(event,'${taskId}')"
                 />
             </div>
             <div id="edit-task-contact-list-container" class="d_none">

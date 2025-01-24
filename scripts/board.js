@@ -4,12 +4,11 @@ let allTaskUsers = [];
 function taskBigView(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, subtasks, cardTypeColor) {
     document.getElementById("profileBtn").style.backgroundColor = "#b8b9bb";
     document.getElementById("window-overlay").classList.remove("d-none");
-    const decodedAssignedUsers = JSON.parse(decodeURIComponent(assignedUsers));
     if (subtasks !== "undefined") {
         const decodedSubtasks = JSON.parse(decodeURIComponent(subtasks));
-        getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, decodedAssignedUsers, cardTypeColor, decodedSubtasks);
+        getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks);
     } else {
-        getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, decodedAssignedUsers, cardTypeColor);
+        getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor);
     }
 }
 
@@ -108,7 +107,7 @@ function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority,
     
     document.getElementById("window-overlay").classList.remove('d-none');
     document.getElementById('task-big-container').outerHTML = "";
-    document.getElementById('board-main').innerHTML += renderEditTaskBigView(taskTitle, taskDescription, taskDate);
+    document.getElementById('board-main').innerHTML += renderEditTaskBigView(taskId,taskTitle, taskDescription, taskDate);
     document.getElementById('edit-task-title').value = taskTitle;
     document.getElementById('edit-task-description').value = taskDescription;
     document.getElementById('edit-task-due-date').value = taskDate;
@@ -300,4 +299,12 @@ function EditShowContactList() {
             editNameCircleContainer.classList.remove("open-circle-container");
         }
     }
+}
+
+function highlight(id) {
+    document.getElementById(id).classList.add("highlight-drag-area");
+}
+
+function removeHighlight(id) {
+    document.getElementById(id).classList.remove("highlight-drag-area");
 }

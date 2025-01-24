@@ -277,7 +277,7 @@ input:focus {
         padding-top: 96px;
     }
 
-    .section-one{
+    .section-one {
         margin-left: 0;
     }
 
@@ -325,7 +325,7 @@ input:focus {
         font-size: 16px;
     }
 
-    .section-six{
+    .section-six {
         padding-right: 16px;
     }
 
@@ -336,4 +336,9 @@ input:focus {
         margin: 0;
         width: 252px;
     }
+}
+
+.highlight-drag-area {
+    border: 2px dashed black;
+    border-radius: 24px;
 }

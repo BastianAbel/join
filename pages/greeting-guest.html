@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -13,15 +14,14 @@
     <script src="/scripts/login.js" defr></script>
     <script src="/scripts/standart.js" defer></script>
 </head>
+
 <body onload="loadGuestPage()">
     <header>
         <section class="header">
             <a href="">
-                <img
-                    src="/assets/icons/join-logo-dark.svg"
-                    alt="Join Logo"
-                />
+                <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
             </a>
+            <span>Kanban Project Management Tool</span>
             <button id="profileBtn" class="profile-button"></button>
         </section>
     </header>
@@ -31,54 +31,42 @@
         </div>
     </main>
     <div class="nav-bar-main-container">
-        <div class="nav-bar-main-container">
-            <div class="nav-bar">
-                <a
-                    href=""
-                    id="nav-bar-container-summary"
-                    class="nav-bar-container"
-                    ><img
-                        id="nav-bar-img-1"
-                        src="/assets/icons/summary.svg"
-                        alt=""
-                    />
-                    <span>Summary</span></a
-                >
-                <a
-                    href=""
-                    id="nav-bar-container-board"
-                    class="nav-bar-container"
-                    ><img
-                        id="nav-bar-img-2"
-                        src="/assets/icons/board.svg"
-                        alt=""
-                    />
-                    <span>Board</span></a
-                >
-                <a
-                    href=""
-                    id="nav-bar-container-add-to-task"
-                    class="nav-bar-container"
-                    ><img
-                        id="nav-bar-img-3"
-                        src="/assets/icons/add-to-task.svg"
-                        alt=""
-                    />
-                    <span>Add Task</span></a
-                >
-                <a
-                    href=""
-                    id="nav-bar-container-contacts"
-                    class="nav-bar-container"
-                    ><img
-                        id="nav-bar-img-4"
-                        src="/assets/icons/contacts.svg"
-                        alt=""
-                    />
-                    <span>Contacts</span></a
-                >
+        <div class="nav-bar-wrapper">
+            <div class="join-logo-nav-bar">
+                <a href="/pages/summary.html"><img src="/assets/icons/join-logo-white.svg" alt=""></a>
             </div>
+            <div class="nav-bar">
+                <a href="/pages/summary.html" id="nav-bar-container-summary"  class="nav-bar-container current-site">
+                    <div>
+                        <img id="nav-bar-img-1" src="/assets/icons/summary.svg" alt="" /> 
+                        <span>Summary</span>
+                    </div>
+                </a>
+                <a href="/pages/board.html" id="nav-bar-container-board" class="nav-bar-container">
+                    <div>
+                        <img id="nav-bar-img-2" src="/assets/icons/board.svg" alt="" /> 
+                        <span>Board</span>    
+                    </div>
+                </a>
+                <a href="/pages/add-task.html" id="nav-bar-container-add-to-task" class="nav-bar-container">
+                    <div>
+                    <img id="nav-bar-img-3" src="/assets/icons/add-to-task.svg" alt="" /> 
+                    <span>Add Task</span>
+                    </div>
+                </a>
+                <a href="/pages/contactlist.html" id="nav-bar-container-contacts" class="nav-bar-container">
+                    <div>
+                    <img id="nav-bar-img-4" src="/assets/icons/contacts.svg" alt="" /> 
+                    <span>Contacts</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="legal-container-nav-bar">
+            <a href="/pages/privacy-policy.html">Privacy Policy</a>
+            <a href="/pages/impressum.html">Legal notice</a>
         </div>
     </div>
 </body>
+
 </html>

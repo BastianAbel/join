@@ -109,7 +109,7 @@ function getTaskFromArrayById(array, id) {
     return array.find((entry) => entry.id == id);
 }
 
-function editShowContactList(taskId) {
+function editShowContactList(event, taskId) {
     let editTaskContactListContainer = document.getElementById("edit-task-contact-list-container");
     let editTaskDropDownIcon = document.getElementById("edit-task-contact-drop-down-icon");
     let editNameCircleContainer = document.getElementById("edit-name-circle-container");
@@ -131,6 +131,19 @@ function editShowContactList(taskId) {
         }
     }
     setContactAssignedToChecked(currentTask.assignedTo, editFilteredNamesAndColors);
+}
+
+async function removeTaskIdFromUncheckedContacts(taskId) {
+    let uncheckedContacts = editFilteredNamesAndColors.filter((contact) => !contactNames.includes(contact.name));
+    for (let i = 0; i < uncheckedContacts.length; i++) {
+        let contact = uncheckedContacts[i];
+        let contactTasks = contact.tasksAssignedTo || [];
+        let taskIndex = contactTasks.indexOf(taskId);
+        if (taskIndex !== -1) {
+            contactTasks.splice(taskIndex, 1);
+            await updateData(PATH_TO_CONTACTS, contact.id, contact);
+        }
+    }
 }
 
 function editAddSubTask() {
@@ -215,19 +228,26 @@ async function editGetSubtaskInfo(subtasks, taskId) {
     }
 }
 
-function getChangedTaskData(taskId) {
+async function getChangedTaskData(taskId) {
     let changedTaskTitle = document.getElementById("edit-task-title").value;
     let changedTaskDescription = document.getElementById("edit-task-description").value;
     let changedTaskDate = document.getElementById("edit-task-due-date").value;
     let changedTaskPrio = taskPrio;
     let changedContacts = contactNames;
     let changedSubtaskList = subtaskList;
-    setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTaskDescription, changedTaskDate, changedTaskPrio, changedContacts, changedSubtaskList);
-
+    await setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTaskDescription, changedTaskDate, changedTaskPrio, changedContacts, changedSubtaskList);
 }
 
-function setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTaskDescription, changedTaskDate, changedTaskPrio, changedContacts, changedSubtaskList){
-    console.log("success");
-    console.log(taskId, changedTaskTitle, changedTaskDescription, changedTaskDate, changedTaskPrio, changedContacts, changedSubtaskList);
-
+async function setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTaskDescription, changedTaskDate, changedTaskPrio, changedContacts, changedSubtaskList) {
+    updateData((path = PATH_TO_TASKS), (id = taskId), (data = {
+        "title": changedTaskTitle,
+        "description": changedTaskDescription,
+        "dueDate": changedTaskDate,
+        "priority": changedTaskPrio,
+        // "assignedTo": changedContacts,
+        "subtasks": changedSubtaskList,
+    }));
+    await addTaskToAssignedContacts();
+    await setBackendJsonToSessionStorage();
+    editTaskSlideOut();
 }
