@@ -340,4 +340,5 @@ input:focus {
 
 .highlight-drag-area {
     border: 2px dashed black;
+    border-radius: 24px;
 }
