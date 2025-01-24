@@ -3,6 +3,7 @@ let editCheckedContactNamesAndColors = [];
 let editNewTask = {};
 let editContactNames = [];
 let editFilteredNamesAndColors = [];
+let helperArray = [];
 
 async function editGetAllContactsNames() {
     onlyLoadIfUserOrGuest();
@@ -16,8 +17,6 @@ async function editGetAllContactsNames() {
     }));
     editFilteredNamesAndColors = contactsNamesAndColors;
     addContactNamesToList(editFilteredNamesAndColors, document.getElementById("edit-task-contacts-list"));
-
-    console.log(editFilteredNamesAndColors);
 }
 
 function addContactNamesToList(array, element) {
@@ -88,7 +87,6 @@ function editSetLowPrio() {
 function editFilterInput(event) {
     let editTaskContactList = document.getElementById("edit-task-contact-list");
     editFilteredNamesAndColors = filterInputFromArray(NamesAndColors, event.target.value);
-    console.log(editFilteredNamesAndColors);
     addContactNamesToList(editFilteredNamesAndColors, editTaskContactList);
 }
 
@@ -97,11 +95,13 @@ function checkContact(event, data) {
     let currentContact = getContactFromArrayById(editFilteredNamesAndColors, data.id);
     container.classList.toggle("checked-contact");
     if (container.classList.contains("checked-contact")) {
-        checkedContactNamesAndColors.push(currentContact);
+        editCheckedContactNamesAndColors.push(currentContact);
         contactNames.push(currentContact.name);
+        helperArray.push(currentContact.name);
     } else {
-        checkedContactNamesAndColors.splice(checkedContactNamesAndColors.indexOf(currentContact), 1);
+        editCheckedContactNamesAndColors.splice(editCheckedContactNamesAndColors.indexOf(currentContact), 1);
         contactNames.splice(contactNames.indexOf(currentContact.name), 1);
+        helperArray.splice(helperArray.indexOf(currentContact.name), 1);
     }
 }
 
@@ -109,11 +109,14 @@ function getTaskFromArrayById(array, id) {
     return array.find((entry) => entry.id == id);
 }
 
-function editShowContactList(taskId) {
+function editShowContactList(event, taskId) {
     let editTaskContactListContainer = document.getElementById("edit-task-contact-list-container");
     let editTaskDropDownIcon = document.getElementById("edit-task-contact-drop-down-icon");
     let editNameCircleContainer = document.getElementById("edit-name-circle-container");
     let currentTask = getTaskFromArrayById(allTasks, taskId);
+    helperArray = currentTask.assignedTo;
+    editCheckedContactNamesAndColors = editFilteredNamesAndColors.filter((contact) => helperArray.includes(contact.name));
+
     if (event.currentTarget == event.target) {
         editTaskContactListContainer.classList.toggle("d_none");
         if (!editTaskContactListContainer.classList.contains("d_none")) {
@@ -123,7 +126,8 @@ function editShowContactList(taskId) {
             editNameCircleContainer.classList.remove("d_none");
             editNameCircleContainer.classList.add("open-circle-container");
             editNameCircleContainer.innerHTML = "";
-            addNameCircles(checkedContactNamesAndColors, editNameCircleContainer, `contact-name-circle`);
+
+            addNameCircles(editCheckedContactNamesAndColors, editNameCircleContainer, `contact-name-circle`);
         }
         if (!editNameCircleContainer.classList.contains("d_none") && !editNameCircleContainer.hasChildNodes()) {
             editNameCircleContainer.classList.add("d_none");
