@@ -57,18 +57,37 @@ function getArrayFromObject(object) {
     return array;
 }
 
-function getGreetingTextByTime() {
+function getGreetingText() {
+    const timeText = getGreetingTextByTime();
+    const guest = checkForGuestLogin();
     let greetingText = "";
+    if(guest) {
+        greetingText = timeText + "!";
+    } else {
+        greetingText = timeText + ",";
+    }
+    return greetingText
+}
+
+function getGreetingTextByTime() {
+    let greetingTimeText = "";
     let date = new Date();
     let time = date.getHours();
     if (time >= 5 && time <= 11) {
-        greetingText = "Good morning!";
+        greetingTimeText = "Good morning";
     } else if (time >= 11 && time <= 18) {
-        greetingText = "Good afternoon!";
+        greetingTimeText = "Good afternoon";
     } else {
-        greetingText = "Good evening!";
+        greetingTimeText = "Good evening";
     }
-    return greetingText;
+    return greetingTimeText;
+}
+
+function checkForGuestLogin() {
+    const loginStatus = sessionStorage.getItem("loginStatus");
+    if(loginStatus === "guest") {
+        return true
+    }
 }
 
 function getUserNameFromLocalStorage() {

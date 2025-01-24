@@ -274,6 +274,10 @@ input {
     margin-top: -16px;
 }
 
+.check-password-style {
+    width: auto !important;
+}
+
 @media(min-width:920px) {
     .signup-container {
         position: absolute;
