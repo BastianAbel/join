@@ -162,7 +162,7 @@ function renderEditTaskBigView(taskId, taskTitle, taskDescription, taskDate) {
             </div>
         </div>
         <div id="edit-submit-changes-btn-container">
-            <button onclick="saveEditedTask()" type="submit" id="edit-change-task-btn" class="add-task-btn">Ok<img src="/assets/icons/check.svg" alt="" /></button>
+            <button onclick="getChangedTaskData('${taskId}')" type="submit" id="edit-change-task-btn" class="add-task-btn">Ok<img src="/assets/icons/check.svg" alt="" /></button>
         </div>
     </div>
 </div>`;

@@ -183,15 +183,15 @@ function editTaskGetEmployeeInfo(assignedUsers) {
     }
 }
 
-async function editGetSubtaskInfo(decodedSubtasks) {
-    if (decodedSubtasks === undefined) {
-        document.getElementById("edit-subtask-list").innerHTML = "Keine Subtasks";
+async function editGetSubtaskInfo(subtasks, taskId) {
+    if (subtasks == "undefined") {
+        document.getElementById("edit-subtask-list").innerHTML = "";
     } else {
-        for (let i = 0; i < decodedSubtasks.length; i++) {
-            subtaskList.push(decodedSubtasks[i]);
+        for (let i = 0; i < subtasks.length; i++) {
+            subtaskList.push(subtasks[i]);
             document.getElementById("edit-subtask-list").innerHTML += `<li>
 				<div class="subtask-text-img-container">
-					<span onblur="removeEditClass(event)">${decodedSubtasks[i].description}</span>
+					<span onblur="removeEditClass(event)">${subtasks[i].description}</span>
 					<div class="subtask-img-container">
 						<img 
 							src="/assets/icons/edit-symbol.svg"
@@ -215,12 +215,19 @@ async function editGetSubtaskInfo(decodedSubtasks) {
     }
 }
 
-function setChangedDataOfTaskToBackend() {
+function getChangedTaskData(taskId) {
     let changedTaskTitle = document.getElementById("edit-task-title").value;
     let changedTaskDescription = document.getElementById("edit-task-description").value;
     let changedTaskDate = document.getElementById("edit-task-due-date").value;
     let changedTaskPrio = taskPrio;
     let changedContacts = contactNames;
     let changedSubtaskList = subtaskList;
+    setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTaskDescription, changedTaskDate, changedTaskPrio, changedContacts, changedSubtaskList);
+
+}
+
+function setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTaskDescription, changedTaskDate, changedTaskPrio, changedContacts, changedSubtaskList){
+    console.log("success");
+    console.log(taskId, changedTaskTitle, changedTaskDescription, changedTaskDate, changedTaskPrio, changedContacts, changedSubtaskList);
 
 }

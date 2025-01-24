@@ -100,7 +100,12 @@ function EditShowContactList() {
 }
 
 function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority, assignedUsers, taskId, decodedSubtasks) {
-    const decodedSubtasksForEditTaskBigView = JSON.parse(decodeURIComponent(decodedSubtasks));
+    if(decodedSubtasks == "undefined"){
+        decodedSubtasksForEditTaskBigView = decodedSubtasks;
+    } else {
+        decodedSubtasksForEditTaskBigView = JSON.parse(decodeURIComponent(decodedSubtasks));
+    }
+    
     document.getElementById("window-overlay").classList.remove('d-none');
     document.getElementById('task-big-container').outerHTML = "";
     document.getElementById('board-main').innerHTML += renderEditTaskBigView(taskTitle, taskDescription, taskDate);
