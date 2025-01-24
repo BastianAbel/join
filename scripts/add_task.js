@@ -215,7 +215,7 @@ async function createTask(event) {
     event.preventDefault();
     let param = new URLSearchParams(window.location.search);
     let state = "";
-    if (param.has("state")) {
+    if (param.has("state") && param.get("state") !== "") {
         state = param.get("state");
     } else {
         state = "toDo";
