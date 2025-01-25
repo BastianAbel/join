@@ -77,6 +77,7 @@ function setLoginInformationToSessionStorage(userName, userEmail, userPassword) 
     };
     localStorage.setItem("user", JSON.stringify(userData));
     sessionStorage.setItem("loginStatus", "user");
+    sessionStorage.setItem("freshLogin", true);
 }
 
 function rememberUser(userKey) {
@@ -103,6 +104,7 @@ function loadUserInitials() {
 function setGuestToSessionStorage() {
     sessionStorage.setItem("loginStatus", "guest");
     localStorage.setItem("guest", true);
+    sessionStorage.setItem("freshLogin", true);
     navigateToSummary();
 }
 
