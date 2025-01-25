@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
-    <!-- prettier-ignore -->
-    <head>
+<!-- prettier-ignore -->
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Contact</title>
@@ -16,59 +17,43 @@
     <script src="/scripts/standart.js" defer></script>
     <script src="/scripts/login.js" defer></script>
     <script src="/scripts/nav-bar-media-query-template.js" defer></script>
-    <script src="/scripts/media-query-nav-bar.js" defer></script> 
+    <script src="/scripts/media-query-nav-bar.js" defer></script>
     <script src="/scripts/contact_list.js" defer></script>
     <script src="/scripts/contact_list_template.js" defer></script>
 </head>
 
-    <body onload="loadUserInitials()">
-        <div
-            id="edit-delete-menu"
-            class="edit-popup-container d-none"
-        >
-            <div class="option-container">
-                <div class="option-edit"></div>
-                <span>Edit</span>
-            </div>
-            <div class="option-container">
-                <div class="option-delete"></div>
-                <span>Delete</span>
-            </div>
+<body onload="loadUserInitials()">
+    <div id="edit-delete-menu" class="edit-popup-container d-none">
+        <div class="option-container">
+            <div class="option-edit"></div>
+            <span>Edit</span>
         </div>
-        <div
-            id="submenu"
-            class="submenu-popup-container d-none"
-        >
-            <div class="submenu-text-container">
-                <a href="/pages/help.html">Help</a>
-                <a href="/pages/impressum.html">Legal Notice</a>
-                <a href="/pages/privacy-policy.html">Privacy Policy</a>
-                <a
-                    onclick="userLogout()"
-                    href="/pages/login-page.html"
-                    >Log Out</a
-                >
-            </div>
+        <div class="option-container">
+            <div class="option-delete"></div>
+            <span>Delete</span>
         </div>
-        <header>
-            <section class="header">
-                <a href="">
-                    <img
-                        src="/assets/icons/join-logo-dark.svg"
-                        alt="Join Logo"
-                    />
-                </a>
-                <button
-                    onclick="showSubmenu()"
-                    id="profileBtn"
-                    class="profile-button"
-                >
-                    G
-                </button>
-            </section>
-        </header>
+    </div>
+    <div id="submenu" class="submenu-popup-container d-none">
+        <div class="submenu-text-container">
+            <a href="/pages/help.html">Help</a>
+            <a href="/pages/impressum.html">Legal Notice</a>
+            <a href="/pages/privacy-policy.html">Privacy Policy</a>
+            <a onclick="userLogout()" href="/pages/login-page.html">Log Out</a>
+        </div>
+    </div>
+    <header>
+        <section class="header">
+            <a href="">
+                <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
+            </a>
+            <button onclick="showSubmenu()" id="profileBtn" class="profile-button">
+                G
+            </button>
+        </section>
+    </header>
 
-        <div id="desktop-nav-bar"></div>
-        <div id="mobile-nav-bar"></div>
-    </body>
+    <div id="desktop-nav-bar"></div>
+    <div id="mobile-nav-bar"></div>
+</body>
+
 </html>

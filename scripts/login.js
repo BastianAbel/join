@@ -1,8 +1,17 @@
+const emailInputRef = document.getElementById("email");
+const passwordInputRef = document.getElementById("password");
+
 let users = [];
-// User werden geladen und gepusht
+let user = {};
+
 async function userLogin() {
     await fetchUsers();
-    checkIfUserExists();
+    const userExists = checkIfUserExists();
+    if(userExists){
+        initiateLogin();
+    }else {
+        visualizeNoLoginMatch();
+    }
 }
 
 async function fetchUsers() {
@@ -22,23 +31,30 @@ async function fetchUsers() {
 }
 
 function checkIfUserExists() {
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
-    let user = users.find((user) => user.user.email === email && user.user.password === password);
-    console.log(user);
-    if (user) {
-        userName = user.user.name;
-        localStorage.setItem("userName", userName);
-        userKey = user.id;
-        getUserInitials(userName);
-        setLoginInformationToSessionStorage(userName, email, password);
-        rememberUser(userKey);
-        navigateToUserPage(userName);
-    } else {
-        document.getElementById("pw-state-message").innerHTML = "Check your email and password. Please try again.";
-        document.getElementById("password").style.border = "1px solid var(--icon-urgent-red)";
-        document.getElementById("email").style.border = "1px solid var(--icon-urgent-red)";
+    let email = emailInputRef.value;
+    let password = passwordInputRef.value;
+    user = {};
+    user = users.find((user) => user.user.email === email && user.user.password === password);
+    if(user) {
+        return true
     }
+}
+
+async function initiateLogin() {
+    userName = user.user.name;
+    localStorage.setItem("userName", userName);
+    userKey = user.id;
+    getUserInitials(userName);
+    setLoginInformationToSessionStorage(userName, email, password);
+    rememberUser(userKey);
+    await setBackendJsonToSessionStorage()
+    navigateToSummary();
+}
+
+function visualizeNoLoginMatch() {
+    document.getElementById("pw-state-message").innerHTML = "Check your email and password. Please try again.";
+    passwordInputRef.style.border = "1px solid var(--icon-urgent-red)";
+    emailInputRef.style.border = "1px solid var(--icon-urgent-red)";
 }
 
 function getUserInitials(userName) {
@@ -61,6 +77,7 @@ function setLoginInformationToSessionStorage(userName, userEmail, userPassword) 
     };
     localStorage.setItem("user", JSON.stringify(userData));
     sessionStorage.setItem("loginStatus", "user");
+    sessionStorage.setItem("freshLogin", true);
 }
 
 function rememberUser(userKey) {
@@ -84,53 +101,15 @@ function loadUserInitials() {
     }
 }
 
-function navigateToUserPage(userName) {
-    window.location.href = `greeting-user.html?userName=${encodeURIComponent(userName)}`;
-}
-
 function setGuestToSessionStorage() {
     sessionStorage.setItem("loginStatus", "guest");
     localStorage.setItem("guest", true);
-    window.location.href = "greeting-guest.html";
+    sessionStorage.setItem("freshLogin", true);
+    navigateToSummary();
 }
 
 function navigateToSummary() {
-    setTimeout(() => {
-        window.location.href = "summary.html";
-    }, 2000);
-}
-
-function loadUserPage() {
-    loadUserInitials();
-    let date = new Date();
-    let time = date.getHours();
-    const urlParams = new URLSearchParams(window.location.search);
-    const userName = urlParams.get("userName");
-    if (time >= 5 && time <= 11) {
-        document.getElementById("greeting").innerHTML = "Good morning,";
-    } else if (time >= 11 && time <= 18) {
-        document.getElementById("greeting").innerHTML = "Good afternoon,";
-    } else {
-        document.getElementById("greeting").innerHTML = "Good evening,";
-    }
-    if (userName) {
-        document.getElementById("userName").innerHTML = userName;
-    }
-    navigateToSummary();
-}
-
-function loadGuestPage() {
-    loadUserInitials();
-    let date = new Date();
-    let time = date.getHours();
-    if (time >= 5 && time <= 11) {
-        document.getElementById("greeting").innerHTML = "Good morning!";
-    } else if (time >= 11 && time <= 18) {
-        document.getElementById("greeting").innerHTML = "Good afternoon!";
-    } else {
-        document.getElementById("greeting").innerHTML = "Good evening!";
-    }
-    navigateToSummary();
+    window.location.href = "summary.html";
 }
 
 function resetLoginWarning() {
@@ -153,9 +132,13 @@ function userLogout() {
 
 async function autoLogin() {
     let userKey = localStorage.getItem("userkey");
-    let userName = localStorage.getItem("userName");
     if (userKey) {
-        await setBackendJsonToSessionStorage();
-        navigateToUserPage(userName);
+        await fetchUsers();
+        findUserByKey(userKey);
+        initiateLogin();
     }
+}
+
+function findUserByKey(userKey) {
+    user = users.find((u) => u.id === userKey);
 }

@@ -16,7 +16,7 @@ body {
 }
 
 #board-main {
-    width: 100% !important;
+    /* width: 100% !important; */
     padding: 0;
     background-color: rgb(246, 247, 248);
     height: calc(100vh - 160px);
@@ -262,10 +262,9 @@ input:focus {
     }
 }
 
-@media (min-width: 431px) {
+@media (min-width: 920px) {
     #board-main {
         height: 100vh;
-        padding-left: 285px;
         overflow: auto;
     }
 
@@ -278,7 +277,7 @@ input:focus {
         padding-top: 96px;
     }
 
-    .section-one{
+    .section-one {
         margin-left: 0;
     }
 
@@ -333,4 +332,9 @@ input:focus {
         margin: 0;
         width: 252px;
     }
+}
+
+.highlight-drag-area {
+    border: 2px dashed black;
+    border-radius: 24px;
 }

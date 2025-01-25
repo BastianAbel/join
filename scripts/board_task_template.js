@@ -1,14 +1,15 @@
 function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progressBarCalc, cardTypeColor, j) {
     return ` 
-    <div id="${task.id}" onclick="taskBigView('${task.id}','${j}', '${task.dueDate}', '${task.priority}', '${priorityImage}', '${task.assignedTo}', '${encodeURIComponent(JSON.stringify(task.subtasks))}', '${cardTypeColor}')" class="card-main-container draggable" draggable="true" ondragstart="startDragging(event, '${task.id
-        }')" ondrag="enableScrollByDragging(event)" onmousedown="rotate(event)" onmouseup="removeRotations()" onmouseover="enableScrollByMouseposition(event)">
+    <div id="${task.id}" onclick="taskBigView('${task.id}','${j}', '${task.dueDate}', '${task.priority}', '${priorityImage}', '${encodeURIComponent(JSON.stringify(task.assignedTo))}', '${encodeURIComponent(JSON.stringify(task.subtasks))}', '${cardTypeColor}')" class="card-main-container draggable" draggable="true" ondragstart="startDragging(event, '${
+        task.id
+    }')" ondrag="enableScrollByDragging(event)" onmousedown="rotate(event)" onmouseup="removeRotations()" onmouseover="enableScrollByMouseposition(event)">
             <div class="card-main-container-content">
                 <div style=" ${cardTypeColor}" class="labels-board-card-label">
                     <div id="task-type${j}" class="card-label"><span>${capitalizeFirstLetter(task.type)}</span></div>
                 </div>
                 <div class="card-headline">
                     <h2 id="task-title${j}">${task.title}</h2>
-                    <div id="task-description${j}" class="card-under-headline"><span>${task.description}</span></div>
+                    <div id="task-description${j}" class="card-under-headline">${task.description}</div>
                 </div>
                 <div class="status-bar-and-task-information">
                     <div class="progress-bar-wrapper">
@@ -22,7 +23,7 @@ function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progr
                     </div>
                     <div class="move-card-button"><img src="${priorityImage}" alt="${task.priority}"></div>
                 </div> 
-                <div class="dropdown-main-container" onclick="stopEventBubbling(event)">
+                <div class="dropdown-main-container">
                     <select class="dropdown-container" onclick="stopEventBubbling(event)" name="options" onchange="handleDropdownChange(event, '${task.id}')">
                         <option class="dropdown-options" value="" selected>Verschieben in </option>
                         <option value="toDo">Todo</option>
@@ -36,17 +37,17 @@ function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progr
         `;
 }
 
-function renderEditTaskBigView() {
-    return /*html*/`
-<div onclick="stopEventBubbling(event)" id="edit-task-big-container" class="edit-task-container">
+function renderEditTaskBigView(taskId, taskTitle, taskDescription, taskDate) {
+    return /*html*/ `
+<div id="edit-task-big-container" class="edit-task-container">
             <div class="edit-task-close-container">
                 <img onclick="editTaskSlideOut()" onmousedown="removeRotations()" src="../assets/icons/close-black.svg" alt="">
             </div>
-    <div id="inner-form-container">
+    <div id="edit-inner-form-container">
         <div class="add-task-attribute-container">
-            <label for="task-title">Title</label>
+            <label for="edit-task-title">Title</label>
             <input
-                id="task-title"
+                id="edit-task-title"
                 class="add-task-attribute-input grey-placeholder"
                 type="text"
                 placeholder="Enter a title"
@@ -55,23 +56,23 @@ function renderEditTaskBigView() {
         </div>
 
         <div class="add-task-attribute-container">
-            <label for="task-description">Description</label>
+            <label for="edit-task-description">Description</label>
             <textarea
-                id="task-description"
+                id="edit-task-description"
                 class="add-task-attribute-input grey-placeholder"
                 placeholder="Enter a Description"
             ></textarea>
         </div>
 
         <div class="add-task-attribute-container">
-            <label for="task-due-date">Due date</label>
-            <div id="add-task-date-container" class="add-task-input-img-container">
+            <label for="edit-task-due-date">Due date</label>
+            <div id="edit-task-date-container" class="add-task-input-img-container">
                 <input
-                    id="task-due-date"
+                    id="edit-task-due-date"
                     class="add-task-attribute-input grey-placeholder"
                     type="text"
                     placeholder="dd/mm/yyyy"
-                    oninput="formatDateInput()"
+                    oninput="editFormatDateInput()"
                     required
                 />
                 <img src="/assets/icons/calender.svg" alt="calender icon" />
@@ -81,15 +82,15 @@ function renderEditTaskBigView() {
         <div class="add-task-attribute-container">
             <span>Priority</span>
             <div id="prio-container">
-                <div id="prio-urgent-btn" class="prio-btn" onclick="setUrgentPrio()">
+                <div id="edit-prio-urgent-btn" class="prio-btn" onclick="editSetUrgentPrio()">
                     <span>Urgent</span>
                     <img src="/assets/icons/prio-alta-red.svg" alt="" />
                 </div>
-                <div id="prio-medium-btn" class="prio-btn" onclick="setMediumPrio()">
+                <div id="edit-prio-medium-btn" class="prio-btn" onclick="editSetMediumPrio()">
                     <span>Medium</span>
                     <img src="/assets/icons/prio-media-orange.svg" alt="" />
                 </div>
-                <div id="prio-low-btn" class="prio-btn" onclick="setLowPrio()">
+                <div id="edit-prio-low-btn" class="prio-btn" onclick="editSetLowPrio()">
                     <span>Low</span>
                     <img src="/assets/icons/prio-baja-green.svg" alt="" />
                 </div>
@@ -99,69 +100,69 @@ function renderEditTaskBigView() {
         <div class="add-task-attribute-container">
             <label for="task-contact-input">Assigned to</label>
             <div
-                id="add-task-contact-container"
+                id="edit-task-contact-container"
                 class="add-task-input-img-container"
-                onclick="showContactList()"
+                onclick="editShowContactList(event,'${taskId}')"
             >
                 <input
                     type="text"
-                    id="task-contact-input"
+                    id="edit-contact-input"
                     class="add-task-attribute-input"
                     placeholder="Select contacts to assign"
                     oninput="filterInput(event)"
-                    onclick="showContactList()"
+                    onclick="editShowContactList(event,'${taskId}')"
                 />
                 <img
                     src="/assets/icons/arrow-drop-down.svg"
                     alt="closed drop down logo"
-                    id="add-task-contact-drop-down-icon"
-                    onclick="showContactList()"
+                    id="edit-task-contact-drop-down-icon"
+                    onclick="editShowContactList(event,'${taskId}')"
                 />
             </div>
-            <div id="add-task-contact-list-container" class="d_none">
-                <ul id="add-task-contacts-list"></ul>
+            <div id="edit-task-contact-list-container" class="d_none">
+                <ul id="edit-task-contacts-list"></ul>
             </div>
-            <div id="name-circle-container" class="d_none"></div>
+            <div id="edit-name-circle-container" class="d_none"></div>
         </div>
 
         <div class="add-task-attribute-container">
-            <label for="subtask-title">Subtasks</label>
-            <div id="sub-task-input-container" class="add-task-input-img-container">
+            <label for="edit-subtask-title">Subtasks</label>
+            <div id="edit-sub-task-input-container" class="add-task-input-img-container">
                 <input
-                    id="subtask-title"
+                    id="edit-subtask-title"
                     class="add-task-attribute-input grey-placeholder"
                     type="text"
                     placeholder="Add new Subtask"
-                    oninput="showAndHideIcons()"
+                    oninput="editShowAndHideIcons()"
                 />
-                <img id="sub-task-icon-plus" src="/assets/icons/plus-subtask.svg" alt="plus-icon" />
+                <img id="edit-sub-task-icon-plus" src="/assets/icons/plus-subtask.svg" alt="plus-icon" />
                 <img
-                    id="sub-task-icon-cross"
+                    id="edit-sub-task-icon-cross"
                     src="/assets/icons/subtask-cross.svg"
                     alt="cross icon"
                     onclick="clearSubtaskInputField()"
                     class="d_none"
                 />
                 <img
-                    id="sub-task-icon-vector"
+                    id="edit-sub-task-icon-vector"
                     src="/assets/icons/subtask-vektor.svg"
                     alt="vector icon"
                     class="d_none"
                 />
                 <img
-                    id="sub-task-icon-check"
+                    id="edit-sub-task-icon-check"
                     src="/assets/icons/subtask-check.svg"
                     alt="checked icon"
-                    onclick="addSubTask()"
+                    onclick="editAddSubTask()"
                     class="d_none"
                 />
             </div>
-            <div id="subtask-list-container">
-                <ul id="subtask-list"></ul>
+            <div id="edit-subtask-list-container">
+                <ul id="edit-subtask-list"></ul>
             </div>
         </div>
         <div id="edit-submit-changes-btn-container">
-            <button type="submit" id="create-task-btn" class="add-task-btn">Ok<img src="/assets/icons/check.svg" alt="" /></button>
+            <button type="submit" id="edit-create-task-btn" class="add-task-btn" onclick="removeTaskIdFromUncheckedContacts('${taskId}')">Ok<img src="/assets/icons/check.svg" alt="" /></button>
         </div>
     </div>
 </div>`;

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-    <!-- prettier-ignore -->
+<!-- prettier-ignore -->
 
-    <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacts</title>
@@ -25,18 +25,12 @@
     <script src="/scripts/add_contact.js" defer></script>
     <script src="/scripts/login.js" defer></script>
     <script src="/scripts/add_contact_template.js" defer></script>
-    <script src="/scripts/nav-bar-media-query-template.js" defer></script>
-    <script src="/scripts/media-query-nav-bar.js" defer></script> 
 </head>
-    <body onload="initializeContactsList()">
-        <div
-            id="window-overlay"
-            class="d-none window-overlay"
-        ></div>
-        <div
-            id="submenu"
-            class="submenu-popup-container d-none"
-        >
+
+<body onload="initializeContactsList()">
+    <section class="main-container">
+        <div id="window-overlay" class="d-none window-overlay"></div>
+        <div id="submenu" class="submenu-popup-container d-none">
             <div class="submenu-text-container">
                 <a href="/pages/help.html">Help</a>
                 <a href="/pages/impressum.html">Legal Notice</a>
@@ -44,10 +38,7 @@
                 <a href="/pages/login-page.html">Log Out</a>
             </div>
         </div>
-        <div
-            id="add-contact-success-div"
-            class="big-popup-container d-none"
-        >
+        <div id="add-contact-success-div" class="big-popup-container d-none">
             <div class="big-popup">
                 <span>Contact successfully created</span>
             </div>
@@ -55,34 +46,57 @@
         <header>
             <section class="header">
                 <a href="">
-                    <img
-                        src="/assets/icons/join-logo-dark.svg"
-                        alt="Join Logo"
-                    />
+                    <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
                 </a>
-                <button
-                    onclick="showSubmenu()"
-                    id="profileBtn"
-                    class="profile-button"
-                ></button>
+                <span>Kanban Project Management Tool</span>
+                <button onclick="showSubmenu()" id="profileBtn" class="profile-button"></button>
             </section>
         </header>
         <main id="main-content">
-            <section
-                id="contact-list-container"
-                class="contactlist-container"
-            ></section>
-            <div
-                onclick="openAddContactView()"
-                class="options-icon-container"
-            >
-                <img
-                    src="/assets/icons/add-contact.svg"
-                    alt=""
-                />
+            <section id="contact-list-container" class="contactlist-container"></section>
+            <div onclick="openAddContactView()" class="options-icon-container">
+                <img src="/assets/icons/add-contact.svg" alt="" />
             </div>
         </main>
-        <div id="desktop-nav-bar"></div>
-        <div id="mobile-nav-bar"></div>
-    </body>
+    </section>
+    <div class="nav-bar-main-container">
+        <div class="nav-bar-wrapper">
+            <div class="join-logo-nav-bar">
+                <a href="/pages/summary.html"><img src="/assets/icons/join-logo-white.svg" alt=""></a>
+            </div>
+            <div class="nav-bar">
+                <a href="/pages/summary.html" id="nav-bar-container-summary" class="nav-bar-container">
+                    <div>
+                        <img id="nav-bar-img-1" src="/assets/icons/summary.svg" alt="" />
+                        <span>Summary</span>
+                    </div>
+                </a>
+                <a href="/pages/board.html" id="nav-bar-container-board" class="nav-bar-container">
+                    <div>
+                        <img id="nav-bar-img-2" src="/assets/icons/board.svg" alt="" />
+                        <span>Board</span>
+                    </div>
+                </a>
+                <a href="/pages/add-task.html" id="nav-bar-container-add-to-task" class="nav-bar-container">
+                    <div>
+                        <img id="nav-bar-img-3" src="/assets/icons/add-to-task.svg" alt="" />
+                        <span>Add Task</span>
+                    </div>
+                </a>
+                <a href="/pages/contactlist.html" id="nav-bar-container-contacts"
+                    class="nav-bar-container current-site">
+                    <div>
+                        <img id="nav-bar-img-4" src="/assets/icons/contacts.svg" alt="" />
+                        <span>Contacts</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="legal-container-nav-bar">
+            <a href="/pages/privacy-policy.html">Privacy Policy</a>
+            <a href="/pages/impressum.html">Legal notice</a>
+        </div>
+    </div>
+</body>
+
 </html>
