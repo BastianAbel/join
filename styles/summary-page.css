@@ -235,6 +235,10 @@
     }
 }
 
+.header span {
+    margin-left: 16px;
+}
+
 @media (max-width: 450px) {
     .to-do-container,
     .done-container {
@@ -326,5 +330,11 @@
 
     #summary-user-name {
         font-size: 64px;
+    }
+
+    .join-headline,
+    .task-management-area,
+    .header span {
+        margin-left: 116px;
     }
 }
