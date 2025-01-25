@@ -30,14 +30,20 @@
     }
 }
 
-#greeting {
+#animation-greeting {
     font-size: 36px;
     font-weight: 400;
     color: var(--accent-text-color);
 }
 
-#userName {
+#animation-userName {
     font-size: 47px;
     font-weight: 700;
     color: var(--identity);
+}
+
+@media(min-width: 920px) {
+    .greeting-container {
+        display: none;
+    }
 }
