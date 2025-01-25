@@ -40,13 +40,14 @@ function checkIfUserExists() {
     }
 }
 
-function initiateLogin() {
+async function initiateLogin() {
     userName = user.user.name;
     localStorage.setItem("userName", userName);
     userKey = user.id;
     getUserInitials(userName);
     setLoginInformationToSessionStorage(userName, email, password);
     rememberUser(userKey);
+    await setBackendJsonToSessionStorage()
     navigateToSummary();
 }
 
@@ -109,39 +110,6 @@ function navigateToSummary() {
     window.location.href = "summary.html";
 }
 
-function loadUserPage() {
-    loadUserInitials();
-    let date = new Date();
-    let time = date.getHours();
-    const urlParams = new URLSearchParams(window.location.search);
-    const userName = urlParams.get("userName");
-    if (time >= 5 && time <= 11) {
-        document.getElementById("greeting").innerHTML = "Good morning,";
-    } else if (time >= 11 && time <= 18) {
-        document.getElementById("greeting").innerHTML = "Good afternoon,";
-    } else {
-        document.getElementById("greeting").innerHTML = "Good evening,";
-    }
-    if (userName) {
-        document.getElementById("userName").innerHTML = userName;
-    }
-    navigateToSummary();
-}
-
-function loadGuestPage() {
-    loadUserInitials();
-    let date = new Date();
-    let time = date.getHours();
-    if (time >= 5 && time <= 11) {
-        document.getElementById("greeting").innerHTML = "Good morning!";
-    } else if (time >= 11 && time <= 18) {
-        document.getElementById("greeting").innerHTML = "Good afternoon!";
-    } else {
-        document.getElementById("greeting").innerHTML = "Good evening!";
-    }
-    navigateToSummary();
-}
-
 function resetLoginWarning() {
     let pwInput = document.getElementById("password").value;
     if (pwInput === "") {
@@ -162,9 +130,13 @@ function userLogout() {
 
 async function autoLogin() {
     let userKey = localStorage.getItem("userkey");
-    let userName = localStorage.getItem("userName");
     if (userKey) {
-        await setBackendJsonToSessionStorage();
-        navigateToUserPage(userName);
+        await fetchUsers();
+        findUserByKey(userKey);
+        initiateLogin();
     }
+}
+
+function findUserByKey(userKey) {
+    user = users.find((u) => u.id === userKey);
 }
