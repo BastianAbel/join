@@ -183,7 +183,6 @@ function getAllTasksAndUsersFromSessionStorage() {
     allTasks = getArrayFromObject(tasks);
     let users = sessionResponseJson["users"];
     allTaskUsers = getArrayFromObject(users);
-    allTaskUsers = getArrayFromObject(users);
     writeCardsToBoardSectionsFromArray(allTasks);
 }
 
