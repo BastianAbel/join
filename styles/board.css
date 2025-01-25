@@ -50,6 +50,7 @@ h2 {
     border: solid 1px rgba(42, 54, 71, 1);
     cursor: pointer;
     transition: background-color 0.1s linear;
+    visibility: hidden;
 }
 
 .add-task-dasktop-edit-main-container:hover{
@@ -182,7 +183,7 @@ input:focus {
     justify-content: space-between;
     gap: 16px;
     padding: 12px 0;
-    overflow: auto !important;
+    overflow-y: auto !important;
 }
 
 .section-three h2 {
@@ -233,7 +234,7 @@ input:focus {
 
 .section-five,
 .section-six {
-    max-width: 396px;
+    width: 252px;
     margin: 0 16px;
 }
 
@@ -267,16 +268,12 @@ input:focus {
 
 /* Media Query */
 
-@media (min-width: 1330px) {
-    #board-main {
-        overflow-x: auto;
-    }
-}
-
 @media (min-width: 920px) {
     #board-main {
         height: 100vh;
-        overflow: auto;
+        padding-left: 64px;
+        overflow: hidden;
+
     }
 
     .board-header {
@@ -308,12 +305,12 @@ input:focus {
         height: 48px;
     }
 
-    .add-task-btn-desktop {
-        display: block;
+    .add-task-dasktop-edit-main-container {
+        visibility: visible;
     }
 
     .board-content {
-        max-width: 1056px;
+        width: 1208px;
         height: 688px;
         display: flex;
         gap: 26px;
@@ -325,6 +322,7 @@ input:focus {
         flex-direction: column;
         gap: 16px;
         margin-top: 16px;
+        overflow-y: auto !important;
     }
 
     .progress-content {
@@ -340,8 +338,11 @@ input:focus {
     .section-four,
     .section-five,
     .section-six {
+        display: flex;
+        flex-direction: column;
         margin: 0;
         width: 252px;
+        
     }
 }
 
