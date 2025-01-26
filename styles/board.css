@@ -245,6 +245,7 @@ input:focus {
 }
 
 .board-prio-headline-div {
+    width: 252px;
     display: flex;
     align-items: center;
     justify-content: space-between;

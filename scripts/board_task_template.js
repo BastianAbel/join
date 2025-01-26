@@ -12,9 +12,7 @@ function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progr
                     <div id="task-description${j}" class="card-under-headline">${task.description}</div>
                 </div>
                 <div class="status-bar-and-task-information">
-                    <div class="progress-bar-wrapper">
                     ${progressBarCalc}
-                </div>
                     ${state}
                 </div>
                 <div class="user-and-card-mover-container">
