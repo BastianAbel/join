@@ -13,7 +13,7 @@ function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progr
                 </div>
                 <div class="status-bar-and-task-information">
                     <div class="progress-bar-wrapper">
-                    <div class="progress-bar" role="progressbar" style="width: ${progressBarCalc}"></div>
+                    ${progressBarCalc}
                 </div>
                     ${state}
                 </div>

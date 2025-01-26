@@ -40,15 +40,17 @@ function createUserContainer(assignedUsers) {
         console.log("No assigned users found");
         return "";
     }
-    return assignedUsers.map(user => {
-        const userContainer = document.createElement("div");
-        userContainer.className = "user";
-        userContainer.style.backgroundColor = getRandomColor();
-        const userName = checkUserFolder(user);
-        const initials = getEmployeesInitials(userName);
-        userContainer.innerHTML = initials;
-        return userContainer.outerHTML;
-    }).join('');
+    return assignedUsers
+        .map((user) => {
+            const userContainer = document.createElement("div");
+            userContainer.className = "user";
+            userContainer.style.backgroundColor = getRandomColor();
+            const userName = checkUserFolder(user);
+            const initials = getEmployeesInitials(userName);
+            userContainer.innerHTML = initials;
+            return userContainer.outerHTML;
+        })
+        .join("");
 }
 
 function checkUserFolder(assignedUser) {
@@ -112,14 +114,19 @@ function getEmployeesInitials(EmployeesName) {
 }
 
 function statusProgressBar(completedSubtasks, totalSubtasks) {
-    if (!completedSubtasks || totalSubtasks === 0) {
-        progressBarCalc = "0%";
+    if (totalSubtasks === 0) {
+        progressBarCalc = "";
         return;
+    }
+
+    if (!completedSubtasks) {
+        progressBarPercent = "0%";
+        progressBarCalc=`<div class="progress-bar" role="progressbar" style="width: ${progressBarPercent }"></div>`;
     }
     let percent = completedSubtasks / totalSubtasks;
     percent = Math.round(percent * 100);
-
-    progressBarCalc = `${percent}%`;
+    progressBarPercent = `${percent}%`;
+    progressBarCalc=`<div class="progress-bar" role="progressbar" style="width: ${progressBarPercent }"></div>`;
 }
 
 function changeColorCardType(taskType) {
