@@ -64,6 +64,7 @@ function closeEditContactView() {
     document.getElementById("profileBtn").style.backgroundColor = "white";
     document.getElementById("editContactContainer").classList.add("d-none");
     document.getElementById("editContactContainer").outerHTML = "";
+    navigateToContactList();
 }
 
 function closeAddContactView() {
@@ -71,6 +72,7 @@ function closeAddContactView() {
     document.getElementById("window-overlay").classList.add("d-none");
     document.getElementById("addContactContainer").classList.add("d-none");
     document.getElementById("addContactContainer").outerHTML = "";
+    
 }
 
 function EditContactViewSlideDown() {
@@ -170,6 +172,7 @@ function saveEditedUserData(newName, newEmail, newPhone, id) {
     document.getElementById("newPhone").innerHTML = newPhone;
     updateData((path = PATH_TO_CONTACTS), (id = id), (data = { "email": newEmail, "name": newName, "phone": newPhone }));
     EditContactViewSlideDown();
+    
 }
 
 async function deleteContact(id) {

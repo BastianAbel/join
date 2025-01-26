@@ -1,8 +1,17 @@
+const emailInputRef = document.getElementById("email");
+const passwordInputRef = document.getElementById("password");
+
 let users = [];
+let user = {};
 
 async function userLogin() {
     await fetchUsers();
-    checkIfUserExists();
+    const userExists = checkIfUserExists();
+    if(userExists){
+        initiateLogin();
+    }else {
+        visualizeNoLoginMatch();
+    }
 }
 
 async function fetchUsers() {
@@ -22,22 +31,29 @@ async function fetchUsers() {
 }
 
 function checkIfUserExists() {
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
-    let user = users.find((user) => user.user.email === email && user.user.password === password);
-    if (user) {
-        userName = user.user.name;
-        localStorage.setItem("userName", userName);
-        userKey = user.id;
-        getUserInitials(userName);
-        setLoginInformationToSessionStorage(userName, email, password);
-        rememberUser(userKey);
-        navigateToUserPage(userName);
-    } else {
-        document.getElementById("pw-state-message").innerHTML = "Check your email and password. Please try again.";
-        document.getElementById("password").style.border = "1px solid var(--icon-urgent-red)";
-        document.getElementById("email").style.border = "1px solid var(--icon-urgent-red)";
+    let email = emailInputRef.value;
+    let password = passwordInputRef.value;
+    user = {};
+    user = users.find((user) => user.user.email === email && user.user.password === password);
+    if(user) {
+        return true
     }
+}
+
+function initiateLogin() {
+    userName = user.user.name;
+    localStorage.setItem("userName", userName);
+    userKey = user.id;
+    getUserInitials(userName);
+    setLoginInformationToSessionStorage(userName, email, password);
+    rememberUser(userKey);
+    navigateToSummary();
+}
+
+function visualizeNoLoginMatch() {
+    document.getElementById("pw-state-message").innerHTML = "Check your email and password. Please try again.";
+    passwordInputRef.style.border = "1px solid var(--icon-urgent-red)";
+    emailInputRef.style.border = "1px solid var(--icon-urgent-red)";
 }
 
 function getUserInitials(userName) {
@@ -83,20 +99,14 @@ function loadUserInitials() {
     }
 }
 
-function navigateToUserPage(userName) {
-    window.location.href = `greeting-user.html?userName=${encodeURIComponent(userName)}`;
-}
-
 function setGuestToSessionStorage() {
     sessionStorage.setItem("loginStatus", "guest");
     localStorage.setItem("guest", true);
-    window.location.href = "greeting-guest.html";
+    navigateToSummary();
 }
 
 function navigateToSummary() {
-    setTimeout(() => {
-        window.location.href = "summary.html";
-    }, 2000);
+    window.location.href = "summary.html";
 }
 
 function loadUserPage() {

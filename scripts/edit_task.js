@@ -5,6 +5,7 @@ let editContactNames = [];
 let editFilteredNamesAndColors = [];
 let helperArray = [];
 
+
 async function editGetAllContactsNames() {
     onlyLoadIfUserOrGuest();
     loadUserInitials();
@@ -105,6 +106,12 @@ function checkContact(event, data) {
     }
 }
 
+function loadCardContactsInArray(taskId) {
+    let currentTask = getTaskFromArrayById(allTasks, taskId);
+    helperArray = currentTask.assignedTo;
+    editCheckedContactNamesAndColors = editFilteredNamesAndColors.filter((contact) => helperArray.includes(contact.name));
+}
+
 function getTaskFromArrayById(array, id) {
     return array.find((entry) => entry.id == id);
 }
@@ -150,22 +157,6 @@ async function removeTaskIdFromUncheckedContacts(taskId) {
     }
 }
 
-function editAddSubTask() {
-    let subtaskTitle = "";
-    let subTaskObject = {};
-    let editSubtaskInput = document.getElementById("edit-subtask-title");
-    let editSubtaskList = document.getElementById("edit-subtask-list");
-    if (editSubtaskInput.value) {
-        subtaskTitle = editSubtaskInput.value;
-        editSubtaskList.innerHTML += renderSubtask(subtaskTitle);
-        subTaskObject["checked"] = false;
-        subTaskObject["description"] = subtaskTitle;
-        subtaskList.push(subTaskObject);
-        editSubtaskInput.value = "";
-        editClearSubtaskInputField();
-    }
-}
-
 function editClearSubtaskInputField() {
     document.getElementById("edit-subtask-title").value = "";
     document.getElementById("edit-sub-task-icon-plus").classList.remove("d_none");
@@ -200,6 +191,22 @@ function editTaskGetEmployeeInfo(assignedUsers) {
     }
 }
 
+function editAddSubTask() {
+    let subtaskTitle = "";
+    let subTaskObject = {};
+    let editSubtaskInput = document.getElementById("edit-subtask-title");
+    let editSubtaskList = document.getElementById("edit-subtask-list");
+    if (editSubtaskInput.value) {
+        subtaskTitle = editSubtaskInput.value;
+        editSubtaskList.innerHTML += renderSubtask(subtaskTitle);
+        subTaskObject["checked"] = false;
+        subTaskObject["description"] = subtaskTitle;
+        subtaskList.push(subTaskObject);
+        editSubtaskInput.value = "";
+        editClearSubtaskInputField();
+    }
+}
+
 async function editGetSubtaskInfo(subtasks, taskId) {
     if (subtasks == "undefined") {
         document.getElementById("edit-subtask-list").innerHTML = "";
@@ -223,7 +230,7 @@ async function editGetSubtaskInfo(subtasks, taskId) {
 						<img
 							src="/assets/icons/trashcan.svg"
 							alt="trashcan-logo"
-							onclick="deleteSubtask(event)"
+							onclick="deleteSubtask(event,'${subtasks[i].description}')"
 						/>
 					</div>
 				</div>
@@ -237,30 +244,24 @@ async function getChangedTaskData(taskId) {
     let changedTaskDescription = document.getElementById("edit-task-description").value;
     let changedTaskDate = document.getElementById("edit-task-due-date").value;
     let changedTaskPrio = taskPrio;
-    let changedContacts = getNewNames();
+    let changedContacts = editCheckedContactNamesAndColors.map((contact) => contact.name);
     let changedSubtaskList = subtaskList;
     await setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTaskDescription, changedTaskDate, changedTaskPrio, changedContacts, changedSubtaskList);
 }
 
-function getNewNames() {
-    let newNames = []; 
-    for (let i = 0; i < editCheckedContactNamesAndColors.length; i++) {
-        newNames.push(editCheckedContactNamesAndColors[i].name); 
-    }
-    return newNames; 
-}
-
-
 async function setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTaskDescription, changedTaskDate, changedTaskPrio, changedContacts, changedSubtaskList) {
-    updateData((path = PATH_TO_TASKS), (id = taskId), (data = {
-        "title": changedTaskTitle,
-        "description": changedTaskDescription,
-        "dueDate": changedTaskDate,
-        "priority": changedTaskPrio,
-        "assignedTo": changedContacts,
-        "subtasks": changedSubtaskList,
-    }));
-    await addTaskToAssignedContacts();
-    await setBackendJsonToSessionStorage();
-    editTaskSlideOut();
+    if (changedTaskTitle !== "" || changedTaskDescription !== "" || changedTaskDate !== "" || changedTaskPrio !== "" || changedContacts !== "") {
+        updateData((path = PATH_TO_TASKS), (id = taskId), (data = {
+            "title": changedTaskTitle,
+            "description": changedTaskDescription,
+            "dueDate": changedTaskDate,
+            "priority": changedTaskPrio,
+            "assignedTo": changedContacts,
+            "subtasks": changedSubtaskList,
+        }));
+        await addTaskToAssignedContacts();
+        await setBackendJsonToSessionStorage();
+        editTaskSlideOut();
+    }
+
 }

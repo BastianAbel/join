@@ -37,7 +37,7 @@ function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progr
         `;
 }
 
-function renderEditTaskBigView(taskId, taskTitle, taskDescription, taskDate) {
+function renderEditTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskPriority) {
     return /*html*/ `
 <div id="edit-task-big-container" class="edit-task-container">
             <div class="edit-task-close-container">
@@ -140,7 +140,7 @@ function renderEditTaskBigView(taskId, taskTitle, taskDescription, taskDate) {
                     id="edit-sub-task-icon-cross"
                     src="/assets/icons/subtask-cross.svg"
                     alt="cross icon"
-                    onclick="clearSubtaskInputField()"
+                    onclick="editClearSubtaskInputField()"
                     class="d_none"
                 />
                 <img
@@ -162,7 +162,7 @@ function renderEditTaskBigView(taskId, taskTitle, taskDescription, taskDate) {
             </div>
         </div>
         <div id="edit-submit-changes-btn-container">
-            <button onclick="getChangedTaskData('${taskId}')" type="submit" id="edit-change-task-btn" class="add-task-btn">Ok<img src="/assets/icons/check.svg" alt="" /></button>
+            <button onclick="getChangedTaskData('${taskId}', '${taskPriority}')" type="submit" id="edit-change-task-btn" class="add-task-btn">Ok<img src="/assets/icons/check.svg" alt="" /></button>
         </div>
     </div>
 </div>`;

@@ -21,6 +21,7 @@ let contactNames = [];
 let filteredNamesAndColors = [];
 let checkedContactNamesAndColors = [];
 let subtaskList = [];
+let editSubtaskListArray = [];
 // let allUsers = [];
 // let allContacts = [];
 // let checkedUsersNamesAndColors = [];
@@ -73,16 +74,17 @@ function addSubTask() {
     if (SUBTASK_INPUT.value) {
         subtaskTitle = SUBTASK_INPUT.value;
         SUBTASK_LIST.innerHTML += renderSubtask(subtaskTitle);
-        subTaskObject["description"] = subtaskTitle;
         subTaskObject["checked"] = false;
+        subTaskObject["description"] = subtaskTitle;
         subtaskList.push(subTaskObject);
         SUBTASK_INPUT.value = "";
         clearSubtaskInputField();
     }
 }
 
-function deleteSubtask(event) {
-    event.target.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode);
+function deleteSubtask(event, subtaskDescription) {
+    event.target.parentNode.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode.parentNode);
+    subtaskList = subtaskList.filter((subtask) => subtask.description !== subtaskDescription);
 }
 
 function clearAllInputAddTask() {
@@ -173,8 +175,12 @@ function isDateValid(dateString) {
     const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
     if (!dateRegex.test(dateString)) return false;
     const [day, month, year] = dateString.split("/").map(Number);
-    const date = new Date(year, month - 1, day);
-    return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
+    if (month >= 1 && month <= 12 && day >= 1 && day <= 31 && year >= 2025) {
+        const date = new Date(year, month - 1, day);
+        return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
+    } else {
+        return false;
+    }
 }
 
 function clearSubtaskInputField() {

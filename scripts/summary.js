@@ -55,7 +55,7 @@ function getCountOfPrioUrgent() {
 }
 
 function getCountOfTaskInBoard() {
-    let taskInBoard = toDoCount + taskInProgressCount + awaitingFeedbackCount;
+    let taskInBoard = toDoCount + taskInProgressCount + awaitingFeedbackCount+ doneCount;
     return taskInBoard;
 }
 
@@ -100,11 +100,24 @@ function writeValuesToElements() {
 }
 
 function setGreetingInformations() {
-    document.getElementById("summary-greeting").innerHTML = getGreetingTextByTime();
-    document.getElementById("summary-user-name").innerHTML = getUserNameFromLocalStorage();
+    setGreetingTime();
+    setGreetingName();
 }
 
-function initSummary() {
+function setGreetingTime() {
+    const greetingText = getGreetingText()
+    document.getElementById("summary-greeting").innerHTML = greetingText;
+    document.getElementById("animation-greeting").innerHTML = greetingText;
+}
+
+function setGreetingName() {
+    const userName = getUserNameFromLocalStorage();
+    document.getElementById("summary-user-name").innerHTML = userName;
+    document.getElementById("animation-userName").innerHTML = userName;
+}
+
+async function initSummary() {
+    await setBackendJsonToSessionStorage()
     loadUserInitials();
     getJsonObjectFromSessionStorage();
     getAllTasksFromStoredObject();

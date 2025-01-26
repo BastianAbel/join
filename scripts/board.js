@@ -79,41 +79,23 @@ function changeStateofCheckbox(i, taskId) {
     }
 }
 
-function EditShowContactList() {
-    if (event.currentTarget == event.target) {
-        TASK_CONTACT_LIST_CONTAINER.classList.toggle("d_none");
-        if (!TASK_CONTACT_LIST_CONTAINER.classList.contains("d_none")) {
-            CONTACT_INPUT_ICON.src = "/assets/icons/arrow-drop-up.svg";
-        } else {
-            CONTACT_INPUT_ICON.src = "/assets/icons/arrow-drop-down.svg";
-            NAME_CIRCLE_CONTAINER.classList.remove("d_none");
-            NAME_CIRCLE_CONTAINER.classList.add("open-circle-container");
-            NAME_CIRCLE_CONTAINER.innerHTML = "";
-            addNameCircles(checkedUsersNamesAndColors, NAME_CIRCLE_CONTAINER, `contact-name-circle`);
-        }
-        if (!NAME_CIRCLE_CONTAINER.classList.contains("d_none") && !NAME_CIRCLE_CONTAINER.hasChildNodes()) {
-            NAME_CIRCLE_CONTAINER.classList.add("d_none");
-            NAME_CIRCLE_CONTAINER.classList.remove("open-circle-container");
-        }
-    }
-}
-
 function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority, assignedUsers, taskId, decodedSubtasks) {
+    console.log(taskPriority)
     if(decodedSubtasks == "undefined"){
         decodedSubtasksForEditTaskBigView = decodedSubtasks;
     } else {
         decodedSubtasksForEditTaskBigView = JSON.parse(decodeURIComponent(decodedSubtasks));
     }
-    
     document.getElementById("window-overlay").classList.remove('d-none');
     document.getElementById('task-big-container').outerHTML = "";
-    document.getElementById('board-main').innerHTML += renderEditTaskBigView(taskId,taskTitle, taskDescription, taskDate);
+    document.getElementById('board-main').innerHTML += renderEditTaskBigView(taskId,taskTitle, taskDescription, taskDate, taskPriority);
     document.getElementById('edit-task-title').value = taskTitle;
     document.getElementById('edit-task-description').value = taskDescription;
     document.getElementById('edit-task-due-date').value = taskDate;
     editTaskGetEmployeeInfo(assignedUsers);
     loadRightPriorityColor(taskPriority);
     editGetSubtaskInfo(decodedSubtasksForEditTaskBigView, taskId);
+    loadCardContactsInArray(taskId);
     editGetAllContactsNames();
 }
 
@@ -141,6 +123,7 @@ function closeEditTaskBigView() {
     document.getElementById("window-overlay").classList.add("d-none");
     document.getElementById("profileBtn").style.backgroundColor = "white";
     document.getElementById("edit-task-big-container").outerHTML = "";
+    navigateToBoard();
 }
 
 function editTaskSlideOut() {
@@ -187,7 +170,6 @@ function getAllTasksAndUsersFromSessionStorage() {
     let tasks = sessionResponseJson["tasks"];
     allTasks = getArrayFromObject(tasks);
     let users = sessionResponseJson["users"];
-    allTaskUsers = getArrayFromObject(users);
     allTaskUsers = getArrayFromObject(users);
     writeCardsToBoardSectionsFromArray(allTasks);
 }
