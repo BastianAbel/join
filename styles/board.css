@@ -270,6 +270,7 @@ input:focus {
 
 @media (min-width: 920px) {
     #board-main {
+        width: 1208px;
         height: 100vh;
         padding-left: 64px;
         overflow: hidden;
