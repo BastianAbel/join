@@ -25,7 +25,7 @@ function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progr
                 </div> 
                 <div class="dropdown-main-container">
                     <select class="dropdown-container" onclick="stopEventBubbling(event)" name="options" onchange="handleDropdownChange(event, '${task.id}')">
-                        <option class="dropdown-options" value="" selected>Verschieben in </option>
+                        <option onclick="stopEventBubbling(event)" class="dropdown-options" value="" selected>Verschieben in </option>
                         <option value="toDo">Todo</option>
                         <option value="inProgress">In Progress</option>
                         <option value="awaitFeedback">Await feedback</option>
