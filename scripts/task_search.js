@@ -37,7 +37,6 @@ function capitalizeFirstLetter(string) {
 
 function createUserContainer(assignedUsers) {
     if (!assignedUsers) {
-        console.log("No assigned users found");
         return "";
     }
     return assignedUsers
@@ -95,7 +94,7 @@ function getSubtaskStatus(subtasks) {
 
     if (totalSubtasks === 0) {
         statusProgressBar(completedSubtasks, totalSubtasks);
-        return `<span>Keine Subtasks</span>`;
+        return "";
     }
 
     completedSubtasks = subtasks.filter((subtask) => subtask.checked).length;
@@ -121,12 +120,12 @@ function statusProgressBar(completedSubtasks, totalSubtasks) {
 
     if (!completedSubtasks) {
         progressBarPercent = "0%";
-        progressBarCalc=`<div class="progress-bar-wrapper"><div class="progress-bar" role="progressbar" style="width: ${progressBarPercent }"></div></div>`;
+        progressBarCalc = `<div class="progress-bar-wrapper"><div class="progress-bar" role="progressbar" style="width: ${progressBarPercent}"></div></div>`;
     }
     let percent = completedSubtasks / totalSubtasks;
     percent = Math.round(percent * 100);
     progressBarPercent = `${percent}%`;
-    progressBarCalc=`<div class="progress-bar-wrapper"><div class="progress-bar" role="progressbar" style="width: ${progressBarPercent }"></div></div>`;
+    progressBarCalc = `<div class="progress-bar-wrapper"><div class="progress-bar" role="progressbar" style="width: ${progressBarPercent}"></div></div>`;
 }
 
 function changeColorCardType(taskType) {

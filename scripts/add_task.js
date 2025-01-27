@@ -54,7 +54,6 @@ async function getAllContactsNames() {
     }));
     filteredNamesAndColors = contactsNamesAndColors;
     addContactNamesToList(filteredNamesAndColors, TASK_CONTACT_LIST);
-    console.log(filteredNamesAndColors);
 }
 
 function addContactNamesToList(array, element) {
@@ -112,7 +111,6 @@ function setLowPrio() {
 
 function filterInput(event) {
     filteredNamesAndColors = filterInputFromArray(NamesAndColors, event.target.value);
-    console.log(filteredNamesAndColors);
     addContactNamesToList(filteredNamesAndColors, TASK_CONTACT_LIST);
 }
 
@@ -221,14 +219,14 @@ async function createTask(event) {
         state = "toDo";
     }
     newTask = {
-        "type": document.getElementById("task-category-select").value,
-        "title": document.getElementById("task-title").value,
-        "description": document.getElementById("task-description").value,
-        "dueDate": document.getElementById("task-due-date").value,
-        "priority": taskPrio || "low",
-        "assignedTo": contactNames,
-        "subtasks": subtaskList,
-        "state": state,
+        type: document.getElementById("task-category-select").value,
+        title: document.getElementById("task-title").value,
+        description: document.getElementById("task-description").value,
+        dueDate: document.getElementById("task-due-date").value,
+        priority: taskPrio || "low",
+        assignedTo: contactNames,
+        subtasks: subtaskList,
+        state: state,
     };
 
     try {
@@ -250,7 +248,6 @@ async function addTaskToAssignedContacts() {
             let indexInAllContacts = allContacts.findIndex((contact) => contact.id == checkedContactNamesAndColors[i].id);
             addTaskToContactInAllContactsArray(allContacts[indexInAllContacts], "tasksAssignedTo", newTaskId);
             let allAssignedToTasks = getAllTaskIdsOfUser(allContacts[indexInAllContacts], "tasksAssignedTo");
-            console.log(allAssignedToTasks);
             await updateData(PATH_TO_CONTACTS, checkedContactNamesAndColors[i].id, (data = { tasksAssignedTo: allAssignedToTasks }));
         }
     }
@@ -268,7 +265,6 @@ function addTaskToContactInAllContactsArray(contact, tasksAssignedTo, newTaskId)
     } else if (!contact.contact[tasksAssignedTo].includes(newTaskId)) {
         contact.contact[tasksAssignedTo].push(newTaskId);
     }
-    console.log(contact);
 }
 
 async function getIdOfNewTask() {
