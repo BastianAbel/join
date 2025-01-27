@@ -45,7 +45,7 @@ function navigateToContactList() {
 
 function contactBigView(name, email, phone, initials, id, contact) {
     let color = allContacts.find((e) => e.id == id).color;
-    document.getElementById("main-content").innerHTML = renderSingleContactView(name, email, phone, initials, id, color, contact);
+    document.getElementById("single-contact-view").innerHTML = renderSingleContactView(name, email, phone, initials, id, color, contact);
 }
 
 function editBigView(initials, color, id, name, email, phone) {

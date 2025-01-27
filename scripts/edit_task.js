@@ -137,7 +137,7 @@ function editShowContactList(event, taskId) {
             addNameCircles(editCheckedContactNamesAndColors, editNameCircleContainer, `contact-name-circle`);
         }
         if (!editNameCircleContainer.classList.contains("d_none") && !editNameCircleContainer.hasChildNodes()) {
-            editNameCircleContainer.classList.add("d_none");
+            editNameCircleContainer.innerHTML = "";
             editNameCircleContainer.classList.remove("open-circle-container");
         }
     }

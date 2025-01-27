@@ -2,7 +2,6 @@ let allTasks = [];
 let allTaskUsers = [];
 
 function taskBigView(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, subtasks, cardTypeColor) {
-    document.getElementById("profileBtn").style.backgroundColor = "#b8b9bb";
     document.getElementById("window-overlay").classList.remove("d-none");
     if (subtasks !== "undefined") {
         const decodedSubtasks = JSON.parse(decodeURIComponent(subtasks));
@@ -257,28 +256,6 @@ function checkSectionForChildNodes() {
             } else if (i == 3) {
                 document.getElementById("done").classList.remove("d-none");
             }
-        }
-    }
-}
-
-function EditShowContactList() {
-    if (event.currentTarget == event.target) {
-        let editTaskContactListContainer = document.getElementById("edit-task-contact-list-container");
-        let editTaskContactListIcon = document.getElementById("edit-task-contact-drop-down-icon");
-        let editNameCircleContainer = document.getElementById("edit-name-circle-container");
-        editTaskContactListContainer.classList.toggle("d_none");
-        if (!editTaskContactListContainer.classList.contains("d_none")) {
-            editTaskContactListIcon.src = "/assets/icons/arrow-drop-up.svg";
-        } else {
-            editTaskContactListIcon.src = "/assets/icons/arrow-drop-down.svg";
-            editNameCircleContainer.classList.remove("d_none");
-            editNameCircleContainer.classList.add("open-circle-container");
-            editNameCircleContainer.innerHTML = "";
-            addNameCircles(checkedUsersNamesAndColors, editNameCircleContainer, `contact-name-circle`);
-        }
-        if (!editNameCircleContainer.classList.contains("d_none") && !editNameCircleContainer.hasChildNodes()) {
-            editNameCircleContainer.classList.add("d_none");
-            editNameCircleContainer.classList.remove("open-circle-container");
         }
     }
 }

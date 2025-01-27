@@ -116,12 +116,30 @@ function setGreetingName() {
     document.getElementById("animation-userName").innerHTML = userName;
 }
 
-async function initSummary() {
-    await setBackendJsonToSessionStorage()
+function initSummary() {
+    enableGreetingAnimationOnFreshLogin();
     loadUserInitials();
     getJsonObjectFromSessionStorage();
     getAllTasksFromStoredObject();
     setNeededValues();
     writeValuesToElements();
     setGreetingInformations();
+}
+
+function enableGreetingAnimationOnFreshLogin() {
+    let freshLogin = checkIfFreshLogin();
+    if(!freshLogin) {
+        animationRef = document.getElementById("animation-greeting-container");
+        animationRef.classList.add("d-none");
+    }
+    disableFreshLogin();
+}
+
+function checkIfFreshLogin() {
+    let freshLogin = sessionStorage.getItem("freshLogin");
+    return freshLogin;
+}
+
+function disableFreshLogin() {
+    sessionStorage.removeItem("freshLogin");
 }

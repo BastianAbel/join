@@ -37,20 +37,18 @@ function capitalizeFirstLetter(string) {
 
 function createUserContainer(assignedUsers) {
     if (!assignedUsers) {
-        return console.log("No assigned users found");
+        console.log("No assigned users found");
+        return "";
     }
-    let userContainers = "";
-    for (let i = 0; i < assignedUsers.length; i++) {
-        let userContainer = document.createElement("div");
+    return assignedUsers.map(user => {
+        const userContainer = document.createElement("div");
         userContainer.className = "user";
         userContainer.style.backgroundColor = getRandomColor();
-        let userName = checkUserFolder(assignedUsers[i]);
-        let initials = getEmployeesInitials(userName);
+        const userName = checkUserFolder(user);
+        const initials = getEmployeesInitials(userName);
         userContainer.innerHTML = initials;
-
-        userContainers += userContainer.outerHTML;
-    }
-    return userContainers;
+        return userContainer.outerHTML;
+    }).join('');
 }
 
 function checkUserFolder(assignedUser) {
