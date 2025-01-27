@@ -185,7 +185,6 @@ function getAllTasksAndUsersFromSessionStorage() {
     writeCardsToBoardSectionsFromArray(allTasks);
 }
 
-// prettier-ignore
 function writeCardsToBoardSectionsFromArray(array) {
     for (let j = 0; j < array.length; j++) {
         let renderValuesObject = getObjectWithValuesNeededInBoardCard(array[j]);
