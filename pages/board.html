@@ -51,7 +51,12 @@
                         <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
                     </a>
                     <span>Kanban Project Management Tool</span>
-                    <button onclick="showSubmenu()" id="profileBtn" class="profile-button"></button>
+                    <div class="right-siede-header-board">
+                        <div>
+                            <img class="ask-btn-board" src="/assets/icons/ask-btn-no-hover.svg" alt="ask Button" />
+                        </div>
+                        <button onclick="showSubmenu()" id="profileBtn" class="profile-button"></button>
+                    </div>
                 </section>
             </header>
             <main id="board-main">
@@ -91,7 +96,9 @@
                         <section class="section-three">
                             <div class="board-prio-headline-div">
                                 <h2>To do</h2>
-                                <div class="category-add-task-btn" onclick="addNewTask('toDo')"><img src="/assets/icons/plus-button-no-hover.svg" alt="Add Task Button"></div>
+                                <div class="category-add-task-btn" onclick="addNewTask('toDo')">
+                                    <img src="/assets/icons/plus-button-no-hover.svg" alt="Add Task Button" />
+                                </div>
                             </div>
                             <div
                                 id="board-to-do-section"
@@ -109,7 +116,9 @@
                     <section class="section-four">
                         <div class="board-prio-headline-div">
                             <h2>In progress</h2>
-                            <div class="category-add-task-btn" onclick="addNewTask('inProgress')"><img src="/assets/icons/plus-button-no-hover.svg" alt="Add Task Button"></div>
+                            <div class="category-add-task-btn" onclick="addNewTask('inProgress')">
+                                <img src="/assets/icons/plus-button-no-hover.svg" alt="Add Task Button" />
+                            </div>
                         </div>
                         <div
                             id="board-in-progress-section"
@@ -125,7 +134,9 @@
                     <section class="section-five">
                         <div class="board-prio-headline-div">
                             <h2>Await feedback</h2>
-                            <div class="category-add-task-btn" onclick="addNewTask('awaitFeedback')"><img src="/assets/icons/plus-button-no-hover.svg" alt="Add Task Button"></div>
+                            <div class="category-add-task-btn" onclick="addNewTask('awaitFeedback')">
+                                <img src="/assets/icons/plus-button-no-hover.svg" alt="Add Task Button" />
+                            </div>
                         </div>
                         <div
                             id="board-await-feedback-section"
