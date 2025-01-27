@@ -17,7 +17,7 @@ table tr td:first-child {
 
 table tr td {
     vertical-align: top;
-    padding: 8px; /* Optional: Adds some padding for better readability */
+    padding: 8px;
 }
 
 td h3 {
