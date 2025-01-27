@@ -1,6 +1,6 @@
 header {
     display: flex;
-    box-shadow: 0px 4px 4px 0px #0000001A;
+    box-shadow: 0px 4px 4px 0px #0000001a;
     background-color: var(--light--accent);
     z-index: 1;
 }
@@ -28,6 +28,15 @@ header {
     cursor: pointer;
 }
 
+.right-siede-header-board {
+    display: flex;
+    align-items: center;
+}
+
+.ask-btn-board {
+    display: none;
+}
+
 .header button {
     height: 40px;
     width: 40px;
@@ -43,11 +52,22 @@ header {
 }
 
 @media (min-width: 1280px) {
-    .header a {
+    .join-logo-header {
         display: none;
     }
 
     .header span {
         display: block;
+    }
+
+    .ask-btn-board {
+        width: 20px;
+        height: 20px;
+        display: block;
+        margin: 0 !important;
+    }
+
+    .ask-btn-board:hover {
+        width: 24px;
     }
 }
