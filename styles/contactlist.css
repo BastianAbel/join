@@ -100,8 +100,12 @@ main::-webkit-scrollbar-button {
     display: none !important;
 }
 
-@media (max-width: 320px) {
-    * {
-        --contactlist-element-padding: 0 19px;
+.hide-contact-container {
+    display: none;
+}
+
+@media(min-width: 920px) {
+    .hide-contact-container {
+        display: flex;
     }
 }
