@@ -51,7 +51,7 @@ header {
     }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1296px) {
     .join-logo-header {
         display: none;
     }

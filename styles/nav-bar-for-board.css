@@ -127,7 +127,7 @@ body {
     display: none;
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1296px) {
     body {
         flex-direction: row-reverse;
     }
@@ -226,7 +226,7 @@ body {
     }
 
     .join-logo-header {
-        display: none ;
+        display: none;
     }
 
     .header span {
