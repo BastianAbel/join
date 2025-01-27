@@ -345,6 +345,12 @@ select {
     justify-content: space-between;
 }
 
+#task-due-date,
+#task-contact-input,
+#subtask-title {
+    width: 100%;
+}
+
 #sub-task-icon-cross,
 #edit-sub-task-icon-cross {
     margin-right: 4px;
