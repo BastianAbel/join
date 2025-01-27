@@ -21,13 +21,9 @@ let contactNames = [];
 let filteredNamesAndColors = [];
 let checkedContactNamesAndColors = [];
 let subtaskList = [];
-// let allUsers = [];
-// let allContacts = [];
-// let checkedUsersNamesAndColors = [];
 let taskPrio = "";
 
 async function loadAllContacts() {
-    //TODO - remove setBackendJsonToSessionStorage()
     await setBackendJsonToSessionStorage();
     let contactsResponse = await loadData(PATH_TO_CONTACTS);
     let contactsKeysArray = Object.keys(contactsResponse);
