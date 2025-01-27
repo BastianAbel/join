@@ -57,10 +57,13 @@
             </section>
         </header>
         <main id="main-content">
-            <section id="contact-list-container" class="contactlist-container"></section>
-            <div onclick="openAddContactView()" class="options-icon-container">
-                <img src="/assets/icons/add-contact.svg" alt="" />
-            </div>
+            <section class="contactlist-container">
+                <div id="contact-list"></div>
+                <div onclick="openAddContactView()" class="options-icon-container">
+                    <img src="/assets/icons/add-contact.svg" alt="" />
+                </div>
+            </section>
+            <section id="contact-view-container" class="contact-view-container hide-contact-container"></section>
         </main>
     </section>
     <div class="nav-bar-main-container">
