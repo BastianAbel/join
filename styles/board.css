@@ -16,11 +16,11 @@ body {
 }
 
 #board-main {
-    /* width: 100% !important; */
     padding: 0;
     background-color: rgb(246, 247, 248);
     height: calc(100vh - 160px);
     overflow-x: auto !important;
+    flex-direction: column !important;
     padding-left: 64px;
 }
 
@@ -281,17 +281,15 @@ input:focus {
 
 @media (max-width: 1410px) {
     #board-main {
-        
         padding-left: 32px;
-        overflow-x: hidden;
+        
     }
 }
 
 @media (max-width: 1380px) {
     #board-main {
-       
         padding-left: 12px;
-        overflow-x: hidden;
+        
     }
 }
 
@@ -310,26 +308,23 @@ input:focus {
 @media (max-width: 1305px) {
     #board-main {
         padding-left: 6px;
-        overflow-x: hidden;
+        
     }
 }
 
 @media (max-width: 1296px) {
-    #board-main {
-        padding-left: 16px;
-        overflow-x: hidden;
-    }
+    
 
-    .board-prio-headline-div{
+    .board-prio-headline-div {
         width: 100%;
         max-width: 396px;
     }
 
-    .section-one{
+    .section-one {
         margin-left: 0;
     }
 
-    .section-two{
+    .section-two {
         margin-left: 0;
     }
 
@@ -348,7 +343,7 @@ input:focus {
 @media (min-width: 1296px) {
     #board-main {
         height: calc(100vh - 80px);
-        overflow: auto;
+       
     }
 
     .board-header {
@@ -359,8 +354,6 @@ input:focus {
         justify-content: space-between;
         padding-top: 96px;
     }
-
-    
 
     .add-task-btn-mobile {
         display: none;
