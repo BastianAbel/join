@@ -3,6 +3,7 @@
     padding-right: 16px;
     background-color: #f6f7f8;
     height: calc(100vh - 160px);
+    
 }
 
 .contact-head {
@@ -195,4 +196,91 @@ span {
 
 .options-icon-container:hover {
     background-color: var(--identity);
+}
+
+.options-icon-container-big {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 40px;
+    background-color: var(--dark-background);
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    color: white;
+    gap: 16px;
+    margin-bottom: 40px;
+    padding: 16px;
+    display: none;
+}
+
+.single-contact-view-container {
+    padding-left: 40px;
+    padding-top: 80px;
+    flex-grow: 1;
+    background-color: var(--light-background);
+}
+
+.options-icon-container-big:hover {
+    background-color: var(--identity);
+}
+
+@media (min-width: 920px) {
+    .options-icon-container-big{
+        display: flex;
+    }
+
+    .options-icon-container {
+        bottom: 24px;
+    }
+    .contact-container {
+        flex-grow: 1;
+        padding-left: 80px;
+        padding-top: 80px;
+    }
+    .arrow-position {
+        display: none;
+    }
+    .border-bottom::after {
+        rotate: 90deg;
+        width: 48px !important;
+        right: -4px;
+        bottom: 20px !important;
+    }
+    .border-bottom {
+        padding-bottom: 0px !important;
+        padding-left: 48px;
+        padding-top: 8px !important;
+    }
+    .contact-head-container {
+        display: flex;
+        align-items: center;
+    }
+    .contact-head h1{
+        margin-top: 0;
+    }
+    .contact-name h2 {
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+    .edit-delete-wrapper {
+        display: none;
+    }
+    .options-icon-container {
+        display: none !important;
+    }
+    
+}
+
+@media (max-width: 920px) {
+    .edit-delete-wrapper {
+        display: none !important;
+    }
+    .single-contact-view-container{
+        position: absolute;
+        display: flex;
+        inset: 0;
+        flex-direction: column;
+    }
 }

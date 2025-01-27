@@ -1,4 +1,4 @@
-const CONTACT_LIST_CONTAINER = document.getElementById("contact-list");
+const CONTACT_LIST_CONTAINER = document.getElementById("contact-list-container");
 let allContacts = [];
 let firstLetters = [];
 
@@ -61,7 +61,6 @@ function closeEditContactView() {
     document.getElementById("profileBtn").style.backgroundColor = "white";
     document.getElementById("editContactContainer").classList.add("d-none");
     document.getElementById("editContactContainer").outerHTML = "";
-    navigateToContactList();
 }
 
 function closeAddContactView() {

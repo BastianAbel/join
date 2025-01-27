@@ -13,9 +13,8 @@ main {
     margin: 24px 0;
     padding: var(--contactlist-element-padding);
     height: calc(100vh - 80px);
+    overflow-x: auto;
 }
-
-.contact
 
 .contactlist-category {
     width: var(--contactlist-element-width);
@@ -81,28 +80,39 @@ main {
     margin: 4px 0;
 }
 
-main::-webkit-scrollbar {
+::-webkit-scrollbar {
     height: 100%;
     width: 3px;
 }
 
-main::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     background: transparent;
 }
 
-main::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background: gray;
     border-radius: 10px;
 }
 
-main::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
     background: darkgray;
 }
 
-main::-webkit-scrollbar-button {
+::-webkit-scrollbar-button {
     display: none !important;
 }
 
 @media (min-width: 920px) {
-    
+    .contact-view-wrapper {
+        display: flex;
+    }
+    .contactlist-container {
+        position: relative;
+        margin: 0px;
+        width: 456px;
+        box-shadow: 4px 0px 6px 0px #00000014;
+    }
+    .contactlist-category {
+        padding: 24px 0 0 0;
+    }
 }

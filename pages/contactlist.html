@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/styles/single-contact-view.css" />
     <link rel="stylesheet" href="/styles/edit-contact-style.css" />
     <link rel="stylesheet" href="/styles/add-contact-style.css" />
+    <link rel="stylesheet" href="/styles/add-contact-style.css" />
     <script src="/scripts/standart.js" defer></script>
     <script src="/scripts/firebase.js" defer></script>
     <script src="/scripts/main.js" defer></script>
@@ -54,12 +55,18 @@
         </header>
         <main id="main-content">
             <div class="contact-view-wrapper">
-                <section id="contact-list-container" class="contactlist-container"></section>
-                <div id="single-contact-view">Test</div>
+                
+                <section id="contact-list-container" class="contactlist-container">
+                    <div onclick="openAddContactView()" class="options-icon-container-big">
+                        <span class="add-contact-text-big">Add new contact</span>
+                        <img class="add-contact-img-big" src="/assets/icons/add-contact.svg" alt="" />
+                    </div>
+                </section>
+                <div class="single-contact-view-container" id="single-contact-view"></div>
             </div>
 
             <div onclick="openAddContactView()" class="options-icon-container">
-                <img src="/assets/icons/add-contact.svg" alt="" />
+                <img class="add-contact-img" src="/assets/icons/add-contact.svg" alt="" />
             </div>
         </main>
     </section>
