@@ -1,4 +1,5 @@
 function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progressBarCalc, cardTypeColor, j) {
+    
     return ` 
     <div id="${task.id}" onclick="taskBigView('${task.id}','${j}', '${task.dueDate}', '${task.priority}', '${priorityImage}', '${task.assignedTo}', '${encodeURIComponent(JSON.stringify(task.subtasks))}', '${cardTypeColor}')" class="card-main-container draggable" draggable="true" ondragstart="startDragging(event, '${
         task.id
@@ -11,10 +12,8 @@ function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progr
                     <h2 id="task-title${j}">${task.title}</h2>
                     <div id="task-description${j}" class="card-under-headline">${task.description}</div>
                 </div>
-                <div class="status-bar-and-task-information">
-                    <div class="progress-bar-wrapper">
-                    <div class="progress-bar" role="progressbar" style="width: ${progressBarCalc}"></div>
-                </div>
+                <div id="status-bar-and-task-information" class="status-bar-and-task-information">
+                    ${progressBarCalc}
                     ${state}
                 </div>
                 <div class="user-and-card-mover-container">

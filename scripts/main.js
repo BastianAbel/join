@@ -27,7 +27,6 @@ async function setBackendJsonToSessionStorage() {
     let response = await fetch(BASE_URL + ".json");
     let fetchedData = await response.json();
     sessionStorage.setItem("joinJson", JSON.stringify(fetchedData));
-    console.log(fetchedData);
 }
 
 function loadUserInitials() {

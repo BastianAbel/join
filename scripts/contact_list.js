@@ -1,10 +1,8 @@
-const CONTACT_LIST_CONTAINER = document.getElementById("contact-list-container");
+const CONTACT_LIST_CONTAINER = document.getElementById("contact-list");
 let allContacts = [];
 let firstLetters = [];
 
-async function loadAllContacts() {
-    //TODO - remove setBackendJsonToSessionStorage()
-    await setBackendJsonToSessionStorage();
+function loadAllContacts() {
     let fullObjectInSessionStorage = getJsonObjectFromSessionStorage();
     let contactsKeysArray = Object.keys(fullObjectInSessionStorage.contacts);
     for (let i = 0; i < contactsKeysArray.length; i++) {
@@ -17,7 +15,7 @@ async function loadAllContacts() {
     return allContacts;
 }
 
-async function getListSection() {
+function getListSection() {
     allContacts.sort((a, b) => (a.contact.name > b.contact.name ? 1 : a.contact.name < b.contact.name ? -1 : 0));
     firstLetters = Array.from(new Set(allContacts.map((entry) => entry.contact.name[0].toUpperCase())));
     for (let i = 0; i < firstLetters.length; i++) {
@@ -33,10 +31,9 @@ async function getListSection() {
 
 async function initializeContactsList() {
     loadUserInitials();
-    onlyLoadIfUserOrGuest();
     await setBackendJsonToSessionStorage();
-    await loadAllContacts();
-    await getListSection();
+    loadAllContacts();
+    getListSection();
 }
 
 function navigateToContactList() {
