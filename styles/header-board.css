@@ -52,7 +52,7 @@ header {
 }
 
 @media (min-width: 1280px) {
-    .header a {
+    .join-logo-header {
         display: none;
     }
 
