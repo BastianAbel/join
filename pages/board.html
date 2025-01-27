@@ -134,7 +134,7 @@
                             <div
                                 id="board-to-do-section"
                                 class="board-progress-state"
-                                ondrop="moveTaskToState('toDo'); removeHighlight('board-to-do-section')"
+                                ondrop="moveTaskToState('toDo'); removeHighlight('board-to-do-section');handleEndOfDragging(event)"
                                 ondragover="allowDrop(event); highlight('board-to-do-section')"
                                 ondragleave="removeHighlight('board-to-do-section')"
                             ></div>
@@ -163,7 +163,7 @@
                         <div
                             id="board-in-progress-section"
                             class="board-progress-state"
-                            ondrop="moveTaskToState('inProgress'); removeHighlight('board-in-progress-section')"
+                            ondrop="moveTaskToState('inProgress'); removeHighlight('board-in-progress-section');handleEndOfDragging(event)"
                             ondragover="allowDrop(event); highlight('board-in-progress-section')"
                             ondragleave="removeHighlight('board-in-progress-section')"
                         ></div>
@@ -190,7 +190,7 @@
                         <div
                             id="board-await-feedback-section"
                             class="board-progress-state"
-                            ondrop="moveTaskToState('awaitFeedback'); removeHighlight('board-await-feedback-section')"
+                            ondrop="moveTaskToState('awaitFeedback'); removeHighlight('board-await-feedback-section');handleEndOfDragging(event)"
                             ondragover="allowDrop(event); highlight('board-await-feedback-section')"
                             ondragleave="removeHighlight('board-await-feedback-section')"
                         ></div>
@@ -208,7 +208,7 @@
                         <div
                             id="board-done-section"
                             class="board-progress-state"
-                            ondrop="moveTaskToState('done'); removeHighlight('board-done-section')"
+                            ondrop="moveTaskToState('done'); removeHighlight('board-done-section');handleEndOfDragging(event)"
                             ondragover="allowDrop(event); highlight('board-done-section')"
                             ondragleave="removeHighlight('board-done-section')"
                         ></div>

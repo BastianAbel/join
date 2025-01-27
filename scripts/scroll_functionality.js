@@ -6,6 +6,39 @@ let draggedElement;
 let isScrolling = false;
 let scrollDirection = { x: 0, y: 0 };
 
+// let pressTimer;
+// let longPressDuration = 500;
+// let isDraggable = false;
+
+// function checkForLongClick(event) {
+//     event.preventDefault();
+//     let target = event.target.closest(".card-main-container");
+//     let element = document.getElementById(target.id);
+//     // element.setAttribute("draggable", "false");
+//     pressTimer = setTimeout(() => {
+//         if (target) {
+//             isDraggable = true;
+//             // element.setAttribute("draggable", "true");
+//             element.classList.add("draggable");
+//         }
+//     }, longPressDuration);
+// }
+
+// function clearLongClick() {
+//     clearTimeout(pressTimer);
+// }
+
+// function handleEndOfDragging(event) {
+//     isDraggable = false;
+//     clearLongClick();
+//     let target = event.target.closest(".card-main-container");
+//     if (target) {
+//         let element = document.getElementById(target.id);
+//         element.setAttribute("draggable", "false");
+//         element.classList.remove("draggable");
+//     }
+// }
+
 function enableScrollByDragging(event) {
     if (!event.clientX || !event.clientY) return;
     const boardContainer = document.getElementById("board-main");
@@ -46,15 +79,17 @@ function stopScrolling() {
 }
 
 function rotate(event) {
-    event.target.classList.add("rotate-on-drag");
-    if (event.dataTransfer) {
-        let dragGhost = event.target.cloneNode(true);
-        dragGhost.style.transform = "rotate(5deg)";
-        dragGhost.style.position = "absolute";
-        dragGhost.style.top = "-9999px";
-        document.body.appendChild(dragGhost);
-        event.dataTransfer.setDragImage(dragGhost, dragGhost.offsetWidth / 2, dragGhost.offsetHeight / 2);
-        setTimeout(() => document.body.removeChild(dragGhost), 0);
+    if (isDraggable) {
+        event.target.classList.add("rotate-on-drag");
+        if (event.dataTransfer) {
+            let dragGhost = event.target.cloneNode(true);
+            dragGhost.style.transform = "rotate(5deg)";
+            dragGhost.style.position = "absolute";
+            dragGhost.style.top = "-9999px";
+            document.body.appendChild(dragGhost);
+            event.dataTransfer.setDragImage(dragGhost, dragGhost.offsetWidth / 2, dragGhost.offsetHeight / 2);
+            setTimeout(() => document.body.removeChild(dragGhost), 0);
+        }
     }
 }
 
@@ -62,22 +97,5 @@ function removeRotations() {
     let rotatedCards = document.getElementsByClassName("rotate-on-drag");
     for (let j = 0; j < rotatedCards.length; j++) {
         rotatedCards[j].classList.remove("rotate-on-drag");
-    }
-}
-
-function enableScrollByMouseposition(event) {
-    let container = event.target.parentElement;
-    let rect = container.getBoundingClientRect();
-    let mouseX = event.clientX;
-    let scrollAmount = 100;
-    let edgeThreshold = 40;
-    let distanceFromRightEdge = rect.right - mouseX;
-    let distanceFromLeftEdge = mouseX - rect.left;
-    if (distanceFromRightEdge < edgeThreshold) {
-        scrollAmount = (edgeThreshold - distanceFromRightEdge) * 12.4;
-        container.scrollBy({ left: scrollAmount, behavior: "smooth" });
-    } else if (distanceFromLeftEdge < edgeThreshold) {
-        scrollAmount = (edgeThreshold - distanceFromLeftEdge) * 12.4;
-        container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
     }
 }
