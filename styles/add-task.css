@@ -303,10 +303,6 @@ select {
     content: url("/assets/icons/black-arrow-drop-up.svg");
 }
 
-.d_none {
-    display: none;
-}
-
 #name-circle-container,
 #edit-name-circle-container {
     display: flex;
