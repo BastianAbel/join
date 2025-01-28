@@ -344,7 +344,7 @@ async function addTaskToAssignedContacts() {
  * Function to get an array of Task-ID`s of a user that are assigned to him
  * @param {object} contact
  * @param {array} arrayOfIds
- * @returns array of task-id`s
+ * @returns array
  */
 function getAllTaskIdsOfUser(contact, arrayOfIds) {
     if (contact.contact[arrayOfIds]) {
@@ -355,7 +355,7 @@ function getAllTaskIdsOfUser(contact, arrayOfIds) {
 /**
  * Function to add a new task-id to one assigned contact
  * @param {object} contact
- * @param {array of taskId`s`} tasksAssignedTo
+ * @param {array} tasksAssignedTo
  * @param {string} newTaskId
  */
 function addTaskToContactInAllContactsArray(contact, tasksAssignedTo, newTaskId) {

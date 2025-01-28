@@ -8,7 +8,7 @@ let allTaskUsers = [];
  * @param {string} taskDate
  * @param {string} taskPriority
  * @param {string} priorityImage
- * @param {comma separated string} assignedUsers
+ * @param {string} assignedUsers
  * @param {string} subtasks
  * @param {string} cardTypeColor
  */
@@ -51,9 +51,9 @@ function getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assi
  * @param {string} taskType
  * @param {string} taskPriority
  * @param {string} priorityImage
- * @param {comma separated string} assignedUsers
+ * @param {string} assignedUsers
  * @param {string} cardTypeColor
- * @param {comma separated string} subtasks
+ * @param {string} decodedSubtasks
  */
 function setInfoToBigCard(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks) {
     document.getElementById("board-main").innerHTML += renderTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, cardTypeColor, assignedUsers);
@@ -135,13 +135,24 @@ function changeStateofCheckbox(i, taskId) {
 }
 
 /**
+ * Function to save contact objects that are checked as assigned contacts to an array
+ * @param {string} taskId 
+ */
+function loadCardContactsInArray(taskId) {
+    let currentTask = getTaskFromArrayById(allTasks, taskId);
+    helperArray = currentTask.assignedTo;
+    editCheckedContactNamesAndColors = editFilteredNamesAndColors.filter((contact) => helperArray.includes(contact.name));
+}
+
+/**
  * Function to open the detailed view to edit a task
  * @param {string} taskTitle
  * @param {string} taskDescription
  * @param {string} taskDate
  * @param {string} taskPriority
- * @param {comma separated string} assignedUsers
+ * @param {string} assignedUsers
  * @param {string} taskId
+ * @param {string} decodedSubtasks 
  */
 function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority, assignedUsers, taskId, decodedSubtasks) {
     document.getElementById("window-overlay").classList.remove("d-none");
@@ -285,7 +296,7 @@ function writeCardsToBoardSectionsFromArray(array) {
 /**
  * Function to collect informations of a task in an object that provides the informations needed to render a task-card
  * @param {object} task
- * @returns
+ * @returns object with needed values
  */
 function getObjectWithValuesNeededInBoardCard(task) {
     return {
@@ -413,3 +424,4 @@ function highlight(id) {
 function removeHighlight(id) {
     document.getElementById(id).classList.remove("highlight-drag-area");
 }
+

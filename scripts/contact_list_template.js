@@ -1,7 +1,7 @@
 /**
  * Function to render a section in the contact list based on the first letter of the contact's prename
  * @param {char} letter
- * @returns
+ * @returns html-string
  */
 function renderContactSection(letter) {
     return `<div class="contactlist-category">
@@ -16,7 +16,7 @@ function renderContactSection(letter) {
  * @param {object} contact
  * @param {string} initials
  * @param {string} id
- * @returns
+ * @returns html-string
  */
 function renderContactListContact(contact, initials, id) {
 
@@ -40,7 +40,7 @@ function renderContactListContact(contact, initials, id) {
  * @param {string} initials
  * @param {string} id
  * @param {string} color
- * @returns
+ * @returns html-string
  */
 function renderSingleContactView(name, email, phone, initials, id, color) {
     return /*HTML*/` 
@@ -102,7 +102,7 @@ function renderSingleContactView(name, email, phone, initials, id, color) {
  * @param {string} initials
  * @param {string} color
  * @param {string} id
- * @returns
+ * @returns html-string
  */
 function renderEditContactView(initials, color, id) {
     return /*HTML*/`
@@ -158,7 +158,7 @@ function renderEditContactView(initials, color, id) {
  * @returns HTML-string to render the add contact view
  */
 function renderAddContactView() {
-return /*HTML*/`
+return`
 <div id="addContactContainer" class="big-contact-container">
     <div>
         

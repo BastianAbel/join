@@ -111,7 +111,6 @@ function setLoginInformationToSessionStorage(userName, userEmail, userPassword) 
 /**
  * Function to set the user credentials to the local storage if the user checks the "remember me"-checkbox.
  * @param {string} userKey
- * @returns
  */
 function rememberUser(userKey) {
     let key = userKey;
