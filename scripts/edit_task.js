@@ -298,10 +298,30 @@ async function editGetSubtaskInfo(subtasks, taskId) {
     }
 }
 
-function setChangedDataOfTaskToBackend() {
+async function getChangedTaskData(taskId) {
     let changedTaskTitle = document.getElementById("edit-task-title").value;
     let changedTaskDescription = document.getElementById("edit-task-description").value;
     let changedTaskDate = document.getElementById("edit-task-due-date").value;
     let changedTaskPrio = taskPrio;
-    let changedContacts = contactNames;
+    let changedContacts = editCheckedContactNamesAndColors.map((contact) => contact.name);
+    let changedSubtaskList = subtaskList;
+    await setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTaskDescription, changedTaskDate, changedTaskPrio, changedContacts, changedSubtaskList);
+}
+
+async function setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTaskDescription, changedTaskDate, changedTaskPrio, changedContacts, changedSubtaskList) {
+    console.log(changedTaskPrio);
+    
+    if (changedTaskTitle !== "" || changedTaskDescription !== "" || changedTaskDate !== "" || changedTaskPrio !== "" || changedContacts !== "") {
+        updateData((path = PATH_TO_TASKS), (id = taskId), (data = {
+            "title": changedTaskTitle,
+            "description": changedTaskDescription,
+            "dueDate": changedTaskDate,
+            "priority": changedTaskPrio,
+            "assignedTo": changedContacts,
+            "subtasks": changedSubtaskList,
+        }));
+        await addTaskToAssignedContacts();
+        await setBackendJsonToSessionStorage();
+        editTaskSlideOut();
+    }
 }
