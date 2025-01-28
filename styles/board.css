@@ -227,7 +227,6 @@ input:focus {
     flex-direction: row;
     width: 1208px;
     height: 100%;
-    position: absolute;
     background-color: #f6f7f8;
 }
 
@@ -257,7 +256,6 @@ input:focus {
 }
 
 /* Media Query */
-
 @media (max-width: 1410px) {
     #board-main {
         padding-left: 32px;

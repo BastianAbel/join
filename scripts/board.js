@@ -21,10 +21,20 @@ function taskBigView(taskId, j, taskDate, taskPriority, priorityImage, assignedU
         getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor);
     }
 }
+/**
+ * Function to load the contacts assigned to a task in an array
+ * @param {string} taskId
+ */
+function loadCardContactsInArray(taskId) {
+    let currentTask = getTaskFromArrayById(allTasks, taskId);
+    helperArray = currentTask.assignedTo;
+    editCheckedContactNamesAndColors = editFilteredNamesAndColors.filter((contact) => helperArray.includes(contact.name));
+}
 
 /**
  * Function to collect informations of a task from a small card on board
  */
+function getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks) {
 function getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks) {
     let taskTitle = document.getElementById(`task-title${j}`).innerHTML;
     let taskDescription = document.getElementById(`task-description${j}`).innerHTML;
@@ -46,6 +56,7 @@ function getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assi
  * @param {string} cardTypeColor
  * @param {string} decodedSubtasks
  */
+function setInfoToBigCard(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks) {
 function setInfoToBigCard(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks) {
     document.getElementById("board-main").innerHTML += renderTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, cardTypeColor, assignedUsers);
     getEmployeeInfo(assignedUsers);
@@ -154,7 +165,7 @@ function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority,
     document.getElementById("edit-task-due-date").value = taskDate;
     editTaskGetEmployeeInfo(assignedUsers);
     loadRightPriorityColor(taskPriority);
-    editGetSubtaskInfo(decodedSubtasksForEditTaskBigView, taskId);
+    editGetSubtaskInfo(decodedSubtasks, taskId);
     loadCardContactsInArray(taskId);
     editGetAllContactsNames();
 }

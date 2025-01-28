@@ -8,6 +8,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: #f6f7f9;
     flex: 1;
     margin-top: 74px
 }
@@ -20,7 +21,7 @@ main {
 .add-task-sticky-headline-container {
     width: calc(100% - 32px);
     position: sticky;
-    background-color: var(--light--accent);
+    background-color: #f6f7f9;
     top: 0;
     display: block;
     text-align: left;
@@ -53,6 +54,10 @@ main {
 
 .grey-placeholder::placeholder {
     color: rgba(209, 209, 209);
+}
+
+#sticky-bottom-container {
+    background-color: #f6f7f9 !important;
 }
 
 #prio-container,
@@ -492,5 +497,14 @@ select {
         width: 1px;
         border-radius: 1px;
         margin: 0 48px;
+    }
+}
+
+@media (max-width: 430px ) {
+    .prio-btn span {
+        font-size: 12px;
+    }
+    .task-overlay-container {
+        width: unset!important;
     }
 }
