@@ -298,7 +298,6 @@ async function editGetSubtaskInfo(subtasks, taskId) {
     }
 }
 
-//TODO - ask if this can be removed. It totally does nothing!!
 function setChangedDataOfTaskToBackend() {
     let changedTaskTitle = document.getElementById("edit-task-title").value;
     let changedTaskDescription = document.getElementById("edit-task-description").value;
