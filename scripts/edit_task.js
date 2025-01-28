@@ -163,17 +163,17 @@ function editShowContactList(event, taskId) {
     helperArray = currentTask.assignedTo;
     editCheckedContactNamesAndColors = editFilteredNamesAndColors.filter((contact) => helperArray.includes(contact.name));
     if (event.currentTarget == event.target) {
-        editTaskContactListContainer.classList.toggle("d_none");
-        if (!editTaskContactListContainer.classList.contains("d_none")) {
+        editTaskContactListContainer.classList.toggle("d-none");
+        if (!editTaskContactListContainer.classList.contains("d-none")) {
             editTaskDropDownIcon.src = "/assets/icons/arrow-drop-up.svg";
         } else {
             editTaskDropDownIcon.src = "/assets/icons/arrow-drop-down.svg";
-            editNameCircleContainer.classList.remove("d_none");
+            editNameCircleContainer.classList.remove("d-none");
             editNameCircleContainer.classList.add("open-circle-container");
             editNameCircleContainer.innerHTML = "";
             addNameCircles(editCheckedContactNamesAndColors, editNameCircleContainer, `contact-name-circle`);
         }
-        if (!editNameCircleContainer.classList.contains("d_none") && !editNameCircleContainer.hasChildNodes()) {
+        if (!editNameCircleContainer.classList.contains("d-none") && !editNameCircleContainer.hasChildNodes()) {
             editNameCircleContainer.innerHTML = "";
             editNameCircleContainer.classList.remove("open-circle-container");
         }
@@ -297,7 +297,10 @@ async function editGetSubtaskInfo(subtasks, taskId) {
         }
     }
 }
-
+/**
+ * Function to get changed task data from the edit view of a task
+ * @param {string} taskId
+ */
 async function getChangedTaskData(taskId) {
     let changedTaskTitle = document.getElementById("edit-task-title").value;
     let changedTaskDescription = document.getElementById("edit-task-description").value;
@@ -307,7 +310,16 @@ async function getChangedTaskData(taskId) {
     let changedSubtaskList = subtaskList;
     await setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTaskDescription, changedTaskDate, changedTaskPrio, changedContacts, changedSubtaskList);
 }
-
+/**
+ * Function to set the changed task data to the backend
+ * @param {string} taskId
+ * @param {string} changedTaskTitle
+ * @param {string} changedTaskDescription
+ * @param {string} changedTaskDate
+ * @param {string} changedTaskPrio
+ * @param {array} changedContacts
+ * @param {arraz} changedSubtaskList
+ */
 async function setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTaskDescription, changedTaskDate, changedTaskPrio, changedContacts, changedSubtaskList) {
     if (changedTaskTitle !== "" || changedTaskDescription !== "" || changedTaskDate !== "" || changedTaskPrio !== "" || changedContacts !== "") {
         updateData((path = PATH_TO_TASKS), (id = taskId), (data = {

@@ -21,11 +21,20 @@ function taskBigView(taskId, j, taskDate, taskPriority, priorityImage, assignedU
         getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor);
     }
 }
+/**
+ * Function to load the contacts assigned to a task in an array
+ * @param {string} taskId
+ */
+function loadCardContactsInArray(taskId) {
+    let currentTask = getTaskFromArrayById(allTasks, taskId);
+    helperArray = currentTask.assignedTo;
+    editCheckedContactNamesAndColors = editFilteredNamesAndColors.filter((contact) => helperArray.includes(contact.name));
+}
 
 /**
  * Function to collect informations of a task from a small card on board
  */
-function getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor, subtasks) {
+function getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks) {
     let taskTitle = document.getElementById(`task-title${j}`).innerHTML;
     let taskDescription = document.getElementById(`task-description${j}`).innerHTML;
     let taskType = document.getElementById(`task-type${j}`).innerHTML;
@@ -46,7 +55,7 @@ function getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assi
  * @param {string} cardTypeColor
  * @param {comma separated string} subtasks
  */
-function setInfoToBigCard(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, subtasks) {
+function setInfoToBigCard(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks) {
     document.getElementById("board-main").innerHTML += renderTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, cardTypeColor, assignedUsers);
     getEmployeeInfo(assignedUsers);
     getSubtaskInfo(decodedSubtasks, taskId);
@@ -134,7 +143,7 @@ function changeStateofCheckbox(i, taskId) {
  * @param {comma separated string} assignedUsers
  * @param {string} taskId
  */
-function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority, assignedUsers, taskId) {
+function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority, assignedUsers, taskId, decodedSubtasks) {
     document.getElementById("window-overlay").classList.remove("d-none");
     document.getElementById("task-big-container").outerHTML = "";
     document.getElementById("board-main").innerHTML += renderEditTaskBigView(taskId, taskTitle, taskDescription, taskDate);
@@ -143,7 +152,7 @@ function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority,
     document.getElementById("edit-task-due-date").value = taskDate;
     editTaskGetEmployeeInfo(assignedUsers);
     loadRightPriorityColor(taskPriority);
-    editGetSubtaskInfo(decodedSubtasksForEditTaskBigView, taskId);
+    editGetSubtaskInfo(decodedSubtasks, taskId);
     loadCardContactsInArray(taskId);
     editGetAllContactsNames();
 }

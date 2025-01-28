@@ -69,6 +69,13 @@ tr {
     align-items: center;
 }
 
+.edit-task-close-container img:hover {
+    background-color: var(--light-background);
+    background-color: #e7e7e7;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
 .userstory-close-container img {
     height: 24px;
     width: 24px;
@@ -247,5 +254,16 @@ tr {
 @media (max-width: 480px) {
     .task-overlay-head {
         font-size: 36px;
+    }
+}
+
+@media (min-width: 920px) {
+    .task-overlay-container {
+        width: 525px;
+        margin-left: 235px
+    }
+    .edit-task-container {
+        width: 525px;
+        margin-left: 235px
     }
 }

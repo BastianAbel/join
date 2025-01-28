@@ -42,6 +42,8 @@
     background-color: #b8b9bb;
     inset: 0;
     display: flex;
+    z-index: 3;
+    opacity: 0.5;
 }
 
 h1 {
