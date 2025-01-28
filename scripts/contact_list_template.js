@@ -1,3 +1,8 @@
+/**
+ * Function to render a section in the contact list based on the first letter of the contact's prename
+ * @param {char} letter
+ * @returns
+ */
 function renderContactSection(letter) {
     return `<div class="contactlist-category">
                     <span>${letter}</span>
@@ -6,10 +11,15 @@ function renderContactSection(letter) {
 				<div id="div-for-contacts-with-letter(${letter})"></div>`;
 }
 
+/**
+ * Function to render a contact in the contact list
+ * @param {object} contact
+ * @param {string} initials
+ * @param {string} id
+ * @returns
+ */
 function renderContactListContact(contact, initials, id) {
-
     return `<div onclick="contactBigView('${contact.name}','${contact.email}', '${contact.phone}','${initials}', '${id}', )" class="contactlist-contact">
-
                     <div id="profile-picture(${id})" class="profile-picture test-profile-picture-background">
                         <span>${initials}</span>
                     </div>
@@ -20,8 +30,17 @@ function renderContactListContact(contact, initials, id) {
                 </div>`;
 }
 
-
-function renderSingleContactView(name, email,phone, initials, id, color) {
+/**
+ * Function to render the detailed view of a contact
+ * @param {string} name
+ * @param {string} email
+ * @param {string} phone
+ * @param {string} initials
+ * @param {string} id
+ * @param {string} color
+ * @returns
+ */
+function renderSingleContactView(name, email, phone, initials, id, color) {
     return ` 
             <div id="window-overlay" class="d-none window-overlay"></div>
             <div class="contact-container">
@@ -61,6 +80,13 @@ function renderSingleContactView(name, email,phone, initials, id, color) {
             </div>`;
 }
 
+/**
+ * Function to render the detailed edit view of a contact
+ * @param {string} initials
+ * @param {string} color
+ * @param {string} id
+ * @returns
+ */
 function renderEditContactView(initials, color, id) {
     return `<div id="editContactContainer" class="big-contact-container">
                 <div class="add-contact-container">
@@ -99,6 +125,10 @@ function renderEditContactView(initials, color, id) {
             </div>`;
 }
 
+/**
+ *
+ * @returns HTML-string to render the add contact view
+ */
 function renderAddContactView() {
     return `
     <div id="addContactContainer" class="big-contact-container">
