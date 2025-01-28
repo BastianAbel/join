@@ -1,27 +1,68 @@
 <!DOCTYPE html>
 <html lang="de">
-    <!-- prettier-ignore -->
-
     <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/assets/icons/join-logo-white.svg" type="image/x-icon">
-    <link rel="stylesheet" href="/styles/standart.css">
-    <link rel="stylesheet" href="/styles/nav-bar.css">
-    <link rel="stylesheet" href="/styles/style.css">
-    <link rel="stylesheet" href="/styles/add-task.css">
-    <link rel="stylesheet" href="/styles/submenu-popup.css">
-    <script src="/scripts/add_task.js" defer></script>
-    <script src="/scripts/add_task_template.js" defer></script>
-    <script src="/scripts/main.js" defer></script>
-    <script src="/scripts/firebase.js" defer></script>
-    <script src="/scripts/contact_list.js" defer></script>
-    <script src="/scripts/standart.js" defer></script>
-    <script src="/scripts/login.js" defer></script>
-    <title>Add Task</title>
-</head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <link
+            rel="shortcut icon"
+            href="/assets/icons/join-logo-white.svg"
+            type="image/x-icon"
+        />
+        <link
+            rel="stylesheet"
+            href="/styles/standart.css"
+        />
+        <link
+            rel="stylesheet"
+            href="/styles/nav-bar.css"
+        />
+        <link
+            rel="stylesheet"
+            href="/styles/style.css"
+        />
+        <link
+            rel="stylesheet"
+            href="/styles/add-task.css"
+        />
+        <link
+            rel="stylesheet"
+            href="/styles/submenu-popup.css"
+        />
+        <script
+            src="/scripts/add_task.js"
+            defer
+        ></script>
+        <script
+            src="/scripts/add_task_template.js"
+            defer
+        ></script>
+        <script
+            src="/scripts/main.js"
+            defer
+        ></script>
+        <script
+            src="/scripts/firebase.js"
+            defer
+        ></script>
+        <script
+            src="/scripts/contact_list.js"
+            defer
+        ></script>
+        <script
+            src="/scripts/standart.js"
+            defer
+        ></script>
+        <script
+            src="/scripts/login.js"
+            defer
+        ></script>
+        <title>Add Task</title>
+    </head>
 
-    <body onload="getAllContactsNames(); setMediumPrio()">
+    <body onload="getAllContactsNames()">
         <section class="main-container">
             <div
                 id="submenu"
@@ -73,180 +114,185 @@
                             onsubmit="createTask(event)"
                         >
                             <div id="inner-form-container">
-                                <div class="add-task-attribute-container">
-                                    <label for="task-title">Title<span class="require-asterisk">*</span></label>
-                                    <input
-                                        id="task-title"
-                                        class="add-task-attribute-input grey-placeholder"
-                                        type="text"
-                                        placeholder="Enter a title"
-                                        required
-                                    />
-                                </div>
-                                <div class="add-task-attribute-container">
-                                    <label for="task-description">Description</label>
-                                    <textarea
-                                        id="task-description"
-                                        class="add-task-attribute-input grey-placeholder"
-                                        placeholder="Enter a Description"
-                                    ></textarea>
-                                </div>
-                                <div class="add-task-attribute-container">
-                                    <label for="task-contact-input">Assigned to</label>
-                                    <div
-                                        id="add-task-contact-container"
-                                        class="add-task-input-img-container"
-                                        onclick="showContactList()"
-                                    >
+                                <div class="form-input-wrapper">
+                                    <div class="add-task-attribute-container">
+                                        <label for="task-title">Title<span class="require-asterisk">*</span></label>
                                         <input
-                                            type="text"
-                                            id="task-contact-input"
-                                            class="add-task-attribute-input"
-                                            placeholder="Select contacts to assign"
-                                            oninput="filterInput(event)"
-                                            onclick="showContactList()"
-                                        />
-                                        <img
-                                            src="/assets/icons/arrow-drop-down.svg"
-                                            alt="closed drop down logo"
-                                            id="add-task-contact-drop-down-icon"
-                                            onclick="showContactList()"
-                                        />
-                                    </div>
-                                    <div
-                                        id="add-task-contact-list-container"
-                                        class="d_none"
-                                    >
-                                        <ul id="add-task-contacts-list"></ul>
-                                    </div>
-                                    <div
-                                        id="name-circle-container"
-                                        class="d_none"
-                                    ></div>
-                                </div>
-                                <div class="add-task-attribute-container">
-                                    <label for="task-due-date">Due date<span class="require-asterisk">*</span></label>
-                                    <div
-                                        id="add-task-date-container"
-                                        class="add-task-input-img-container"
-                                    >
-                                        <input
-                                            id="task-due-date"
+                                            id="task-title"
                                             class="add-task-attribute-input grey-placeholder"
                                             type="text"
-                                            placeholder="dd/mm/yyyy"
-                                            oninput="formatDateInput()"
+                                            placeholder="Enter a title"
                                             required
                                         />
-                                        <img
-                                            src="/assets/icons/calender.svg"
-                                            alt="calender icon"
-                                        />
                                     </div>
-                                </div>
-                                <div class="add-task-attribute-container">
-                                    <span>Prio</span>
-                                    <div id="prio-container">
-                                        <div
-                                            id="prio-urgent-btn"
-                                            class="prio-btn"
-                                            onclick="setUrgentPrio()"
-                                        >
-                                            <span>Urgent</span
-                                            ><img
-                                                src="/assets/icons/prio-alta-red.svg"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div
-                                            id="prio-medium-btn"
-                                            class="prio-btn"
-                                            onclick="setMediumPrio()"
-                                        >
-                                            <span>Medium</span
-                                            ><img
-                                                src="/assets/icons/prio-media-orange.svg"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div
-                                            id="prio-low-btn"
-                                            class="prio-btn"
-                                            onclick="setLowPrio()"
-                                        >
-                                            <span>Low</span
-                                            ><img
-                                                src="/assets/icons/prio-baja-green.svg"
-                                                alt=""
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="add-task-attribute-container">
-                                    <label for="task-category-select">Category<span class="require-asterisk">*</span></label>
-                                    <select
-                                        id="task-category-select"
-                                        class="add-task-attribute-input"
-                                        required
-                                    >
-                                        <option
-                                            value=""
-                                            disabled
-                                            selected
-                                        >
-                                            Select task category
-                                        </option>
-                                        <option value="userStory">User Story</option>
-                                        <option value="technicalTask">Technical Task</option>
-                                    </select>
-                                </div>
-                                <div class="add-task-attribute-container">
-                                    <label for="subtask-title">Subtasks</label>
-                                    <div
-                                        id="sub-task-input-container"
-                                        class="add-task-input-img-container"
-                                    >
-                                        <input
-                                            id="subtask-title"
+                                    <div class="add-task-attribute-container">
+                                        <label for="task-description">Description</label>
+                                        <textarea
+                                            id="task-description"
                                             class="add-task-attribute-input grey-placeholder"
-                                            type="text"
-                                            placeholder="Add new Subtask"
-                                            oninput="showAndHideIcons()"
-                                        />
-                                        <img
-                                            id="sub-task-icon-plus"
-                                            src="/assets/icons/plus-subtask.svg"
-                                            alt="plus-icon"
-                                        />
-                                        <img
-                                            id="sub-task-icon-cross"
-                                            src="/assets/icons/subtask-cross.svg"
-                                            alt="cross icon"
-                                            onclick="clearSubtaskInputField()"
-                                            class="d_none"
-                                        /><img
-                                            id="sub-task-icon-vector"
-                                            src="/assets/icons/subtask-vektor.svg"
-                                            alt="vector icon"
-                                            class="d_none"
-                                        /><img
-                                            id="sub-task-icon-check"
-                                            src="/assets/icons/subtask-check.svg"
-                                            alt="checked icon"
-                                            onclick="addSubTask()"
-                                            class="d_none"
-                                        />
+                                            placeholder="Enter a Description"
+                                        ></textarea>
                                     </div>
-                                    <div id="subtask-list-container">
-                                        <ul id="subtask-list"></ul>
+                                    <div class="add-task-attribute-container">
+                                        <label for="task-contact-input">Assigned to</label>
+                                        <div
+                                            id="add-task-contact-container"
+                                            class="add-task-input-img-container"
+                                            onclick="showContactList()"
+                                        >
+                                            <input
+                                                type="text"
+                                                id="task-contact-input"
+                                                class="add-task-attribute-input"
+                                                placeholder="Select contacts to assign"
+                                                oninput="filterInput(event)"
+                                                onclick="showContactList()"
+                                            />
+                                            <img
+                                                src="/assets/icons/arrow-drop-down.svg"
+                                                alt="closed drop down logo"
+                                                id="add-task-contact-drop-down-icon"
+                                                onclick="showContactList()"
+                                            />
+                                            <div
+                                                id="add-task-contact-list-container"
+                                                class="d-none"
+                                            >
+                                                <ul id="add-task-contacts-list"></ul>
+                                            </div>
+                                        </div>
+                                        <div
+                                            id="name-circle-container"
+                                            class="d-none"
+                                        ></div>
                                     </div>
                                 </div>
+                                <div class="form-separator"></div>
+                                <div class="form-input-wrapper">
+                                    <div class="add-task-attribute-container">
+                                        <label for="task-due-date">Due date<span class="require-asterisk">*</span></label>
+                                        <div
+                                            id="add-task-date-container"
+                                            class="add-task-input-img-container"
+                                        >
+                                            <input
+                                                id="task-due-date"
+                                                class="add-task-attribute-input grey-placeholder"
+                                                type="text"
+                                                placeholder="dd/mm/yyyy"
+                                                oninput="formatDateInput()"
+                                                required
+                                            />
+                                            <img
+                                                src="/assets/icons/calender.svg"
+                                                alt="calender icon"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="add-task-attribute-container">
+                                        <span>Prio</span>
+                                        <div id="prio-container">
+                                            <div
+                                                id="prio-urgent-btn"
+                                                class="prio-btn"
+                                                onclick="setUrgentPrio()"
+                                            >
+                                                <span>Urgent</span
+                                                ><img
+                                                    src="/assets/icons/prio-alta-red.svg"
+                                                    alt=""
+                                                />
+                                            </div>
+                                            <div
+                                                id="prio-medium-btn"
+                                                class="prio-btn"
+                                                onclick="setMediumPrio()"
+                                            >
+                                                <span>Medium</span
+                                                ><img
+                                                    src="/assets/icons/prio-media-orange.svg"
+                                                    alt=""
+                                                />
+                                            </div>
+                                            <div
+                                                id="prio-low-btn"
+                                                class="prio-btn"
+                                                onclick="setLowPrio()"
+                                            >
+                                                <span>Low</span
+                                                ><img
+                                                    src="/assets/icons/prio-baja-green.svg"
+                                                    alt=""
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="add-task-attribute-container">
+                                        <label for="task-category-select">Category<span class="require-asterisk">*</span></label>
+                                        <select
+                                            id="task-category-select"
+                                            class="add-task-attribute-input"
+                                            required
+                                        >
+                                            <option
+                                                value=""
+                                                disabled
+                                                selected
+                                            >
+                                                Select task category
+                                            </option>
+                                            <option value="userStory">User Story</option>
+                                            <option value="technicalTask">Technical Task</option>
+                                        </select>
+                                    </div>
+                                    <div class="add-task-attribute-container">
+                                        <label for="subtask-title">Subtasks</label>
+                                        <div
+                                            id="sub-task-input-container"
+                                            class="add-task-input-img-container"
+                                        >
+                                            <input
+                                                id="subtask-title"
+                                                class="add-task-attribute-input grey-placeholder"
+                                                type="text"
+                                                placeholder="Add new Subtask"
+                                                oninput="showAndHideIcons()"
+                                            />
+                                            <img
+                                                id="sub-task-icon-plus"
+                                                src="/assets/icons/plus-subtask.svg"
+                                                alt="plus-icon"
+                                            />
+                                            <img
+                                                id="sub-task-icon-cross"
+                                                src="/assets/icons/subtask-cross.svg"
+                                                alt="cross icon"
+                                                onclick="clearSubtaskInputField()"
+                                                class="d-none"
+                                            /><img
+                                                id="sub-task-icon-vector"
+                                                src="/assets/icons/subtask-vektor.svg"
+                                                alt="vector icon"
+                                                class="d-none"
+                                            /><img
+                                                id="sub-task-icon-check"
+                                                src="/assets/icons/subtask-check.svg"
+                                                alt="checked icon"
+                                                onclick="addSubTask()"
+                                                class="d-none"
+                                            />
+                                        </div>
+                                        <div id="subtask-list-container">
+                                            <ul id="subtask-list"></ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="sticky-bottom-container">
                                 <div id="require-info-container">
                                     <span class="require-asterisk">*</span>
                                     <p>This field is required</p>
                                 </div>
-                            </div>
-                            <div id="sticky-bottom-container">
                                 <div class="add-task-attribute-container">
                                     <div id="add-task-btn-container">
                                         <button
