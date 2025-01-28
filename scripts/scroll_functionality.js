@@ -6,39 +6,10 @@ let draggedElement;
 let isScrolling = false;
 let scrollDirection = { x: 0, y: 0 };
 
-// let pressTimer;
-// let longPressDuration = 500;
-// let isDraggable = false;
-
-// function checkForLongClick(event) {
-//     event.preventDefault();
-//     let target = event.target.closest(".card-main-container");
-//     let element = document.getElementById(target.id);
-//     // element.setAttribute("draggable", "false");
-//     pressTimer = setTimeout(() => {
-//         if (target) {
-//             isDraggable = true;
-//             // element.setAttribute("draggable", "true");
-//             element.classList.add("draggable");
-//         }
-//     }, longPressDuration);
-// }
-
-// function clearLongClick() {
-//     clearTimeout(pressTimer);
-// }
-
-// function handleEndOfDragging(event) {
-//     isDraggable = false;
-//     clearLongClick();
-//     let target = event.target.closest(".card-main-container");
-//     if (target) {
-//         let element = document.getElementById(target.id);
-//         element.setAttribute("draggable", "false");
-//         element.classList.remove("draggable");
-//     }
-// }
-
+/**
+ * Function to enable the scrolling by dragging a task-card on the board to the edge of the screen
+ * @param {event} event
+ */
 function enableScrollByDragging(event) {
     if (!event.clientX || !event.clientY) return;
     const boardContainer = document.getElementById("board-main");
@@ -58,6 +29,11 @@ function enableScrollByDragging(event) {
     }
 }
 
+/**
+ * Function to start scrolling in a specific direction based on the position of the dragged task-card
+ * @param {integer} x
+ * @param {integer} y
+ */
 function startScrolling(x, y) {
     scrollDirection = { x, y };
     if (!isScrolling) {
@@ -66,6 +42,9 @@ function startScrolling(x, y) {
     }
 }
 
+/**
+ * Function to scroll the board as long as isScrolling is true
+ */
 function scrollStep() {
     let boardContainer = document.getElementById("board-main");
     boardContainer.scrollBy(scrollDirection.x, scrollDirection.y);
@@ -74,25 +53,33 @@ function scrollStep() {
     }
 }
 
+/**
+ * Function to stop the scrolling
+ */
 function stopScrolling() {
     isScrolling = false;
 }
 
+/**
+ * Function to rotate the dragged task-card and set a drag-ghost to the cursor that is rotated, too
+ * @param {event} event
+ */
 function rotate(event) {
-    if (isDraggable) {
-        event.target.classList.add("rotate-on-drag");
-        if (event.dataTransfer) {
-            let dragGhost = event.target.cloneNode(true);
-            dragGhost.style.transform = "rotate(5deg)";
-            dragGhost.style.position = "absolute";
-            dragGhost.style.top = "-9999px";
-            document.body.appendChild(dragGhost);
-            event.dataTransfer.setDragImage(dragGhost, dragGhost.offsetWidth / 2, dragGhost.offsetHeight / 2);
-            setTimeout(() => document.body.removeChild(dragGhost), 0);
-        }
+    event.target.classList.add("rotate-on-drag");
+    if (event.dataTransfer) {
+        let dragGhost = event.target.cloneNode(true);
+        dragGhost.style.transform = "rotate(5deg)";
+        dragGhost.style.position = "absolute";
+        dragGhost.style.top = "-9999px";
+        document.body.appendChild(dragGhost);
+        event.dataTransfer.setDragImage(dragGhost, dragGhost.offsetWidth / 2, dragGhost.offsetHeight / 2);
+        setTimeout(() => document.body.removeChild(dragGhost), 0);
     }
 }
 
+/**
+ * Function to remove the rotation of the dragged task-card
+ */
 function removeRotations() {
     let rotatedCards = document.getElementsByClassName("rotate-on-drag");
     for (let j = 0; j < rotatedCards.length; j++) {
