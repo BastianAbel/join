@@ -27,6 +27,8 @@ function renderSearchResultCard(task) {
     const priorityImg = getPriorityImage(task.priority);
     const employeesName = createUserContainer(task.assignedTo);
     const cardTypeColor = changeColorCardType(task.type);
+    const searchResultContainer = document.getElementById("card-overlay-wrapper")
+    searchResultContainer.style.zIndex = "10000";
     contentRef.innerHTML += taskCardTemplateToHtml(task, subtaskState, priorityImg, employeesName, progressBarCalc, cardTypeColor);
 }
 

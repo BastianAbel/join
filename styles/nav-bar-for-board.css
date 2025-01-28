@@ -127,7 +127,7 @@ body {
     display: none;
 }
 
-@media (min-width: 1296px) {
+@media (min-width: 1297px) {
     body {
         flex-direction: row-reverse;
     }
