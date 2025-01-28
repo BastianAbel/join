@@ -289,6 +289,11 @@ input:focus {
 }
 
 @media (max-width: 1297px) {
+    #board-main {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
     .board-prio-headline-div {
         width: 100%;
         max-width: 396px;
