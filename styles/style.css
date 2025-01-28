@@ -15,6 +15,29 @@ header {
     max-width: calc(1920px - 232px);
 }
 
+.right-side-header-board {
+    display: flex;
+    align-items: center;
+}
+
+.ask-btn-board {
+    display: none;
+}
+
+.header button {
+    height: 40px;
+    width: 40px;
+    margin: 0 16px;
+    border-radius: 50%;
+    border: 2px solid var(--dark-background);
+    background-color: var(--light--accent);
+    color: var(--prime-blue);
+    font-weight: 600;
+    &:hover {
+        background-color: var(--light-background);
+    }
+}
+
 .header span {
     display: none;
     margin-left: 116px;
@@ -32,7 +55,7 @@ header {
     cursor: pointer;
 }
 
-.right-siede-header {
+.right-side-header {
     display: flex;
     align-items: center;
 }
