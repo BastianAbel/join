@@ -157,7 +157,7 @@ function addNewProfileToServer() {
  * Function to set the displayed view to the login page
  */
 function navigateToLogin() {
-    window.location.href = "login-page.html";
+    window.location.href = "index.html";
 }
 
 /**

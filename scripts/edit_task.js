@@ -298,6 +298,10 @@ async function editGetSubtaskInfo(subtasks, taskId) {
     }
 }
 
+/**
+ * Function to collect changed data from editing a task
+ * @param {string} taskId 
+ */
 async function getChangedTaskData(taskId) {
     let changedTaskTitle = document.getElementById("edit-task-title").value;
     let changedTaskDescription = document.getElementById("edit-task-description").value;
@@ -308,7 +312,18 @@ async function getChangedTaskData(taskId) {
     await setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTaskDescription, changedTaskDate, changedTaskPrio, changedContacts, changedSubtaskList);
 }
 
-async function setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTaskDescription, changedTaskDate, changedTaskPrio, changedContacts, changedSubtaskList) {
+/**
+ * Function to set new data from editing a task to firebase database, update session storage
+ *  and let the edit task view slide out from screen
+ * @param {string} taskId 
+ * @param {string} changedTaskTitle 
+ * @param {string} changedTaskDescription 
+ * @param {string} changedTaskDate 
+ * @param {string} changedTaskPrio 
+ * @param {array} changedContacts 
+ * @param {array} changedSubtaskList 
+ */
+async function setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTaskDescription, changedTaskDate, changedTaskPrio, changedContacts, changedSubtaskList) { 
     if (changedTaskTitle !== "" || changedTaskDescription !== "" || changedTaskDate !== "" || changedTaskPrio !== "" || changedContacts !== "") {
         updateData((path = PATH_TO_TASKS), (id = taskId), (data = {
             "title": changedTaskTitle,

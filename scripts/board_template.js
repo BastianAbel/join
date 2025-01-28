@@ -8,7 +8,7 @@
  * @param {string} taskPriority
  * @param {string} priorityImage
  * @param {string} cardTypeColor
- * @param {comma seperated string} assignedUsers
+ * @param {string} assignedUsers
  * @returns HTML string of the big view of a task
  */
 function renderTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, cardTypeColor, assignedUsers, decodedSubtasks) {

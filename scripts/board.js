@@ -8,7 +8,7 @@ let allTaskUsers = [];
  * @param {string} taskDate
  * @param {string} taskPriority
  * @param {string} priorityImage
- * @param {comma separated string} assignedUsers
+ * @param {string} assignedUsers
  * @param {string} subtasks
  * @param {string} cardTypeColor
  */
@@ -25,7 +25,7 @@ function taskBigView(taskId, j, taskDate, taskPriority, priorityImage, assignedU
 /**
  * Function to collect informations of a task from a small card on board
  */
-function getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor, subtasks) {
+function getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks) {
     let taskTitle = document.getElementById(`task-title${j}`).innerHTML;
     let taskDescription = document.getElementById(`task-description${j}`).innerHTML;
     let taskType = document.getElementById(`task-type${j}`).innerHTML;
@@ -42,11 +42,11 @@ function getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assi
  * @param {string} taskType
  * @param {string} taskPriority
  * @param {string} priorityImage
- * @param {comma separated string} assignedUsers
+ * @param {string} assignedUsers
  * @param {string} cardTypeColor
- * @param {comma separated string} subtasks
+ * @param {string} decodedSubtasks
  */
-function setInfoToBigCard(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, subtasks) {
+function setInfoToBigCard(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks) {
     document.getElementById("board-main").innerHTML += renderTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, cardTypeColor, assignedUsers);
     getEmployeeInfo(assignedUsers);
     getSubtaskInfo(decodedSubtasks, taskId);
@@ -126,15 +126,26 @@ function changeStateofCheckbox(i, taskId) {
 }
 
 /**
+ * Function to save contact objects that are checked as assigned contacts to an array
+ * @param {string} taskId 
+ */
+function loadCardContactsInArray(taskId) {
+    let currentTask = getTaskFromArrayById(allTasks, taskId);
+    helperArray = currentTask.assignedTo;
+    editCheckedContactNamesAndColors = editFilteredNamesAndColors.filter((contact) => helperArray.includes(contact.name));
+}
+
+/**
  * Function to open the detailed view to edit a task
  * @param {string} taskTitle
  * @param {string} taskDescription
  * @param {string} taskDate
  * @param {string} taskPriority
- * @param {comma separated string} assignedUsers
+ * @param {string} assignedUsers
  * @param {string} taskId
+ * @param {string} decodedSubtasksForEditTaskBigView 
  */
-function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority, assignedUsers, taskId) {
+function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority, assignedUsers, taskId, decodedSubtasksForEditTaskBigView) {
     document.getElementById("window-overlay").classList.remove("d-none");
     document.getElementById("task-big-container").outerHTML = "";
     document.getElementById("board-main").innerHTML += renderEditTaskBigView(taskId, taskTitle, taskDescription, taskDate);
@@ -276,7 +287,7 @@ function writeCardsToBoardSectionsFromArray(array) {
 /**
  * Function to collect informations of a task in an object that provides the informations needed to render a task-card
  * @param {object} task
- * @returns
+ * @returns object with needed values
  */
 function getObjectWithValuesNeededInBoardCard(task) {
     return {

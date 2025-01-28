@@ -27,6 +27,6 @@ function onlyLoadIfUserOrGuest() {
     if (guest || user) {
         return true;
     } else {
-        window.location.href = "login-page.html";
+        window.location.href = "index.html";
     }
 }
