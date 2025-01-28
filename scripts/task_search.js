@@ -112,7 +112,7 @@ function getPriorityImage(priority) {
     } else if (priority === "low") {
         return "/assets/icons/prio-low.svg";
     } else {
-        return "./assets/icons/low.svg";
+        return "/assets/icons/prio-low.svg";
     }
 }
 
