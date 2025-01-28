@@ -139,10 +139,11 @@ function loadUserInitials() {
 /**
  * Function to set the user's to session storage and local storage if the user logs in as a guest.
  */
-function setGuestToSessionStorage() {
+async function setGuestToSessionStorage() {
     sessionStorage.setItem("loginStatus", "guest");
     localStorage.setItem("guest", true);
     sessionStorage.setItem("freshLogin", true);
+    await setBackendJsonToSessionStorage();
     navigateToSummary();
 }
 
