@@ -1,5 +1,5 @@
-const SCROLL_MARGIN = 5; // Abstand vom Rand, ab dem gescrollt wird
-const SCROLL_SPEED = 15; // Geschwindigkeit des Scrollens
+const SCROLL_MARGIN = 5;
+const SCROLL_SPEED = 15;
 let scrollInterval;
 let currentDraggedTask;
 let draggedElement;

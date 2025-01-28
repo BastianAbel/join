@@ -28,6 +28,7 @@ let taskPrio = "";
  * @returns an array of all contacts in firebase with added id`s, colors and and an array of tasks assigned to them
  */
 async function loadAllContacts() {
+    await setBackendJsonToSessionStorage();
     let contactsResponse = await loadData(PATH_TO_CONTACTS);
     let contactsKeysArray = Object.keys(contactsResponse);
     for (let i = 0; i < contactsKeysArray.length; i++) {
@@ -172,18 +173,18 @@ function checkContact(event, data) {
  */
 function showContactList() {
     if (event.currentTarget == event.target) {
-        TASK_CONTACT_LIST_CONTAINER.classList.toggle("d_none");
-        if (!TASK_CONTACT_LIST_CONTAINER.classList.contains("d_none")) {
+        TASK_CONTACT_LIST_CONTAINER.classList.toggle("d-none");
+        if (!TASK_CONTACT_LIST_CONTAINER.classList.contains("d-none")) {
             CONTACT_INPUT_ICON.src = "/assets/icons/arrow-drop-up.svg";
         } else {
             CONTACT_INPUT_ICON.src = "/assets/icons/arrow-drop-down.svg";
-            NAME_CIRCLE_CONTAINER.classList.remove("d_none");
+            NAME_CIRCLE_CONTAINER.classList.remove("d-none");
             NAME_CIRCLE_CONTAINER.classList.add("open-circle-container");
             NAME_CIRCLE_CONTAINER.innerHTML = "";
             addNameCircles(checkedContactNamesAndColors, NAME_CIRCLE_CONTAINER, `contact-name-circle`);
         }
-        if (!NAME_CIRCLE_CONTAINER.classList.contains("d_none") && !NAME_CIRCLE_CONTAINER.hasChildNodes()) {
-            NAME_CIRCLE_CONTAINER.classList.add("d_none");
+        if (!NAME_CIRCLE_CONTAINER.classList.contains("d-none") && !NAME_CIRCLE_CONTAINER.hasChildNodes()) {
+            NAME_CIRCLE_CONTAINER.classList.add("d-none");
             NAME_CIRCLE_CONTAINER.classList.remove("open-circle-container");
         }
     }
@@ -237,10 +238,10 @@ function isDateValid(dateString) {
  */
 function clearSubtaskInputField() {
     SUBTASK_INPUT.value = "";
-    SUBTASK_ICON_PLUS.classList.remove("d_none");
-    SUBTASK_ICON_CROSS.classList.add("d_none");
-    SUBTASK_ICON_VECTOR.classList.add("d_none");
-    SUBTASK_ICON_CHECK.classList.add("d_none");
+    SUBTASK_ICON_PLUS.classList.remove("d-none");
+    SUBTASK_ICON_CROSS.classList.add("d-none");
+    SUBTASK_ICON_VECTOR.classList.add("d-none");
+    SUBTASK_ICON_CHECK.classList.add("d-none");
 }
 
 /**
@@ -248,10 +249,10 @@ function clearSubtaskInputField() {
  */
 function showAndHideIcons() {
     if (SUBTASK_INPUT.value.length > 0) {
-        SUBTASK_ICON_PLUS.classList.add("d_none");
-        SUBTASK_ICON_CROSS.classList.remove("d_none");
-        SUBTASK_ICON_VECTOR.classList.remove("d_none");
-        SUBTASK_ICON_CHECK.classList.remove("d_none");
+        SUBTASK_ICON_PLUS.classList.add("d-none");
+        SUBTASK_ICON_CROSS.classList.remove("d-none");
+        SUBTASK_ICON_VECTOR.classList.remove("d-none");
+        SUBTASK_ICON_CHECK.classList.remove("d-none");
     }
 }
 
