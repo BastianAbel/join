@@ -14,11 +14,21 @@ let taskInProgressCount = 0;
 let awaitingFeedbackCount = 0;
 let upcomimgDeadline = "";
 
+/**
+ * Function to get task-objects from session storage and save them to an array
+ */
 function getAllTasksFromStoredObject() {
     let storedObject = getJsonObjectFromSessionStorage();
     allTasks = getArrayFromObject(storedObject.tasks);
 }
 
+/**
+ * Function to count how often a value is included in an array of objects
+ * @param {array} array
+ * @param {string} attribute
+ * @param {string} value
+ * @returns integer with count of values in array
+ */
 function getCountOfValuesInArray(array, attribute, value) {
     let count = 0;
     for (let i = 0; i < array.length; i++) {
@@ -29,36 +39,64 @@ function getCountOfValuesInArray(array, attribute, value) {
     return count;
 }
 
+/**
+ * Function to count number of tasks that got the state "inProgress"
+ * @returns integer with count of tasks in state inProgress
+ */
 function getCountOfTasksInProgress() {
     let inProgress = getCountOfValuesInArray(allTasks, "state", "inProgress");
     return inProgress;
 }
 
+/**
+ * Function to count number of tasks that got the state "toDo"
+ * @returns integer with count of tasks in state toDo
+ */
 function getCountOfToDo() {
     let toDo = getCountOfValuesInArray(allTasks, "state", "toDo");
     return toDo;
 }
 
+/**
+ * Function to count number of tasks that got the state "done"
+ * @returns integer with count of tasks in state done
+ */
 function getCountOfDone() {
     let done = getCountOfValuesInArray(allTasks, "state", "done");
     return done;
 }
 
+/**
+ * Function to count number of tasks that got the state "awaitFeedback"
+ * @returns integer with count of tasks in state awaitFeedback
+ */
 function getCountOfAwaitFeedback() {
     let awaitFeedback = getCountOfValuesInArray(allTasks, "state", "awaitFeedback");
     return awaitFeedback;
 }
 
+/**
+ * Function to count number of tasks that got the prio "urgent"
+ * @returns integer with count of tasks with prio urgent
+ */
 function getCountOfPrioUrgent() {
     let prioUrgent = getCountOfValuesInArray(allTasks, "priority", "urgent");
     return prioUrgent;
 }
 
+/**
+ * Function to count number of tasks on the board
+ * @returns integer with count of tasks on the board
+ */
 function getCountOfTaskInBoard() {
     let taskInBoard = toDoCount + taskInProgressCount + awaitingFeedbackCount+ doneCount;
     return taskInBoard;
 }
 
+/**
+ * Function to get the nearest deadline of all tasks on the board
+ * @returns string with datetime representing the nearest deadline
+ */
 function getUpcomingDeadline() {
     let allDeadlines = allTasks.map((task) => task.dueDate);
     let nearestDeadline;
@@ -79,6 +117,9 @@ function getUpcomingDeadline() {
     return nearestDeadline;
 }
 
+/**
+ * Function to collect needed values and save them to variables
+ */
 function setNeededValues() {
     taskInProgressCount = getCountOfTasksInProgress();
     toDoCount = getCountOfToDo();
@@ -89,6 +130,9 @@ function setNeededValues() {
     upcomimgDeadline = getUpcomingDeadline();
 }
 
+/**
+ * Function to write collected values to the information cards in the summary
+ */
 function writeValuesToElements() {
     TO_DO_COUNTER.innerHTML = toDoCount;
     TASK_IN_PROGRESS_COUNTER.innerHTML = taskInProgressCount;
@@ -99,23 +143,35 @@ function writeValuesToElements() {
     TASK_IN_BOARD_COUNTER.innerHTML = taskInBoardCount;
 }
 
+/**
+ * Funbction to set the greeting information based on daytime and username
+ */
 function setGreetingInformations() {
     setGreetingTime();
     setGreetingName();
 }
 
+/**
+ * Function to render the timebased greeting information to the screen
+ */
 function setGreetingTime() {
-    const greetingText = getGreetingText()
+    const greetingText = getGreetingText();
     document.getElementById("summary-greeting").innerHTML = greetingText;
     document.getElementById("animation-greeting").innerHTML = greetingText;
 }
 
+/**
+ * Function to render the namebased greeting information to the screen
+ */
 function setGreetingName() {
     const userName = getUserNameFromLocalStorage();
     document.getElementById("summary-user-name").innerHTML = userName;
     document.getElementById("animation-userName").innerHTML = userName;
 }
 
+/**
+ * Function to initialize all needed functions on load of the summary page
+ */
 function initSummary() {
     enableGreetingAnimationOnFreshLogin();
     loadUserInitials();
@@ -126,20 +182,30 @@ function initSummary() {
     setGreetingInformations();
 }
 
+/**
+ * Function to enable the greeting animation if freshlogin information is set to session storage
+ */
 function enableGreetingAnimationOnFreshLogin() {
     let freshLogin = checkIfFreshLogin();
-    if(!freshLogin) {
+    if (!freshLogin) {
         animationRef = document.getElementById("animation-greeting-container");
         animationRef.classList.add("d-none");
     }
     disableFreshLogin();
 }
 
+/**
+ * Function to check if session storage contains information called freshLogin
+ * @returns string if freshlogin is set to session storage
+ */
 function checkIfFreshLogin() {
     let freshLogin = sessionStorage.getItem("freshLogin");
     return freshLogin;
 }
 
+/**
+ * Function to disable the fresh login by removing the data from session storage
+ */
 function disableFreshLogin() {
     sessionStorage.removeItem("freshLogin");
 }

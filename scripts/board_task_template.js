@@ -1,9 +1,19 @@
+/**
+ * Function to render a single task card with all its attributes
+ * @param {object} task
+ * @param {string} state
+ * @param {string} priorityImage
+ * @param {string} employeesName
+ * @param {string} progressBarCalc
+ * @param {string} cardTypeColor
+ * @param {int} j
+ * @returns HTML string of a single task card
+ */
 function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progressBarCalc, cardTypeColor, j) {
-    
     return ` 
     <div id="${task.id}" onclick="taskBigView('${task.id}','${j}', '${task.dueDate}', '${task.priority}', '${priorityImage}', '${task.assignedTo}', '${encodeURIComponent(JSON.stringify(task.subtasks))}', '${cardTypeColor}')" class="card-main-container draggable" draggable="true" ondragstart="startDragging(event, '${
         task.id
-    }')" ondrag="enableScrollByDragging(event)" onmousedown="rotate(event)" onmouseup="removeRotations()" >
+    }')" ondrag="enableScrollByDragging(event)" onmousedown="rotate(event)" onmouseup="removeRotations()">
             <div class="card-main-container-content">
                 <div style=" ${cardTypeColor}" class="labels-board-card-label">
                     <div id="task-type${j}" class="card-label"><span>${capitalizeFirstLetter(task.type)}</span></div>
@@ -35,8 +45,13 @@ function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progr
         </div>
         `;
 }
-
-function renderEditTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskPriority) {
+/**
+ * Function to render the detailed view of a task for editing the task
+ * @param {string} taskId
+ * @param {string} taskPriority
+ * @returns HTML string of the edit task big view
+ */
+function renderEditTaskBigView(taskId, taskPriority) {
     return /*html*/ `
 <div id="edit-task-big-container" class="edit-task-container">
             <div class="edit-task-close-container">

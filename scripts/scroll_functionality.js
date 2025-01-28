@@ -6,6 +6,10 @@ let draggedElement;
 let isScrolling = false;
 let scrollDirection = { x: 0, y: 0 };
 
+/**
+ * Function to enable the scrolling by dragging a task-card on the board to the edge of the screen
+ * @param {event} event
+ */
 function enableScrollByDragging(event) {
     if (!event.clientX || !event.clientY) return;
     const boardContainer = document.getElementById("board-main");
@@ -25,6 +29,11 @@ function enableScrollByDragging(event) {
     }
 }
 
+/**
+ * Function to start scrolling in a specific direction based on the position of the dragged task-card
+ * @param {integer} x
+ * @param {integer} y
+ */
 function startScrolling(x, y) {
     scrollDirection = { x, y };
     if (!isScrolling) {
@@ -33,6 +42,9 @@ function startScrolling(x, y) {
     }
 }
 
+/**
+ * Function to scroll the board as long as isScrolling is true
+ */
 function scrollStep() {
     let boardContainer = document.getElementById("board-main");
     boardContainer.scrollBy(scrollDirection.x, scrollDirection.y);
@@ -41,10 +53,17 @@ function scrollStep() {
     }
 }
 
+/**
+ * Function to stop the scrolling
+ */
 function stopScrolling() {
     isScrolling = false;
 }
 
+/**
+ * Function to rotate the dragged task-card and set a drag-ghost to the cursor that is rotated, too
+ * @param {event} event
+ */
 function rotate(event) {
     event.target.classList.add("rotate-on-drag");
     if (event.dataTransfer) {
@@ -58,26 +77,12 @@ function rotate(event) {
     }
 }
 
+/**
+ * Function to remove the rotation of the dragged task-card
+ */
 function removeRotations() {
     let rotatedCards = document.getElementsByClassName("rotate-on-drag");
     for (let j = 0; j < rotatedCards.length; j++) {
         rotatedCards[j].classList.remove("rotate-on-drag");
-    }
-}
-
-function enableScrollByMouseposition(event) {
-    let container = event.target.parentElement;
-    let rect = container.getBoundingClientRect();
-    let mouseX = event.clientX;
-    let scrollAmount = 100;
-    let edgeThreshold = 40;
-    let distanceFromRightEdge = rect.right - mouseX;
-    let distanceFromLeftEdge = mouseX - rect.left;
-    if (distanceFromRightEdge < edgeThreshold) {
-        scrollAmount = (edgeThreshold - distanceFromRightEdge) * 12.4;
-        container.scrollBy({ left: scrollAmount, behavior: "smooth" });
-    } else if (distanceFromLeftEdge < edgeThreshold) {
-        scrollAmount = (edgeThreshold - distanceFromLeftEdge) * 12.4;
-        container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
     }
 }

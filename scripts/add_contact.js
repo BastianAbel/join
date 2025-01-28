@@ -1,6 +1,9 @@
-
 let initials = "";
 let newColor = getRandomColor();
+
+/**
+ * Function to get the initials of a contact, set a new color and fill the placeholder bubble at the add contact form
+ */
 function fillPlaceholderBubble() {
     const PLACEHOLDER_CIRCLE = document.getElementById("add-contact-placeholder");
     const CONTACT_INITIALS = document.getElementById("add-contact-initials-paragraph");
@@ -18,16 +21,28 @@ function fillPlaceholderBubble() {
     }
 }
 
+/**
+ * Function to clear all input fields of the add contact form
+ */
 function clearAllInput() {
     location.reload();
 }
 
+/**
+ * Function to get all contact-id's in firebase
+ * @returns an array of all contact-id's in firebase
+ */
 async function getIdOfNewContact() {
     let response = await loadData(PATH_TO_CONTACTS);
     let contactsKeysArray = Object.keys(response);
     return contactsKeysArray[contactsKeysArray.length - 1];
 }
 
+/**
+ * Function to create a new contact in firebase by collecting the input values of the add contact form
+ * and pushing them to the allContacts array before giving feedback to the user
+ * @param {event} event
+ */
 async function createContact(event) {
     event.preventDefault();
     const EMAIL_INPUT = document.getElementById("add-contact-email-input-field");
@@ -49,13 +64,13 @@ async function createContact(event) {
                 contact: newContact,
                 color: newColor,
             });
-            document.getElementById('window-overlay').classList.add('d-none');
-            document.getElementById('profileBtn').style.backgroundColor = "white";
+            document.getElementById("window-overlay").classList.add("d-none");
+            document.getElementById("profileBtn").style.backgroundColor = "white";
             document.getElementById("main-content").innerHTML = renderNewContact(newContact.name, newContact.email, initials, newId, newColor, newContact.phone);
-            document.getElementById('add-contact-success-div').classList.remove('d-none');
-            document.getElementById('add-contact-success-div').classList.add('slide-up-success');
+            document.getElementById("add-contact-success-div").classList.remove("d-none");
+            document.getElementById("add-contact-success-div").classList.add("slide-up-success");
             setTimeout(() => {
-                document.getElementById('add-contact-success-div').classList.remove('slide-up-success');
+                document.getElementById("add-contact-success-div").classList.remove("slide-up-success");
                 document.getElementById("add-contact-success-div").classList.add("slide-down-success");
             }, 1500);
         }

@@ -1,11 +1,20 @@
+/**
+ * Function to render a single contact from the contact list
+ * @param {string} name
+ * @param {string} email
+ * @param {string} initials
+ * @param {string} id
+ * @param {string} color
+ * @param {string} phone
+ * @returns html string of a single contact
+ */
 function renderNewContact(name, email, initials, id, color, phone) {
     return `
 	<!-- popup -->
         
 	<div id="edit-delete-menu" class="edit-popup-container d-none">
                 <div onclick="editBigView('${initials}', '${color}', '${id}', '${name}', '${email}', '${phone}' )" class="option-container">
-                    <div class="option-edit"></div><span>Edit</span>
-                 </div>
+                    <div class="option-edit"></div><span>Edit</span></div>
                 <div onclick="deleteContact('${id}')" class="option-container">
                     <div class="option-delete"></div><span>Delete</span>
                 </div>

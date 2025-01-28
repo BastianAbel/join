@@ -1,3 +1,16 @@
+/**
+ * Function to render the detailed view of a task
+ * @param {string} taskId
+ * @param {string} taskTitle
+ * @param {string} taskDescription
+ * @param {string} taskDate
+ * @param {string} taskType
+ * @param {string} taskPriority
+ * @param {string} priorityImage
+ * @param {string} cardTypeColor
+ * @param {comma seperated string} assignedUsers
+ * @returns HTML string of the big view of a task
+ */
 function renderTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, cardTypeColor, assignedUsers, decodedSubtasks) {
     return `
         <div id="task-big-container" class=" task-overlay-container">
