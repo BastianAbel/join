@@ -35,7 +35,6 @@ function loadCardContactsInArray(taskId) {
  * Function to collect informations of a task from a small card on board
  */
 function getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks) {
-function getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks) {
     let taskTitle = document.getElementById(`task-title${j}`).innerHTML;
     let taskDescription = document.getElementById(`task-description${j}`).innerHTML;
     let taskType = document.getElementById(`task-type${j}`).innerHTML;
@@ -56,7 +55,6 @@ function getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assi
  * @param {string} cardTypeColor
  * @param {string} decodedSubtasks
  */
-function setInfoToBigCard(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks) {
 function setInfoToBigCard(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks) {
     document.getElementById("board-main").innerHTML += renderTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, cardTypeColor, assignedUsers);
     getEmployeeInfo(assignedUsers);
@@ -154,9 +152,9 @@ function loadCardContactsInArray(taskId) {
  * @param {string} taskPriority
  * @param {string} assignedUsers
  * @param {string} taskId
- * @param {string} decodedSubtasksForEditTaskBigView 
+ * @param {string} decodedSubtasks 
  */
-function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority, assignedUsers, taskId, decodedSubtasksForEditTaskBigView) {
+function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority, assignedUsers, taskId, decodedSubtasks) {
     document.getElementById("window-overlay").classList.remove("d-none");
     document.getElementById("task-big-container").outerHTML = "";
     document.getElementById("board-main").innerHTML += renderEditTaskBigView(taskId, taskTitle, taskDescription, taskDate);
@@ -426,3 +424,4 @@ function highlight(id) {
 function removeHighlight(id) {
     document.getElementById(id).classList.remove("highlight-drag-area");
 }
+
