@@ -13,14 +13,12 @@ let allTaskUsers = [];
  * @param {string} cardTypeColor
  */
 function taskBigView(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, subtasks, cardTypeColor) {
-    document.getElementById("profileBtn").style.backgroundColor = "#b8b9bb";
     document.getElementById("window-overlay").classList.remove("d-none");
-    const decodedAssignedUsers = JSON.parse(decodeURIComponent(assignedUsers));
     if (subtasks !== "undefined") {
         const decodedSubtasks = JSON.parse(decodeURIComponent(subtasks));
-        getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, decodedAssignedUsers, cardTypeColor, decodedSubtasks);
+        getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks);
     } else {
-        getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, decodedAssignedUsers, cardTypeColor);
+        getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor);
     }
 }
 
@@ -32,7 +30,7 @@ function getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assi
     let taskDescription = document.getElementById(`task-description${j}`).innerHTML;
     let taskType = document.getElementById(`task-type${j}`).innerHTML;
 
-    setInfoToBigCard(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, subtasks);
+    setInfoToBigCard(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks);
 }
 
 /**
@@ -51,7 +49,7 @@ function getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assi
 function setInfoToBigCard(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, subtasks) {
     document.getElementById("board-main").innerHTML += renderTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, cardTypeColor, assignedUsers);
     getEmployeeInfo(assignedUsers);
-    getSubtaskInfo(subtasks, taskId);
+    getSubtaskInfo(decodedSubtasks, taskId);
 }
 
 /**
@@ -145,6 +143,8 @@ function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority,
     document.getElementById("edit-task-due-date").value = taskDate;
     editTaskGetEmployeeInfo(assignedUsers);
     loadRightPriorityColor(taskPriority);
+    editGetSubtaskInfo(decodedSubtasksForEditTaskBigView, taskId);
+    loadCardContactsInArray(taskId);
     editGetAllContactsNames();
 }
 
@@ -178,6 +178,7 @@ function closeEditTaskBigView() {
     document.getElementById("window-overlay").classList.add("d-none");
     document.getElementById("profileBtn").style.backgroundColor = "white";
     document.getElementById("edit-task-big-container").outerHTML = "";
+    navigateToBoard();
 }
 
 /**

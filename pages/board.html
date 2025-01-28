@@ -48,7 +48,7 @@
                         <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
                     </a>
                     <span>Kanban Project Management Tool</span>
-                    <div class="right-siede-header-board">
+                    <div class="right-side-header-board">
                         <div>
                             <a class="help-a-tag" href="/pages/help.html"
                                 ><img class="ask-btn-board" src="/assets/icons/ask-btn-no-hover.svg" alt="ask Button" />
@@ -95,7 +95,7 @@
                 <div class="board-content">
                     <div id="card-overlay-wrapper"></div>
                         <section class="section-three">
-                            <div class="board-prio-headline-div">
+                            <div id="todo-section" class="board-prio-headline-div">
                                 <h2>To do</h2>
                                 <div class="category-add-task-btn" onclick="addNewTask('toDo')">
                                     <img src="/assets/icons/plus-button-no-hover.svg" alt="Add Task Button" />
@@ -113,59 +113,67 @@
                                 <span>No tasks To do</span>
                             </div>
                         </section>
-
-                        <section class="section-four">
-                            <div class="board-prio-headline-div">
-                                <h2>In progress</h2>
-                                <div class="category-add-task-btn" onclick="addNewTask('inProgress')">
-                                    <img src="/assets/icons/plus-button-no-hover.svg" alt="Add Task Button" />
-                                </div>
+                    </div>
+                    <section class="section-four">
+                        <div id="inprogress-section" class="board-prio-headline-div">
+                            <h2>In progress</h2>
+                            <div class="category-add-task-btn" onclick="addNewTask('inProgress')">
+                                <img src="/assets/icons/plus-button-no-hover.svg" alt="Add Task Button" />
                             </div>
-                            <div
-                                id="board-in-progress-section"
-                                class="board-progress-state"
-                                ondrop="moveTaskToState('inProgress'); removeHighlight('board-in-progress-section')"
-                                ondragover="allowDrop(event); highlight('board-in-progress-section')"
-                                ondragleave="removeHighlight('board-in-progress-section')"
-                            ></div>
-                            <div id="inProgress" class="progress-content">
-                                <span>No tasks in progress</span>
+                        </div>
+                        <div
+                            id="board-in-progress-section"
+                            class="board-progress-state"
+                            ondrop="moveTaskToState('inProgress'); removeHighlight('board-in-progress-section')"
+                            ondragover="allowDrop(event); highlight('board-in-progress-section')"
+                            ondragleave="removeHighlight('board-in-progress-section')"
+                        ></div>
+                        <div
+                            id="inProgress"
+                            class="progress-content"
+                        >
+                            <span>No tasks in progress</span>
+                        </div>
+                    </section>
+                    <section class="section-five">
+                        <div id="awaitfeedback-section" class="board-prio-headline-div">
+                            <h2>Await feedback</h2>
+                            <div class="category-add-task-btn" onclick="addNewTask('awaitFeedback')">
+                                <img src="/assets/icons/plus-button-no-hover.svg" alt="Add Task Button" />
                             </div>
-                        </section>
-                        <section class="section-five">
-                            <div class="board-prio-headline-div">
-                                <h2>Await feedback</h2>
-                                <div class="category-add-task-btn" onclick="addNewTask('awaitFeedback')">
-                                    <img src="/assets/icons/plus-button-no-hover.svg" alt="Add Task Button" />
-                                </div>
-                            </div>
-                            <div
-                                id="board-await-feedback-section"
-                                class="board-progress-state"
-                                ondrop="moveTaskToState('awaitFeedback'); removeHighlight('board-await-feedback-section')"
-                                ondragover="allowDrop(event); highlight('board-await-feedback-section')"
-                                ondragleave="removeHighlight('board-await-feedback-section')"
-                            ></div>
-                            <div id="awaitingFeedback" class="progress-content">
-                                <span>No tasks awaiting Feedback</span>
-                            </div>
-                        </section>
-                        <section class="section-six">
-                            <div class="board-prio-headline-div">
-                                <h2>Done</h2>
-                            </div>
-                            <div
-                                id="board-done-section"
-                                class="board-progress-state"
-                                ondrop="moveTaskToState('done'); removeHighlight('board-done-section')"
-                                ondragover="allowDrop(event); highlight('board-done-section')"
-                                ondragleave="removeHighlight('board-done-section')"
-                            ></div>
-                            <div id="done" class="progress-content">
-                                <span>No tasks Done</span>
-                            </div>
-                        </section>
-                    
+                        </div>
+                        <div
+                            id="board-await-feedback-section"
+                            class="board-progress-state"
+                            ondrop="moveTaskToState('awaitFeedback'); removeHighlight('board-await-feedback-section')"
+                            ondragover="allowDrop(event); highlight('board-await-feedback-section')"
+                            ondragleave="removeHighlight('board-await-feedback-section')"
+                        ></div>
+                        <div
+                            id="awaitingFeedback"
+                            class="progress-content"
+                        >
+                            <span>No tasks awaiting Feedback</span>
+                        </div>
+                    </section>
+                    <section class="section-six">
+                        <div id="done-section" class="board-prio-headline-div">
+                            <h2>Done</h2>
+                        </div>
+                        <div
+                            id="board-done-section"
+                            class="board-progress-state"
+                            ondrop="moveTaskToState('done'); removeHighlight('board-done-section')"
+                            ondragover="allowDrop(event); highlight('board-done-section')"
+                            ondragleave="removeHighlight('board-done-section')"
+                        ></div>
+                        <div
+                            id="done"
+                            class="progress-content"
+                        >
+                            <span>No tasks Done</span>
+                        </div>
+                    </section>
                 </div>
             </main>
         </section>

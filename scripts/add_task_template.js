@@ -21,7 +21,7 @@ function renderSubtask(subtaskTitle) {
 						<img
 							src="/assets/icons/trashcan.svg"
 							alt="trashcan-logo"
-							onclick="deleteSubtask(event)"
+							onclick="deleteSubtask(event, '${subtaskTitle}')"
 						/>
 					</div>
 				</div>

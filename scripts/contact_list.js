@@ -1,4 +1,4 @@
-const CONTACT_LIST_CONTAINER = document.getElementById("contact-list");
+const CONTACT_LIST_CONTAINER = document.getElementById("contact-list-container");
 let allContacts = [];
 let firstLetters = [];
 
@@ -64,7 +64,9 @@ function navigateToContactList() {
  */
 function contactBigView(name, email, phone, initials, id, contact) {
     let color = allContacts.find((e) => e.id == id).color;
-    document.getElementById("main-content").innerHTML = renderSingleContactView(name, email, phone, initials, id, color, contact);
+    document.getElementById("single-contact-view").innerHTML = renderSingleContactView(name, email, phone, initials, id, color, contact);
+    document.getElementById("single-contact-view").style="display: block";
+    document.getElementById("add-contact-button").style="display: none";
 }
 
 /**
@@ -78,7 +80,7 @@ function contactBigView(name, email, phone, initials, id, contact) {
  */
 function editBigView(initials, color, id, name, email, phone) {
     document.getElementById("edit-delete-menu").style.display = "none";
-    document.getElementById("profileBtn").style.backgroundColor = "#b8b9bb";
+    document.getElementById("profileBtn").style.backgroundColor = "white";
     document.getElementById("window-overlay").classList.remove("d-none");
     document.getElementById("main-content").innerHTML += renderEditContactView(initials, color, id);
     document.getElementById("newName").value = name;
@@ -134,7 +136,7 @@ document.addEventListener("mouseup", function (e) {
  * Function to open the add view of a contact
  */
 function openAddContactView() {
-    document.getElementById("profileBtn").style.backgroundColor = "#b8b9bb";
+    document.getElementById("profileBtn").style.backgroundColor = "white";
     document.getElementById("window-overlay").classList.remove("d-none");
     document.getElementById("main-content").innerHTML += renderAddContactView();
 }
@@ -238,6 +240,7 @@ function saveEditedUserData(newName, newEmail, newPhone, id) {
     document.getElementById("newPhone").innerHTML = newPhone;
     updateData((path = PATH_TO_CONTACTS), (id = id), (data = { "email": newEmail, "name": newName, "phone": newPhone }));
     EditContactViewSlideDown();
+    
 }
 
 /**

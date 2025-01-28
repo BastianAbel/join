@@ -64,3 +64,4 @@ async function deleteData(path = "", id = "") {
     });
     return (responseToJson = await response.json());
 }
+

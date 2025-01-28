@@ -158,12 +158,14 @@ main {
     padding-bottom: 8px;
     bottom: 18px;
     right: 18px;
-    padding-top: 166px;
+    padding-top: 40px;
 }
 
 #edit-submit-changes-btn-container button {
     height: 61px;
     width: 77px;
+    background-color: var(--accent-text-color);
+    color: white;
 }
 
 .add-task-btn {
@@ -177,6 +179,7 @@ main {
     height: 56px;
     padding: 16px;
     transition: all 16ms ease-in-out;
+    border: 1px solid var(--accent-text-color);
 }
 
 #add-task-clear-btn {
@@ -211,7 +214,7 @@ select {
     cursor: pointer;
 
     &:focus {
-        outline: 2px solid var(--identity);
+        outline: 1px solid var(--identity);
     }
 }
 
@@ -226,7 +229,7 @@ select {
 #add-task-contact-container:has(input:focus),
 #add-task-date-container:has(input:focus),
 #add-task-clear-btn:has(input:focus) {
-    border: 2px solid var(--identity);
+    border: 1px solid var(--identity);
 }
 
 .add-task-input-img-container {

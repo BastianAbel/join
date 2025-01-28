@@ -89,7 +89,7 @@ function getCountOfPrioUrgent() {
  * @returns integer with count of tasks on the board
  */
 function getCountOfTaskInBoard() {
-    let taskInBoard = toDoCount + taskInProgressCount + awaitingFeedbackCount;
+    let taskInBoard = toDoCount + taskInProgressCount + awaitingFeedbackCount+ doneCount;
     return taskInBoard;
 }
 

@@ -174,7 +174,7 @@ function editShowContactList(event, taskId) {
             addNameCircles(editCheckedContactNamesAndColors, editNameCircleContainer, `contact-name-circle`);
         }
         if (!editNameCircleContainer.classList.contains("d_none") && !editNameCircleContainer.hasChildNodes()) {
-            editNameCircleContainer.classList.add("d_none");
+            editNameCircleContainer.innerHTML = "";
             editNameCircleContainer.classList.remove("open-circle-container");
         }
     }
@@ -267,11 +267,12 @@ function editTaskGetEmployeeInfo(assignedUsers) {
  * @param {string} taskId
  */
 async function editGetSubtaskInfo(subtasks, taskId) {
-    if (subtasks === undefined) {
-        document.getElementById("subtaskContainer").innerHTML = "Keine Subtasks";
+    if (subtasks == "undefined") {
+        document.getElementById("edit-subtask-list").innerHTML = "";
     } else {
         for (let i = 0; i < subtasks.length; i++) {
-            document.getElementById("subtaskContainer").innerHTML += `<li>
+            subtaskList.push(subtasks[i]);
+            document.getElementById("edit-subtask-list").innerHTML += `<li>
 				<div class="subtask-text-img-container">
 					<span onblur="removeEditClass(event)">${subtasks[i].description}</span>
 					<div class="subtask-img-container">
@@ -288,12 +289,11 @@ async function editGetSubtaskInfo(subtasks, taskId) {
 						<img
 							src="/assets/icons/trashcan.svg"
 							alt="trashcan-logo"
-							onclick="deleteSubtask(event)"
+							onclick="deleteSubtask(event,'${subtasks[i].description}')"
 						/>
 					</div>
 				</div>
 			</li>`;
-            await getCheckboxBg(taskId, i);
         }
     }
 }
@@ -309,8 +309,6 @@ async function getChangedTaskData(taskId) {
 }
 
 async function setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTaskDescription, changedTaskDate, changedTaskPrio, changedContacts, changedSubtaskList) {
-    console.log(changedTaskPrio);
-    
     if (changedTaskTitle !== "" || changedTaskDescription !== "" || changedTaskDate !== "" || changedTaskPrio !== "" || changedContacts !== "") {
         updateData((path = PATH_TO_TASKS), (id = taskId), (data = {
             "title": changedTaskTitle,
@@ -324,4 +322,5 @@ async function setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTask
         await setBackendJsonToSessionStorage();
         editTaskSlideOut();
     }
+
 }
