@@ -43,11 +43,13 @@ function navigateToContactList() {
 function contactBigView(name, email, phone, initials, id, contact) {
     let color = allContacts.find((e) => e.id == id).color;
     document.getElementById("single-contact-view").innerHTML = renderSingleContactView(name, email, phone, initials, id, color, contact);
+    document.getElementById("single-contact-view").style="display: block";
+    document.getElementById("add-contact-button").style="display: none";
 }
 
 function editBigView(initials, color, id, name, email, phone) {
     document.getElementById("edit-delete-menu").style.display = "none";
-    document.getElementById("profileBtn").style.backgroundColor = "#b8b9bb";
+    document.getElementById("profileBtn").style.backgroundColor = "white";
     document.getElementById("window-overlay").classList.remove("d-none");
     document.getElementById("main-content").innerHTML += renderEditContactView(initials, color, id);
     document.getElementById("newName").value = name;
@@ -68,7 +70,6 @@ function closeAddContactView() {
     document.getElementById("window-overlay").classList.add("d-none");
     document.getElementById("addContactContainer").classList.add("d-none");
     document.getElementById("addContactContainer").outerHTML = "";
-    
 }
 
 function EditContactViewSlideDown() {
@@ -89,7 +90,7 @@ document.addEventListener("mouseup", function (e) {
 });
 
 function openAddContactView() {
-    document.getElementById("profileBtn").style.backgroundColor = "#b8b9bb";
+    document.getElementById("profileBtn").style.backgroundColor = "white";
     document.getElementById("window-overlay").classList.remove("d-none");
     document.getElementById("main-content").innerHTML += renderAddContactView();
 }

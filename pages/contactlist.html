@@ -46,10 +46,14 @@
         </div>
         <header>
             <section class="header">
-                <a href="">
+                <a class="join-logo-header" href="">
                     <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
                 </a>
                 <span>Kanban Project Management Tool</span>
+                <div class="right-siede-header">
+                    <div>
+                        <img class="ask-btn" src="/assets/icons/ask-btn-no-hover.svg" alt="ask Button" />
+                    </div>
                 <button onclick="showSubmenu()" id="profileBtn" class="profile-button"></button>
             </section>
         </header>
@@ -62,10 +66,9 @@
                         <img class="add-contact-img-big" src="/assets/icons/add-contact.svg" alt="" />
                     </div>
                 </section>
-                <div class="single-contact-view-container" id="single-contact-view"></div>
+                <div class="single-contact-view-container single-contact-view-mobile" id="single-contact-view"></div>
             </div>
-
-            <div onclick="openAddContactView()" class="options-icon-container">
+            <div id="add-contact-button" onclick="openAddContactView()" class="options-icon-container">
                 <img class="add-contact-img" src="/assets/icons/add-contact.svg" alt="" />
             </div>
         </main>

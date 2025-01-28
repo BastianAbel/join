@@ -225,8 +225,8 @@ body {
         border-radius: 0;
     }
 
-    .header a {
-        display: none !important;
+    .join-logo-header {
+        display: none ;
     }
 
     .header span {

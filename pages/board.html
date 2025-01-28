@@ -36,8 +36,14 @@
 </head>
     <body onload="loadUserInitials(); getAllTasksAndUsersFromSessionStorage()">
         <section class="main-container">
-            <div id="window-overlay" class="d-none window-overlay"></div>
-            <div id="submenu" class="submenu-popup-container d-none">
+            <div
+                id="window-overlay"
+                class="d-none window-overlay"
+            ></div>
+            <div
+                id="submenu"
+                class="submenu-popup-container d-none"
+            >
                 <div class="submenu-text-container">
                     <a href="/pages/help.html">Help</a>
                     <a href="/pages/impressum.html">Legal Notice</a>
@@ -47,11 +53,18 @@
             </div>
             <header>
                 <section class="header">
-                    <a href="">
+                    <a class="join-logo-header" href="">
                         <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
                     </a>
                     <span>Kanban Project Management Tool</span>
-                    <button onclick="showSubmenu()" id="profileBtn" class="profile-button"></button>
+                    <div class="right-siede-header-board">
+                        <div>
+                            <a class="help-a-tag" href="/pages/help.html"
+                                ><img class="ask-btn-board" src="/assets/icons/ask-btn-no-hover.svg" alt="ask Button"/>
+                            </a>
+                        </div>
+                        <button onclick="showSubmenu()" id="profileBtn" class="profile-button"></button>
+                    </div>
                 </section>
             </header>
             <main id="board-main">
@@ -61,7 +74,11 @@
                             <h1>Board</h1>
                         </div>
                         <div class="add-task-btn-mobile">
-                            <img onclick="addNewTask('')" src="/assets/icons/plus-add-task.svg" alt="Add Task" />
+                            <img
+                                onclick="addNewTask('')"
+                                src="/assets/icons/plus-add-task.svg"
+                                alt="Add Task"
+                            />
                         </div>
                     </section>
                     <section class="section-two">
@@ -75,14 +92,27 @@
                                 placeholder="Find Task"
                             />
                             <button>
-                                <img class="search-btn" src="/assets/icons/search.svg" alt="Search" />
+                                <img
+                                    class="search-btn"
+                                    src="/assets/icons/search.svg"
+                                    alt="Search"
+                                />
                             </button>
                         </div>
-                        <div class="add-task-dasktop-edit-main-container" onclick="addNewTask('')">
+                        <div
+                            class="add-task-dasktop-edit-main-container"
+                            onclick="addNewTask('')"
+                        >
                             <div class="add-task-dasktop-edit-container-content">
                                 <span>Add task</span>
                             </div>
-                            <div><img class="add-button" src="/assets/icons/add-button.svg" alt="Add task Button " /></div>
+                            <div>
+                                <img
+                                    class="add-button"
+                                    src="/assets/icons/add-button.svg"
+                                    alt="Add task Button "
+                                />
+                            </div>
                         </div>
                     </section>
                 </div>
@@ -91,7 +121,9 @@
                         <section class="section-three">
                             <div id="todo-section" class="board-prio-headline-div">
                                 <h2>To do</h2>
-                                <div class="category-add-task-btn" onclick="addNewTask('toDo')"><img src="/assets/icons/plus-button-no-hover.svg" alt="Add Task Button"></div>
+                                <div class="category-add-task-btn" onclick="addNewTask('toDo')">
+                                    <img src="/assets/icons/plus-button-no-hover.svg" alt="Add Task Button" />
+                                </div>
                             </div>
                             <div
                                 id="board-to-do-section"
@@ -101,7 +133,10 @@
                                 ondragleave="removeHighlight('board-to-do-section')"
                             ></div>
 
-                            <div id="todo" class="progress-content">
+                            <div
+                                id="todo"
+                                class="progress-content"
+                            >
                                 <span>No tasks To do</span>
                             </div>
                         </section>
@@ -109,32 +144,42 @@
                     <section class="section-four">
                         <div id="inprogress-section" class="board-prio-headline-div">
                             <h2>In progress</h2>
-                            <div class="category-add-task-btn" onclick="addNewTask('inProgress')"><img src="/assets/icons/plus-button-no-hover.svg" alt="Add Task Button"></div>
+                            <div class="category-add-task-btn" onclick="addNewTask('inProgress')">
+                                <img src="/assets/icons/plus-button-no-hover.svg" alt="Add Task Button" />
+                            </div>
                         </div>
                         <div
                             id="board-in-progress-section"
                             class="board-progress-state"
-                            ondrop="moveTaskToState('inProgress'); removeHighlight('board-to-do-section')"
+                            ondrop="moveTaskToState('inProgress'); removeHighlight('board-in-progress-section')"
                             ondragover="allowDrop(event); highlight('board-in-progress-section')"
                             ondragleave="removeHighlight('board-in-progress-section')"
                         ></div>
-                        <div id="inProgress" class="progress-content">
+                        <div
+                            id="inProgress"
+                            class="progress-content"
+                        >
                             <span>No tasks in progress</span>
                         </div>
                     </section>
                     <section class="section-five">
                         <div id="awaitfeedback-section" class="board-prio-headline-div">
                             <h2>Await feedback</h2>
-                            <div class="category-add-task-btn" onclick="addNewTask('awaitFeedback')"><img src="/assets/icons/plus-button-no-hover.svg" alt="Add Task Button"></div>
+                            <div class="category-add-task-btn" onclick="addNewTask('awaitFeedback')">
+                                <img src="/assets/icons/plus-button-no-hover.svg" alt="Add Task Button" />
+                            </div>
                         </div>
                         <div
                             id="board-await-feedback-section"
                             class="board-progress-state"
-                            ondrop="moveTaskToState('awaitFeedback'); removeHighlight('board-to-do-section')"
+                            ondrop="moveTaskToState('awaitFeedback'); removeHighlight('board-await-feedback-section')"
                             ondragover="allowDrop(event); highlight('board-await-feedback-section')"
                             ondragleave="removeHighlight('board-await-feedback-section')"
                         ></div>
-                        <div id="awaitingFeedback" class="progress-content">
+                        <div
+                            id="awaitingFeedback"
+                            class="progress-content"
+                        >
                             <span>No tasks awaiting Feedback</span>
                         </div>
                     </section>
@@ -145,11 +190,14 @@
                         <div
                             id="board-done-section"
                             class="board-progress-state"
-                            ondrop="moveTaskToState('done'); removeHighlight('board-to-do-section')"
+                            ondrop="moveTaskToState('done'); removeHighlight('board-done-section')"
                             ondragover="allowDrop(event); highlight('board-done-section')"
                             ondragleave="removeHighlight('board-done-section')"
                         ></div>
-                        <div id="done" class="progress-content">
+                        <div
+                            id="done"
+                            class="progress-content"
+                        >
                             <span>No tasks Done</span>
                         </div>
                     </section>
@@ -159,30 +207,66 @@
         <div class="nav-bar-main-container">
             <div class="nav-bar-wrapper">
                 <div class="join-logo-nav-bar">
-                    <a href="/pages/summary.html"><img src="/assets/icons/join-logo-white.svg" alt="" /></a>
+                    <a href="/pages/summary.html"
+                        ><img
+                            src="/assets/icons/join-logo-white.svg"
+                            alt=""
+                    /></a>
                 </div>
                 <div class="nav-bar">
-                    <a href="/pages/summary.html" id="nav-bar-container-summary" class="nav-bar-container">
+                    <a
+                        href="/pages/summary.html"
+                        id="nav-bar-container-summary"
+                        class="nav-bar-container"
+                    >
                         <div>
-                            <img id="nav-bar-img-1" src="/assets/icons/summary.svg" alt="" />
+                            <img
+                                id="nav-bar-img-1"
+                                src="/assets/icons/summary.svg"
+                                alt=""
+                            />
                             <span>Summary</span>
                         </div>
                     </a>
-                    <a href="/pages/board.html" id="nav-bar-container-board" class="nav-bar-container current-site">
+                    <a
+                        href="/pages/board.html"
+                        id="nav-bar-container-board"
+                        class="nav-bar-container current-site"
+                    >
                         <div>
-                            <img id="nav-bar-img-2" src="/assets/icons/board.svg" alt="" />
+                            <img
+                                id="nav-bar-img-2"
+                                src="/assets/icons/board.svg"
+                                alt=""
+                            />
                             <span>Board</span>
                         </div>
                     </a>
-                    <a href="/pages/add-task.html" id="nav-bar-container-add-to-task" class="nav-bar-container">
+                    <a
+                        href="/pages/add-task.html"
+                        id="nav-bar-container-add-to-task"
+                        class="nav-bar-container"
+                    >
                         <div>
-                            <img id="nav-bar-img-3" src="/assets/icons/add-to-task.svg" alt="" />
+                            <img
+                                id="nav-bar-img-3"
+                                src="/assets/icons/add-to-task.svg"
+                                alt=""
+                            />
                             <span>Add Task</span>
                         </div>
                     </a>
-                    <a href="/pages/contactlist.html" id="nav-bar-container-contacts" class="nav-bar-container">
+                    <a
+                        href="/pages/contactlist.html"
+                        id="nav-bar-container-contacts"
+                        class="nav-bar-container"
+                    >
                         <div>
-                            <img id="nav-bar-img-4" src="/assets/icons/contacts.svg" alt="" />
+                            <img
+                                id="nav-bar-img-4"
+                                src="/assets/icons/contacts.svg"
+                                alt=""
+                            />
                             <span>Contacts</span>
                         </div>
                     </a>

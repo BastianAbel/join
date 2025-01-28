@@ -8,7 +8,7 @@ function renderContactSection(letter) {
 
 function renderContactListContact(contact, initials, id) {
 
-    return `<div onclick="contactBigView('${contact.name}','${contact.email}', '${contact.phone}','${initials}', '${id}', )" class="contactlist-contact">
+    return `<div id="${id}" onclick="contactBigView('${contact.name}','${contact.email}', '${contact.phone}','${initials}', '${id}', )" class="contactlist-contact">
 
                     <div id="profile-picture(${id})" class="profile-picture test-profile-picture-background">
                         <span>${initials}</span>
@@ -34,7 +34,7 @@ function renderSingleContactView(name, email, phone, initials, id, color) {
                                 <img onclick="navigateToContactList()" class="" src="/assets/icons/blue-arrow-left.svg" alt="" />
                             </div>
                         </div>
-                        <span class="border-bottom">Better with a team</span>
+                        <span class="border-left">Better with a team</span>
                     </div>
                 <div class="contact-name">
                     <div id="profile-picture(${id})" class="contact-id profile-picture test-profile-picture-background" style="background-color: ${color};">
@@ -77,82 +77,117 @@ function renderSingleContactView(name, email, phone, initials, id, color) {
 }
 
 function renderEditContactView(initials, color, id) {
-    return `<div id="editContactContainer" class="big-contact-container">
-                <div class="add-contact-container">
-                    <div class="close-container">
-                        <img onclick="EditContactViewSlideDown()" src="/assets/icons/cross-white.svg" alt="">
-                    </div>
-                    <div class="add-contact-head">
-                        <h1 class="border-bottom">Edit contact</h1>
-                    </div>
+    return /*HTML*/`
+<div id="editContactContainer" class="big-contact-container">
+    <div class="add-contact-container">
+        <div class="close-container">
+            <img onclick="EditContactViewSlideDown()" src="/assets/icons/cross-white.svg" alt="">
+        </div>
+        <div class="add-contact-head">
+            <h1 class="border-bottom">Edit contact</h1>
+        </div>
+    </div>
+    <div class="desktop-view-contact-wrapper">
+        <div class="placeholder-container">
+            <div class="placeholder-contact" style="background-color: ${color};">
+                ${initials}
+            </div>
+        </div>
+        <div class="input-button-desktop-wrapper">
+            <div class="create-contact-container">
+                <div class="input-container">
+                    <input id="newName" type="text" placeholder="Name" required>
+                    <img src="/assets/icons/contact-person.svg" alt="User Icon" class="input-icon">
                 </div>
-                <div class="placeholder-container">
-                    <div class="placeholder-contact" style="background-color: ${color};">${initials} </div>
+                <div class="input-container">
+                    <input id="newEmail" type="email" placeholder="Email" required>
+                    <img src="/assets/icons/mail-icon.svg" alt="Mail Icon" class="input-icon">
                 </div>
-                    <div class="create-contact-container">
-                        <div class="input-container">
-                            <input id="newName" type="text" placeholder="Name" required>
-                            <img src="/assets/icons/contact-person.svg" alt="User Icon" class="input-icon">
-                        </div>
-                        <div class="input-container">
-                            <input id="newEmail" type="email" placeholder="Email" required>
-                            <img src="/assets/icons/mail-icon.svg" alt="Mail Icon" class="input-icon">
-                        </div>
-                        <div class="input-container">
-                            <input id="newPhone" type="tel" placeholder="Phone" required>
-                            <img src="/assets/icons/phone-icon.svg" alt="Phone Icon" class="input-icon">
-                        </div>
-                    </div>
-                    <div class="button-container">
-                        <div>
-                            <button onclick="deleteContact('${id}')" class="delete-button">Delete</button>
-                        </div>
-                        <div>
-                            <button onclick="getEditedUserData('${id}')" class="save-contact-button">Save <img src="/assets/icons/check.svg" alt=""></button>
-                        </div>
+                <div class="input-container">
+                    <input id="newPhone" type="tel" placeholder="Phone" required>
+                    <img src="/assets/icons/phone-icon.svg" alt="Phone Icon" class="input-icon">
                 </div>
-            </div>`;
+            </div>
+            <div class="button-container">
+                <div>
+                    <button onclick="deleteContact('${id}')" class="delete-button">Delete</button>
+                </div>
+                <div>
+                    <button onclick="getEditedUserData('${id}')" class="save-contact-button">
+                        Save 
+                        <img src="/assets/icons/check.svg" alt="">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    `;
 }
 
 function renderAddContactView() {
-    return `
-    <div id="addContactContainer" class="big-contact-container">
-    <div  class="add-contact-container">
-    <div class="add-contact-container">
-        <div class="close-container">
-            <img onclick="AddContactViewSlideDown()" src="/assets/icons/cross-white.svg" alt="">
-        </div>
-        <div class="add-contact-head">
-            <h1>Add Contact</h1>
-            <span class="border-bottom">Tasks are better with a team!</span>
-        </div>
-    </div>
-    <div class="placeholder-container">
-        <div id="add-contact-placeholder" class="d-none">
-            <p id="add-contact-initials-paragraph"></p>
-        </div>
-        <img id="add-contact-placeholder-img" src="/assets/icons/contact-placeholder.svg" alt="" />
-    </div>
-    <form onsubmit="createContact(event)">
-        <div class="create-contact-container">
-            <div class="input-container">
-                <input id="add-contact-name-input-field" type="text" placeholder="Name" onblur="fillPlaceholderBubble()"
-                    required />
-                <img src="/assets/icons/contact-person.svg" alt="User Icon" class="input-icon">
+return /*HTML*/`
+<div id="addContactContainer" class="big-contact-container">
+    <div>
+        
+        <div class="desktop-view-contact-wrapper">
+        <div class="add-contact-container">
+            <div class="close-container">
+                <img onclick="AddContactViewSlideDown()" src="/assets/icons/cross-white.svg" alt="">
             </div>
-            <div class="input-container">
-                <input id="add-contact-email-input-field" type="email" placeholder="Email" required />
-                <img src="/assets/icons/mail-icon.svg" alt="Mail Icon" class="input-icon">
-            </div>
-            <div class="input-container">
-                <input id="add-contact-phone-input-field" type="tel" placeholder="Phone" required />
-                <img src="/assets/icons/phone-icon.svg" alt="Phone Icon" class="input-icon">
+            <div class="add-contact-head">
+                <h1>Add Contact</h1>
+                <span class="border-bottom-add-contact">Tasks are better with a team!</span>
             </div>
         </div>
-        <div class="button-container">
-            <button type="submit" class="create-contact-button">Create contact<img src="/assets/icons/check.svg"alt=""></button>
+        <div class="placeholder-container">
+            <div id="add-contact-placeholder" class="d-none">
+                <p id="add-contact-initials-paragraph"></p>
+            </div>
+            <img id="add-contact-placeholder-img" src="/assets/icons/contact-placeholder.svg" alt="" />
         </div>
-    </form>
+        <form onsubmit="createContact(event)">
+        <div class="input-button-desktop-wrapper">
+            <div class="create-contact-container">
+                <div class="input-container">
+                    <input 
+                        id="add-contact-name-input-field" 
+                        type="text" 
+                        placeholder="Name" 
+                        onblur="fillPlaceholderBubble()" 
+                        required 
+                    />
+                    <img src="/assets/icons/contact-person.svg" alt="User Icon" class="input-icon">
+                </div>
+                <div class="input-container">
+                    <input 
+                        id="add-contact-email-input-field" 
+                        type="email" 
+                        placeholder="Email" 
+                        required 
+                    />
+                    <img src="/assets/icons/mail-icon.svg" alt="Mail Icon" class="input-icon">
+                </div>
+                <div class="input-container">
+                    <input 
+                        id="add-contact-phone-input-field" 
+                        type="tel" 
+                        placeholder="Phone" 
+                        required 
+                    />
+                    <img src="/assets/icons/phone-icon.svg" alt="Phone Icon" class="input-icon">
+                </div>
+            </div>
+            <div class="button-container">
+                <button type="submit" class="create-contact-button">
+                    Create contact
+                    <img src="/assets/icons/check.svg" alt="">
+                </button>
+            </div>
+            </form>
+        </div>
+        </div>
     </div>
-    `;
+</div>
+`;
 }
