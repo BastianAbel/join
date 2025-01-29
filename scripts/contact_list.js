@@ -119,6 +119,7 @@ function closeAddContactView() {
     document.getElementById("profileBtn").style.backgroundColor = "white";
     document.getElementById("window-overlay").classList.add("d-none");
     document.getElementById("addContactContainer").classList.add("d-none");
+    document.getElementById("single-contact-view").style.display = "none";
     document.getElementById("addContactContainer").outerHTML = "";
 }
 

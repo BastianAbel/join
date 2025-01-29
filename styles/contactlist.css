@@ -6,6 +6,7 @@
 .contactlist-container {
     display: flex;
     flex-direction: column;
+
     padding: var(--contactlist-element-padding);
     height: calc(100vh - 80px);
     overflow-x: auto;
