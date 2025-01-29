@@ -252,6 +252,10 @@ select {
     margin-top: 8px;
     margin-bottom: 8px;
     padding-right: 4px;
+
+    & img:hover{
+        cursor: pointer;
+    }
 }
 
 #add-task-contact-container {
