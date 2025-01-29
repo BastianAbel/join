@@ -111,3 +111,17 @@ input[type="checkbox"]:checked + label {
     flex-shrink: 0;
     background-image: url(/assets/icons/checkbox-checked.svg);
 }
+
+.not-valid {
+    border: 1px solid red !important;
+}
+
+.input-feedback-container {
+    color: red;
+    font-size: 12px;
+    font-weight: 400;
+    width: calc(100% - 42px);
+    padding-left: 21px;
+    padding-right: 21px;
+    text-align: center;
+}

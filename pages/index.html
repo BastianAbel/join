@@ -28,18 +28,18 @@
             <form onsubmit="userLogin(); return false;">
                 <div class="input-main">
                     <div class="input-container">
-                        <input id="email" type="email" placeholder="Email" required />
+                        <input id="email" type="email" placeholder="Email" onkeyup="resetNotFilledResponse(this)"/>
                         <img src="/assets/icons/mail-icon.svg" alt="User Icon" class="input-icon" />
                     </div>
                     <div class="input-container">
                         <input id="password" type="password" placeholder="Password"
-                            onkeyup="resetLoginWarning(); togglePasswordVisibilityIcon(this, 'first')" required />
+                            onkeyup="resetLoginWarning(); togglePasswordVisibilityIcon(this, 'first'); resetNotFilledResponse(this)"/>
                         <img src="/assets/icons/lock.svg" alt="User Icon" class="input-icon" id="password-lock-first" />
                         <img src="/assets/icons/visibility_off.svg" alt="User Icon"
                             class="input-icon d-none visibility-icon" id="password-visibility-first"
                             onclick="changePasswordVisibility('password', this)" />
                     </div>
-                    <div class="check-password-style" id="pw-state-message"></div>
+                    <div class="check-password-style" id="input-feedback-container"></div>
                     <div class="remember-me-container">
                         <input id="privacyCheckbox" type="checkbox" />
                         <label for="privacyCheckbox"></label>

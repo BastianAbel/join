@@ -30,3 +30,24 @@ function onlyLoadIfUserOrGuest() {
         window.location.href = "index.html";
     }
 }
+
+function inputsFilled(...inputs) {
+    const inputFeedback = document.getElementById("input-feedback-container");
+    let filled = true;
+    for(let i = 0; i < inputs.length; i++) {
+        const input = document.getElementById(inputs[i]);
+        if (!input.value) {
+            filled = false;
+            input.classList.add("not-valid");
+            inputFeedback.innerHTML = "Inputs must be filled!"
+        }
+    }
+    return filled
+}
+
+function resetNotFilledResponse(element) {
+    const inputFeedback = document.getElementById("input-feedback-container");
+    const input = element;
+        input.classList.remove("not-valid");
+        inputFeedback.innerHTML = "";
+}

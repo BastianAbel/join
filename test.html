@@ -1,0 +1,48 @@
+<div id="addContactContainer" class="big-contact-container">
+    <div>
+
+        <div class="desktop-view-contact-wrapper">
+            <div class="add-contact-container">
+                <div class="close-container">
+                    <img onclick="AddContactViewSlideDown()" src="/assets/icons/cross-white.svg" alt="">
+                </div>
+                <div class="add-contact-head">
+                    <h1>Add Contact</h1>
+                    <span class="border-bottom-add-contact">Tasks are better with a team!</span>
+                </div>
+            </div>
+            <div class="placeholder-container">
+                <div id="add-contact-placeholder" class="d-none">
+                    <p id="add-contact-initials-paragraph"></p>
+                </div>
+                <img id="add-contact-placeholder-img" src="/assets/icons/contact-placeholder.svg" alt="" />
+            </div>
+            <form onsubmit="createContact(event)">
+                <div class="input-button-desktop-wrapper">
+                    <div class="create-contact-container">
+                        <div class="input-container">
+                            <input id="add-contact-name-input-field" type="text" placeholder="Name"
+                                onblur="fillPlaceholderBubble()" onkeyup="resetNotFilledResponse(this)" />
+                            <img src="/assets/icons/contact-person.svg" alt="User Icon" class="input-icon">
+                        </div>
+                        <div class="input-container">
+                            <input id="add-contact-email-input-field" type="email" placeholder="Email"
+                                onkeyup="resetNotFilledResponse(this)" />
+                            <img src="/assets/icons/mail-icon.svg" alt="Mail Icon" class="input-icon">
+                        </div>
+                        <div class="input-container">
+                            <input id="add-contact-phone-input-field" type="number" placeholder="Phone"
+                                onkeyup="resetNotFilledResponse(this)" />
+                            <img src="/assets/icons/phone-icon.svg" alt="Phone Icon" class="input-icon">
+                        </div>
+                    </div>
+                    <div class="button-container">
+                        <button type="submit" class="create-contact-button">
+                            Create contact
+                            <img src="/assets/icons/check.svg" alt="">
+                        </button>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>

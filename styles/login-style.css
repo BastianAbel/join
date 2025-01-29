@@ -276,6 +276,8 @@ input {
 
 .check-password-style {
     width: auto !important;
+    margin-top: -12px;
+    margin-bottom: 12px;
 }
 
 @media(min-width:920px) {

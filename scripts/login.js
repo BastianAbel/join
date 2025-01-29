@@ -9,6 +9,9 @@ let user = {};
  * If the user does not exist, a message is displayed to the user.
  */
 async function userLogin() {
+    if(!inputsFilled("email", "password")) {
+        return
+    }
     await fetchUsers();
     const userExists = checkIfUserExists();
     if (userExists) {

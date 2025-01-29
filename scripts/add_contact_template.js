@@ -62,3 +62,7 @@ function renderNewContact(name, email, initials, id, color, phone) {
                     </div>
             </div>`;
 }
+
+
+
+

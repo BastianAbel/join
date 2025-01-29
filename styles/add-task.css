@@ -40,7 +40,12 @@ main {
     margin-bottom: 24px;
     font-size: 16px;
     padding-left: 8px;
-    font-family: inter;
+    font-family: inter; 
+}
+
+#hiddenDateInput{
+    position: absolute; 
+    opacity: 0;
 }
 
 .add-task-attribute-input input {
@@ -245,8 +250,11 @@ select {
     align-items: center;
     height: fit-content;
     margin-top: 8px;
-    margin-bottom: 8px;
     padding-right: 4px;
+
+    & img:hover{
+        cursor: pointer;
+    }
 }
 
 #add-task-contact-container {
@@ -332,14 +340,16 @@ select {
 
 #add-task-date-container {
     margin-bottom: 24px;
-    padding: 0 24px 0 8px;
 }
 
 #require-info-container {
     display: flex;
     align-items: center;
     margin-top: -16px;
-    margin-bottom: 24px;
+}
+
+#require-info-container p {
+    margin: 0;
 }
 
 #sticky-bottom-container {
@@ -362,6 +372,11 @@ select {
 #sub-task-icon-cross,
 #edit-sub-task-icon-cross {
     margin-right: 4px;
+}
+
+#subtask-list-container {
+    max-height: 112px;
+    overflow-y: auto;
 }
 
 #edit-subtask-list-container {
@@ -439,6 +454,7 @@ select {
     width: 100%;
     display: flex;
     justify-content: center;
+    z-index: 1;
 }
 
 #add-task-contacts-list {
@@ -447,6 +463,13 @@ select {
     padding: 0;
     margin: 0;
     width: 95%;
+}
+
+.requirementInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
 }
 
 @media(min-width: 1200px) {
@@ -500,6 +523,12 @@ select {
     }
 }
 
+@media(max-width: 920px) {
+    #inner-form-container {
+        margin-top: 90px;
+    }
+}
+
 @media (max-width: 430px ) {
     .prio-btn span {
         font-size: 12px;
@@ -508,3 +537,14 @@ select {
         width: unset!important;
     }
 }
+
+@media(max-width: 400px) {
+    .add-task-btn {
+        padding: 8px;
+    }
+
+    #inner-form-container {
+        margin-top: 100px;
+    }
+}
+

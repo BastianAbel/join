@@ -149,6 +149,7 @@ input:focus {
     outline: none;
     height: 32px;
     border: none;
+    outline: none !important;
     flex: 1;
 }
 
@@ -179,6 +180,7 @@ input:focus {
     gap: 16px;
     padding: 12px 0;
     overflow-y: auto !important;
+    min-height: 263px;
 }
 
 .progress-content {
@@ -194,6 +196,7 @@ input:focus {
     gap: 16px;
     margin-bottom: 48px;
     z-index: 1;
+    margin-top: 11px;
 }
 
 .to-do-content span {
@@ -206,6 +209,10 @@ input:focus {
 
 .board-progress-state img {
     cursor: pointer;
+}
+
+.board-progress-state-wrapper {
+    margin-top: 16px;
 }
 
 .in-progress-content,
@@ -380,7 +387,6 @@ input:focus {
     .board-progress-state {
         flex-direction: column;
         gap: 16px;
-        margin-top: 16px;
         overflow-y: auto !important;
     }
 

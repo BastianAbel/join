@@ -20,7 +20,7 @@
     <title>Add Task</title>
 </head>
 
-<body onload="getAllContactsNames()">
+<body onload="getAllContactsNames(); setMediumPrio()">
     <section class="main-container">
         <div id="submenu" class="submenu-popup-container d-none">
             <div class="submenu-text-container">
@@ -56,7 +56,7 @@
                                 <div class="add-task-attribute-container">
                                     <label for="task-title">Title<span class="require-asterisk">*</span></label>
                                     <input id="task-title" class="add-task-attribute-input grey-placeholder" type="text"
-                                        placeholder="Enter a title" required />
+                                        placeholder="Enter a title" onkeyup="resetNotFilledResponse(this)"/>
                                 </div>
                                 <div class="add-task-attribute-container">
                                     <label for="task-description">Description</label>
@@ -65,13 +65,14 @@
                                 </div>
                                 <div class="add-task-attribute-container">
                                     <label for="task-contact-input">Assigned to</label>
-                                    <div id="add-task-contact-container" class="add-task-input-img-container"
-                                        onclick="showContactList()">
-                                        <input type="text" id="task-contact-input" class="add-task-attribute-input"
+                                    <div id="add-task-contact-container" class="add-task-input-img-container button"
+                                        onclick="showContactList(event)">
+                                        <input type="text" id="task-contact-input"
+                                            class="add-task-attribute-input button"
                                             placeholder="Select contacts to assign" oninput="filterInput(event)"
-                                            onclick="showContactList()" />
+                                            onclick="showContactList(event)" />
                                         <img src="/assets/icons/arrow-drop-down.svg" alt="closed drop down logo"
-                                            id="add-task-contact-drop-down-icon" onclick="showContactList()" />
+                                            id="add-task-contact-drop-down-icon" onclick="showContactList(event)" />
                                         <div id="add-task-contact-list-container" class="d-none">
                                             <ul id="add-task-contacts-list"></ul>
                                         </div>
@@ -85,8 +86,10 @@
                                     <label for="task-due-date">Due date<span class="require-asterisk">*</span></label>
                                     <div id="add-task-date-container" class="add-task-input-img-container">
                                         <input id="task-due-date" class="add-task-attribute-input grey-placeholder"
-                                            type="text" placeholder="dd/mm/yyyy" oninput="formatDateInput()" required />
-                                        <img src="/assets/icons/calender.svg" alt="calender icon" />
+                                            type="text" placeholder="dd/mm/yyyy" oninput="formatDateInput()" onkeyup="resetNotFilledResponse(this)"/>
+                                        <img src="/assets/icons/calender.svg" alt="calender icon"
+                                            onclick="openDatePicker(event)" />
+                                        <input type="date" id="hiddenDateInput" onchange="updateDateField()">
                                     </div>
                                 </div>
                                 <div class="add-task-attribute-container">
@@ -106,7 +109,7 @@
                                 <div class="add-task-attribute-container">
                                     <label for="task-category-select">Category<span
                                             class="require-asterisk">*</span></label>
-                                    <select id="task-category-select" class="add-task-attribute-input" required>
+                                    <select id="task-category-select" class="add-task-attribute-input" onchange="resetNotFilledResponse(this)">
                                         <option value="" disabled selected>
                                             Select task category
                                         </option>
@@ -134,10 +137,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="sticky-bottom-container">
-                            <div id="require-info-container">
-                                <span class="require-asterisk">*</span>
-                                <p>This field is required</p>
+                        <div class="check-password-style" id="sticky-bottom-container">
+                            <div class="requirementInfo">
+                                <div id="require-info-container">
+                                    <span class="require-asterisk">*</span>
+                                    <p>This field is required</p>
+                                </div>
+                                <div class="input-feedback-container" id="input-feedback-container"></div>
                             </div>
                             <div class="add-task-attribute-container">
                                 <div id="add-task-btn-container">

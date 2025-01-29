@@ -123,6 +123,22 @@
     margin-left: -7px;
 }
 
+.more-users {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    color: black;
+    font-size: 24px;
+    font-weight: 400;
+    cursor: pointer;
+    margin-top: -6px;
+    margin-left: -6px;
+}
+
 .user:first-child {
     margin-left: 0;
 }
