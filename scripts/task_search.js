@@ -1,5 +1,5 @@
 let data = [];
-let contentRef = document.getElementById("search-result-task-content-container");
+let contentRef = document.getElementById("search-task-result-main-container");
 let progressBarCalc = "";
 
 /**
@@ -40,8 +40,8 @@ function renderSearchResultCard(task) {
     const employeesName = createUserContainer(task.assignedTo);
     const cardTypeColor = changeColorCardType(task.type);
     const searchResultContainer = document.getElementById("search-task-result-main-container");
-    const boardMainContainer = document.getElementById("board-main");
-    boardMainContainer.style.overflowY = "hidden";
+    const boardContentMainContainer = document.getElementById("board-content-container");
+    boardContentMainContainer.style.display = "none";
     searchResultContainer.style.display = "flex";
     contentRef.innerHTML += taskCardTemplateToHtml(task, subtaskState, priorityImg, employeesName, progressBarCalc, cardTypeColor);
 }
