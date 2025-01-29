@@ -430,10 +430,11 @@ input:focus {
         height: 100vh;
         display: none;
         flex-direction: row;
-        align-items: center;
+        align-items: flex-start;
         gap: 16px;
         overflow-y: auto;
         background-color: transparent;
         position: relative;
+        padding-top: 75px;
     }
 }
