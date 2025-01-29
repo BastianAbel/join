@@ -163,9 +163,12 @@ function getEmployeesInitials(EmployeesName) {
     if (typeof EmployeesName !== "string") {
         throw new Error("EmployeesName must be a string");
     }
-    return EmployeesName.split(" ")
+    if(EmployeesName !=""){
+        return EmployeesName.split(" ")
         .map((name) => name[0].toUpperCase())
         .join("");
+    }
+    
 }
 
 /**
