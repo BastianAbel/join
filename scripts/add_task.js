@@ -53,6 +53,7 @@ async function getAllContactsNames() {
     onlyLoadIfUserOrGuest();
     loadUserInitials();
     await loadAllContacts();
+    console.log(allContacts);
     let contactsNamesAndColors = allContacts.map((entry) => ({
         name: entry.contact.name.replace(/[^a-zA-ZöüäÖÜÄ ]/g, ""),
         color: entry.color,
@@ -105,10 +106,50 @@ function deleteSubtask(event, subtaskDescription) {
 }
 
 /**
- * Function to clear all input fields of the add task form by reloading the page
+ * Function to clear all input fields of the add task form by resetting their values
  */
 function clearAllInputAddTask() {
-    location.reload();
+    TASK_TITLE_INPUT.value="";
+    TASK_DESCRIPTION.value="";
+    DUE_DATE_INPUT.value="";
+    clearSubtaskInputField();
+    setMediumPrio();
+    subtaskList = [];
+    SUBTASK_LIST.innerHTML="";
+}
+
+/**
+ * Function to open a datePicker-tool under the position of the event-target
+ * @param {event} event 
+ */
+function openDatePicker(event) {
+    let dateInput = document.getElementById('hiddenDateInput');
+    let target = event.target;
+    const rect = target.getBoundingClientRect();
+    dateInput.style.left = `${rect.left - 190}px`;
+    dateInput.style.top = `${rect.bottom}px`;
+    dateInput.style.visibility = 'visible';
+    dateInput.offsetHeight;
+    dateInput.showPicker();
+}
+
+/**
+ * Function to format a datestring from a datepicker to a needed format
+ * @param {dateString} dateString 
+ * @returns {string} in formatted design
+ */
+function formatDate(dateString){
+    if(!dateString){ return "";}
+    let stringParts = dateString.split("-");
+    return `${stringParts[2]}/${stringParts[1]}/${stringParts[0]}`;
+}
+
+/**
+ * Function to set a formatted string as a value of an input-field
+ */
+function updateDateField() {
+    let dateInput = document.getElementById("hiddenDateInput");
+    DUE_DATE_INPUT.value = formatDate(dateInput.value);
 }
 
 /**
@@ -172,7 +213,8 @@ function checkContact(event, data) {
 /**
  * Function to show a list of initials-circles of the assigned contacts in the add task form
  */
-function showContactList() {
+function showContactList(event) {
+    event.stopPropagation();
     if (event.currentTarget == event.target) {
         TASK_CONTACT_LIST_CONTAINER.classList.toggle("d-none");
         if (!TASK_CONTACT_LIST_CONTAINER.classList.contains("d-none")) {
@@ -378,3 +420,12 @@ async function getIdOfNewTask() {
     let taskKeysArray = Object.keys(response);
     return taskKeysArray[taskKeysArray.length - 1];
 }
+
+document.addEventListener("click", function(event){
+    event.stopPropagation();
+    if(!TASK_CONTACT_LIST_CONTAINER.contains(event.target)){
+        
+        TASK_CONTACT_LIST_CONTAINER.classList.add("d-none");
+    }
+    
+})
