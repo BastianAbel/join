@@ -108,10 +108,16 @@ function deleteSubtask(event, subtaskDescription) {
 }
 
 /**
- * Function to clear all input fields of the add task form by reloading the page
+ * Function to clear all input fields of the add task form by resetting their values
  */
 function clearAllInputAddTask() {
-    location.reload();
+    TASK_TITLE_INPUT.value="";
+    TASK_DESCRIPTION.value="";
+    DUE_DATE_INPUT.value="";
+    clearSubtaskInputField();
+    setMediumPrio();
+    subtaskList = [];
+    SUBTASK_LIST.innerHTML="";
 }
 
 /**
