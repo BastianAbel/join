@@ -53,7 +53,6 @@ async function getAllContactsNames() {
     onlyLoadIfUserOrGuest();
     loadUserInitials();
     await loadAllContacts();
-    console.log(allContacts);
     let contactsNamesAndColors = allContacts.map((entry) => ({
         name: entry.contact.name.replace(/[^a-zA-ZöüäÖÜÄ ]/g, ""),
         color: entry.color,
