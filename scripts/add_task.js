@@ -426,8 +426,9 @@ async function getIdOfNewTask() {
 document.addEventListener("click", function(event){
     event.stopPropagation();
     if(!TASK_CONTACT_LIST_CONTAINER.contains(event.target)){
-        
         TASK_CONTACT_LIST_CONTAINER.classList.add("d-none");
+    } else {
+        return;
     }
     
 })
