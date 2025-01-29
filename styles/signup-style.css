@@ -159,6 +159,13 @@ input {
         background-color: var(--identity);
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);     
     }
+    &&:disabled {
+        opacity: 0.8;
+    }
+    &&:disabled:hover {
+        background-color: #2A3647;
+        opacity: 0.5;
+    }
 }
 
 .head-container {
@@ -218,6 +225,7 @@ input {
     width: calc(100% - 42px);
     padding-left: 21px;
     padding-right: 21px;
+    text-align: center;
 }
 
 .pw-match-green {

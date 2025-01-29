@@ -101,6 +101,9 @@ function setPasswordFeedbackStyle(currentState) {
  * Function to process the sign up form
  */
 async function processSignUp() {
+    if(!inputsFilled("username", "email", "password", "confirmPassword")) {
+        return
+    }
     if (await emailExists()) {
         setEmailExistsFeedback();
     } else {
@@ -188,4 +191,12 @@ function changePasswordVisibility(inputfieldId, imgElement) {
         inputfieldRef.type = "text";
         visibleImgRef.src = "/assets/icons/visibility_on.svg";
     }
+}
+
+function toggleSignUpButton() {
+    const checkbox = document.getElementById("privacyCheckbox");
+    const signUpButton = document.getElementById("submitBtn");
+    checkbox.checked 
+    ? signUpButton.disabled = false
+    : signUpButton.disabled = true;
 }
