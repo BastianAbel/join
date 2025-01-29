@@ -21,8 +21,16 @@ let contactNames = [];
 let filteredNamesAndColors = [];
 let checkedContactNamesAndColors = [];
 let subtaskList = [];
+let editSubtaskListArray = [];
+// let allUsers = [];
+// let allContacts = [];
+// let checkedUsersNamesAndColors = [];
 let taskPrio = "";
 
+/**
+ * Function to load all contacts from firebase and add them to the allContacts array
+ * @returns an array of all contacts in firebase with added id`s, colors and and an array of tasks assigned to them
+ */
 async function loadAllContacts() {
     await setBackendJsonToSessionStorage();
     let contactsResponse = await loadData(PATH_TO_CONTACTS);
@@ -38,6 +46,12 @@ async function loadAllContacts() {
     return allContacts;
 }
 
+/**
+ * Function to get all contacts names from the allContacts array and add them to the contact list
+ * after checking if the user is logged in or a guest and loading the user initials. Then preparing the
+ * filteresNamesAndColors array for the search function and adding the contact names to the contact list
+ * in the add task form
+ */
 async function getAllContactsNames() {
     onlyLoadIfUserOrGuest();
     loadUserInitials();
@@ -52,6 +66,11 @@ async function getAllContactsNames() {
     addContactNamesToList(filteredNamesAndColors, TASK_CONTACT_LIST);
 }
 
+/**
+ * Function to add contact names from an array to the contact list in the add task form
+ * @param {array} array
+ * @param {HTML-Element} element
+ */
 function addContactNamesToList(array, element) {
     element.innerHTML = "";
     for (let j = 0; j < array.length; j++) {
@@ -62,28 +81,42 @@ function addContactNamesToList(array, element) {
     }
 }
 
+/**
+ * Function to add a subtask to the subtask list in the add task form, setting the value of checked by default to false
+ * and then clearing the input field
+ */
 function addSubTask() {
     let subtaskTitle = "";
     let subTaskObject = {};
     if (SUBTASK_INPUT.value) {
         subtaskTitle = SUBTASK_INPUT.value;
         SUBTASK_LIST.innerHTML += renderSubtask(subtaskTitle);
-        subTaskObject["description"] = subtaskTitle;
         subTaskObject["checked"] = false;
+        subTaskObject["description"] = subtaskTitle;
         subtaskList.push(subTaskObject);
         SUBTASK_INPUT.value = "";
         clearSubtaskInputField();
     }
 }
-
-function deleteSubtask(event) {
-    event.target.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode);
+/**
+ * Function to delete a subtask from the subtask list in the add task form
+ * @param {event} event
+ */
+function deleteSubtask(event, subtaskDescription) {
+    event.target.parentNode.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode.parentNode);
+    subtaskList = subtaskList.filter((subtask) => subtask.description !== subtaskDescription);
 }
 
+/**
+ * Function to clear all input fields of the add task form by reloading the page
+ */
 function clearAllInputAddTask() {
     location.reload();
 }
 
+/**
+ * Function to set the priority of a task to urgent
+ */
 function setUrgentPrio() {
     PRIO_URGENT_BUTTON.classList.add("active-urgent");
     PRIO_MEDIUM_BUTTON.classList.remove("active-medium");
@@ -91,6 +124,9 @@ function setUrgentPrio() {
     taskPrio = "urgent";
 }
 
+/**
+ * Function to set the priority of a task to medium
+ */
 function setMediumPrio() {
     PRIO_URGENT_BUTTON.classList.remove("active-urgent");
     PRIO_MEDIUM_BUTTON.classList.add("active-medium");
@@ -98,6 +134,9 @@ function setMediumPrio() {
     taskPrio = "medium";
 }
 
+/**
+ * Function to set the priority of a task to low
+ */
 function setLowPrio() {
     PRIO_URGENT_BUTTON.classList.remove("active-urgent");
     PRIO_MEDIUM_BUTTON.classList.remove("active-medium");
@@ -105,11 +144,21 @@ function setLowPrio() {
     taskPrio = "low";
 }
 
+/**
+ * Function to filter the contact list showing possible contacts to assigne to the task in the add task form by the input value
+ * @param {event} event
+ */
 function filterInput(event) {
     filteredNamesAndColors = filterInputFromArray(NamesAndColors, event.target.value);
     addContactNamesToList(filteredNamesAndColors, TASK_CONTACT_LIST);
 }
 
+/**
+ * Function to check a contact in the contact list in the add task form by adding it to the checkedContactNamesAndColors array
+ * or removing it from there if it is not checked anymore
+ * @param {event} event
+ * @param {string} data
+ */
 function checkContact(event, data) {
     const container = event.currentTarget;
     let currentContact = getContactFromArrayById(filteredNamesAndColors, data.id);
@@ -123,6 +172,9 @@ function checkContact(event, data) {
     }
 }
 
+/**
+ * Function to show a list of initials-circles of the assigned contacts in the add task form
+ */
 function showContactList() {
     if (event.currentTarget == event.target) {
         TASK_CONTACT_LIST_CONTAINER.classList.toggle("d-none");
@@ -142,6 +194,12 @@ function showContactList() {
     }
 }
 
+/**
+ * Function to add the initials-circles of the assigned contacts to the add task form
+ * @param {array} array
+ * @param {HTML-Element} containerElement
+ * @param {string} elementIdForColor
+ */
 function addNameCircles(array, containerElement, elementIdForColor) {
     for (let i = 0; i < array.length; i++) {
         let name = array[i].name;
@@ -153,6 +211,9 @@ function addNameCircles(array, containerElement, elementIdForColor) {
     }
 }
 
+/**
+ * Function to ensure that the due date input field in the add task form is formatted correctly
+ */
 function formatDateInput() {
     if (DUE_DATE_INPUT.value.length == 2 || DUE_DATE_INPUT.value.length == 5) {
         DUE_DATE_INPUT.value += `/`;
@@ -163,14 +224,26 @@ function formatDateInput() {
     }
 }
 
+/**
+ * Function to check if a date is valid and in the format dd/mm/yyyy
+ * @param {string} dateString
+ * @returns true if the date is valid, false if not
+ */
 function isDateValid(dateString) {
     const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
     if (!dateRegex.test(dateString)) return false;
     const [day, month, year] = dateString.split("/").map(Number);
-    const date = new Date(year, month - 1, day);
-    return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
+    if (month >= 1 && month <= 12 && day >= 1 && day <= 31 && year >= 2025) {
+        const date = new Date(year, month - 1, day);
+        return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
+    } else {
+        return false;
+    }
 }
 
+/**
+ * Function to clear the subtask input field in the add task form
+ */
 function clearSubtaskInputField() {
     SUBTASK_INPUT.value = "";
     SUBTASK_ICON_PLUS.classList.remove("d-none");
@@ -179,6 +252,9 @@ function clearSubtaskInputField() {
     SUBTASK_ICON_CHECK.classList.add("d-none");
 }
 
+/**
+ * Function to show and hide icons in the subtask input field in the add task form
+ */
 function showAndHideIcons() {
     if (SUBTASK_INPUT.value.length > 0) {
         SUBTASK_ICON_PLUS.classList.add("d-none");
@@ -188,6 +264,10 @@ function showAndHideIcons() {
     }
 }
 
+/**
+ * Function to edit the content of a subtasktitle in the add task form
+ * @param {event} event
+ */
 function editContent(event) {
     let spanElement = event.target.parentNode.parentNode.querySelector("span");
     if (spanElement) {
@@ -197,6 +277,10 @@ function editContent(event) {
     }
 }
 
+/**
+ * Function to remove a subtasktitle in the add task form
+ * @param {event} event
+ */
 function removeEditClass(event) {
     event.target.classList.remove("editableSpan");
     let spanElement = event.target.parentNode.parentNode.querySelector("span");
@@ -205,6 +289,10 @@ function removeEditClass(event) {
     }
 }
 
+/**
+ * Function to save a new task to firebase by collecting the input values of the add task form
+ * @param {event} event
+ */
 async function createTask(event) {
     event.preventDefault();
     let param = new URLSearchParams(window.location.search);
@@ -237,6 +325,9 @@ async function createTask(event) {
     }
 }
 
+/**
+ * Function to add a new task to the assigned contacts in the allContacts array and update the data in firebase
+ */
 async function addTaskToAssignedContacts() {
     if (checkedContactNamesAndColors.length > 0) {
         let newTaskId = await getIdOfNewTask();
@@ -249,12 +340,24 @@ async function addTaskToAssignedContacts() {
     }
 }
 
+/**
+ * Function to get an array of Task-ID`s of a user that are assigned to him
+ * @param {object} contact
+ * @param {array} arrayOfIds
+ * @returns array
+ */
 function getAllTaskIdsOfUser(contact, arrayOfIds) {
     if (contact.contact[arrayOfIds]) {
         return contact.contact[arrayOfIds];
     }
 }
 
+/**
+ * Function to add a new task-id to one assigned contact
+ * @param {object} contact
+ * @param {array} tasksAssignedTo
+ * @param {string} newTaskId
+ */
 function addTaskToContactInAllContactsArray(contact, tasksAssignedTo, newTaskId) {
     if (!contact.contact[tasksAssignedTo]) {
         contact.contact[tasksAssignedTo] = [newTaskId];
@@ -263,6 +366,10 @@ function addTaskToContactInAllContactsArray(contact, tasksAssignedTo, newTaskId)
     }
 }
 
+/**
+ * Function to get the last task-id in firebase because it is the id of the new task that has to be added to the assigned contacts
+ * @returns the last task-id in firebase
+ */
 async function getIdOfNewTask() {
     let response = await loadData(PATH_TO_TASKS);
     let taskKeysArray = Object.keys(response);

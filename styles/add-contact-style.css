@@ -29,6 +29,20 @@ input {
     color: white;
 }
 
+.border-bottom-add-contact {
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.border-bottom-add-contact::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 90px;
+    border-bottom: 3px solid #01bee8;
+}
+
 .close-container {
     display: flex;
     align-items: center;
@@ -168,4 +182,18 @@ input:focus {
 
 html {
     overflow: hidden;
+}
+
+@media (min-width: 920px) {
+    .add-contact-container {
+        height: 100% !important;
+    }
+    .desktop-view-contact-wrapper {
+        margin-left: 0 !important;
+        margin-top: 0 !important;
+        height: 100% !important;
+    }
+    .placeholder-container {
+        margin-left: 40px;
+    }
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +27,7 @@
                 <a href="/pages/help.html">Help</a>
                 <a href="/pages/impressum.html">Legal Notice</a>
                 <a href="/pages/privacy-policy.html">Privacy Policy</a>
-                <a href="/pages/login-page.html">Log Out</a>
+                <a href="/pages/index.html">Log Out</a>
             </div>
         </div>
         <header>
@@ -35,7 +36,7 @@
                     <img src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
                 </a>
                 <span>Kanban Project Management Tool</span>
-                <div class="right-siede-header">
+                <div class="right-side-header">
                     <div>
                         <img class="ask-btn" src="/assets/icons/ask-btn-no-hover.svg" alt="ask Button" />
                     </div>
@@ -71,12 +72,12 @@
                                             onclick="showContactList()" />
                                         <img src="/assets/icons/arrow-drop-down.svg" alt="closed drop down logo"
                                             id="add-task-contact-drop-down-icon" onclick="showContactList()" />
-                                            <div id="add-task-contact-list-container" class="d-none">
-                                                <ul id="add-task-contacts-list"></ul>
-                                            </div>
+                                        <div id="add-task-contact-list-container" class="d-none">
+                                            <ul id="add-task-contacts-list"></ul>
+                                        </div>
                                     </div>
                                     <div id="name-circle-container" class="d-none"></div>
-                                </div>    
+                                </div>
                             </div>
                             <div class="form-separator"></div>
                             <div class="form-input-wrapper">
@@ -118,18 +119,19 @@
                                     <div id="sub-task-input-container" class="add-task-input-img-container">
                                         <input id="subtask-title" class="add-task-attribute-input grey-placeholder"
                                             type="text" placeholder="Add new Subtask" oninput="showAndHideIcons()" />
-                                        <img id="sub-task-icon-plus" src="/assets/icons/plus-subtask.svg" alt="plus-icon" />
-                                        <img id="sub-task-icon-cross" src="/assets/icons/subtask-cross.svg" alt="cross icon"
-                                            onclick="clearSubtaskInputField()" class="d-none" /><img
+                                        <img id="sub-task-icon-plus" src="/assets/icons/plus-subtask.svg"
+                                            alt="plus-icon" />
+                                        <img id="sub-task-icon-cross" src="/assets/icons/subtask-cross.svg"
+                                            alt="cross icon" onclick="clearSubtaskInputField()" class="d-none" /><img
                                             id="sub-task-icon-vector" src="/assets/icons/subtask-vektor.svg"
                                             alt="vector icon" class="d-none" /><img id="sub-task-icon-check"
-                                            src="/assets/icons/subtask-check.svg" alt="checked icon" onclick="addSubTask()"
-                                            class="d-none" />
+                                            src="/assets/icons/subtask-check.svg" alt="checked icon"
+                                            onclick="addSubTask()" class="d-none" />
                                     </div>
                                     <div id="subtask-list-container">
                                         <ul id="subtask-list"></ul>
                                     </div>
-                                </div>    
+                                </div>
                             </div>
                         </div>
                         <div id="sticky-bottom-container">

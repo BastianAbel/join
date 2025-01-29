@@ -258,7 +258,6 @@ input:focus {
 }
 
 /* Media Query */
-
 @media (max-width: 1410px) {
     #board-main {
         padding-left: 32px;

@@ -1,4 +1,17 @@
-function renderTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, cardTypeColor, assignedUsers) {
+/**
+ * Function to render the detailed view of a task
+ * @param {string} taskId
+ * @param {string} taskTitle
+ * @param {string} taskDescription
+ * @param {string} taskDate
+ * @param {string} taskType
+ * @param {string} taskPriority
+ * @param {string} priorityImage
+ * @param {string} cardTypeColor
+ * @param {string} assignedUsers
+ * @returns HTML string of the big view of a task
+ */
+function renderTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, cardTypeColor, assignedUsers, decodedSubtasks) {
     return `
         <div id="task-big-container" class=" task-overlay-container">
             <div class="userstory-close-container">
@@ -33,7 +46,7 @@ function renderTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskTyp
                     <div class="option-delete"></div><span>Delete</span>
                 </div>
                 <div class="seperator"></div>
-                <div onclick="openEditTaskBigView('${taskTitle}','${taskDescription}','${taskDate}', '${taskPriority}', '${assignedUsers}', '${taskId}')" class="option-container">
+                <div onclick="openEditTaskBigView('${taskTitle}','${taskDescription}','${taskDate}', '${taskPriority}', '${assignedUsers}', '${taskId}', '${encodeURIComponent(JSON.stringify(decodedSubtasks))}')" class="option-container">
                     <div class="option-edit"></div><span>Edit</span>
                 </div>
             </div>

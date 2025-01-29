@@ -2,6 +2,10 @@ let data = [];
 let contentRef = document.getElementById("card-overlay-wrapper");
 let progressBarCalc = "";
 
+/**
+ * Function to get all firebase information that are allready written to session storage
+ * and save them to an array
+ */
 async function getDataFromSessionStorage() {
     let sessionResponse = sessionStorage.getItem("joinJson");
     let sessionResponseJson = JSON.parse(sessionResponse);
@@ -10,6 +14,10 @@ async function getDataFromSessionStorage() {
 }
 getDataFromSessionStorage();
 
+/**
+ * Function to filter task-cards by value in searchbar when the input has a minimum length of 4 characters
+ * @param {event} event
+ */
 function searchTask(event) {
     let searchInput = event.target.value.toLowerCase();
     if (searchInput.length < 4) {
@@ -22,6 +30,10 @@ function searchTask(event) {
     });
 }
 
+/**
+ * Function to render one task-card to the board
+ * @param {object} task
+ */
 function renderSearchResultCard(task) {
     const subtaskState = getSubtaskStatus(task.subtasks);
     const priorityImg = getPriorityImage(task.priority);
@@ -33,11 +45,20 @@ function renderSearchResultCard(task) {
     contentRef.innerHTML += taskCardTemplateToHtml(task, subtaskState, priorityImg, employeesName, progressBarCalc, cardTypeColor);
 }
 
+/**
+ * Function to change the first letters of words in a string to capitalized letters
+ * @param {string} string
+ * @returns string with capitalized words
+ */
 function capitalizeFirstLetter(string) {
     if (string.length === 0) return string;
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+/**
+ * Function to show assigned users initial circles in task-card
+ * @param {array} assignedUsers
+ */
 function createUserContainer(assignedUsers) {
     if (!assignedUsers) {
         return "";
@@ -55,6 +76,11 @@ function createUserContainer(assignedUsers) {
         .join("");
 }
 
+/**
+ * Function to check for assigned users
+ * @param {array} assignedUser
+ * @returns an array of contact obejcts or an empty string
+ */
 function checkUserFolder(assignedUser) {
     if (assignedUser && assignedUser.name) {
         return assignedUser.name;
@@ -65,11 +91,20 @@ function checkUserFolder(assignedUser) {
     }
 }
 
+/**
+ * Function to change color of an initial circle
+ * @param {integer} i
+ */
 function changeBgColorByUserIcons(i) {
     let usersIcons = document.getElementById(`user${i}`);
     usersIcons.style.backgroundColor += getRandomColor();
 }
 
+/**
+ * Function to get the correct icon based on the priority of a task
+ * @param {string} priority
+ * @returns string with priority icon
+ */
 function getPriorityImage(priority) {
     if (priority === "urgent") {
         return "/assets/icons/prio-urgent.svg";
@@ -78,10 +113,13 @@ function getPriorityImage(priority) {
     } else if (priority === "low") {
         return "/assets/icons/prio-low.svg";
     } else {
-        return "./assets/icons/low.svg";
+        return "/assets/icons/prio-low.svg";
     }
 }
 
+/**
+ * Function to reload the board if the searchbar has no input
+ */
 function checkUserSearchInputAndRedirect() {
     let userInput = document.getElementById("user-search-input");
     if (userInput.value.trim() !== "") {
@@ -91,21 +129,28 @@ function checkUserSearchInputAndRedirect() {
     }
 }
 
+/**
+ * Function to get the checked or unchecked state of the subtask of a task
+ * @param {array} subtasks
+ * @returns html-string with state of subtasks of a task
+ */
 function getSubtaskStatus(subtasks) {
     let completedSubtasks = 0;
     let totalSubtasks = subtasks ? subtasks.length : 0;
-
     if (totalSubtasks === 0) {
         statusProgressBar(completedSubtasks, totalSubtasks);
         return "";
     }
-
     completedSubtasks = subtasks.filter((subtask) => subtask.checked).length;
     statusProgressBar(completedSubtasks, totalSubtasks);
-
     return `<span id="state">${completedSubtasks}/${totalSubtasks} ${totalSubtasks === 1 ? "Subtask" : "Subtasks"}</span>`;
 }
 
+/**
+ * Function to get initials of an assigned user of a task based on its name
+ * @param {string} EmployeesName
+ * @returns string with initials based on contacts name
+ */
 function getEmployeesInitials(EmployeesName) {
     if (typeof EmployeesName !== "string") {
         throw new Error("EmployeesName must be a string");
@@ -115,12 +160,17 @@ function getEmployeesInitials(EmployeesName) {
         .join("");
 }
 
+/**
+ * Function to set the progressbar of subtasks in a task-card
+ * @param {integer} completedSubtasks
+ * @param {integer} totalSubtasks
+ * @returns html-string with a progreesbar to display the status of subtasks of a task
+ */
 function statusProgressBar(completedSubtasks, totalSubtasks) {
     if (totalSubtasks === 0) {
         progressBarCalc = "";
         return;
     }
-
     if (!completedSubtasks) {
         progressBarPercent = "0%";
         progressBarCalc = `<div class="progress-bar-wrapper"><div class="progress-bar" role="progressbar" style="width: ${progressBarPercent}"></div></div>`;
@@ -131,6 +181,12 @@ function statusProgressBar(completedSubtasks, totalSubtasks) {
     progressBarCalc = `<div class="progress-bar-wrapper"><div class="progress-bar" role="progressbar" style="width: ${progressBarPercent}"></div></div>`;
 }
 
+/**
+ * Function to set the background-color of a div that contains the information about the type of a task
+ * based on the type
+ * @param {string} taskType
+ * @returns string with background-color based on taskType
+ */
 function changeColorCardType(taskType) {
     if (taskType === "technicalTask") {
         return "background-color:rgba(31,215,193,1)";
@@ -140,6 +196,10 @@ function changeColorCardType(taskType) {
     }
 }
 
+/**
+ * Function to stop the propagation of an event
+ * @param {event} event
+ */
 function stopEventBubbling(event) {
     event.stopPropagation();
 }

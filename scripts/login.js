@@ -4,16 +4,23 @@ const passwordInputRef = document.getElementById("password");
 let users = [];
 let user = {};
 
+/**
+ * Function to login a user and check if the user exists. If the user exists, the user is logged in.
+ * If the user does not exist, a message is displayed to the user.
+ */
 async function userLogin() {
     await fetchUsers();
     const userExists = checkIfUserExists();
-    if(userExists){
+    if (userExists) {
         initiateLogin();
-    }else {
+    } else {
         visualizeNoLoginMatch();
     }
 }
 
+/**
+ * Function to fetch all users from the database and store them in an array of user-objects.
+ */
 async function fetchUsers() {
     let response = await fetch(BASE_URL + PATH_TO_USERS + ".json");
     let fetchedUsers = await response.json();
@@ -30,16 +37,24 @@ async function fetchUsers() {
     }
 }
 
+/**
+ * Function to check if the user exists in an array of user-objects.
+ * @returns {boolean} true if the user exists, false if the user does not exist.
+ */
 function checkIfUserExists() {
     let email = emailInputRef.value;
     let password = passwordInputRef.value;
     user = {};
     user = users.find((user) => user.user.email === email && user.user.password === password);
-    if(user) {
-        return true
+    if (user) {
+        return true;
     }
 }
 
+/**
+ * Function to initiate the login process. The user is logged in and the user's initials are stored in the local storage.
+ * After login, the user is navigated to the summary page.
+ */
 async function initiateLogin() {
     userName = user.user.name;
     localStorage.setItem("userName", userName);
@@ -47,16 +62,23 @@ async function initiateLogin() {
     getUserInitials(userName);
     setLoginInformationToSessionStorage(userName, email, password);
     rememberUser(userKey);
-    await setBackendJsonToSessionStorage()
+    await setBackendJsonToSessionStorage();
     navigateToSummary();
 }
 
+/**
+ * Function to give visual feedback to the user if the login credentials do not match any user.
+ */
 function visualizeNoLoginMatch() {
     document.getElementById("pw-state-message").innerHTML = "Check your email and password. Please try again.";
     passwordInputRef.style.border = "1px solid var(--icon-urgent-red)";
     emailInputRef.style.border = "1px solid var(--icon-urgent-red)";
 }
 
+/**
+ * Function to set the user's initials in the based on his name
+ * @param {string} userName
+ */
 function getUserInitials(userName) {
     if (userName.includes(" ")) {
         let firstName = userName.split(" ")[0].trim().charAt(0).toUpperCase();
@@ -69,6 +91,12 @@ function getUserInitials(userName) {
     }
 }
 
+/**
+ * Function to set the user's login information to the session storage and local storage.
+ * @param {string} userName
+ * @param {string} userEmail
+ * @param {string} userPassword
+ */
 function setLoginInformationToSessionStorage(userName, userEmail, userPassword) {
     userData = {
         "name": userName,
@@ -80,6 +108,10 @@ function setLoginInformationToSessionStorage(userName, userEmail, userPassword) 
     sessionStorage.setItem("freshLogin", true);
 }
 
+/**
+ * Function to set the user credentials to the local storage if the user checks the "remember me"-checkbox.
+ * @param {string} userKey
+ */
 function rememberUser(userKey) {
     let key = userKey;
     let rememberMe = document.getElementById("privacyCheckbox").checked;
@@ -90,6 +122,9 @@ function rememberUser(userKey) {
     }
 }
 
+/**
+ * Function to get the user credentials from the session storage.
+ */
 function loadUserInitials() {
     onlyLoadIfUserOrGuest();
     let userInitials = sessionStorage.getItem("userName");
@@ -101,17 +136,27 @@ function loadUserInitials() {
     }
 }
 
-function setGuestToSessionStorage() {
+/**
+ * Function to set the user's to session storage and local storage if the user logs in as a guest.
+ */
+async function setGuestToSessionStorage() {
     sessionStorage.setItem("loginStatus", "guest");
     localStorage.setItem("guest", true);
     sessionStorage.setItem("freshLogin", true);
+    await setBackendJsonToSessionStorage();
     navigateToSummary();
 }
 
+/**
+ * Function to set the displayed view to summary.html
+ */
 function navigateToSummary() {
     window.location.href = "summary.html";
 }
 
+/**
+ * Function that resets the login warning message if the user starts typing in the input fields.
+ */
 function resetLoginWarning() {
     let pwInput = document.getElementById("password").value;
     if (pwInput === "") {
@@ -121,6 +166,9 @@ function resetLoginWarning() {
     }
 }
 
+/**
+ * Function to remove user credentials from the session storage and local storage at logout.
+ */
 function userLogout() {
     sessionStorage.removeItem("user");
     sessionStorage.removeItem("loginStatus");
@@ -130,6 +178,9 @@ function userLogout() {
     localStorage.removeItem("userName");
 }
 
+/**
+ * Function to load the user credentials from the local storage if the user chose to be remembered.
+ */
 async function autoLogin() {
     let userKey = localStorage.getItem("userkey");
     if (userKey) {
@@ -139,6 +190,10 @@ async function autoLogin() {
     }
 }
 
+/**
+ * Function to find the user in the array of user-objects by the user's key.
+ * @param {string} userKey
+ */
 function findUserByKey(userKey) {
     user = users.find((u) => u.id === userKey);
 }

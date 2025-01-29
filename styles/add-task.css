@@ -8,6 +8,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: #f6f7f9;
     flex: 1;
     margin-top: 74px
 }
@@ -20,7 +21,7 @@ main {
 .add-task-sticky-headline-container {
     width: calc(100% - 32px);
     position: sticky;
-    background-color: var(--light--accent);
+    background-color: #f6f7f9;
     top: 0;
     display: block;
     text-align: left;
@@ -53,6 +54,10 @@ main {
 
 .grey-placeholder::placeholder {
     color: rgba(209, 209, 209);
+}
+
+#sticky-bottom-container {
+    background-color: #f6f7f9 !important;
 }
 
 #prio-container,
@@ -158,12 +163,14 @@ main {
     padding-bottom: 8px;
     bottom: 18px;
     right: 18px;
-    padding-top: 166px;
+    padding-top: 40px;
 }
 
 #edit-submit-changes-btn-container button {
     height: 61px;
     width: 77px;
+    background-color: var(--accent-text-color);
+    color: white;
 }
 
 .add-task-btn {
@@ -177,6 +184,7 @@ main {
     height: 56px;
     padding: 16px;
     transition: all 16ms ease-in-out;
+    border: 1px solid var(--accent-text-color);
 }
 
 #add-task-clear-btn {
@@ -211,7 +219,7 @@ select {
     cursor: pointer;
 
     &:focus {
-        outline: 2px solid var(--identity);
+        outline: 1px solid var(--identity);
     }
 }
 
@@ -226,7 +234,7 @@ select {
 #add-task-contact-container:has(input:focus),
 #add-task-date-container:has(input:focus),
 #add-task-clear-btn:has(input:focus) {
-    border: 2px solid var(--identity);
+    border: 1px solid var(--identity);
 }
 
 .add-task-input-img-container {
@@ -489,5 +497,14 @@ select {
         width: 1px;
         border-radius: 1px;
         margin: 0 48px;
+    }
+}
+
+@media (max-width: 430px ) {
+    .prio-btn span {
+        font-size: 12px;
+    }
+    .task-overlay-container {
+        width: unset!important;
     }
 }
