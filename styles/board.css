@@ -228,21 +228,31 @@ input:focus {
     cursor: pointer;
 }
 
-.card-overlay-wrapper {
-    display: none;
-    flex-direction: row;
-    width: 1208px;
-    height: 100%;
-    gap: 16px;
-    position: absolute;
-    background-color: #f6f7f8;
-}
-
 .board-prio-headline-div {
     width: 252px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.search-task-result-main-container {
+    width: calc(1920px - 296px);
+    height: 100vh;
+    display: none;
+    position: absolute;
+    background-color: #f6f7f8;
+    z-index: 3;
+    border: solid 2px black;
+}
+
+.search-result-task-content-container {
+    display: flex;
+    height: 688px;
+    flex: 1;
+    gap: 16px;
+    flex-direction: row;
+    overflow-y: auto;
+    border: solid 2px greenyellow;
 }
 
 .draggable {
@@ -291,7 +301,6 @@ input:focus {
 @media (max-width: 1305px) {
     #board-main {
         padding-left: 6px;
-
     }
 }
 
@@ -315,11 +324,11 @@ input:focus {
 
     .progress-content {
         width: 100%;
-        max-width: 396px ;
-        height: 48px ;
+        max-width: 396px;
+        height: 48px;
     }
 
-    .card-overlay-wrapper{
+    .card-overlay-wrapper {
         flex-direction: column;
         overflow-y: auto !important;
         height: 100%;
@@ -335,7 +344,25 @@ input:focus {
         margin: 0;
         width: 100%;
         max-width: 396px;
-        
+    }
+
+    .search-task-result-main-container {
+        width: 100%;
+        max-width: 396px;
+        height: 100vh;
+        display: none;
+        position: relative;
+        background-color: #f6f7f8;
+        z-index: 3;
+    }
+
+    .search-result-task-content-container {
+        width: 100%;
+        height: auto;
+        align-items: center;
+        flex-direction: column;
+        border: solid 2px red;
+        padding-bottom: 16px;
     }
 }
 
@@ -391,8 +418,8 @@ input:focus {
     }
 
     .progress-content {
-        width: 264px; 
-        height: 48px ;
+        width: 264px;
+        height: 48px;
     }
 
     .progress-content span {
