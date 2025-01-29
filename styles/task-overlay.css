@@ -15,6 +15,7 @@
     z-index: 1000;
     overflow-y: auto;
     animation: slide-in 0.3s ease-out forwards;
+    justify-content: space-between;
 }
 
 .edit-task-container {
@@ -136,6 +137,8 @@ tr {
     display: flex;
     flex-direction: column;
     gap: 4px;
+    max-height: 280px;
+    overflow-y: auto;
 }
 
 .contact {
