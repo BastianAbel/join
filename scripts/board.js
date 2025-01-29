@@ -70,16 +70,21 @@ function getEmployeeInfo(assignedUsers) {
     if (typeof assignedUsers === "string") {
         assignedUsers = assignedUsers.split(",");
     }
-    for (let index = 0; index < assignedUsers.length; index++) {
-        let bgColor = getRandomColor();
-        document.getElementById("assignedContacts").innerHTML += `
-        <div class="contact">
-            <div class="contact-info">
-                <div style="background-color: ${bgColor}" class="contact-img">${getEmployeesInitials(assignedUsers[index])}</div><span>${assignedUsers[index]}</span>
+    
+    if(assignedUsers.length> 0 && assignedUsers[0] !== "" ){
+        for (let index = 0; index < assignedUsers.length; index++) {
+            let bgColor = getRandomColor();
+            document.getElementById("assignedContacts").innerHTML += `
+            <div class="contact">
+                <div class="contact-info">
+                    <div style="background-color: ${bgColor}" class="contact-img">${getEmployeesInitials(assignedUsers[index])}</div><span>${assignedUsers[index]}</span>
+                </div>
             </div>
-        </div>
-        `;
+            `;
+        }
     }
+    
+    
 }
 
 /**
