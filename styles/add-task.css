@@ -346,7 +346,10 @@ select {
     display: flex;
     align-items: center;
     margin-top: -16px;
-    margin-bottom: 24px;
+}
+
+#require-info-container p {
+    margin: 0;
 }
 
 #sticky-bottom-container {
@@ -462,7 +465,12 @@ select {
     width: 95%;
 }
 
-
+.requirementInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+}
 
 @media(min-width: 1200px) {
     #inner-form-container {

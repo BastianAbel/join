@@ -31,7 +31,6 @@ function onlyLoadIfUserOrGuest() {
     }
 }
 
-
 const inputFeedback = document.getElementById("input-feedback-container");
 
 function inputsFilled(...inputs) {
