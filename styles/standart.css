@@ -54,7 +54,7 @@ body {
 
 main {
     height: calc(100vh - 160px);
-    overflow-y: auto;
+    /* overflow-y: auto; */
 }
 
 @media (min-width: 920px) {

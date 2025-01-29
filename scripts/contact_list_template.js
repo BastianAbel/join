@@ -20,7 +20,7 @@ function renderContactSection(letter) {
  */
 function renderContactListContact(contact, initials, id) {
 
-    return `<div id="${id}" onclick="contactBigView('${contact.name}','${contact.email}', '${contact.phone}','${initials}', '${id}', )" class="contactlist-contact">
+    return `<div id="${id}" onclick="contactBigView('${contact.name}','${contact.email}', '${contact.phone}','${initials}', '${id}', )" class="contactlist-contact contactlist-contact-hover">
 
                     <div id="profile-picture(${id})" class="profile-picture test-profile-picture-background">
                         <span>${initials}</span>

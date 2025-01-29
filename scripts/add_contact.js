@@ -48,33 +48,24 @@ async function createContact(event) {
     const EMAIL_INPUT = document.getElementById("add-contact-email-input-field");
     const PHONE_INPUT = document.getElementById("add-contact-phone-input-field");
     const NAME_INPUT = document.getElementById("add-contact-name-input-field");
-    let newContact = {
-        "email": EMAIL_INPUT.value,
-        "name": NAME_INPUT.value,
-        "phone": PHONE_INPUT.value,
-    };
+    let newContact = { email: EMAIL_INPUT.value, name: NAME_INPUT.value, phone: PHONE_INPUT.value };
 
+    if (!newContact.email || !newContact.name || !newContact.phone) return;
     try {
-        if (newContact["email"] !== "" && newContact["name"] !== "" && newContact["phone"] !== "") {
-            await postData(PATH_TO_CONTACTS, newContact);
-            await setBackendJsonToSessionStorage();
-            let newId = await getIdOfNewContact();
-            allContacts.push({
-                id: newId,
-                contact: newContact,
-                color: newColor,
-            });
-            document.getElementById("window-overlay").classList.add("d-none");
-            document.getElementById("profileBtn").style.backgroundColor = "white";
-            document.getElementById("main-content").innerHTML = renderNewContact(newContact.name, newContact.email, initials, newId, newColor, newContact.phone);
-            document.getElementById("add-contact-success-div").classList.remove("d-none");
-            document.getElementById("add-contact-success-div").classList.add("slide-up-success");
-            setTimeout(() => {
-                document.getElementById("add-contact-success-div").classList.remove("slide-up-success");
-                document.getElementById("add-contact-success-div").classList.add("slide-down-success");
-            }, 1500);
-        }
-    } catch (error) {
-        console.error("Fehler beim Erstellen des Kontaktes:", error);
-    }
+        await postData(PATH_TO_CONTACTS, newContact);
+        await setBackendJsonToSessionStorage();
+        let newId = await getIdOfNewContact();
+        allContacts.push({ id: newId, contact: newContact, color: newColor });
+        document.getElementById("single-contact-view").innerHTML = renderNewContact(newContact.name, newContact.email, initials, newId, newColor, newContact.phone);
+        ["addContactContainer", "window-overlay"].forEach(id => document.getElementById(id).classList.add("d-none"));
+
+        let successDiv = document.getElementById("add-contact-success-div");
+        successDiv.classList.remove("d-none", "slide-down-success");
+        successDiv.classList.add("slide-up-success");
+        setTimeout(() => {
+            successDiv.classList.replace("slide-up-success", "slide-down-success");
+            setTimeout(() => successDiv.classList.add("d-none"), 500);
+        }, 1500);
+    } catch (error) { console.error("Fehler beim Erstellen des Kontaktes:", error); }
 }
+

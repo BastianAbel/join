@@ -1,6 +1,8 @@
 const CONTACT_LIST_CONTAINER = document.getElementById("contact-list-container");
 let allContacts = [];
 let firstLetters = [];
+let cardId = "";
+let activeContactId = null;
 
 /**
  *
@@ -63,10 +65,21 @@ function navigateToContactList() {
  * @param {string} contact
  */
 function contactBigView(name, email, phone, initials, id, contact) {
+    if (activeContactId !== null) {
+        let prevElement = document.getElementById(`${activeContactId}`);
+        if (prevElement) {
+            prevElement.style.backgroundColor = ''; 
+            prevElement.style.color = ''; 
+        }
+    }
+    let newActiveElement = document.getElementById(`${id}`);
+    newActiveElement.style.backgroundColor = 'var(--dark-background)';
+    newActiveElement.style.color = 'white';
+    activeContactId = id;
     let color = allContacts.find((e) => e.id == id).color;
     document.getElementById("single-contact-view").innerHTML = renderSingleContactView(name, email, phone, initials, id, color, contact);
-    document.getElementById("single-contact-view").style="display: block";
-    document.getElementById("add-contact-button").style="display: none";
+    document.getElementById("single-contact-view").style.display = "block";
+    document.getElementById("add-contact-button").style.display = "none";
 }
 
 /**
@@ -139,6 +152,7 @@ function openAddContactView() {
     document.getElementById("profileBtn").style.backgroundColor = "white";
     document.getElementById("window-overlay").classList.remove("d-none");
     document.getElementById("main-content").innerHTML += renderAddContactView();
+    document.getElementById("single-contact-view").style.display = "block";
 }
 
 /**

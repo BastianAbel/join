@@ -3,17 +3,13 @@
     --contactlist-element-width: 100%;
 }
 
-main {
-    overflow-x: auto;
-}
-
 .contactlist-container {
     display: flex;
     flex-direction: column;
-    margin: 24px 0;
     padding: var(--contactlist-element-padding);
     height: calc(100vh - 80px);
     overflow-x: auto;
+    background-color: white;
 }
 
 .contactlist-category {
@@ -41,6 +37,11 @@ main {
 
 .contactlist-contact:hover {
     background-color: var(--light-background);
+}
+
+.contactlist-contact-active {
+    background-color: var(--dark-background);
+    color: white;
 }
 
 .contactlist-contact .profile-picture {
@@ -117,9 +118,14 @@ main {
         padding: 24px 0 0 0;
     }
     .contactlist-contact:hover {
+        background-color: var(--light-background);
+    }
+
+    .contactlist-contact-active {
         background-color: var(--dark-background);
         color: white;
     }
+    
     .big-contact-container {
         width: calc(100vw - 260px) !important;
         height: 592px !important;
