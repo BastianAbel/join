@@ -293,7 +293,7 @@ function getObjectWithValuesNeededInBoardCard(task) {
         task: task,
         subtaskState: getSubtaskStatus(task.subtasks),
         prioImg: getPriorityImage(task.priority),
-        employeesName: createUserContainer(task.assignedTo),
+        employeesName: createUserContainer(getArrayFromObject(task.assignedTo)),
         color: changeColorCardType(task.type),
     };
 }
