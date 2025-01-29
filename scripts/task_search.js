@@ -39,8 +39,9 @@ function renderSearchResultCard(task) {
     const priorityImg = getPriorityImage(task.priority);
     const employeesName = createUserContainer(task.assignedTo);
     const cardTypeColor = changeColorCardType(task.type);
-    const searchResultContainer = document.getElementById("card-overlay-wrapper")
-    searchResultContainer.style.zIndex = "10000";
+    const searchResultContainer = document.getElementById("card-overlay-wrapper");
+    searchResultContainer.style.zIndex = "3";
+    searchResultContainer.style.display = "flex";
     contentRef.innerHTML += taskCardTemplateToHtml(task, subtaskState, priorityImg, employeesName, progressBarCalc, cardTypeColor);
 }
 
@@ -59,10 +60,15 @@ function capitalizeFirstLetter(string) {
  * @param {array} assignedUsers
  */
 function createUserContainer(assignedUsers) {
+    moreUserTemplate = "";
     if (!assignedUsers) {
         return "";
     }
-    return assignedUsers
+    if(assignedUsers.length > 6) {
+        moreUserTemplate = `<div class="more-users"><span>...</span></div>`
+    }
+    assignedUsers = assignedUsers
+        .slice(0, 6)
         .map((user) => {
             const userContainer = document.createElement("div");
             userContainer.className = "user";
@@ -73,6 +79,8 @@ function createUserContainer(assignedUsers) {
             return userContainer.outerHTML;
         })
         .join("");
+    assignedUsers = assignedUsers + moreUserTemplate;
+    return assignedUsers;
 }
 
 /**

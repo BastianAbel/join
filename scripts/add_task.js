@@ -22,9 +22,6 @@ let filteredNamesAndColors = [];
 let checkedContactNamesAndColors = [];
 let subtaskList = [];
 let editSubtaskListArray = [];
-// let allUsers = [];
-// let allContacts = [];
-// let checkedUsersNamesAndColors = [];
 let taskPrio = "";
 
 /**
@@ -365,6 +362,12 @@ async function createTask(event) {
     } catch (error) {
         console.error("Fehler beim Erstellen der Aufgabe:", error);
     }
+
+    navigateToBoard();
+}
+
+function navigateToBoard() {
+    window.location.href = "board.html";
 }
 
 /**

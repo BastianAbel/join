@@ -135,16 +135,6 @@ function changeStateofCheckbox(i, taskId) {
 }
 
 /**
- * Function to save contact objects that are checked as assigned contacts to an array
- * @param {string} taskId 
- */
-function loadCardContactsInArray(taskId) {
-    let currentTask = getTaskFromArrayById(allTasks, taskId);
-    helperArray = currentTask.assignedTo;
-    editCheckedContactNamesAndColors = editFilteredNamesAndColors.filter((contact) => helperArray.includes(contact.name));
-}
-
-/**
  * Function to open the detailed view to edit a task
  * @param {string} taskTitle
  * @param {string} taskDescription

@@ -17,7 +17,6 @@ body {
 
 #board-main {
     padding: 0;
-    background-color: rgb(246, 247, 248);
     height: calc(100vh - 160px);
     overflow-x: auto !important;
     padding-left: 64px;
@@ -150,6 +149,7 @@ input:focus {
     outline: none;
     height: 32px;
     border: none;
+    outline: none !important;
     flex: 1;
 }
 
@@ -180,6 +180,7 @@ input:focus {
     gap: 16px;
     padding: 12px 0;
     overflow-y: auto !important;
+    min-height: 263px;
 }
 
 .progress-content {
@@ -195,6 +196,7 @@ input:focus {
     gap: 16px;
     margin-bottom: 48px;
     z-index: 1;
+    margin-top: 11px;
 }
 
 .to-do-content span {
@@ -207,6 +209,10 @@ input:focus {
 
 .board-progress-state img {
     cursor: pointer;
+}
+
+.board-progress-state-wrapper {
+    margin-top: 16px;
 }
 
 .in-progress-content,
@@ -222,11 +228,13 @@ input:focus {
     cursor: pointer;
 }
 
-#card-overlay-wrapper {
-    display: flex;
+.card-overlay-wrapper {
+    display: none;
     flex-direction: row;
     width: 1208px;
     height: 100%;
+    gap: 16px;
+    position: absolute;
     background-color: #f6f7f8;
 }
 
@@ -283,6 +291,7 @@ input:focus {
 @media (max-width: 1305px) {
     #board-main {
         padding-left: 6px;
+
     }
 }
 
@@ -304,6 +313,19 @@ input:focus {
         margin-right: 0;
     }
 
+    .progress-content {
+        width: 100%;
+        max-width: 396px ;
+        height: 48px ;
+    }
+
+    .card-overlay-wrapper{
+        flex-direction: column;
+        overflow-y: auto !important;
+        height: 100%;
+        max-width: 396px;
+    }
+
     .section-three,
     .section-four,
     .section-five,
@@ -313,7 +335,6 @@ input:focus {
         margin: 0;
         width: 100%;
         max-width: 396px;
-        z-index: 2;
         
     }
 }
@@ -366,13 +387,12 @@ input:focus {
     .board-progress-state {
         flex-direction: column;
         gap: 16px;
-        margin-top: 16px;
         overflow-y: auto !important;
     }
 
     .progress-content {
-        width: 264px !important;
-        height: 48px;
+        width: 264px; 
+        height: 48px ;
     }
 
     .progress-content span {
