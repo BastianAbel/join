@@ -505,6 +505,12 @@ select {
     }
 }
 
+@media(max-width: 920px) {
+    #inner-form-container {
+        margin-top: 90px;
+    }
+}
+
 @media (max-width: 430px ) {
     .prio-btn span {
         font-size: 12px;
@@ -513,3 +519,14 @@ select {
         width: unset!important;
     }
 }
+
+@media(max-width: 400px) {
+    .add-task-btn {
+        padding: 8px;
+    }
+
+    #inner-form-container {
+        margin-top: 100px;
+    }
+}
+
