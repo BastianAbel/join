@@ -56,6 +56,7 @@ async function getAllContactsNames() {
     onlyLoadIfUserOrGuest();
     loadUserInitials();
     await loadAllContacts();
+    console.log(allContacts);
     let contactsNamesAndColors = allContacts.map((entry) => ({
         name: entry.contact.name.replace(/[^a-zA-ZöüäÖÜÄ ]/g, ""),
         color: entry.color,
@@ -215,7 +216,8 @@ function checkContact(event, data) {
 /**
  * Function to show a list of initials-circles of the assigned contacts in the add task form
  */
-function showContactList() {
+function showContactList(event) {
+    event.stopPropagation();
     if (event.currentTarget == event.target) {
         TASK_CONTACT_LIST_CONTAINER.classList.toggle("d-none");
         if (!TASK_CONTACT_LIST_CONTAINER.classList.contains("d-none")) {
@@ -415,3 +417,12 @@ async function getIdOfNewTask() {
     let taskKeysArray = Object.keys(response);
     return taskKeysArray[taskKeysArray.length - 1];
 }
+
+document.addEventListener("click", function(event){
+    event.stopPropagation();
+    if(!TASK_CONTACT_LIST_CONTAINER.contains(event.target)){
+        
+        TASK_CONTACT_LIST_CONTAINER.classList.add("d-none");
+    }
+    
+})

@@ -66,13 +66,13 @@
                                 <div class="add-task-attribute-container">
                                     <label for="task-contact-input">Assigned to</label>
                                     <div id="add-task-contact-container" class="add-task-input-img-container button"
-                                        onclick="showContactList()">
+                                        onclick="showContactList(event)">
                                         <input type="text" id="task-contact-input"
                                             class="add-task-attribute-input button"
                                             placeholder="Select contacts to assign" oninput="filterInput(event)"
-                                            onclick="showContactList()" />
+                                            onclick="showContactList(event)" />
                                         <img src="/assets/icons/arrow-drop-down.svg" alt="closed drop down logo"
-                                            id="add-task-contact-drop-down-icon" onclick="showContactList()" />
+                                            id="add-task-contact-drop-down-icon" onclick="showContactList(event)" />
                                         <div id="add-task-contact-list-container" class="d-none">
                                             <ul id="add-task-contacts-list"></ul>
                                         </div>
