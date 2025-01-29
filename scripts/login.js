@@ -21,21 +21,6 @@ async function userLogin() {
     }
 }
 
-const inputFeedback = document.getElementById("input-feedback-container");
-
-function inputsFilled(...inputs) {
-    let filled = true;
-    for(let i = 0; i < inputs.length; i++) {
-        const input = document.getElementById(inputs[i]);
-        if (!input.value) {
-            filled = false;
-            input.classList.add("not-valid");
-            inputFeedback.innerHTML = "Inputs must be filled!"
-        }
-    }
-    return filled
-}
-
 /**
  * Function to fetch all users from the database and store them in an array of user-objects.
  */

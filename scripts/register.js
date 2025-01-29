@@ -2,7 +2,7 @@ const passwordInput = document.getElementById("password");
 const confirmPasswordInput = document.getElementById("confirmPassword");
 const userNameInput = document.getElementById("username");
 const emailInput = document.getElementById("email");
-const passwordFeedbackRef = document.getElementById("pw-state-message");
+const passwordFeedbackRef = document.getElementById("input-feedback-container");
 const signupPopup = document.getElementById("register-popup");
 
 /**
