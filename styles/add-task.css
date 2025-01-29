@@ -40,7 +40,12 @@ main {
     margin-bottom: 24px;
     font-size: 16px;
     padding-left: 8px;
-    font-family: inter;
+    font-family: inter; 
+}
+
+#hiddenDateInput{
+    position: absolute; 
+    opacity: 0;
 }
 
 .add-task-attribute-input input {
@@ -332,7 +337,6 @@ select {
 
 #add-task-date-container {
     margin-bottom: 24px;
-    padding: 0 24px 0 8px;
 }
 
 #require-info-container {
@@ -448,6 +452,8 @@ select {
     margin: 0;
     width: 95%;
 }
+
+
 
 @media(min-width: 1200px) {
     #inner-form-container {

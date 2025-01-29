@@ -86,7 +86,9 @@
                                     <div id="add-task-date-container" class="add-task-input-img-container">
                                         <input id="task-due-date" class="add-task-attribute-input grey-placeholder"
                                             type="text" placeholder="dd/mm/yyyy" oninput="formatDateInput()" required />
-                                        <img src="/assets/icons/calender.svg" alt="calender icon" />
+                                        <img src="/assets/icons/calender.svg" alt="calender icon"
+                                            onclick="openDatePicker(event)" />
+                                        <input type="date" id="hiddenDateInput" onchange="updateDateField()">
                                     </div>
                                 </div>
                                 <div class="add-task-attribute-container">

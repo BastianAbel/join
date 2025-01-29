@@ -121,6 +121,40 @@ function clearAllInputAddTask() {
 }
 
 /**
+ * Function to open a datePicker-tool under the position of the event-target
+ * @param {event} event 
+ */
+function openDatePicker(event) {
+    let dateInput = document.getElementById('hiddenDateInput');
+    let target = event.target;
+    const rect = target.getBoundingClientRect();
+    dateInput.style.left = `${rect.left - 190}px`;
+    dateInput.style.top = `${rect.bottom}px`;
+    dateInput.style.visibility = 'visible';
+    dateInput.offsetHeight;
+    dateInput.showPicker();
+}
+
+/**
+ * Function to format a datestring from a datepicker to a needed format
+ * @param {dateString} dateString 
+ * @returns {string} in formatted design
+ */
+function formatDate(dateString){
+    if(!dateString){ return "";}
+    let stringParts = dateString.split("-");
+    return `${stringParts[2]}/${stringParts[1]}/${stringParts[0]}`;
+}
+
+/**
+ * Function to set a formatted string as a value of an input-field
+ */
+function updateDateField() {
+    let dateInput = document.getElementById("hiddenDateInput");
+    DUE_DATE_INPUT.value = formatDate(dateInput.value);
+}
+
+/**
  * Function to set the priority of a task to urgent
  */
 function setUrgentPrio() {
