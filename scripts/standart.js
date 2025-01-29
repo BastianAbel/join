@@ -36,7 +36,7 @@ function inputsFilled(...inputs) {
     let filled = true;
     for(let i = 0; i < inputs.length; i++) {
         const input = document.getElementById(inputs[i]);
-        if (!input.value && input.innerHTML === "") {
+        if (!input.value && input.value === "") {
             filled = false;
             input.classList.add("not-valid");
             inputFeedback.innerHTML = "Inputs must be filled!"
