@@ -45,6 +45,9 @@ async function getIdOfNewContact() {
  */
 async function createContact(event) {
     event.preventDefault();
+    if(!inputsFilled('add-contact-name-input-field', 'add-contact-email-input-field', 'add-contact-phone-input-field')) {
+        return
+    }
     const EMAIL_INPUT = document.getElementById("add-contact-email-input-field");
     const PHONE_INPUT = document.getElementById("add-contact-phone-input-field");
     const NAME_INPUT = document.getElementById("add-contact-name-input-field");

@@ -31,9 +31,8 @@ function onlyLoadIfUserOrGuest() {
     }
 }
 
-const inputFeedback = document.getElementById("input-feedback-container");
-
 function inputsFilled(...inputs) {
+    const inputFeedback = document.getElementById("input-feedback-container");
     let filled = true;
     for(let i = 0; i < inputs.length; i++) {
         const input = document.getElementById(inputs[i]);
@@ -47,6 +46,7 @@ function inputsFilled(...inputs) {
 }
 
 function resetNotFilledResponse(element) {
+    const inputFeedback = document.getElementById("input-feedback-container");
     const input = element;
         input.classList.remove("not-valid");
         inputFeedback.innerHTML = "";
