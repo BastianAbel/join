@@ -289,6 +289,8 @@ function writeCardsToBoardSectionsFromArray(array) {
  * @returns object with needed values
  */
 function getObjectWithValuesNeededInBoardCard(task) {
+    let helperAssignedArray=[];
+    if(!task.assignedTo){task.assignedTo=helperAssignedArray;}
     return {
         task: task,
         subtaskState: getSubtaskStatus(task.subtasks),
