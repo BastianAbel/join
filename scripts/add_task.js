@@ -333,7 +333,7 @@ function removeEditClass(event) {
  */
 async function createTask(event) {
     event.preventDefault();
-    if(!inputsFilled('task-title', 'add-task-date-container', 'task-category-select')) {
+    if(!inputsFilled('task-title', 'task-due-date', 'task-category-select')) {
         return
     }
     let param = new URLSearchParams(window.location.search);
