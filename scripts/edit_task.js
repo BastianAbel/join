@@ -156,12 +156,14 @@ function getTaskFromArrayById(array, id) {
  * Function to show the list of contacts that can be assigned to a task in the detailed view to edit a task
  */
 function editShowContactList(event, taskId) {
+    event.preventDefault();
     let editTaskContactListContainer = document.getElementById("edit-task-contact-list-container");
     let editTaskDropDownIcon = document.getElementById("edit-task-contact-drop-down-icon");
     let editNameCircleContainer = document.getElementById("edit-name-circle-container");
     let currentTask = getTaskFromArrayById(allTasks, taskId);
     helperArray = currentTask.assignedTo;
     editCheckedContactNamesAndColors = editFilteredNamesAndColors.filter((contact) => helperArray.includes(contact.name));
+    setContactAssignedToChecked(currentTask.assignedTo, editCheckedContactNamesAndColors);
     if (event.currentTarget == event.target) {
         editTaskContactListContainer.classList.toggle("d-none");
         if (!editTaskContactListContainer.classList.contains("d-none")) {
@@ -178,7 +180,7 @@ function editShowContactList(event, taskId) {
             editNameCircleContainer.classList.remove("open-circle-container");
         }
     }
-    setContactAssignedToChecked(currentTask.assignedTo, editFilteredNamesAndColors);
+    
 }
 
 /**
@@ -222,10 +224,10 @@ function editAddSubTask() {
  */
 function editClearSubtaskInputField() {
     document.getElementById("edit-subtask-title").value = "";
-    document.getElementById("edit-sub-task-icon-plus").classList.remove("d_none");
-    document.getElementById("edit-sub-task-icon-cross").classList.add("d_none");
-    document.getElementById("edit-sub-task-icon-vector").classList.add("d_none");
-    document.getElementById("edit-sub-task-icon-check").classList.add("d_none");
+    document.getElementById("edit-sub-task-icon-plus").classList.remove("d-none");
+    document.getElementById("edit-sub-task-icon-cross").classList.add("d-none");
+    document.getElementById("edit-sub-task-icon-vector").classList.add("d-none");
+    document.getElementById("edit-sub-task-icon-check").classList.add("d-none");
 }
 
 /**
@@ -238,10 +240,10 @@ function editShowAndHideIcons() {
     let editSubtaskIconVector = document.getElementById("edit-sub-task-icon-vector");
     let editSubtaskIconCheck = document.getElementById("edit-sub-task-icon-check");
     if (editSubtaskInput.value.length > 0) {
-        editSubtaskIconPlus.classList.add("d_none");
-        editSubtaskIconCross.classList.remove("d_none");
-        editSubtaskIconVector.classList.remove("d_none");
-        editSubtaskIconCheck.classList.remove("d_none");
+        editSubtaskIconPlus.classList.add("d-none");
+        editSubtaskIconCross.classList.remove("d-none");
+        editSubtaskIconVector.classList.remove("d-none");
+        editSubtaskIconCheck.classList.remove("d-none");
     }
 }
 

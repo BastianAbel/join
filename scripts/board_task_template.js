@@ -133,10 +133,10 @@ function renderEditTaskBigView(taskId, taskPriority) {
                     onclick="editShowContactList(event,'${taskId}')"
                 />
             </div>
-            <div id="edit-task-contact-list-container" class="d_none">
+            <div id="edit-task-contact-list-container" class="d-none">
                 <ul id="edit-task-contacts-list"></ul>
             </div>
-            <div id="edit-name-circle-container" class="d_none"></div>
+            <div id="edit-name-circle-container" class="d-none"></div>
         </div>
 
         <div class="add-task-attribute-container">
@@ -155,20 +155,20 @@ function renderEditTaskBigView(taskId, taskPriority) {
                     src="/assets/icons/subtask-cross.svg"
                     alt="cross icon"
                     onclick="editClearSubtaskInputField()"
-                    class="d_none"
+                    class="d-none"
                 />
                 <img
                     id="edit-sub-task-icon-vector"
                     src="/assets/icons/subtask-vektor.svg"
                     alt="vector icon"
-                    class="d_none"
+                    class="d-none"
                 />
                 <img
                     id="edit-sub-task-icon-check"
                     src="/assets/icons/subtask-check.svg"
                     alt="checked icon"
                     onclick="editAddSubTask()"
-                    class="d_none"
+                    class="d-none"
                 />
             </div>
             <div id="edit-subtask-list-container">
