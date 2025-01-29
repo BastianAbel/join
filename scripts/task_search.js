@@ -60,10 +60,14 @@ function capitalizeFirstLetter(string) {
  * @param {array} assignedUsers
  */
 function createUserContainer(assignedUsers) {
+    moreUserTemplate = "";
     if (!assignedUsers) {
         return "";
     }
-    return assignedUsers
+    if(assignedUsers.length > 6) {
+        moreUserTemplate = `<div class="more-users"><span>...</span></div>`
+    }
+    assignedUsers = assignedUsers
         .slice(0, 6)
         .map((user) => {
             const userContainer = document.createElement("div");
@@ -75,6 +79,8 @@ function createUserContainer(assignedUsers) {
             return userContainer.outerHTML;
         })
         .join("");
+    assignedUsers = assignedUsers + moreUserTemplate;
+    return assignedUsers;
 }
 
 /**
