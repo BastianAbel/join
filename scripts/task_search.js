@@ -64,6 +64,7 @@ function createUserContainer(assignedUsers) {
         return "";
     }
     return assignedUsers
+        .slice(0, 6)
         .map((user) => {
             const userContainer = document.createElement("div");
             userContainer.className = "user";
