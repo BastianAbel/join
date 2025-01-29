@@ -50,9 +50,11 @@ input {
     padding-top: 24px;
     padding-right: 24px;
     cursor: pointer;
+
     img {
         padding: 9px;
     }
+
     & :hover {
         background-color: var(--identity);
         border-radius: 50%;
@@ -95,12 +97,14 @@ input {
     border-radius: 50%;
     border: 2px solid white;
 }
+
 & #add-contact-initials-paragraph {
     text-align: center;
     font-size: 47px;
     font-weight: 500;
     color: white;
 }
+
 #add-contact-initials-paragraph {
     color: white;
 }
@@ -188,6 +192,7 @@ html {
     .add-contact-container {
         height: 100% !important;
     }
+
     .desktop-view-contact-wrapper {
         margin-left: 0 !important;
         margin-top: 0 !important;
@@ -195,5 +200,12 @@ html {
     }
     .placeholder-container {
         margin-left: 40px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .border-bottom {
+        white-space: nowrap;
+        font-size: 32px;
     }
 }

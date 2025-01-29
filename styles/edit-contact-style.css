@@ -1,6 +1,6 @@
 .big-contact-container {
     height: calc(100vh - 180px);
-    width: calc(100vw - 32px);
+    max-width: 1440px;
     border-radius: 30px;
     position: absolute;
     top: 80px;
@@ -246,10 +246,15 @@ input:focus {
         margin-left: 140px !important;
     }
     .input-button-desktop-wrapper {
-        margin-left: 40px !important;
         margin-top: 160px;
     }
     .input-button-desktop-wrapper input {
         padding-right: 60px;
     }
+}
+
+@media (max-width: 920px) {
+    .big-contact-container {
+        width: calc(100vw - 32px) !important;
+    } 
 }

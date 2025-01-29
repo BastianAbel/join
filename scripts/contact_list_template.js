@@ -203,7 +203,7 @@ return`
                 <div class="input-container">
                     <input 
                         id="add-contact-phone-input-field" 
-                        type="tel" 
+                        type="number" 
                         placeholder="Phone" 
                         required 
                     />

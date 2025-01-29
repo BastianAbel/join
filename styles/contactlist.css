@@ -121,10 +121,11 @@ main {
         color: white;
     }
     .big-contact-container {
-        width: 1212px !important;
+        width: calc(100vw - 260px) !important;
         height: 592px !important;
         display: flex;
     }
+    
     .add-contact-container {
         height: 100% !important;
         border-top-right-radius: 0px !important;
