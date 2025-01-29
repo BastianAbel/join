@@ -245,7 +245,6 @@ select {
     align-items: center;
     height: fit-content;
     margin-top: 8px;
-    margin-bottom: 8px;
     padding-right: 4px;
 }
 
@@ -364,6 +363,11 @@ select {
     margin-right: 4px;
 }
 
+#subtask-list-container {
+    max-height: 112px;
+    overflow-y: auto;
+}
+
 #edit-subtask-list-container {
     margin-left: 32px;
     margin-right: 16px;
@@ -439,6 +443,7 @@ select {
     width: 100%;
     display: flex;
     justify-content: center;
+    z-index: 1;
 }
 
 #add-task-contacts-list {
