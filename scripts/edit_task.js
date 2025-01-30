@@ -1,4 +1,4 @@
-let editCheckedUsersNamesAndColors = [];
+// let editCheckedUsersNamesAndColors = [];
 let editCheckedContactNamesAndColors = [];
 let editNewTask = {};
 let editContactNames = [];
@@ -10,7 +10,7 @@ let helperArray = [];
  * @param {array} array
  * @param {HTML-element} element
  */
-function addContactNamesToList(array, element) {
+function editAddContactNamesToList(array, element) {
     element.innerHTML = "";
     for (let j = 0; j < array.length; j++) {
         let name = array[j].name;
@@ -98,9 +98,10 @@ function editSetLowPrio() {
  * @param {event} event
  */
 function editFilterInput(event) {
+    editFilteredNamesAndColors = [];
     let editTaskContactList = document.getElementById("edit-task-contacts-list");
     editFilteredNamesAndColors = filterInputFromArray(editCheckedContactNamesAndColors, event.target.value);
-    addContactNamesToList(editFilteredNamesAndColors, editTaskContactList);
+    editAddContactNamesToList(editFilteredNamesAndColors, editTaskContactList);
 }
 
 /**
@@ -139,6 +140,7 @@ function getTaskFromArrayById(array, id) {
  */
 function editShowContactList(event, taskId) {
     event.preventDefault();
+    editCheckedContactNamesAndColors = [];
     let editTaskContactListContainer = document.getElementById("edit-task-contact-list-container");
     let editTaskDropDownIcon = document.getElementById("edit-task-contact-drop-down-icon");
     let editNameCircleContainer = document.getElementById("edit-name-circle-container");
