@@ -92,7 +92,7 @@ function createUserContainer(assignedUsers) {
  */
 function getColorFromArrayByName(array, nameOfUser) {
     let colorCode;
-    if (array.length > 0) {
+    if (array.length > 0 && nameOfUser) {
         const entry = array.find(entry => entry.name === nameOfUser);
         colorCode = entry.color;
     } else {

@@ -364,6 +364,7 @@ async function createTask(event) {
     } catch (error) {
         console.error("Fehler beim Erstellen der Aufgabe:", error);
     }
+    navigateToBoard();
 }
 
 function navigateToBoard() {
