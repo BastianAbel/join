@@ -185,16 +185,22 @@ async function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPri
  * with added id`s, colors and and an array of tasks assigned to them
  */
 async function editGetAllContactsNames() {
+    editFilteredNamesAndColors = [];
     onlyLoadIfUserOrGuest();
     loadUserInitials();
     await loadAllContacts();
-    let contactsNamesAndColors = allContacts.map((entry) => ({
+    let editContactsNamesAndColors = allContacts.map((entry) => ({
         name: entry.contact.name.replace(/[^a-zA-ZöüäÖÜÄ ]/g, ""),
         color: entry.color,
         id: entry.id,
         tasksAssignedTo: entry.tasksAssignedTo,
     }));
-    editFilteredNamesAndColors = contactsNamesAndColors;
+    editContactsNamesAndColors.forEach(contact => {
+        if (!editFilteredNamesAndColors.some(entry => entry.id === contact.id)) {
+            editFilteredNamesAndColors.push(contact);
+        }
+    });
+
     addContactNamesToList(editFilteredNamesAndColors, document.getElementById("edit-task-contacts-list"));
 }
 
