@@ -30,11 +30,11 @@ setColorsOnceOnBoard();
  */
 function taskBigView(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, subtasks, cardTypeColor) {
     document.getElementById("window-overlay").classList.remove("d-none");
-    if (subtasks !== "undefined") {
+    if (subtasks === "undefined") {
+        getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor);
+    } else {
         const decodedSubtasks = JSON.parse(decodeURIComponent(subtasks));
         getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks);
-    } else {
-        getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assignedUsers, cardTypeColor);
     }
 }
 /**
@@ -109,7 +109,7 @@ function getEmployeeInfo(assignedUsers) {
  * @param {string} taskId
  */
 async function getSubtaskInfo(subtasks, taskId) {
-    if (subtasks == "undefined") {
+    if (subtasks === undefined) {
         document.getElementById("subtaskContainer").innerHTML = "Keine Subtasks";
     } else {
         for (let i = 0; i < subtasks.length; i++) {
@@ -166,7 +166,7 @@ async function changeStateofCheckbox(i, taskId) {
  * @param {string} taskId
  * @param {string} decodedSubtasks 
  */
-function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority, assignedUsers, taskId, decodedSubtasks) {
+async function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority, assignedUsers, taskId, decodedSubtasks) {
     document.getElementById("window-overlay").classList.remove("d-none");
     document.getElementById("task-big-container").outerHTML = "";
     document.getElementById("board-main").innerHTML += renderEditTaskBigView(taskId, taskTitle, taskDescription, taskDate);
@@ -177,7 +177,7 @@ function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority,
     loadRightPriorityColor(taskPriority);
     editGetSubtaskInfo(decodedSubtasks);
     loadCardContactsInArray(taskId);
-    editGetAllContactsNames();
+    await editGetAllContactsNames();
 }
 
 /**
@@ -207,10 +207,10 @@ function loadRightPriorityColor(taskPriority) {
         document.getElementById("edit-prio-urgent-btn").classList.add("active-urgent");
         taskPrio = "urgent";
     } else if (taskPriority == "medium") {
-        document.getElementById("edit-prio-urgent-btn").classList.add("active-medium");
+        document.getElementById("edit-prio-medium-btn").classList.add("active-medium");
         taskPrio = "medium";
     } else if (taskPriority == "low") {
-        document.getElementById("edit-prio-urgent-btn").classList.add("active-low");
+        document.getElementById("edit-prio-low-btn").classList.add("active-low");
         taskPrio = "low";
     }
 }

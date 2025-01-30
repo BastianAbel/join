@@ -24,24 +24,24 @@ let subtaskList = [];
 let editSubtaskListArray = [];
 let taskPrio = "";
 
-/**
- * Function to load all contacts from firebase and add them to the allContacts array
- * @returns an array of all contacts in firebase with added id`s, colors and and an array of tasks assigned to them
- */
-async function loadAllTaskContacts() {
-    await setBackendJsonToSessionStorage();
-    let contactsResponse = await loadData(PATH_TO_CONTACTS);
-    let contactsKeysArray = Object.keys(contactsResponse);
-    for (let i = 0; i < contactsKeysArray.length; i++) {
-        allContacts.push({
-            id: contactsKeysArray[i],
-            user: contactsResponse[contactsKeysArray[i]],
-            color: getRandomColor(),
-            tasksAssignedTo: contactsResponse[contactsKeysArray[i]].tasksAssignedTo,
-        });
-    }
-    return allContacts;
-}
+// /**
+//  * Function to load all contacts from firebase and add them to the allContacts array
+//  * @returns an array of all contacts in firebase with added id`s, colors and and an array of tasks assigned to them
+//  */
+// async function loadAllContacts() {
+//     await setBackendJsonToSessionStorage();
+//     let contactsResponse = await loadData(PATH_TO_CONTACTS);
+//     let contactsKeysArray = Object.keys(contactsResponse);
+//     for (let i = 0; i < contactsKeysArray.length; i++) {
+//         allContacts.push({
+//             id: contactsKeysArray[i],
+//             user: contactsResponse[contactsKeysArray[i]],
+//             color: getRandomColor(),
+//             tasksAssignedTo: contactsResponse[contactsKeysArray[i]].tasksAssignedTo,
+//         });
+//     }
+//     return allContacts;
+// }
 
 /**
  * Function to get all contacts names from the allContacts array and add them to the contact list
@@ -52,9 +52,9 @@ async function loadAllTaskContacts() {
 async function getAllContactsNames() {
     onlyLoadIfUserOrGuest();
     loadUserInitials();
-    await loadAllTaskContacts();
+    await loadAllContacts();
     let contactsNamesAndColors = allContacts.map((entry) => ({
-        name: entry.user.name.replace(/[^a-zA-ZöüäÖÜÄ ]/g, ""),
+        name: entry.contact.name.replace(/[^a-zA-ZöüäÖÜÄ ]/g, ""),
         color: entry.color,
         id: entry.id,
         tasksAssignedTo: entry.tasksAssignedTo,
@@ -186,7 +186,7 @@ function setLowPrio() {
  * @param {event} event
  */
 function filterInput(event) {
-    filteredNamesAndColors = filterInputFromArray(NamesAndColors, event.target.value);
+    filteredNamesAndColors = filterInputFromArray(filteredNamesAndColors, event.target.value);
     addContactNamesToList(filteredNamesAndColors, TASK_CONTACT_LIST);
 }
 
@@ -364,8 +364,6 @@ async function createTask(event) {
     } catch (error) {
         console.error("Fehler beim Erstellen der Aufgabe:", error);
     }
-
-    navigateToBoard();
 }
 
 function navigateToBoard() {

@@ -98,8 +98,8 @@ function editSetLowPrio() {
  * @param {event} event
  */
 function editFilterInput(event) {
-    let editTaskContactList = document.getElementById("edit-task-contact-list");
-    editFilteredNamesAndColors = filterInputFromArray(NamesAndColors, event.target.value);
+    let editTaskContactList = document.getElementById("edit-task-contacts-list");
+    editFilteredNamesAndColors = filterInputFromArray(editCheckedContactNamesAndColors, event.target.value);
     addContactNamesToList(editFilteredNamesAndColors, editTaskContactList);
 }
 
@@ -250,10 +250,10 @@ function editTaskGetEmployeeInfo(assignedUsers) {
  * @param {array} subtasks
  */
 async function editGetSubtaskInfo(subtasks) {
-    const decodedSubtasks = JSON.parse(decodeURIComponent(subtasks));
-    if (decodedSubtasks == "undefined") {
+    if (subtasks === "undefined") {
         document.getElementById("edit-subtask-list").innerHTML = "";
     } else {
+        const decodedSubtasks = JSON.parse(decodeURIComponent(subtasks));
         for (let i = 0; i < decodedSubtasks.length; i++) {
             subtaskList.push(decodedSubtasks[i]);
             document.getElementById("edit-subtask-list").innerHTML += `<li>

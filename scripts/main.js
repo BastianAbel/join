@@ -17,7 +17,7 @@ function getContactInitials(contactName) {
  * @returns array of values that fit the input
  */
 function filterInputFromArray(sourceArray, input) {
-    return sourceArray.filter((name) => name.toLowerCase().includes(input.toLowerCase()));
+    return sourceArray.filter((entry) => entry.name.toLowerCase().includes(input.toLowerCase()));
 }
 
 /**

@@ -123,7 +123,7 @@ function renderEditTaskBigView(taskId, taskPriority) {
                     id="edit-contact-input"
                     class="add-task-attribute-input"
                     placeholder="Select contacts to assign"
-                    oninput="filterInput(event)"
+                    oninput="editFilterInput(event)"
                     onclick="editShowContactList(event,'${taskId}')"
                 />
                 <img
