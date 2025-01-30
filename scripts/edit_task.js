@@ -3,7 +3,7 @@ let editCheckedContactNamesAndColors = [];
 let editNewTask = {};
 let editContactNames = [];
 let editFilteredNamesAndColors = [];
-let helperArray = [];
+let helperArray = [];-
 
 /**
  * Function to load all contacts from firebase and add them to the allContacts array
@@ -266,17 +266,17 @@ function editTaskGetEmployeeInfo(assignedUsers) {
 /**
  * Function to render the subtask list in the edit view of a task
  * @param {array} subtasks
- * @param {string} taskId
  */
-async function editGetSubtaskInfo(subtasks, taskId) {
-    if (subtasks == "undefined") {
+async function editGetSubtaskInfo(subtasks) {
+    const decodedSubtasks = JSON.parse(decodeURIComponent(subtasks));
+    if (decodedSubtasks == "undefined") {
         document.getElementById("edit-subtask-list").innerHTML = "";
     } else {
-        for (let i = 0; i < subtasks.length; i++) {
-            subtaskList.push(subtasks[i]);
+        for (let i = 0; i < decodedSubtasks.length; i++) {
+            subtaskList.push(decodedSubtasks[i]);
             document.getElementById("edit-subtask-list").innerHTML += `<li>
 				<div class="subtask-text-img-container">
-					<span onblur="removeEditClass(event)">${subtasks[i].description}</span>
+					<span onblur="removeEditClass(event)">${decodedSubtasks[i].description}</span>
 					<div class="subtask-img-container">
 						<img 
 							src="/assets/icons/edit-symbol.svg"
@@ -291,7 +291,7 @@ async function editGetSubtaskInfo(subtasks, taskId) {
 						<img
 							src="/assets/icons/trashcan.svg"
 							alt="trashcan-logo"
-							onclick="deleteSubtask(event,'${subtasks[i].description}')"
+							onclick="deleteSubtask(event,'${decodedSubtasks[i].description}')"
 						/>
 					</div>
 				</div>
@@ -326,7 +326,7 @@ async function getChangedTaskData(taskId) {
  * @param {array} changedSubtaskList 
  */
 async function setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTaskDescription, changedTaskDate, changedTaskPrio, changedContacts, changedSubtaskList) { 
-    if (changedTaskTitle !== "" || changedTaskDescription !== "" || changedTaskDate !== "" || changedTaskPrio !== "" || changedContacts !== "") {
+    if (changedTaskTitle !== "" && changedTaskDescription !== "" && changedTaskDate !== "" && changedTaskPrio !== "" && changedContacts !== "") {
         updateData((path = PATH_TO_TASKS), (id = taskId), (data = {
             "title": changedTaskTitle,
             "description": changedTaskDescription,
@@ -337,7 +337,9 @@ async function setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTask
         }));
         await addTaskToAssignedContacts();
         await setBackendJsonToSessionStorage();
+        await updateSessionStorage();
         editTaskSlideOut();
+    } else {
+        alert("Please fill out all fields");
     }
-
 }

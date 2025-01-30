@@ -56,7 +56,7 @@ function getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assi
  * @param {string} decodedSubtasks
  */
 function setInfoToBigCard(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks) {
-    document.getElementById("board-main").innerHTML += renderTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, cardTypeColor, assignedUsers);
+    document.getElementById("board-main").innerHTML += renderTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks);
     getEmployeeInfo(assignedUsers);
     getSubtaskInfo(decodedSubtasks, taskId);
 }
@@ -93,7 +93,7 @@ function getEmployeeInfo(assignedUsers) {
  * @param {string} taskId
  */
 async function getSubtaskInfo(subtasks, taskId) {
-    if (subtasks === undefined) {
+    if (subtasks == "undefined") {
         document.getElementById("subtaskContainer").innerHTML = "Keine Subtasks";
     } else {
         for (let i = 0; i < subtasks.length; i++) {
@@ -158,7 +158,7 @@ function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority,
     document.getElementById("edit-task-due-date").value = taskDate;
     editTaskGetEmployeeInfo(assignedUsers);
     loadRightPriorityColor(taskPriority);
-    editGetSubtaskInfo(decodedSubtasks, taskId);
+    editGetSubtaskInfo(decodedSubtasks);
     loadCardContactsInArray(taskId);
     editGetAllContactsNames();
 }
@@ -170,10 +170,13 @@ function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority,
 function loadRightPriorityColor(taskPriority) {
     if (taskPriority == "urgent") {
         document.getElementById("edit-prio-urgent-btn").classList.add("active-urgent");
+        taskPrio = "urgent";
     } else if (taskPriority == "medium") {
-        document.getElementById("edit-prio-medium-btn").classList.add("active-medium");
+        document.getElementById("edit-prio-urgent-btn").classList.add("active-medium");
+        taskPrio = "medium";
     } else if (taskPriority == "low") {
-        document.getElementById("edit-prio-low-btn").classList.add("active-low");
+        document.getElementById("edit-prio-urgent-btn").classList.add("active-low");
+        taskPrio = "low";
     }
 }
 
