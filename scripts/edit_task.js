@@ -14,7 +14,7 @@ async function editGetAllContactsNames() {
     loadUserInitials();
     await loadAllContacts();
     let contactsNamesAndColors = allContacts.map((entry) => ({
-        name: entry.user.name.replace(/[^a-zA-ZöüäÖÜÄ ]/g, ""),
+        name: entry.contact.name.replace(/[^a-zA-ZöüäÖÜÄ ]/g, ""),
         color: entry.color,
         id: entry.id,
         tasksAssignedTo: entry.tasksAssignedTo,
@@ -256,7 +256,7 @@ function editTaskGetEmployeeInfo(assignedUsers) {
         assignedUsers = assignedUsers.split(",");
     }
     for (let index = 0; index < assignedUsers.length; index++) {
-        let bgColor = getRandomColor();
+        let bgColor = getColorFromArrayByName(boardContactsAndColorsHelperArray, assignedUsers[index]);
         document.getElementById("edit-name-circle-container").innerHTML += `
             <div style="background-color: ${bgColor}" class="name-circle">${getEmployeesInitials(assignedUsers[index])}</div>
         `;

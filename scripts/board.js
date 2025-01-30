@@ -89,7 +89,7 @@ function getEmployeeInfo(assignedUsers) {
     
     if(assignedUsers.length> 0 && assignedUsers[0] !== "" ){
         for (let index = 0; index < assignedUsers.length; index++) {
-            let bgColor = getRandomColor();
+            let bgColor = getColorFromArrayByName(boardContactsAndColorsHelperArray, assignedUsers[index]);
             document.getElementById("assignedContacts").innerHTML += `
             <div class="contact">
                 <div class="contact-info">

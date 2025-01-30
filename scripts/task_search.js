@@ -117,14 +117,14 @@ function checkUserFolder(assignedUser) {
     }
 }
 
-/**
- * Function to change color of an initial circle
- * @param {integer} i
- */
-function changeBgColorByUserIcons(i) {
-    let usersIcons = document.getElementById(`user${i}`);
-    usersIcons.style.backgroundColor += getRandomColor();
-}
+// /**
+//  * Function to change color of an initial circle
+//  * @param {integer} i
+//  */
+// function changeBgColorByUserIcons(i) {
+//     let usersIcons = document.getElementById(`user${i}`);
+//     usersIcons.style.backgroundColor += getRandomColor();
+// }
 
 /**
  * Function to get the correct icon based on the priority of a task

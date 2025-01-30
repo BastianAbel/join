@@ -28,7 +28,7 @@ let taskPrio = "";
  * Function to load all contacts from firebase and add them to the allContacts array
  * @returns an array of all contacts in firebase with added id`s, colors and and an array of tasks assigned to them
  */
-async function loadAllContacts() {
+async function loadAllTaskContacts() {
     await setBackendJsonToSessionStorage();
     let contactsResponse = await loadData(PATH_TO_CONTACTS);
     let contactsKeysArray = Object.keys(contactsResponse);
@@ -52,9 +52,9 @@ async function loadAllContacts() {
 async function getAllContactsNames() {
     onlyLoadIfUserOrGuest();
     loadUserInitials();
-    await loadAllContacts();
+    await loadAllTaskContacts();
     let contactsNamesAndColors = allContacts.map((entry) => ({
-        name: entry.contact.name.replace(/[^a-zA-ZöüäÖÜÄ ]/g, ""),
+        name: entry.user.name.replace(/[^a-zA-ZöüäÖÜÄ ]/g, ""),
         color: entry.color,
         id: entry.id,
         tasksAssignedTo: entry.tasksAssignedTo,
