@@ -1,5 +1,6 @@
 let allTasks = [];
 let allTaskUsers = [];
+let allTaskContacts = [];
 
 /**
  * Function to show the detailed view of a task
@@ -128,15 +129,16 @@ async function getCheckboxBg(taskId, i) {
  * @param {integer} i
  * @param {string} taskId
  */
-function changeStateofCheckbox(i, taskId) {
+async function changeStateofCheckbox(i, taskId) {
     let isChecked = document.getElementById(`privacyCheckbox${i}`).checked;
     if (isChecked) {
-        updateData((path = PATH_TO_TASKS), (id = `${taskId}/subtasks/${i}`), (data = { "checked": true }));
+        await updateData((path = PATH_TO_TASKS), (id = `${taskId}/subtasks/${i}`), (data = { "checked": true }));
         document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-checked.svg") no-repeat';
     } else {
-        updateData((path = PATH_TO_TASKS), (id = `${taskId}/subtasks/${i}`), (data = { "checked": false }));
+        await updateData((path = PATH_TO_TASKS), (id = `${taskId}/subtasks/${i}`), (data = { "checked": false }));
         document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-not-checked.svg") no-repeat';
     }
+    await updateBoardAfterChanges();
 }
 
 /**
@@ -264,6 +266,8 @@ function getAllTasksAndUsersFromSessionStorage() {
     allTasks = getArrayFromObject(tasks);
     let users = sessionResponseJson["users"];
     allTaskUsers = getArrayFromObject(users);
+    let contacts = sessionResponseJson["contacts"];
+    allTaskContacts = getArrayFromObject(contacts);
     writeCardsToBoardSectionsFromArray(allTasks);
 }
 
@@ -382,6 +386,13 @@ function clearBoard() {
     for (let i = 0; i < boardSections.length; i++) {
         boardSections[i].innerHTML = "";
     }
+}
+
+//TODO - hier weiter
+async function updateBoardAfterChanges(){
+    await updateSessionStorage();
+    clearBoard();
+    getAllTasksAndUsersFromSessionStorage();
 }
 
 /**
