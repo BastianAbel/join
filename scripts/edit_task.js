@@ -3,25 +3,7 @@ let editCheckedContactNamesAndColors = [];
 let editNewTask = {};
 let editContactNames = [];
 let editFilteredNamesAndColors = [];
-let helperArray = [];-
-
-/**
- * Function to load all contacts from firebase and add them to the allContacts array
- * with added id`s, colors and and an array of tasks assigned to them
- */
-async function editGetAllContactsNames() {
-    onlyLoadIfUserOrGuest();
-    loadUserInitials();
-    await loadAllContacts();
-    let contactsNamesAndColors = allContacts.map((entry) => ({
-        name: entry.contact.name.replace(/[^a-zA-ZöüäÖÜÄ ]/g, ""),
-        color: entry.color,
-        id: entry.id,
-        tasksAssignedTo: entry.tasksAssignedTo,
-    }));
-    editFilteredNamesAndColors = contactsNamesAndColors;
-    addContactNamesToList(editFilteredNamesAndColors, document.getElementById("edit-task-contacts-list"));
-}
+let helperArray = [];
 
 /**
  * Function to get all contacts that will be rendered in the contact list on editing a task

@@ -181,6 +181,24 @@ function openEditTaskBigView(taskTitle, taskDescription, taskDate, taskPriority,
 }
 
 /**
+ * Function to load all contacts from firebase and add them to the allContacts array
+ * with added id`s, colors and and an array of tasks assigned to them
+ */
+async function editGetAllContactsNames() {
+    onlyLoadIfUserOrGuest();
+    loadUserInitials();
+    await loadAllContacts();
+    let contactsNamesAndColors = allContacts.map((entry) => ({
+        name: entry.contact.name.replace(/[^a-zA-ZöüäÖÜÄ ]/g, ""),
+        color: entry.color,
+        id: entry.id,
+        tasksAssignedTo: entry.tasksAssignedTo,
+    }));
+    editFilteredNamesAndColors = contactsNamesAndColors;
+    addContactNamesToList(editFilteredNamesAndColors, document.getElementById("edit-task-contacts-list"));
+}
+
+/**
  * Function to set the correct background-color to a priority-button in the detailed view to edit a task
  * @param {string} taskPriority
  */
