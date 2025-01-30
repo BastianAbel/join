@@ -1,5 +1,21 @@
 let allTasks = [];
 let allTaskUsers = [];
+let allTaskContacts = [];
+let boardContactsAndColorsHelperArray=[];
+
+/**
+ * Function to save names and colors of contatcs in an array
+ */
+async function setColorsOnceOnBoard(){
+    await loadAllContacts();
+    let contactsNamesAndColors = allContacts.map((entry) => ({
+        name: entry.contact.name.replace(/[^a-zA-ZöüäÖÜÄ ]/g, ""),
+        color: entry.color,
+    }));
+    boardContactsAndColorsHelperArray = contactsNamesAndColors;
+}
+setColorsOnceOnBoard();
+
 
 /**
  * Function to show the detailed view of a task
@@ -73,7 +89,7 @@ function getEmployeeInfo(assignedUsers) {
     
     if(assignedUsers.length> 0 && assignedUsers[0] !== "" ){
         for (let index = 0; index < assignedUsers.length; index++) {
-            let bgColor = getRandomColor();
+            let bgColor = getColorFromArrayByName(boardContactsAndColorsHelperArray, assignedUsers[index]);
             document.getElementById("assignedContacts").innerHTML += `
             <div class="contact">
                 <div class="contact-info">
@@ -128,15 +144,16 @@ async function getCheckboxBg(taskId, i) {
  * @param {integer} i
  * @param {string} taskId
  */
-function changeStateofCheckbox(i, taskId) {
+async function changeStateofCheckbox(i, taskId) {
     let isChecked = document.getElementById(`privacyCheckbox${i}`).checked;
     if (isChecked) {
-        updateData((path = PATH_TO_TASKS), (id = `${taskId}/subtasks/${i}`), (data = { "checked": true }));
+        await updateData((path = PATH_TO_TASKS), (id = `${taskId}/subtasks/${i}`), (data = { "checked": true }));
         document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-checked.svg") no-repeat';
     } else {
-        updateData((path = PATH_TO_TASKS), (id = `${taskId}/subtasks/${i}`), (data = { "checked": false }));
+        await updateData((path = PATH_TO_TASKS), (id = `${taskId}/subtasks/${i}`), (data = { "checked": false }));
         document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-not-checked.svg") no-repeat';
     }
+    await updateBoardAfterChanges();
 }
 
 /**
@@ -196,7 +213,6 @@ function closeEditTaskBigView() {
     document.getElementById("window-overlay").classList.add("d-none");
     document.getElementById("profileBtn").style.backgroundColor = "white";
     document.getElementById("edit-task-big-container").outerHTML = "";
-    navigateToBoard();
 }
 
 /**
@@ -261,13 +277,15 @@ async function deleteTask(taskId) {
  * Function to get all task-objects and user-objects from the session storage and to store them in arrays and to
  * add task-info-cards to the board
  */
-function getAllTasksAndUsersFromSessionStorage() {
+function getAllTasksUsersAndContactsFromSessionStorage() {
     let sessionResponse = sessionStorage.getItem("joinJson");
     let sessionResponseJson = JSON.parse(sessionResponse);
     let tasks = sessionResponseJson["tasks"];
     allTasks = getArrayFromObject(tasks);
     let users = sessionResponseJson["users"];
     allTaskUsers = getArrayFromObject(users);
+    let contacts = sessionResponseJson["contacts"];
+    allTaskContacts = getArrayFromObject(contacts);
     writeCardsToBoardSectionsFromArray(allTasks);
 }
 
@@ -342,7 +360,7 @@ async function moveTaskToState(newState) {
     await updateData(PATH_TO_TASKS, currentDraggedTask.id, (data = currentDraggedTask));
     await updateSessionStorage();
     clearBoard();
-    getAllTasksAndUsersFromSessionStorage();
+    getAllTasksUsersAndContactsFromSessionStorage();
     checkSectionForChildNodes();
 }
 
@@ -387,6 +405,16 @@ function clearBoard() {
         boardSections[i].innerHTML = "";
     }
 }
+
+//TODO - hier weiter
+async function updateBoardAfterChanges(){
+    await updateSessionStorage();
+    clearBoard();
+    getAllTasksUsersAndContactsFromSessionStorage();
+}
+
+
+
 
 /**
  * Function to check if a section of the board has child-nodes and to show the information

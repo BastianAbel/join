@@ -72,9 +72,9 @@ function createUserContainer(assignedUsers) {
         .slice(0, 6)
         .map((user) => {
             const userContainer = document.createElement("div");
-            userContainer.className = "user";
-            userContainer.style.backgroundColor = getRandomColor();
+            userContainer.className = "user";          
             const userName = checkUserFolder(user);
+            userContainer.style.backgroundColor = getColorFromArrayByName(boardContactsAndColorsHelperArray, userName);
             const initials = getEmployeesInitials(userName);
             userContainer.innerHTML = initials;
             return userContainer.outerHTML;
@@ -82,6 +82,24 @@ function createUserContainer(assignedUsers) {
         .join("");
     assignedUsers = assignedUsers + moreUserTemplate;
     return assignedUsers;
+}
+
+/**
+ * Function to get a color-code fitting to a contact-name
+ * @param {array} array 
+ * @param {string} nameOfUser 
+ * @returns {string} containing a color-code
+ */
+function getColorFromArrayByName(array, nameOfUser) {
+    let colorCode;
+    if (array.length > 0) {
+        const entry = array.find(entry => entry.name === nameOfUser);
+        colorCode = entry.color;
+    } else {
+        colorCode = getRandomColor();
+    }
+
+    return colorCode;
 }
 
 /**
@@ -99,14 +117,14 @@ function checkUserFolder(assignedUser) {
     }
 }
 
-/**
- * Function to change color of an initial circle
- * @param {integer} i
- */
-function changeBgColorByUserIcons(i) {
-    let usersIcons = document.getElementById(`user${i}`);
-    usersIcons.style.backgroundColor += getRandomColor();
-}
+// /**
+//  * Function to change color of an initial circle
+//  * @param {integer} i
+//  */
+// function changeBgColorByUserIcons(i) {
+//     let usersIcons = document.getElementById(`user${i}`);
+//     usersIcons.style.backgroundColor += getRandomColor();
+// }
 
 /**
  * Function to get the correct icon based on the priority of a task
