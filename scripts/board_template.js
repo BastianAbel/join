@@ -11,7 +11,7 @@
  * @param {string} assignedUsers
  * @returns HTML string of the big view of a task
  */
-function renderTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, cardTypeColor, assignedUsers, decodedSubtasks) {
+function renderTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks) {
     return `
         <div id="task-big-container" class=" task-overlay-container">
             <div class="userstory-close-container">

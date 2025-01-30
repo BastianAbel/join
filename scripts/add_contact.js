@@ -68,6 +68,7 @@ async function createContact(event) {
         setTimeout(() => {
             successDiv.classList.replace("slide-up-success", "slide-down-success");
             setTimeout(() => successDiv.classList.add("d-none"), 500);
+            navigateToContactList();
         }, 1500);
     } catch (error) { console.error("Fehler beim Erstellen des Kontaktes:", error); }
 }
