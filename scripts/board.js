@@ -1,6 +1,21 @@
 let allTasks = [];
 let allTaskUsers = [];
 let allTaskContacts = [];
+let boardContactsAndColorsHelperArray=[];
+
+/**
+ * Function to save names and colors of contatcs in an array
+ */
+async function setColorsOnceOnBoard(){
+    await loadAllContacts();
+    let contactsNamesAndColors = allContacts.map((entry) => ({
+        name: entry.contact.name.replace(/[^a-zA-ZöüäÖÜÄ ]/g, ""),
+        color: entry.color,
+    }));
+    boardContactsAndColorsHelperArray = contactsNamesAndColors;
+}
+setColorsOnceOnBoard();
+
 
 /**
  * Function to show the detailed view of a task
@@ -259,7 +274,7 @@ async function deleteTask(taskId) {
  * Function to get all task-objects and user-objects from the session storage and to store them in arrays and to
  * add task-info-cards to the board
  */
-function getAllTasksAndUsersFromSessionStorage() {
+function getAllTasksUsersAndContactsFromSessionStorage() {
     let sessionResponse = sessionStorage.getItem("joinJson");
     let sessionResponseJson = JSON.parse(sessionResponse);
     let tasks = sessionResponseJson["tasks"];
@@ -342,7 +357,7 @@ async function moveTaskToState(newState) {
     await updateData(PATH_TO_TASKS, currentDraggedTask.id, (data = currentDraggedTask));
     await updateSessionStorage();
     clearBoard();
-    getAllTasksAndUsersFromSessionStorage();
+    getAllTasksUsersAndContactsFromSessionStorage();
     checkSectionForChildNodes();
 }
 
@@ -392,8 +407,11 @@ function clearBoard() {
 async function updateBoardAfterChanges(){
     await updateSessionStorage();
     clearBoard();
-    getAllTasksAndUsersFromSessionStorage();
+    getAllTasksUsersAndContactsFromSessionStorage();
 }
+
+
+
 
 /**
  * Function to check if a section of the board has child-nodes and to show the information
