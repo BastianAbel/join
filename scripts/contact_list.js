@@ -249,13 +249,19 @@ function getEditedUserData(id) {
  * @param {string} newPhone
  * @param {string} id
  */
-function saveEditedUserData(newName, newEmail, newPhone, id) {
-    document.getElementById("newName").innerHTML = newName;
-    document.getElementById("newEmail").innerHTML = newEmail;
-    document.getElementById("newPhone").innerHTML = newPhone;
+async function saveEditedUserData(newName, newEmail, newPhone, id) {
+    document.getElementById("userName").innerHTML = newName;
+    document.getElementById("userEmail").innerHTML = newEmail;
+    document.getElementById("userPhone").innerHTML = newPhone;
+    document.getElementById("userName").innerHTML = newName;
+    document.getElementById("userEmail").innerHTML = newEmail;
+    document.getElementById("userPhone").innerHTML = newPhone;
     updateData((path = PATH_TO_CONTACTS), (id = id), (data = { "email": newEmail, "name": newName, "phone": newPhone }));
     EditContactViewSlideDown();
-    
+    await setBackendJsonToSessionStorage();
+    setTimeout(() => {
+        navigateToContactList();
+    }, 1500);
 }
 
 /**
@@ -265,6 +271,5 @@ function saveEditedUserData(newName, newEmail, newPhone, id) {
 async function deleteContact(id) {
     await deleteData((path = PATH_TO_CONTACTS), (id = id));
     await setBackendJsonToSessionStorage();
-    loadAllContacts();
     navigateToContactList();
 }

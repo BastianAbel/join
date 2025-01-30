@@ -52,14 +52,31 @@ header {
 }
 
 @media (min-width: 1297px) {
-    .join-logo-header {
-        display: none;
-    }
+    
 
     .header span {
         display: block;
     }
 
+    .ask-btn-board {
+        width: 20px;
+        height: 20px;
+        display: block;
+        margin: 0 !important;
+    }
+
+    .ask-btn-board:hover {
+        width: 24px;
+    }
+}
+
+@media (max-width: 1297px) {
+    .header {
+        justify-content: end;
+    }
+}
+
+@media(min-width: 920px) {
     .ask-btn-board {
         width: 20px;
         height: 20px;

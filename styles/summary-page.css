@@ -318,6 +318,14 @@ a {
         color: #29abe2;
         margin-top: -8px;
     }
+
+    .join-logo-header {
+        display: none;
+    }
+
+    .header span {
+        display: block !important;
+    }
 }
 
 @media (min-width:930px){
@@ -345,3 +353,16 @@ a {
         margin-left: 116px;
     }
 }
+
+@media (max-width: 920px) {
+    .header {
+        justify-content: space-between !important;
+    }
+}
+
+@media (min-width: 920px) {
+    .header {
+        justify-content: space-between !important;
+    }
+}
+

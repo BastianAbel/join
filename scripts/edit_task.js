@@ -310,7 +310,7 @@ async function getChangedTaskData(taskId) {
  * @param {array} changedSubtaskList 
  */
 async function setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTaskDescription, changedTaskDate, changedTaskPrio, changedContacts, changedSubtaskList) { 
-    if (changedTaskTitle !== "" && changedTaskDescription !== "" && changedTaskDate !== "" && changedTaskPrio !== "" && changedContacts !== "") {
+    if (changedTaskTitle !== "" && changedTaskDescription !== "" && changedTaskDate !== "" && changedTaskPrio !== "") {
         updateData((path = PATH_TO_TASKS), (id = taskId), (data = {
             "title": changedTaskTitle,
             "description": changedTaskDescription,
@@ -323,8 +323,6 @@ async function setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTask
         await setBackendJsonToSessionStorage();
         await updateSessionStorage();
         editTaskSlideOut();
-    } else {
-        alert("Please fill out all fields");
-    }
+    } 
     navigateToBoard();
 }
