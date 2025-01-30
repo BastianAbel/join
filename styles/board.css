@@ -107,7 +107,6 @@ h2 {
 .section-four,
 .section-five,
 .section-six {
-    max-width: 396px;
     min-width: 275px;
     margin-left: 16px;
     margin-right: 16px;
@@ -176,7 +175,6 @@ input:focus {
 .board-progress-state {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 16px;
     padding: 12px 0;
     overflow-y: auto !important;
@@ -282,6 +280,7 @@ input:focus {
 }
 
 @media (max-width: 1355px) {
+
     .section-three,
     .section-four,
     .section-five,
@@ -338,6 +337,11 @@ input:focus {
         flex-direction: column;
         margin: 0;
         width: 100%;
+    }
+
+    .section-one,
+    .section-two,
+    .board-prio-headline-div {
         max-width: 396px;
     }
 
