@@ -326,4 +326,6 @@ async function setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTask
     } else {
         alert("Please fill out all fields");
     }
+
+    window.location.reload("/board.html");
 }

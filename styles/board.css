@@ -235,7 +235,6 @@ input:focus {
 
 .search-task-result-main-container {
     width: 100%;
-    max-width: 396px;
     height: 100vh;
     display: none;
     flex-direction: row;
@@ -349,8 +348,8 @@ input:focus {
         width: 100%;
         height: 100vh;
         display: none;
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        align-items: flex-start;
         gap: 16px;
         overflow-y: auto;
         background-color: #f6f7f8;
