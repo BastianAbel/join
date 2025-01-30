@@ -204,6 +204,7 @@ function closeTaskBigView() {
     document.getElementById("window-overlay").classList.add("d-none");
     document.getElementById("profileBtn").style.backgroundColor = "white";
     document.getElementById("task-big-container").outerHTML = "";
+    // updateBoardAfterChanges();
 }
 
 /**
@@ -213,6 +214,7 @@ function closeEditTaskBigView() {
     document.getElementById("window-overlay").classList.add("d-none");
     document.getElementById("profileBtn").style.backgroundColor = "white";
     document.getElementById("edit-task-big-container").outerHTML = "";
+    // updateBoardAfterChanges();
 }
 
 /**
