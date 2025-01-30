@@ -193,7 +193,6 @@ function closeEditTaskBigView() {
     document.getElementById("window-overlay").classList.add("d-none");
     document.getElementById("profileBtn").style.backgroundColor = "white";
     document.getElementById("edit-task-big-container").outerHTML = "";
-    navigateToBoard();
 }
 
 /**
