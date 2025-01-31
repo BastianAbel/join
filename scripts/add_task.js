@@ -115,7 +115,8 @@ function deleteSubtask(event, subtaskDescription) {
 /**
  * Function to clear all input fields of the add task form by resetting their values
  */
-function clearAllInputAddTask() {
+function clearAllInputAddTask(event) {
+    event.stopPropagation();
     TASK_TITLE_INPUT.value = "";
     TASK_DESCRIPTION.value = "";
     DUE_DATE_INPUT.value = "";
@@ -123,6 +124,16 @@ function clearAllInputAddTask() {
     setMediumPrio();
     subtaskList = [];
     SUBTASK_LIST.innerHTML = "";
+    removeNotValidIfClearButtonisClicked(event);
+}
+
+function removeNotValidIfClearButtonisClicked(event) {
+    event.stopPropagation();
+    TASK_TITLE_INPUT.classList.remove("not-valid");
+    DUE_DATE_INPUT.classList.remove("not-valid");
+    TASK_CATEGORY_SELECT.classList.remove("not-valid");
+    document.getElementById("input-feedback-container").innerHTML = "";
+    document.getElementById("require-info-container").innerHTML = "";
 }
 
 /**
@@ -366,6 +377,11 @@ function removeEditClass(event) {
  */
 async function createTask(event) {
     event.preventDefault();
+    console.log(event.target.id);
+
+    if (event.submitter.id !== "create-task-btn") {
+        return;
+    }
     if (!inputsFilled("task-title", "task-due-date", "task-category-select")) {
         return;
     }
