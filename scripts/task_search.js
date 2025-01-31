@@ -7,10 +7,10 @@ let progressBarCalc = "";
  * and save them to an array
  */
 async function getDataFromSessionStorage() {
-  let sessionResponse = sessionStorage.getItem("joinJson");
-  let sessionResponseJson = JSON.parse(sessionResponse);
-  let tasks = sessionResponseJson["tasks"];
-  data = getArrayFromObject(tasks);
+    let sessionResponse = sessionStorage.getItem("joinJson");
+    let sessionResponseJson = JSON.parse(sessionResponse);
+    let tasks = sessionResponseJson["tasks"];
+    data = getArrayFromObject(tasks);
 }
 getDataFromSessionStorage();
 
@@ -19,17 +19,17 @@ getDataFromSessionStorage();
  * @param {event} event
  */
 function searchTask(event) {
-  let searchInput = event.target.value.toLowerCase();
-  if (searchInput.length < 4) {
-    return;
-  }
-  let results = data.filter((entry) =>
-    entry.title.toLowerCase().includes(searchInput)
-  );
-  contentRef.innerHTML = "";
-  results.forEach((task) => {
-    renderSearchResultCard(task);
-  });
+    let searchInput = event.target.value.toLowerCase();
+    if (searchInput.length < 4) {
+        return;
+    }
+    let results = data.filter((entry) =>
+        entry.title.toLowerCase().includes(searchInput)
+    );
+    contentRef.innerHTML = "";
+    results.forEach((task) => {
+        renderSearchResultCard(task);
+    });
 }
 
 /**
@@ -37,26 +37,26 @@ function searchTask(event) {
  * @param {object} task
  */
 function renderSearchResultCard(task) {
-  const subtaskState = getSubtaskStatus(task.subtasks);
-  const priorityImg = getPriorityImage(task.priority);
-  const employeesName = createUserContainer(task.assignedTo);
-  const cardTypeColor = changeColorCardType(task.type);
-  const searchResultContainer = document.getElementById(
-    "search-task-result-main-container"
-  );
-  const boardContentMainContainer = document.getElementById(
-    "board-content-container"
-  );
-  boardContentMainContainer.style.display = "none";
-  searchResultContainer.style.display = "flex";
-  contentRef.innerHTML += taskCardTemplateToHtml(
-    task,
-    subtaskState,
-    priorityImg,
-    employeesName,
-    progressBarCalc,
-    cardTypeColor
-  );
+    const subtaskState = getSubtaskStatus(task.subtasks);
+    const priorityImg = getPriorityImage(task.priority);
+    const employeesName = createUserContainer(task.assignedTo);
+    const cardTypeColor = changeColorCardType(task.type);
+    const searchResultContainer = document.getElementById(
+        "search-task-result-main-container"
+    );
+    const boardContentMainContainer = document.getElementById(
+        "board-content-container"
+    );
+    boardContentMainContainer.style.display = "none";
+    searchResultContainer.style.display = "flex";
+    contentRef.innerHTML += taskCardTemplateToHtml(
+        task,
+        subtaskState,
+        priorityImg,
+        employeesName,
+        progressBarCalc,
+        cardTypeColor
+    );
 }
 
 /**
@@ -65,8 +65,8 @@ function renderSearchResultCard(task) {
  * @returns string with capitalized words
  */
 function capitalizeFirstLetter(string) {
-  if (string.length === 0) return string;
-  return string.charAt(0).toUpperCase() + string.slice(1);
+    if (string.length === 0) return string;
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 /**
@@ -74,30 +74,30 @@ function capitalizeFirstLetter(string) {
  * @param {array} assignedUsers
  */
 function createUserContainer(assignedUsers) {
-  moreUserTemplate = "";
-  if (!assignedUsers) {
-    return "";
-  }
-  if (assignedUsers.length > 6) {
-    moreUserTemplate = `<div class="more-users"><span>...</span></div>`;
-  }
-  assignedUsers = assignedUsers
-    .slice(0, 6)
-    .map((user) => {
-      const userContainer = document.createElement("div");
-      userContainer.className = "user";
-      const userName = checkUserFolder(user);
-      userContainer.style.backgroundColor = getColorFromArrayByName(
-        boardContactsAndColorsHelperArray,
-        userName
-      );
-      const initials = getEmployeesInitials(userName);
-      userContainer.innerHTML = initials;
-      return userContainer.outerHTML;
-    })
-    .join("");
-  assignedUsers = assignedUsers + moreUserTemplate;
-  return assignedUsers;
+    moreUserTemplate = "";
+    if (!assignedUsers) {
+        return "";
+    }
+    if (assignedUsers.length > 6) {
+        moreUserTemplate = `<div class="more-users"><span>...</span></div>`;
+    }
+    assignedUsers = assignedUsers
+        .slice(0, 6)
+        .map((user) => {
+            const userContainer = document.createElement("div");
+            userContainer.className = "user";
+            const userName = checkUserFolder(user);
+            userContainer.style.backgroundColor = getColorFromArrayByName(
+                boardContactsAndColorsHelperArray,
+                userName
+            );
+            const initials = getEmployeesInitials(userName);
+            userContainer.innerHTML = initials;
+            return userContainer.outerHTML;
+        })
+        .join("");
+    assignedUsers = assignedUsers + moreUserTemplate;
+    return assignedUsers;
 }
 
 /**
@@ -107,15 +107,15 @@ function createUserContainer(assignedUsers) {
  * @returns {string} containing a color-code
  */
 function getColorFromArrayByName(array, nameOfUser) {
-  let colorCode;
-  if (array.length > 0 && nameOfUser) {
-    const entry = array.find((entry) => entry.name === nameOfUser);
-    colorCode = entry.color;
-  } else {
-    colorCode = getRandomColor();
-  }
+    let colorCode;
+    if (array.length > 0 && nameOfUser) {
+        const entry = array.find((entry) => entry.name === nameOfUser);
+        colorCode = entry.color;
+    } else {
+        colorCode = getRandomColor();
+    }
 
-  return colorCode;
+    return colorCode;
 }
 
 /**
@@ -124,13 +124,13 @@ function getColorFromArrayByName(array, nameOfUser) {
  * @returns an array of contact obejcts or an empty string
  */
 function checkUserFolder(assignedUser) {
-  if (assignedUser && assignedUser.name) {
-    return assignedUser.name;
-  } else if (typeof assignedUser === "string") {
-    return assignedUser;
-  } else {
-    return "";
-  }
+    if (assignedUser && assignedUser.name) {
+        return assignedUser.name;
+    } else if (typeof assignedUser === "string") {
+        return assignedUser;
+    } else {
+        return "";
+    }
 }
 
 // /**
@@ -148,27 +148,27 @@ function checkUserFolder(assignedUser) {
  * @returns string with priority icon
  */
 function getPriorityImage(priority) {
-  if (priority === "urgent") {
-    return "/assets/icons/prio-urgent.svg";
-  } else if (priority === "medium") {
-    return "/assets/icons/prio-media-orange.svg";
-  } else if (priority === "low") {
-    return "/assets/icons/prio-low.svg";
-  } else {
-    return "/assets/icons/prio-low.svg";
-  }
+    if (priority === "urgent") {
+        return "/assets/icons/prio-urgent.svg";
+    } else if (priority === "medium") {
+        return "/assets/icons/prio-media-orange.svg";
+    } else if (priority === "low") {
+        return "/assets/icons/prio-low.svg";
+    } else {
+        return "/assets/icons/prio-low.svg";
+    }
 }
 
 /**
  * Function to reload the board if the searchbar has no input
  */
 function checkUserSearchInputAndRedirect() {
-  let userInput = document.getElementById("user-search-input");
-  if (userInput.value.trim() !== "") {
-    return;
-  } else {
-    window.location.href = "board.html";
-  }
+    let userInput = document.getElementById("user-search-input");
+    if (userInput.value.trim() !== "") {
+        return;
+    } else {
+        window.location.href = "board.html";
+    }
 }
 
 /**
@@ -177,17 +177,17 @@ function checkUserSearchInputAndRedirect() {
  * @returns html-string with state of subtasks of a task
  */
 function getSubtaskStatus(subtasks) {
-  let completedSubtasks = 0;
-  let totalSubtasks = subtasks ? subtasks.length : 0;
-  if (totalSubtasks === 0) {
+    let completedSubtasks = 0;
+    let totalSubtasks = subtasks ? subtasks.length : 0;
+    if (totalSubtasks === 0) {
+        statusProgressBar(completedSubtasks, totalSubtasks);
+        return "";
+    }
+    completedSubtasks = subtasks.filter((subtask) => subtask.checked).length;
     statusProgressBar(completedSubtasks, totalSubtasks);
-    return "";
-  }
-  completedSubtasks = subtasks.filter((subtask) => subtask.checked).length;
-  statusProgressBar(completedSubtasks, totalSubtasks);
-  return `<span id="state">${completedSubtasks}/${totalSubtasks} ${
-    totalSubtasks === 1 ? "Subtask" : "Subtasks"
-  }</span>`;
+    return `<span id="state">${completedSubtasks}/${totalSubtasks} ${
+        totalSubtasks === 1 ? "Subtask" : "Subtasks"
+    }</span>`;
 }
 
 /**
@@ -196,14 +196,14 @@ function getSubtaskStatus(subtasks) {
  * @returns string with initials based on contacts name
  */
 function getEmployeesInitials(EmployeesName) {
-  if (typeof EmployeesName !== "string") {
-    throw new Error("EmployeesName must be a string");
-  }
-  if (EmployeesName != "") {
-    return EmployeesName.split(" ")
-      .map((name) => name[0].toUpperCase())
-      .join("");
-  }
+    if (typeof EmployeesName !== "string") {
+        throw new Error("EmployeesName must be a string");
+    }
+    if (EmployeesName != "") {
+        return EmployeesName.split(" ")
+            .map((name) => name[0].toUpperCase())
+            .join("");
+    }
 }
 
 /**
@@ -213,18 +213,18 @@ function getEmployeesInitials(EmployeesName) {
  * @returns html-string with a progreesbar to display the status of subtasks of a task
  */
 function statusProgressBar(completedSubtasks, totalSubtasks) {
-  if (totalSubtasks === 0) {
-    progressBarCalc = "";
-    return;
-  }
-  if (!completedSubtasks) {
-    progressBarPercent = "0%";
+    if (totalSubtasks === 0) {
+        progressBarCalc = "";
+        return;
+    }
+    if (!completedSubtasks) {
+        progressBarPercent = "0%";
+        progressBarCalc = `<div class="progress-bar-wrapper"><div class="progress-bar" role="progressbar" style="width: ${progressBarPercent}"></div></div>`;
+    }
+    let percent = completedSubtasks / totalSubtasks;
+    percent = Math.round(percent * 100);
+    progressBarPercent = `${percent}%`;
     progressBarCalc = `<div class="progress-bar-wrapper"><div class="progress-bar" role="progressbar" style="width: ${progressBarPercent}"></div></div>`;
-  }
-  let percent = completedSubtasks / totalSubtasks;
-  percent = Math.round(percent * 100);
-  progressBarPercent = `${percent}%`;
-  progressBarCalc = `<div class="progress-bar-wrapper"><div class="progress-bar" role="progressbar" style="width: ${progressBarPercent}"></div></div>`;
 }
 
 /**
@@ -234,12 +234,12 @@ function statusProgressBar(completedSubtasks, totalSubtasks) {
  * @returns string with background-color based on taskType
  */
 function changeColorCardType(taskType) {
-  if (taskType === "technicalTask") {
-    return "background-color:rgba(31,215,193,1)";
-  }
-  if (taskType === "userStory") {
-    return "background-color:rgba(0,56,255,1)";
-  }
+    if (taskType === "technicalTask") {
+        return "background-color:rgba(31,215,193,1)";
+    }
+    if (taskType === "userStory") {
+        return "background-color:rgba(0,56,255,1)";
+    }
 }
 
 /**
@@ -247,5 +247,5 @@ function changeColorCardType(taskType) {
  * @param {event} event
  */
 function stopEventBubbling(event) {
-  event.stopPropagation();
+    event.stopPropagation();
 }

@@ -3,13 +3,13 @@ const DONE_COUNTER = document.getElementById("done-counter-span");
 const URGENT_COUNTER = document.getElementById("urgent-counter-span");
 const DUE_TIME_FIELD = document.getElementById("due-time-field");
 const TASK_IN_BOARD_COUNTER = document.getElementById(
-  "task-in-board-counter-div"
+    "task-in-board-counter-div"
 );
 const TASK_IN_PROGRESS_COUNTER = document.getElementById(
-  "task-in-progress-counter-div"
+    "task-in-progress-counter-div"
 );
 const AWAITING_FEEDBACK_COUNTER = document.getElementById(
-  "awaiting-feedback-counter-div"
+    "awaiting-feedback-counter-div"
 );
 let allTasks = [];
 let toDoCount = 0;
@@ -24,8 +24,8 @@ let upcomimgDeadline = "";
  * Function to get task-objects from session storage and save them to an array
  */
 function getAllTasksFromStoredObject() {
-  let storedObject = getJsonObjectFromSessionStorage();
-  allTasks = getArrayFromObject(storedObject.tasks);
+    let storedObject = getJsonObjectFromSessionStorage();
+    allTasks = getArrayFromObject(storedObject.tasks);
 }
 
 /**
@@ -36,13 +36,13 @@ function getAllTasksFromStoredObject() {
  * @returns integer with count of values in array
  */
 function getCountOfValuesInArray(array, attribute, value) {
-  let count = 0;
-  for (let i = 0; i < array.length; i++) {
-    if (array[i][attribute] === value) {
-      count++;
+    let count = 0;
+    for (let i = 0; i < array.length; i++) {
+        if (array[i][attribute] === value) {
+            count++;
+        }
     }
-  }
-  return count;
+    return count;
 }
 
 /**
@@ -50,8 +50,8 @@ function getCountOfValuesInArray(array, attribute, value) {
  * @returns integer with count of tasks in state inProgress
  */
 function getCountOfTasksInProgress() {
-  let inProgress = getCountOfValuesInArray(allTasks, "state", "inProgress");
-  return inProgress;
+    let inProgress = getCountOfValuesInArray(allTasks, "state", "inProgress");
+    return inProgress;
 }
 
 /**
@@ -59,8 +59,8 @@ function getCountOfTasksInProgress() {
  * @returns integer with count of tasks in state toDo
  */
 function getCountOfToDo() {
-  let toDo = getCountOfValuesInArray(allTasks, "state", "toDo");
-  return toDo;
+    let toDo = getCountOfValuesInArray(allTasks, "state", "toDo");
+    return toDo;
 }
 
 /**
@@ -68,8 +68,8 @@ function getCountOfToDo() {
  * @returns integer with count of tasks in state done
  */
 function getCountOfDone() {
-  let done = getCountOfValuesInArray(allTasks, "state", "done");
-  return done;
+    let done = getCountOfValuesInArray(allTasks, "state", "done");
+    return done;
 }
 
 /**
@@ -77,12 +77,12 @@ function getCountOfDone() {
  * @returns integer with count of tasks in state awaitFeedback
  */
 function getCountOfAwaitFeedback() {
-  let awaitFeedback = getCountOfValuesInArray(
-    allTasks,
-    "state",
-    "awaitFeedback"
-  );
-  return awaitFeedback;
+    let awaitFeedback = getCountOfValuesInArray(
+        allTasks,
+        "state",
+        "awaitFeedback"
+    );
+    return awaitFeedback;
 }
 
 /**
@@ -90,8 +90,8 @@ function getCountOfAwaitFeedback() {
  * @returns integer with count of tasks with prio urgent
  */
 function getCountOfPrioUrgent() {
-  let prioUrgent = getCountOfValuesInArray(allTasks, "priority", "urgent");
-  return prioUrgent;
+    let prioUrgent = getCountOfValuesInArray(allTasks, "priority", "urgent");
+    return prioUrgent;
 }
 
 /**
@@ -99,9 +99,9 @@ function getCountOfPrioUrgent() {
  * @returns integer with count of tasks on the board
  */
 function getCountOfTaskInBoard() {
-  let taskInBoard =
-    toDoCount + taskInProgressCount + awaitingFeedbackCount + doneCount;
-  return taskInBoard;
+    let taskInBoard =
+        toDoCount + taskInProgressCount + awaitingFeedbackCount + doneCount;
+    return taskInBoard;
 }
 
 /**
@@ -109,106 +109,108 @@ function getCountOfTaskInBoard() {
  * @returns string with datetime representing the nearest deadline
  */
 function getUpcomingDeadline() {
-  let allDeadlines = allTasks.map((task) => task.dueDate);
-  let nearestDeadline;
-  let smallestDiff = Infinity;
-  let dateWithSmallestDiff;
-  for (let j = 0; j < allDeadlines.length; j++) {
-    let dateString = allDeadlines[j];
-    let date = new Date(
-      Date.parse(dateString.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$3-$2-$1"))
-    );
-    let today = new Date();
-    let timeDiffInMs = Math.abs(date.getTime() - today.getTime());
-    let timeDiffInDays = Math.floor(timeDiffInMs / (1000 * 60 * 60 * 24));
-    if (timeDiffInDays < smallestDiff) {
-      smallestDiff = timeDiffInDays;
-      dateWithSmallestDiff = date;
+    let allDeadlines = allTasks.map((task) => task.dueDate);
+    let nearestDeadline;
+    let smallestDiff = Infinity;
+    let dateWithSmallestDiff;
+    for (let j = 0; j < allDeadlines.length; j++) {
+        let dateString = allDeadlines[j];
+        let date = new Date(
+            Date.parse(
+                dateString.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$3-$2-$1")
+            )
+        );
+        let today = new Date();
+        let timeDiffInMs = Math.abs(date.getTime() - today.getTime());
+        let timeDiffInDays = Math.floor(timeDiffInMs / (1000 * 60 * 60 * 24));
+        if (timeDiffInDays < smallestDiff) {
+            smallestDiff = timeDiffInDays;
+            dateWithSmallestDiff = date;
+        }
     }
-  }
-  nearestDeadline = new Intl.DateTimeFormat("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  }).format(dateWithSmallestDiff);
-  return nearestDeadline;
+    nearestDeadline = new Intl.DateTimeFormat("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+    }).format(dateWithSmallestDiff);
+    return nearestDeadline;
 }
 
 /**
  * Function to collect needed values and save them to variables
  */
 function setNeededValues() {
-  taskInProgressCount = getCountOfTasksInProgress();
-  toDoCount = getCountOfToDo();
-  doneCount = getCountOfDone();
-  awaitingFeedbackCount = getCountOfAwaitFeedback();
-  urgentCount = getCountOfPrioUrgent();
-  taskInBoardCount = getCountOfTaskInBoard();
-  upcomimgDeadline = getUpcomingDeadline();
+    taskInProgressCount = getCountOfTasksInProgress();
+    toDoCount = getCountOfToDo();
+    doneCount = getCountOfDone();
+    awaitingFeedbackCount = getCountOfAwaitFeedback();
+    urgentCount = getCountOfPrioUrgent();
+    taskInBoardCount = getCountOfTaskInBoard();
+    upcomimgDeadline = getUpcomingDeadline();
 }
 
 /**
  * Function to write collected values to the information cards in the summary
  */
 function writeValuesToElements() {
-  TO_DO_COUNTER.innerHTML = toDoCount;
-  TASK_IN_PROGRESS_COUNTER.innerHTML = taskInProgressCount;
-  AWAITING_FEEDBACK_COUNTER.innerHTML = awaitingFeedbackCount;
-  DONE_COUNTER.innerHTML = doneCount;
-  URGENT_COUNTER.innerHTML = urgentCount;
-  DUE_TIME_FIELD.innerHTML = upcomimgDeadline;
-  TASK_IN_BOARD_COUNTER.innerHTML = taskInBoardCount;
+    TO_DO_COUNTER.innerHTML = toDoCount;
+    TASK_IN_PROGRESS_COUNTER.innerHTML = taskInProgressCount;
+    AWAITING_FEEDBACK_COUNTER.innerHTML = awaitingFeedbackCount;
+    DONE_COUNTER.innerHTML = doneCount;
+    URGENT_COUNTER.innerHTML = urgentCount;
+    DUE_TIME_FIELD.innerHTML = upcomimgDeadline;
+    TASK_IN_BOARD_COUNTER.innerHTML = taskInBoardCount;
 }
 
 /**
  * Funbction to set the greeting information based on daytime and username
  */
 function setGreetingInformations() {
-  setGreetingTime();
-  setGreetingName();
+    setGreetingTime();
+    setGreetingName();
 }
 
 /**
  * Function to render the timebased greeting information to the screen
  */
 function setGreetingTime() {
-  const greetingText = getGreetingText();
-  document.getElementById("summary-greeting").innerHTML = greetingText;
-  document.getElementById("animation-greeting").innerHTML = greetingText;
+    const greetingText = getGreetingText();
+    document.getElementById("summary-greeting").innerHTML = greetingText;
+    document.getElementById("animation-greeting").innerHTML = greetingText;
 }
 
 /**
  * Function to render the namebased greeting information to the screen
  */
 function setGreetingName() {
-  const userName = getUserNameFromLocalStorage();
-  document.getElementById("summary-user-name").innerHTML = userName;
-  document.getElementById("animation-userName").innerHTML = userName;
+    const userName = getUserNameFromLocalStorage();
+    document.getElementById("summary-user-name").innerHTML = userName;
+    document.getElementById("animation-userName").innerHTML = userName;
 }
 
 /**
  * Function to initialize all needed functions on load of the summary page
  */
 function initSummary() {
-  enableGreetingAnimationOnFreshLogin();
-  loadUserInitials();
-  getJsonObjectFromSessionStorage();
-  getAllTasksFromStoredObject();
-  setNeededValues();
-  writeValuesToElements();
-  setGreetingInformations();
+    enableGreetingAnimationOnFreshLogin();
+    loadUserInitials();
+    getJsonObjectFromSessionStorage();
+    getAllTasksFromStoredObject();
+    setNeededValues();
+    writeValuesToElements();
+    setGreetingInformations();
 }
 
 /**
  * Function to enable the greeting animation if freshlogin information is set to session storage
  */
 function enableGreetingAnimationOnFreshLogin() {
-  let freshLogin = checkIfFreshLogin();
-  if (!freshLogin) {
-    animationRef = document.getElementById("animation-greeting-container");
-    animationRef.classList.add("d-none");
-  }
-  disableFreshLogin();
+    let freshLogin = checkIfFreshLogin();
+    if (!freshLogin) {
+        animationRef = document.getElementById("animation-greeting-container");
+        animationRef.classList.add("d-none");
+    }
+    disableFreshLogin();
 }
 
 /**
@@ -216,13 +218,13 @@ function enableGreetingAnimationOnFreshLogin() {
  * @returns string if freshlogin is set to session storage
  */
 function checkIfFreshLogin() {
-  let freshLogin = sessionStorage.getItem("freshLogin");
-  return freshLogin;
+    let freshLogin = sessionStorage.getItem("freshLogin");
+    return freshLogin;
 }
 
 /**
  * Function to disable the fresh login by removing the data from session storage
  */
 function disableFreshLogin() {
-  sessionStorage.removeItem("freshLogin");
+    sessionStorage.removeItem("freshLogin");
 }

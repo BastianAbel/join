@@ -9,41 +9,41 @@ let user = {};
  * If the user does not exist, a message is displayed to the user.
  */
 async function userLogin() {
-  if (!inputsFilled("email", "password")) {
-    return;
-  }
-  await fetchUsers();
-  const userExists = checkIfUserExists();
-  if (userExists) {
-    initiateLogin();
-  } else {
-    visualizeNoLoginMatch();
-  }
+    if (!inputsFilled("email", "password")) {
+        return;
+    }
+    await fetchUsers();
+    const userExists = checkIfUserExists();
+    if (userExists) {
+        initiateLogin();
+    } else {
+        visualizeNoLoginMatch();
+    }
 }
 
 /**
  * Function to fetch all users from the database and store them in an array of user-objects.
  */
 async function fetchUsers() {
-  let response = await fetch(BASE_URL + PATH_TO_USERS + ".json");
-  let fetchedUsers = await response.json();
-  let userKeysArray = Object.keys(fetchedUsers);
-  for (let i = 0; i < userKeysArray.length; i++) {
-    users.push({
-      id: userKeysArray[i],
-      user: {
-        email: fetchedUsers[userKeysArray[i]]["userData"].email
-          .replace(/['"]/g, "")
-          .trim(),
-        password: fetchedUsers[userKeysArray[i]]["userData"].password
-          .replace(/['"]/g, "")
-          .trim(),
-        name: fetchedUsers[userKeysArray[i]]["userData"].name
-          .replace(/['"]/g, "")
-          .trim(),
-      },
-    });
-  }
+    let response = await fetch(BASE_URL + PATH_TO_USERS + ".json");
+    let fetchedUsers = await response.json();
+    let userKeysArray = Object.keys(fetchedUsers);
+    for (let i = 0; i < userKeysArray.length; i++) {
+        users.push({
+            id: userKeysArray[i],
+            user: {
+                email: fetchedUsers[userKeysArray[i]]["userData"].email
+                    .replace(/['"]/g, "")
+                    .trim(),
+                password: fetchedUsers[userKeysArray[i]]["userData"].password
+                    .replace(/['"]/g, "")
+                    .trim(),
+                name: fetchedUsers[userKeysArray[i]]["userData"].name
+                    .replace(/['"]/g, "")
+                    .trim(),
+            },
+        });
+    }
 }
 
 /**
@@ -51,15 +51,15 @@ async function fetchUsers() {
  * @returns {boolean} true if the user exists, false if the user does not exist.
  */
 function checkIfUserExists() {
-  let email = emailInputRef.value;
-  let password = passwordInputRef.value;
-  user = {};
-  user = users.find(
-    (user) => user.user.email === email && user.user.password === password
-  );
-  if (user) {
-    return true;
-  }
+    let email = emailInputRef.value;
+    let password = passwordInputRef.value;
+    user = {};
+    user = users.find(
+        (user) => user.user.email === email && user.user.password === password
+    );
+    if (user) {
+        return true;
+    }
 }
 
 /**
@@ -67,24 +67,24 @@ function checkIfUserExists() {
  * After login, the user is navigated to the summary page.
  */
 async function initiateLogin() {
-  userName = user.user.name;
-  localStorage.setItem("userName", userName);
-  userKey = user.id;
-  getUserInitials(userName);
-  setLoginInformationToSessionStorage(userName, email, password);
-  rememberUser(userKey);
-  await setBackendJsonToSessionStorage();
-  navigateToSummary();
+    userName = user.user.name;
+    localStorage.setItem("userName", userName);
+    userKey = user.id;
+    getUserInitials(userName);
+    setLoginInformationToSessionStorage(userName, email, password);
+    rememberUser(userKey);
+    await setBackendJsonToSessionStorage();
+    navigateToSummary();
 }
 
 /**
  * Function to give visual feedback to the user if the login credentials do not match any user.
  */
 function visualizeNoLoginMatch() {
-  document.getElementById("pw-state-message").innerHTML =
-    "Check your email and password. Please try again.";
-  passwordInputRef.style.border = "1px solid var(--icon-urgent-red)";
-  emailInputRef.style.border = "1px solid var(--icon-urgent-red)";
+    document.getElementById("pw-state-message").innerHTML =
+        "Check your email and password. Please try again.";
+    passwordInputRef.style.border = "1px solid var(--icon-urgent-red)";
+    emailInputRef.style.border = "1px solid var(--icon-urgent-red)";
 }
 
 /**
@@ -92,15 +92,15 @@ function visualizeNoLoginMatch() {
  * @param {string} userName
  */
 function getUserInitials(userName) {
-  if (userName.includes(" ")) {
-    let firstName = userName.split(" ")[0].trim().charAt(0).toUpperCase();
-    let secondName = userName.split(" ")[1].trim().charAt(0).toUpperCase();
-    let userInitials = firstName + secondName;
-    sessionStorage.setItem("userName", userInitials);
-  } else {
-    let firstNameInitial = userName.charAt(0).toUpperCase();
-    sessionStorage.setItem("userName", firstNameInitial);
-  }
+    if (userName.includes(" ")) {
+        let firstName = userName.split(" ")[0].trim().charAt(0).toUpperCase();
+        let secondName = userName.split(" ")[1].trim().charAt(0).toUpperCase();
+        let userInitials = firstName + secondName;
+        sessionStorage.setItem("userName", userInitials);
+    } else {
+        let firstNameInitial = userName.charAt(0).toUpperCase();
+        sessionStorage.setItem("userName", firstNameInitial);
+    }
 }
 
 /**
@@ -110,18 +110,18 @@ function getUserInitials(userName) {
  * @param {string} userPassword
  */
 function setLoginInformationToSessionStorage(
-  userName,
-  userEmail,
-  userPassword
+    userName,
+    userEmail,
+    userPassword
 ) {
-  userData = {
-    name: userName,
-    email: userEmail,
-    password: userPassword,
-  };
-  localStorage.setItem("user", JSON.stringify(userData));
-  sessionStorage.setItem("loginStatus", "user");
-  sessionStorage.setItem("freshLogin", true);
+    userData = {
+        name: userName,
+        email: userEmail,
+        password: userPassword,
+    };
+    localStorage.setItem("user", JSON.stringify(userData));
+    sessionStorage.setItem("loginStatus", "user");
+    sessionStorage.setItem("freshLogin", true);
 }
 
 /**
@@ -129,81 +129,81 @@ function setLoginInformationToSessionStorage(
  * @param {string} userKey
  */
 function rememberUser(userKey) {
-  let key = userKey;
-  let rememberMe = document.getElementById("privacyCheckbox").checked;
-  if (rememberMe) {
-    localStorage.setItem("userkey", key);
-  } else {
-    return;
-  }
+    let key = userKey;
+    let rememberMe = document.getElementById("privacyCheckbox").checked;
+    if (rememberMe) {
+        localStorage.setItem("userkey", key);
+    } else {
+        return;
+    }
 }
 
 /**
  * Function to get the user credentials from the session storage.
  */
 function loadUserInitials() {
-  onlyLoadIfUserOrGuest();
-  let userInitials = sessionStorage.getItem("userName");
-  let loginStatus = sessionStorage.getItem("loginStatus");
-  if (loginStatus === "user") {
-    document.getElementById("profileBtn").innerText = userInitials;
-  } else {
-    document.getElementById("profileBtn").innerText = "G";
-  }
+    onlyLoadIfUserOrGuest();
+    let userInitials = sessionStorage.getItem("userName");
+    let loginStatus = sessionStorage.getItem("loginStatus");
+    if (loginStatus === "user") {
+        document.getElementById("profileBtn").innerText = userInitials;
+    } else {
+        document.getElementById("profileBtn").innerText = "G";
+    }
 }
 
 /**
  * Function to set the user's to session storage and local storage if the user logs in as a guest.
  */
 async function setGuestToSessionStorage() {
-  sessionStorage.setItem("loginStatus", "guest");
-  localStorage.setItem("guest", true);
-  sessionStorage.setItem("freshLogin", true);
-  await setBackendJsonToSessionStorage();
-  navigateToSummary();
+    sessionStorage.setItem("loginStatus", "guest");
+    localStorage.setItem("guest", true);
+    sessionStorage.setItem("freshLogin", true);
+    await setBackendJsonToSessionStorage();
+    navigateToSummary();
 }
 
 /**
  * Function to set the displayed view to summary.html
  */
 function navigateToSummary() {
-  window.location.href = "summary.html";
+    window.location.href = "summary.html";
 }
 
 /**
  * Function that resets the login warning message if the user starts typing in the input fields.
  */
 function resetLoginWarning() {
-  let pwInput = document.getElementById("password").value;
-  if (pwInput === "") {
-    document.getElementById("email").style.border = "1px solid #ccc";
-    document.getElementById("password").style.border = "1px solid #ccc";
-    document.getElementById("pw-state-message").innerHTML = "";
-  }
+    let pwInput = document.getElementById("password").value;
+    if (pwInput === "") {
+        document.getElementById("email").style.border = "1px solid #ccc";
+        document.getElementById("password").style.border = "1px solid #ccc";
+        document.getElementById("pw-state-message").innerHTML = "";
+    }
 }
 
 /**
  * Function to remove user credentials from the session storage and local storage at logout.
  */
 function userLogout() {
-  sessionStorage.removeItem("user");
-  sessionStorage.removeItem("loginStatus");
-  sessionStorage.removeItem("userName");
-  localStorage.removeItem("user");
-  localStorage.removeItem("userkey");
-  localStorage.removeItem("userName");
+    sessionStorage.removeItem("user");
+    sessionStorage.removeItem("loginStatus");
+    sessionStorage.removeItem("userName");
+    localStorage.removeItem("user");
+    localStorage.removeItem("userkey");
+    localStorage.removeItem("userName");
 }
 
 /**
  * Function to load the user credentials from the local storage if the user chose to be remembered.
  */
 async function autoLogin() {
-  let userKey = localStorage.getItem("userkey");
-  if (userKey) {
-    await fetchUsers();
-    findUserByKey(userKey);
-    initiateLogin();
-  }
+    let userKey = localStorage.getItem("userkey");
+    if (userKey) {
+        await fetchUsers();
+        findUserByKey(userKey);
+        initiateLogin();
+    }
 }
 
 /**
@@ -211,5 +211,5 @@ async function autoLogin() {
  * @param {string} userKey
  */
 function findUserByKey(userKey) {
-  user = users.find((u) => u.id === userKey);
+    user = users.find((u) => u.id === userKey);
 }

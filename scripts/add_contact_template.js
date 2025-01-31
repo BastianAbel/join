@@ -9,7 +9,7 @@
  * @returns html string of a single contact
  */
 function renderNewContact(name, email, initials, id, color, phone) {
-  return /*HTML*/ `
+    return /*HTML*/ `
 	<div id="window-overlay" class="d-none window-overlay"></div>
                 <div class="contact-head-container"
                     <div class="contact-container">

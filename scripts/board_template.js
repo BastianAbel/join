@@ -12,18 +12,18 @@
  * @returns HTML string of the big view of a task
  */
 function renderTaskBigView(
-  taskId,
-  taskTitle,
-  taskDescription,
-  taskDate,
-  taskType,
-  taskPriority,
-  priorityImage,
-  assignedUsers,
-  cardTypeColor,
-  decodedSubtasks
+    taskId,
+    taskTitle,
+    taskDescription,
+    taskDate,
+    taskType,
+    taskPriority,
+    priorityImage,
+    assignedUsers,
+    cardTypeColor,
+    decodedSubtasks
 ) {
-  return `
+    return `
         <div id="task-big-container" class=" task-overlay-container">
             <div class="userstory-close-container">
                 <div style=" ${cardTypeColor}" class="labels-board-card-label">
@@ -40,7 +40,7 @@ function renderTaskBigView(
                 <span class="info-text">Priority:</span>
                 <div class="priority-state-container">
                     <span>${capitalizeFirstLetter(
-                      taskPriority
+                        taskPriority
                     )} <img src="${priorityImage}" alt=""></span>
                 </div>
             </div>
@@ -60,8 +60,8 @@ function renderTaskBigView(
                 </div>
                 <div class="seperator"></div>
                 <div onclick="openEditTaskBigView('${taskTitle}','${taskDescription}','${taskDate}', '${taskPriority}', '${assignedUsers}', '${taskId}', '${encodeURIComponent(
-    JSON.stringify(decodedSubtasks)
-  )}')" class="option-container">
+        JSON.stringify(decodedSubtasks)
+    )}')" class="option-container">
                     <div class="option-edit"></div><span>Edit</span>
                 </div>
             </div>
