@@ -1,9 +1,11 @@
-// let editCheckedUsersNamesAndColors = [];
 let editCheckedContactNamesAndColors = [];
 let editNewTask = {};
 let editContactNames = [];
 let editFilteredNamesAndColors = [];
 let helperArray = [];
+let editTaskDropDownIcon;
+let editTaskContactListContainer;
+let editNameCircleContainer;
 
 /**
  * Function to get all contacts that will be rendered in the contact list on editing a task
@@ -142,6 +144,12 @@ function checkContact(event, data) {
         contactNames.splice(contactNames.indexOf(currentContact.name), 1);
         helperArray.splice(helperArray.indexOf(currentContact.name), 1);
     }
+    editNameCircleContainer.innerHTML = "";
+    addNameCircles(
+        editCheckedContactNamesAndColors,
+        editNameCircleContainer,
+        `contact-name-circle`
+    );
 }
 
 /**
@@ -160,13 +168,13 @@ function getTaskFromArrayById(array, id) {
 function editShowContactList(event, taskId) {
     event.preventDefault();
     editCheckedContactNamesAndColors = [];
-    let editTaskContactListContainer = document.getElementById(
+    editTaskContactListContainer = document.getElementById(
         "edit-task-contact-list-container"
     );
-    let editTaskDropDownIcon = document.getElementById(
+    editTaskDropDownIcon = document.getElementById(
         "edit-task-contact-drop-down-icon"
     );
-    let editNameCircleContainer = document.getElementById(
+    editNameCircleContainer = document.getElementById(
         "edit-name-circle-container"
     );
     let currentTask = getTaskFromArrayById(allTasks, taskId);

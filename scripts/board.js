@@ -272,6 +272,13 @@ async function openEditTaskBigView(
         taskDescription,
         taskDate
     );
+    //TODO - hier variablen beladen
+    editTaskContactListContainer = document.getElementById(
+        "edit-task-contact-list-container"
+    );
+    editNameCircleContainer = document.getElementById(
+        "edit-name-circle-container"
+    );
     document.getElementById("edit-task-title").value = taskTitle;
     document.getElementById("edit-task-description").value = taskDescription;
     document.getElementById("edit-task-due-date").value = taskDate;
