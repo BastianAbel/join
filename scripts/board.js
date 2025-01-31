@@ -264,6 +264,12 @@ async function openEditTaskBigView(
     taskId,
     decodedSubtasks
 ) {
+    editCheckedContactNamesAndColors = boardContactsAndColorsHelperArray.filter(
+        (contact) => {
+            return assignedUsers.includes(contact.name);
+        }
+    );
+    editFilteredNamesAndColors = editCheckedContactNamesAndColors;
     document.getElementById("window-overlay").classList.remove("d-none");
     document.getElementById("task-big-container").outerHTML = "";
     document.getElementById("board-main").innerHTML += renderEditTaskBigView(
@@ -272,7 +278,6 @@ async function openEditTaskBigView(
         taskDescription,
         taskDate
     );
-    //TODO - hier variablen beladen
     editTaskContactListContainer = document.getElementById(
         "edit-task-contact-list-container"
     );
@@ -348,7 +353,7 @@ function closeTaskBigView() {
     document.getElementById("window-overlay").classList.add("d-none");
     document.getElementById("profileBtn").style.backgroundColor = "white";
     document.getElementById("task-big-container").outerHTML = "";
-    // updateBoardAfterChanges();
+    updateBoardAfterChanges();
 }
 
 /**
@@ -358,7 +363,7 @@ function closeEditTaskBigView() {
     document.getElementById("window-overlay").classList.add("d-none");
     document.getElementById("profileBtn").style.backgroundColor = "white";
     document.getElementById("edit-task-big-container").outerHTML = "";
-    // updateBoardAfterChanges();
+    updateBoardAfterChanges();
 }
 
 /**

@@ -181,7 +181,7 @@ function editShowContactList(event, taskId) {
     helperArray = currentTask.assignedTo;
     editCheckedContactNamesAndColors = editFilteredNamesAndColors.filter(
         (contact) => helperArray.includes(contact.name)
-    );
+    ); //TODO - dies früher starten
     setContactAssignedToChecked(
         currentTask.assignedTo,
         editCheckedContactNamesAndColors
@@ -294,7 +294,7 @@ function editShowAndHideIcons() {
  * @param {array} assignedUsers
  */
 function editTaskGetEmployeeInfo(assignedUsers) {
-    if (typeof assignedUsers === "string") {
+    if (typeof assignedUsers === "string" && assignedUsers !== "") {
         assignedUsers = assignedUsers.split(",");
     }
     for (let index = 0; index < assignedUsers.length; index++) {
@@ -395,7 +395,6 @@ async function setChangedTaskDataToBackend(
 ) {
     if (
         changedTaskTitle !== "" &&
-        changedTaskDescription !== "" &&
         changedTaskDate !== "" &&
         changedTaskPrio !== ""
     ) {
