@@ -31,6 +31,11 @@ function onlyLoadIfUserOrGuest() {
     }
 }
 
+/**
+ * Function to check if all inputs given as arguments are filled
+ * @param  {...string} inputs The id's of the inputs to check
+ * @returns true if all inputs are filled
+ */
 function inputsFilled(...inputs) {
     const inputFeedback = document.getElementById("input-feedback-container");
     let filled = true;
@@ -45,6 +50,13 @@ function inputsFilled(...inputs) {
     return filled;
 }
 
+/**
+ * Function to reset the input field's validation feedback.
+ * Removes the "not-valid" class from the input element
+ * and clears the feedback message.
+ *
+ * @param {HTMLElement} element - The input element to reset.
+ */
 function resetNotFilledResponse(element) {
     const inputFeedback = document.getElementById("input-feedback-container");
     const input = element;

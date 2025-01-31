@@ -28,25 +28,6 @@ let subtaskList = [];
 let editSubtaskListArray = [];
 let taskPrio = "";
 
-// /**
-//  * Function to load all contacts from firebase and add them to the allContacts array
-//  * @returns an array of all contacts in firebase with added id`s, colors and and an array of tasks assigned to them
-//  */
-// async function loadAllContacts() {
-//     await setBackendJsonToSessionStorage();
-//     let contactsResponse = await loadData(PATH_TO_CONTACTS);
-//     let contactsKeysArray = Object.keys(contactsResponse);
-//     for (let i = 0; i < contactsKeysArray.length; i++) {
-//         allContacts.push({
-//             id: contactsKeysArray[i],
-//             user: contactsResponse[contactsKeysArray[i]],
-//             color: getRandomColor(),
-//             tasksAssignedTo: contactsResponse[contactsKeysArray[i]].tasksAssignedTo,
-//         });
-//     }
-//     return allContacts;
-// }
-
 /**
  * Function to get all contacts names from the allContacts array and add them to the contact list
  * after checking if the user is logged in or a guest and loading the user initials. Then preparing the
@@ -115,7 +96,8 @@ function deleteSubtask(event, subtaskDescription) {
 /**
  * Function to clear all input fields of the add task form by resetting their values
  */
-function clearAllInputAddTask() {
+function clearAllInputAddTask(event) {
+    event.stopPropagation();
     TASK_TITLE_INPUT.value = "";
     TASK_DESCRIPTION.value = "";
     DUE_DATE_INPUT.value = "";
@@ -123,6 +105,20 @@ function clearAllInputAddTask() {
     setMediumPrio();
     subtaskList = [];
     SUBTASK_LIST.innerHTML = "";
+    removeNotValidIfClearButtonisClicked(event);
+}
+
+/**
+ * Function to remove "not-valid" class from task input fields
+ * and clear feedback and requirement info containers when the clear button is clicked.
+ * @param {event} event - The event object from the clear button click
+ */
+function removeNotValidIfClearButtonisClicked(event) {
+    event.stopPropagation();
+    TASK_TITLE_INPUT.classList.remove("not-valid");
+    DUE_DATE_INPUT.classList.remove("not-valid");
+    TASK_CATEGORY_SELECT.classList.remove("not-valid");
+    document.getElementById("input-feedback-container").innerHTML = "";
 }
 
 /**
@@ -226,6 +222,12 @@ function checkContact(event, data) {
         );
         contactNames.splice(contactNames.indexOf(currentContact.name), 1);
     }
+    NAME_CIRCLE_CONTAINER.innerHTML = "";
+    addNameCircles(
+        checkedContactNamesAndColors,
+        NAME_CIRCLE_CONTAINER,
+        `contact-name-circle`
+    );
 }
 
 /**
@@ -241,12 +243,6 @@ function showContactList(event) {
             CONTACT_INPUT_ICON.src = "/assets/icons/arrow-drop-down.svg";
             NAME_CIRCLE_CONTAINER.classList.remove("d-none");
             NAME_CIRCLE_CONTAINER.classList.add("open-circle-container");
-            NAME_CIRCLE_CONTAINER.innerHTML = "";
-            addNameCircles(
-                checkedContactNamesAndColors,
-                NAME_CIRCLE_CONTAINER,
-                `contact-name-circle`
-            );
         }
         if (
             !NAME_CIRCLE_CONTAINER.classList.contains("d-none") &&
@@ -366,6 +362,11 @@ function removeEditClass(event) {
  */
 async function createTask(event) {
     event.preventDefault();
+    console.log(event.target.id);
+
+    if (event.submitter.id !== "create-task-btn") {
+        return;
+    }
     if (!inputsFilled("task-title", "task-due-date", "task-category-select")) {
         return;
     }
@@ -481,6 +482,9 @@ document.addEventListener("click", function (event) {
     try {
         if (!TASK_CONTACT_LIST_CONTAINER.contains(event.target)) {
             TASK_CONTACT_LIST_CONTAINER.classList.add("d-none");
+            if (NAME_CIRCLE_CONTAINER.hasChildNodes()) {
+                NAME_CIRCLE_CONTAINER.classList.remove("d-none");
+            }
         } else {
             return;
         }
