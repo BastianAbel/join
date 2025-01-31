@@ -93,7 +93,6 @@ button {
     }
 }
 
-
 .border-bottom {
     position: relative;
     padding-bottom: 16px;
@@ -192,7 +191,6 @@ input:focus {
     padding-bottom: 16px;
 }
 
-
 .button-container img {
     padding: 4px;
 }
@@ -256,5 +254,5 @@ input:focus {
 @media (max-width: 920px) {
     .big-contact-container {
         width: calc(100vw - 32px) !important;
-    } 
+    }
 }

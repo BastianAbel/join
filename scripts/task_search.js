@@ -23,7 +23,9 @@ function searchTask(event) {
     if (searchInput.length < 4) {
         return;
     }
-    let results = data.filter((entry) => entry.title.toLowerCase().includes(searchInput));
+    let results = data.filter((entry) =>
+        entry.title.toLowerCase().includes(searchInput)
+    );
     contentRef.innerHTML = "";
     results.forEach((task) => {
         renderSearchResultCard(task);
@@ -39,11 +41,22 @@ function renderSearchResultCard(task) {
     const priorityImg = getPriorityImage(task.priority);
     const employeesName = createUserContainer(task.assignedTo);
     const cardTypeColor = changeColorCardType(task.type);
-    const searchResultContainer = document.getElementById("search-task-result-main-container");
-    const boardContentMainContainer = document.getElementById("board-content-container");
+    const searchResultContainer = document.getElementById(
+        "search-task-result-main-container"
+    );
+    const boardContentMainContainer = document.getElementById(
+        "board-content-container"
+    );
     boardContentMainContainer.style.display = "none";
     searchResultContainer.style.display = "flex";
-    contentRef.innerHTML += taskCardTemplateToHtml(task, subtaskState, priorityImg, employeesName, progressBarCalc, cardTypeColor);
+    contentRef.innerHTML += taskCardTemplateToHtml(
+        task,
+        subtaskState,
+        priorityImg,
+        employeesName,
+        progressBarCalc,
+        cardTypeColor
+    );
 }
 
 /**
@@ -65,16 +78,19 @@ function createUserContainer(assignedUsers) {
     if (!assignedUsers) {
         return "";
     }
-    if(assignedUsers.length > 6) {
-        moreUserTemplate = `<div class="more-users"><span>...</span></div>`
+    if (assignedUsers.length > 6) {
+        moreUserTemplate = `<div class="more-users"><span>...</span></div>`;
     }
     assignedUsers = assignedUsers
         .slice(0, 6)
         .map((user) => {
             const userContainer = document.createElement("div");
-            userContainer.className = "user";          
+            userContainer.className = "user";
             const userName = checkUserFolder(user);
-            userContainer.style.backgroundColor = getColorFromArrayByName(boardContactsAndColorsHelperArray, userName);
+            userContainer.style.backgroundColor = getColorFromArrayByName(
+                boardContactsAndColorsHelperArray,
+                userName
+            );
             const initials = getEmployeesInitials(userName);
             userContainer.innerHTML = initials;
             return userContainer.outerHTML;
@@ -86,14 +102,14 @@ function createUserContainer(assignedUsers) {
 
 /**
  * Function to get a color-code fitting to a contact-name
- * @param {array} array 
- * @param {string} nameOfUser 
+ * @param {array} array
+ * @param {string} nameOfUser
  * @returns {string} containing a color-code
  */
 function getColorFromArrayByName(array, nameOfUser) {
     let colorCode;
     if (array.length > 0 && nameOfUser) {
-        const entry = array.find(entry => entry.name === nameOfUser);
+        const entry = array.find((entry) => entry.name === nameOfUser);
         colorCode = entry.color;
     } else {
         colorCode = getRandomColor();
@@ -169,7 +185,9 @@ function getSubtaskStatus(subtasks) {
     }
     completedSubtasks = subtasks.filter((subtask) => subtask.checked).length;
     statusProgressBar(completedSubtasks, totalSubtasks);
-    return `<span id="state">${completedSubtasks}/${totalSubtasks} ${totalSubtasks === 1 ? "Subtask" : "Subtasks"}</span>`;
+    return `<span id="state">${completedSubtasks}/${totalSubtasks} ${
+        totalSubtasks === 1 ? "Subtask" : "Subtasks"
+    }</span>`;
 }
 
 /**
@@ -181,12 +199,11 @@ function getEmployeesInitials(EmployeesName) {
     if (typeof EmployeesName !== "string") {
         throw new Error("EmployeesName must be a string");
     }
-    if(EmployeesName !=""){
+    if (EmployeesName != "") {
         return EmployeesName.split(" ")
-        .map((name) => name[0].toUpperCase())
-        .join("");
+            .map((name) => name[0].toUpperCase())
+            .join("");
     }
-    
 }
 
 /**

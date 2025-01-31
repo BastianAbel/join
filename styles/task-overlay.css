@@ -95,7 +95,7 @@ tr {
 }
 
 .info-text {
-    color: #42526E;
+    color: #42526e;
 }
 
 .priority-container {
@@ -113,7 +113,6 @@ tr {
     gap: 10px;
     border-radius: 10px 0px 0px 0px;
     opacity: 0px;
-
 }
 
 .priority-state-container img {
@@ -129,7 +128,7 @@ tr {
 
 .assigned-head {
     height: 24px;
-    color: #42526E;
+    color: #42526e;
 }
 
 .assigned-contacts {
@@ -169,11 +168,10 @@ tr {
     display: flex;
     align-items: center;
     gap: 16px;
-
 }
 
 .subtasks-head {
-    color: #42526E;
+    color: #42526e;
     height: 19px;
 }
 
@@ -213,7 +211,7 @@ tr {
     height: 24px;
     width: 1px;
     border: 1px;
-    background-color: #D1D1D1;
+    background-color: #d1d1d1;
 }
 
 .delete-edit-container {
@@ -262,10 +260,10 @@ tr {
 @media (min-width: 920px) {
     .task-overlay-container {
         width: 525px;
-        margin-left: 235px
+        margin-left: 235px;
     }
     .edit-task-container {
         width: 525px;
-        margin-left: 235px
+        margin-left: 235px;
     }
 }

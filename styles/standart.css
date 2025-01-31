@@ -38,7 +38,7 @@ button {
     margin: 0;
     box-sizing: border-box;
     font-family: inter, sans-serif;
-    border: unset ;
+    border: unset;
 }
 
 .d-flex {

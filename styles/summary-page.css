@@ -328,8 +328,8 @@ a {
     }
 }
 
-@media (min-width:930px){
-    #summary-greeting-container{
+@media (min-width: 930px) {
+    #summary-greeting-container {
         padding-left: 0;
     }
 }
@@ -365,4 +365,3 @@ a {
         justify-content: space-between !important;
     }
 }
-

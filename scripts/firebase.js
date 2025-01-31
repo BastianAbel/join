@@ -1,4 +1,5 @@
-const BASE_URL = "https://join-10cdc-default-rtdb.europe-west1.firebasedatabase.app/";
+const BASE_URL =
+    "https://join-10cdc-default-rtdb.europe-west1.firebasedatabase.app/";
 const PATH_TO_CONTACTS = "contacts/";
 const PATH_TO_TASKS = "tasks/";
 const PATH_TO_USERS = "users/";
@@ -64,4 +65,3 @@ async function deleteData(path = "", id = "") {
     });
     return (responseToJson = await response.json());
 }
-

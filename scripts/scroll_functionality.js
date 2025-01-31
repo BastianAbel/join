@@ -72,7 +72,11 @@ function rotate(event) {
         dragGhost.style.position = "absolute";
         dragGhost.style.top = "-9999px";
         document.body.appendChild(dragGhost);
-        event.dataTransfer.setDragImage(dragGhost, dragGhost.offsetWidth / 2, dragGhost.offsetHeight / 2);
+        event.dataTransfer.setDragImage(
+            dragGhost,
+            dragGhost.offsetWidth / 2,
+            dragGhost.offsetHeight / 2
+        );
         setTimeout(() => document.body.removeChild(dragGhost), 0);
     }
 }

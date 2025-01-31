@@ -30,17 +30,16 @@
             <form onsubmit="processSignUp(); return false;">
                 <div class="input-main">
                     <div class="input-container">
-                        <input id="username" type="text" placeholder="Name" onkeyup="resetNotFilledResponse(this)"/>
+                        <input id="username" type="text" placeholder="Name" onkeyup="resetNotFilledResponse(this)" />
                         <img src="/assets/icons/contact-person.svg" alt="User Icon" class="input-icon" />
                     </div>
                     <div class="input-container">
-                        <input id="email" type="email" placeholder="Email" onkeyup="resetNotFilledResponse(this)"/>
+                        <input id="email" type="email" placeholder="Email" onkeyup="resetNotFilledResponse(this)" />
                         <img src="/assets/icons/mail-icon.svg" alt="User Icon" class="input-icon" />
                     </div>
                     <div class="input-container">
                         <input id="password" type="password" placeholder="Password"
-                            onkeyup='resetNotFilledResponse(this); visualizeIfPasswordsMatch(); togglePasswordVisibilityIcon(this, "first")'
-                             />
+                            onkeyup="resetNotFilledResponse(this); visualizeIfPasswordsMatch(); togglePasswordVisibilityIcon(this, 'first')" />
                         <img src="/assets/icons/lock.svg" alt="User Icon" class="input-icon" id="password-lock-first" />
                         <img src="/assets/icons/visibility_off.svg" alt="User Icon"
                             class="input-icon d-none visibility-icon" id="password-visibility-first"
@@ -48,8 +47,7 @@
                     </div>
                     <div class="input-container">
                         <input id="confirmPassword" type="password" placeholder="Confirm Password"
-                            onkeyup='resetNotFilledResponse(this); visualizeIfPasswordsMatch(); togglePasswordVisibilityIcon(this, "second")'
-                             />
+                            onkeyup="resetNotFilledResponse(this); visualizeIfPasswordsMatch(); togglePasswordVisibilityIcon(this, 'second')" />
                         <img src="/assets/icons/lock.svg" alt="User Icon" class="input-icon"
                             id="password-lock-second" />
                         <img src="/assets/icons/visibility_off.svg" alt="User Icon"
@@ -59,16 +57,16 @@
                     <div class="check-password-style" id="input-feedback-container"></div>
                 </div>
                 <div class=" check-privacy-container">
-                        <input id="privacyCheckbox" type="checkbox" onclick="toggleSignUpButton()"/>
-                        <label for="privacyCheckbox"></label>
-                        <span style="color: #a8a8a8">I accept the
-                            <a class="privacy-link" href="/pages/privacy-policy.html">Privacy policy</a></span>
-                    </div>
-                    <div class="login-options-container">
-                        <button id="submitBtn" class="login-button" disabled>
-                            Sign up
-                        </button>
-                    </div>
+                    <input id="privacyCheckbox" type="checkbox" onclick="toggleSignUpButton()" />
+                    <label for="privacyCheckbox"></label>
+                    <span style="color: #a8a8a8">I accept the
+                        <a class="privacy-link" href="/pages/privacy-policy.html">Privacy policy</a></span>
+                </div>
+                <div class="login-options-container">
+                    <button id="submitBtn" class="login-button" disabled>
+                        Sign up
+                    </button>
+                </div>
             </form>
         </div>
     </main>

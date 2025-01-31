@@ -2,9 +2,15 @@ const TO_DO_COUNTER = document.getElementById("to-do-counter-span");
 const DONE_COUNTER = document.getElementById("done-counter-span");
 const URGENT_COUNTER = document.getElementById("urgent-counter-span");
 const DUE_TIME_FIELD = document.getElementById("due-time-field");
-const TASK_IN_BOARD_COUNTER = document.getElementById("task-in-board-counter-div");
-const TASK_IN_PROGRESS_COUNTER = document.getElementById("task-in-progress-counter-div");
-const AWAITING_FEEDBACK_COUNTER = document.getElementById("awaiting-feedback-counter-div");
+const TASK_IN_BOARD_COUNTER = document.getElementById(
+    "task-in-board-counter-div"
+);
+const TASK_IN_PROGRESS_COUNTER = document.getElementById(
+    "task-in-progress-counter-div"
+);
+const AWAITING_FEEDBACK_COUNTER = document.getElementById(
+    "awaiting-feedback-counter-div"
+);
 let allTasks = [];
 let toDoCount = 0;
 let doneCount = 0;
@@ -71,7 +77,11 @@ function getCountOfDone() {
  * @returns integer with count of tasks in state awaitFeedback
  */
 function getCountOfAwaitFeedback() {
-    let awaitFeedback = getCountOfValuesInArray(allTasks, "state", "awaitFeedback");
+    let awaitFeedback = getCountOfValuesInArray(
+        allTasks,
+        "state",
+        "awaitFeedback"
+    );
     return awaitFeedback;
 }
 
@@ -89,7 +99,8 @@ function getCountOfPrioUrgent() {
  * @returns integer with count of tasks on the board
  */
 function getCountOfTaskInBoard() {
-    let taskInBoard = toDoCount + taskInProgressCount + awaitingFeedbackCount+ doneCount;
+    let taskInBoard =
+        toDoCount + taskInProgressCount + awaitingFeedbackCount + doneCount;
     return taskInBoard;
 }
 
@@ -104,7 +115,11 @@ function getUpcomingDeadline() {
     let dateWithSmallestDiff;
     for (let j = 0; j < allDeadlines.length; j++) {
         let dateString = allDeadlines[j];
-        let date = new Date(Date.parse(dateString.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$3-$2-$1")));
+        let date = new Date(
+            Date.parse(
+                dateString.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$3-$2-$1")
+            )
+        );
         let today = new Date();
         let timeDiffInMs = Math.abs(date.getTime() - today.getTime());
         let timeDiffInDays = Math.floor(timeDiffInMs / (1000 * 60 * 60 * 24));
@@ -113,7 +128,11 @@ function getUpcomingDeadline() {
             dateWithSmallestDiff = date;
         }
     }
-    nearestDeadline = new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric", year: "numeric" }).format(dateWithSmallestDiff);
+    nearestDeadline = new Intl.DateTimeFormat("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+    }).format(dateWithSmallestDiff);
     return nearestDeadline;
 }
 

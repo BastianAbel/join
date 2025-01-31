@@ -14,7 +14,9 @@ function visualizeIfPasswordsMatch() {
     if (isEmpty) {
         removePasswordFeedbackStyle();
     } else {
-        PasswordsMatch(passwordInputValue) ? setPasswordFeedbackStyle("matching") : setPasswordFeedbackStyle("notMatching");
+        PasswordsMatch(passwordInputValue)
+            ? setPasswordFeedbackStyle("matching")
+            : setPasswordFeedbackStyle("notMatching");
     }
 }
 
@@ -25,7 +27,7 @@ function visualizeIfPasswordsMatch() {
 function getPasswordInput() {
     password = passwordInput.value;
     confirmPassword = confirmPasswordInput.value;
-    return { "password": password, "confirmPassword": confirmPassword };
+    return { password: password, confirmPassword: confirmPassword };
 }
 
 /**
@@ -92,17 +94,22 @@ const PasswordFeedbackStyles = {
 function setPasswordFeedbackStyle(currentState) {
     passwordFeedbackRef.innerHTML = PasswordFeedbackStyles[currentState].text;
     passwordFeedbackRef.classList.remove("d-none");
-    passwordInput.style.border = "1px solid var(" + PasswordFeedbackStyles[currentState].colorcode + ")";
-    confirmPasswordInput.style.border = "1px solid var(" + PasswordFeedbackStyles[currentState].colorcode + ")";
-    passwordFeedbackRef.classList.toggle("pw-match-green", currentState === "matching");
+    passwordInput.style.border =
+        "1px solid var(" + PasswordFeedbackStyles[currentState].colorcode + ")";
+    confirmPasswordInput.style.border =
+        "1px solid var(" + PasswordFeedbackStyles[currentState].colorcode + ")";
+    passwordFeedbackRef.classList.toggle(
+        "pw-match-green",
+        currentState === "matching"
+    );
 }
 
 /**
  * Function to process the sign up form
  */
 async function processSignUp() {
-    if(!inputsFilled("username", "email", "password", "confirmPassword")) {
-        return
+    if (!inputsFilled("username", "email", "password", "confirmPassword")) {
+        return;
     }
     if (await emailExists()) {
         setEmailExistsFeedback();
@@ -152,7 +159,11 @@ function showSignUpPopUp() {
  * Function to save the new user to the firebase database
  */
 function addNewProfileToServer() {
-    let userData = { "name": `"${userNameInput.value}"`, "email": `"${emailInput.value}"`, "password": `"${passwordInput.value}"` };
+    let userData = {
+        name: `"${userNameInput.value}"`,
+        email: `"${emailInput.value}"`,
+        password: `"${passwordInput.value}"`,
+    };
     postData((path = "users/"), (data = { userData }));
 }
 
@@ -196,7 +207,7 @@ function changePasswordVisibility(inputfieldId, imgElement) {
 function toggleSignUpButton() {
     const checkbox = document.getElementById("privacyCheckbox");
     const signUpButton = document.getElementById("submitBtn");
-    checkbox.checked 
-    ? signUpButton.disabled = false
-    : signUpButton.disabled = true;
+    checkbox.checked
+        ? (signUpButton.disabled = false)
+        : (signUpButton.disabled = true);
 }

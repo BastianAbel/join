@@ -9,7 +9,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(42, 54, 71, 1);
-    animation: bgr-transform 0.5s linear 0.5s forwards; 
+    animation: bgr-transform 0.5s linear 0.5s forwards;
 }
 
 @keyframes bgr-transform {
@@ -24,7 +24,7 @@
 .start-site-container::before {
     content: "";
     position: absolute;
-    inset: 0; 
+    inset: 0;
     background-color: rgba(42, 54, 71, 1);
     z-index: 1000;
     animation: bgr-transform-overlay 0.5s linear 0.5s forwards;
@@ -48,7 +48,8 @@
     display: flex;
 }
 
-#join-logo-white, #join-logo-dark {
+#join-logo-white,
+#join-logo-dark {
     width: 100.03px;
     height: 121.97px;
     position: absolute;
@@ -71,7 +72,6 @@
     animation-name: slide-img2;
 }
 
-
 @keyframes slide-img1 {
     0% {
         opacity: 1;
@@ -79,7 +79,7 @@
         width: 100.03px;
         height: 121.97px;
     }
-    
+
     100% {
         opacity: 0;
         transform: translate(0, 0);
@@ -95,7 +95,7 @@
         width: 100.03px;
         height: 121.97px;
     }
-    
+
     100% {
         opacity: 1;
         transform: translate(0, 0);
@@ -104,24 +104,24 @@
     }
 }
 
-@media(min-width:1920px) {
+@media (min-width: 1920px) {
     @keyframes slide-img1 {
         0% {
             transform: translate(calc(960px - 70px), calc(50vh - 80px));
         }
-        
+
         100% {
             transform: translate(0, 0);
         }
     }
-    
+
     @keyframes slide-img2 {
         0% {
             transform: translate(calc(960px - 70px), calc(50vh - 80px));
         }
-        
+
         100% {
             transform: translate(0, 0);
         }
-    }    
+    }
 }

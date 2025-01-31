@@ -45,7 +45,7 @@ header {
     font-size: 20px;
 }
 
-.join-logo-header{
+.join-logo-header {
     display: block;
 }
 
@@ -96,6 +96,5 @@ header {
 
     .ask-btn:hover {
         width: 24px;
-        
     }
 }

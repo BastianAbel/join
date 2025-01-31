@@ -5,9 +5,15 @@ let newColor = getRandomColor();
  * Function to get the initials of a contact, set a new color and fill the placeholder bubble at the add contact form
  */
 function fillPlaceholderBubble() {
-    const PLACEHOLDER_CIRCLE = document.getElementById("add-contact-placeholder");
-    const CONTACT_INITIALS = document.getElementById("add-contact-initials-paragraph");
-    const CONTACT_PLACEHOLDER_IMG = document.getElementById("add-contact-placeholder-img");
+    const PLACEHOLDER_CIRCLE = document.getElementById(
+        "add-contact-placeholder"
+    );
+    const CONTACT_INITIALS = document.getElementById(
+        "add-contact-initials-paragraph"
+    );
+    const CONTACT_PLACEHOLDER_IMG = document.getElementById(
+        "add-contact-placeholder-img"
+    );
     const NAME_INPUT = document.getElementById("add-contact-name-input-field");
     if (NAME_INPUT.value) {
         PLACEHOLDER_CIRCLE.classList.remove("d-none");
@@ -45,13 +51,27 @@ async function getIdOfNewContact() {
  */
 async function createContact(event) {
     event.preventDefault();
-    if(!inputsFilled('add-contact-name-input-field', 'add-contact-email-input-field', 'add-contact-phone-input-field')) {
-        return
+    if (
+        !inputsFilled(
+            "add-contact-name-input-field",
+            "add-contact-email-input-field",
+            "add-contact-phone-input-field"
+        )
+    ) {
+        return;
     }
-    const EMAIL_INPUT = document.getElementById("add-contact-email-input-field");
-    const PHONE_INPUT = document.getElementById("add-contact-phone-input-field");
+    const EMAIL_INPUT = document.getElementById(
+        "add-contact-email-input-field"
+    );
+    const PHONE_INPUT = document.getElementById(
+        "add-contact-phone-input-field"
+    );
     const NAME_INPUT = document.getElementById("add-contact-name-input-field");
-    let newContact = { email: EMAIL_INPUT.value, name: NAME_INPUT.value, phone: PHONE_INPUT.value };
+    let newContact = {
+        email: EMAIL_INPUT.value,
+        name: NAME_INPUT.value,
+        phone: PHONE_INPUT.value,
+    };
 
     if (!newContact.email || !newContact.name || !newContact.phone) return;
     try {
@@ -59,17 +79,31 @@ async function createContact(event) {
         await setBackendJsonToSessionStorage();
         let newId = await getIdOfNewContact();
         allContacts.push({ id: newId, contact: newContact, color: newColor });
-        document.getElementById("single-contact-view").innerHTML = renderNewContact(newContact.name, newContact.email, initials, newId, newColor, newContact.phone);
-        ["addContactContainer", "window-overlay"].forEach(id => document.getElementById(id).classList.add("d-none"));
+        document.getElementById("single-contact-view").innerHTML =
+            renderNewContact(
+                newContact.name,
+                newContact.email,
+                initials,
+                newId,
+                newColor,
+                newContact.phone
+            );
+        ["addContactContainer", "window-overlay"].forEach((id) =>
+            document.getElementById(id).classList.add("d-none")
+        );
 
         let successDiv = document.getElementById("add-contact-success-div");
         successDiv.classList.remove("d-none", "slide-down-success");
         successDiv.classList.add("slide-up-success");
         setTimeout(() => {
-            successDiv.classList.replace("slide-up-success", "slide-down-success");
+            successDiv.classList.replace(
+                "slide-up-success",
+                "slide-down-success"
+            );
             setTimeout(() => successDiv.classList.add("d-none"), 500);
             navigateToContactList();
         }, 1500);
-    } catch (error) { console.error("Fehler beim Erstellen des Kontaktes:", error); }
+    } catch (error) {
+        console.error("Fehler beim Erstellen des Kontaktes:", error);
+    }
 }
-

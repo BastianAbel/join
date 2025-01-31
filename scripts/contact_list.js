@@ -1,4 +1,6 @@
-const CONTACT_LIST_CONTAINER = document.getElementById("contact-list-container");
+const CONTACT_LIST_CONTAINER = document.getElementById(
+    "contact-list-container"
+);
 let allContacts = [];
 let firstLetters = [];
 let cardId = "";
@@ -25,14 +27,33 @@ function loadAllContacts() {
  * Function to get the correct board-section to render the contacts in based on the first letter of the contact's name
  */
 function getListSection() {
-    allContacts.sort((a, b) => (a.contact.name > b.contact.name ? 1 : a.contact.name < b.contact.name ? -1 : 0));
-    firstLetters = Array.from(new Set(allContacts.map((entry) => entry.contact.name[0].toUpperCase())));
+    allContacts.sort((a, b) =>
+        a.contact.name > b.contact.name
+            ? 1
+            : a.contact.name < b.contact.name
+            ? -1
+            : 0
+    );
+    firstLetters = Array.from(
+        new Set(allContacts.map((entry) => entry.contact.name[0].toUpperCase()))
+    );
     for (let i = 0; i < firstLetters.length; i++) {
-        CONTACT_LIST_CONTAINER.innerHTML += renderContactSection(firstLetters[i]);
+        CONTACT_LIST_CONTAINER.innerHTML += renderContactSection(
+            firstLetters[i]
+        );
         for (let j = 0; j < allContacts.length; j++) {
             if (allContacts[j].contact.name.startsWith(firstLetters[i])) {
-                document.getElementById(`div-for-contacts-with-letter(${firstLetters[i]})`).innerHTML += renderContactListContact(allContacts[j].contact, getContactInitials(allContacts[j].contact.name), allContacts[j].id);
-                setColorById(`profile-picture(${allContacts[j].id})`, allContacts[j].color);
+                document.getElementById(
+                    `div-for-contacts-with-letter(${firstLetters[i]})`
+                ).innerHTML += renderContactListContact(
+                    allContacts[j].contact,
+                    getContactInitials(allContacts[j].contact.name),
+                    allContacts[j].id
+                );
+                setColorById(
+                    `profile-picture(${allContacts[j].id})`,
+                    allContacts[j].color
+                );
             }
         }
     }
@@ -68,16 +89,25 @@ function contactBigView(name, email, phone, initials, id, contact) {
     if (activeContactId !== null) {
         let prevElement = document.getElementById(`${activeContactId}`);
         if (prevElement) {
-            prevElement.style.backgroundColor = ''; 
-            prevElement.style.color = ''; 
+            prevElement.style.backgroundColor = "";
+            prevElement.style.color = "";
         }
     }
     let newActiveElement = document.getElementById(`${id}`);
-    newActiveElement.style.backgroundColor = 'var(--dark-background)';
-    newActiveElement.style.color = 'white';
+    newActiveElement.style.backgroundColor = "var(--dark-background)";
+    newActiveElement.style.color = "white";
     activeContactId = id;
     let color = allContacts.find((e) => e.id == id).color;
-    document.getElementById("single-contact-view").innerHTML = renderSingleContactView(name, email, phone, initials, id, color, contact);
+    document.getElementById("single-contact-view").innerHTML =
+        renderSingleContactView(
+            name,
+            email,
+            phone,
+            initials,
+            id,
+            color,
+            contact
+        );
     document.getElementById("single-contact-view").style.display = "block";
     document.getElementById("add-contact-button").style.display = "none";
 }
@@ -95,7 +125,11 @@ function editBigView(initials, color, id, name, email, phone) {
     document.getElementById("edit-delete-menu").style.display = "none";
     document.getElementById("profileBtn").style.backgroundColor = "white";
     document.getElementById("window-overlay").classList.remove("d-none");
-    document.getElementById("main-content").innerHTML += renderEditContactView(initials, color, id);
+    document.getElementById("main-content").innerHTML += renderEditContactView(
+        initials,
+        color,
+        id
+    );
     document.getElementById("newName").value = name;
     document.getElementById("newEmail").value = email;
     document.getElementById("newPhone").value = phone;
@@ -256,7 +290,11 @@ async function saveEditedUserData(newName, newEmail, newPhone, id) {
     document.getElementById("userName").innerHTML = newName;
     document.getElementById("userEmail").innerHTML = newEmail;
     document.getElementById("userPhone").innerHTML = newPhone;
-    updateData((path = PATH_TO_CONTACTS), (id = id), (data = { "email": newEmail, "name": newName, "phone": newPhone }));
+    updateData(
+        (path = PATH_TO_CONTACTS),
+        (id = id),
+        (data = { email: newEmail, name: newName, phone: newPhone })
+    );
     EditContactViewSlideDown();
     await setBackendJsonToSessionStorage();
     setTimeout(() => {

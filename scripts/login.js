@@ -9,8 +9,8 @@ let user = {};
  * If the user does not exist, a message is displayed to the user.
  */
 async function userLogin() {
-    if(!inputsFilled("email", "password")) {
-        return
+    if (!inputsFilled("email", "password")) {
+        return;
     }
     await fetchUsers();
     const userExists = checkIfUserExists();
@@ -32,9 +32,15 @@ async function fetchUsers() {
         users.push({
             id: userKeysArray[i],
             user: {
-                email: fetchedUsers[userKeysArray[i]]["userData"].email.replace(/['"]/g, "").trim(),
-                password: fetchedUsers[userKeysArray[i]]["userData"].password.replace(/['"]/g, "").trim(),
-                name: fetchedUsers[userKeysArray[i]]["userData"].name.replace(/['"]/g, "").trim(),
+                email: fetchedUsers[userKeysArray[i]]["userData"].email
+                    .replace(/['"]/g, "")
+                    .trim(),
+                password: fetchedUsers[userKeysArray[i]]["userData"].password
+                    .replace(/['"]/g, "")
+                    .trim(),
+                name: fetchedUsers[userKeysArray[i]]["userData"].name
+                    .replace(/['"]/g, "")
+                    .trim(),
             },
         });
     }
@@ -48,7 +54,9 @@ function checkIfUserExists() {
     let email = emailInputRef.value;
     let password = passwordInputRef.value;
     user = {};
-    user = users.find((user) => user.user.email === email && user.user.password === password);
+    user = users.find(
+        (user) => user.user.email === email && user.user.password === password
+    );
     if (user) {
         return true;
     }
@@ -73,7 +81,8 @@ async function initiateLogin() {
  * Function to give visual feedback to the user if the login credentials do not match any user.
  */
 function visualizeNoLoginMatch() {
-    document.getElementById("pw-state-message").innerHTML = "Check your email and password. Please try again.";
+    document.getElementById("pw-state-message").innerHTML =
+        "Check your email and password. Please try again.";
     passwordInputRef.style.border = "1px solid var(--icon-urgent-red)";
     emailInputRef.style.border = "1px solid var(--icon-urgent-red)";
 }
@@ -100,11 +109,15 @@ function getUserInitials(userName) {
  * @param {string} userEmail
  * @param {string} userPassword
  */
-function setLoginInformationToSessionStorage(userName, userEmail, userPassword) {
+function setLoginInformationToSessionStorage(
+    userName,
+    userEmail,
+    userPassword
+) {
     userData = {
-        "name": userName,
-        "email": userEmail,
-        "password": userPassword,
+        name: userName,
+        email: userEmail,
+        password: userPassword,
     };
     localStorage.setItem("user", JSON.stringify(userData));
     sessionStorage.setItem("loginStatus", "user");

@@ -11,7 +11,18 @@
  * @param {string} assignedUsers
  * @returns HTML string of the big view of a task
  */
-function renderTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks) {
+function renderTaskBigView(
+    taskId,
+    taskTitle,
+    taskDescription,
+    taskDate,
+    taskType,
+    taskPriority,
+    priorityImage,
+    assignedUsers,
+    cardTypeColor,
+    decodedSubtasks
+) {
     return `
         <div id="task-big-container" class=" task-overlay-container">
             <div class="userstory-close-container">
@@ -28,7 +39,9 @@ function renderTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskTyp
             <div class="priority-container">
                 <span class="info-text">Priority:</span>
                 <div class="priority-state-container">
-                    <span>${capitalizeFirstLetter(taskPriority)} <img src="${priorityImage}" alt=""></span>
+                    <span>${capitalizeFirstLetter(
+                        taskPriority
+                    )} <img src="${priorityImage}" alt=""></span>
                 </div>
             </div>
             <div class="assigned-contacts-container">
@@ -46,7 +59,9 @@ function renderTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskTyp
                     <div class="option-delete"></div><span>Delete</span>
                 </div>
                 <div class="seperator"></div>
-                <div onclick="openEditTaskBigView('${taskTitle}','${taskDescription}','${taskDate}', '${taskPriority}', '${assignedUsers}', '${taskId}', '${encodeURIComponent(JSON.stringify(decodedSubtasks))}')" class="option-container">
+                <div onclick="openEditTaskBigView('${taskTitle}','${taskDescription}','${taskDate}', '${taskPriority}', '${assignedUsers}', '${taskId}', '${encodeURIComponent(
+        JSON.stringify(decodedSubtasks)
+    )}')" class="option-container">
                     <div class="option-edit"></div><span>Edit</span>
                 </div>
             </div>

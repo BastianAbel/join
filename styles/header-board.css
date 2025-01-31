@@ -52,8 +52,6 @@ header {
 }
 
 @media (min-width: 1297px) {
-    
-
     .header span {
         display: block;
     }
@@ -76,7 +74,7 @@ header {
     }
 }
 
-@media(min-width: 920px) {
+@media (min-width: 920px) {
     .ask-btn-board {
         width: 20px;
         height: 20px;

@@ -27,13 +27,21 @@ function editAddContactNamesToList(array, element) {
  * @param {array} taskArrayOfAssignedContacts
  * @param {array} arrayOfAllContactNames
  */
-function setContactAssignedToChecked(taskArrayOfAssignedContacts, arrayOfAllContactNames) {
+function setContactAssignedToChecked(
+    taskArrayOfAssignedContacts,
+    arrayOfAllContactNames
+) {
     let listElementDiv;
     for (let i = 0; i < arrayOfAllContactNames.length; i++) {
         for (let j = 0; j < taskArrayOfAssignedContacts.length; j++) {
             {
-                if (arrayOfAllContactNames[i].name == taskArrayOfAssignedContacts[j]) {
-                    listElementDiv = document.getElementById(`check-box-assign-contact-id(${arrayOfAllContactNames[i].id})`);
+                if (
+                    arrayOfAllContactNames[i].name ==
+                    taskArrayOfAssignedContacts[j]
+                ) {
+                    listElementDiv = document.getElementById(
+                        `check-box-assign-contact-id(${arrayOfAllContactNames[i].id})`
+                    );
                     listElementDiv.classList.add("checked-contact");
                 }
             }
@@ -99,8 +107,13 @@ function editSetLowPrio() {
  */
 function editFilterInput(event) {
     editFilteredNamesAndColors = [];
-    let editTaskContactList = document.getElementById("edit-task-contacts-list");
-    editFilteredNamesAndColors = filterInputFromArray(editCheckedContactNamesAndColors, event.target.value);
+    let editTaskContactList = document.getElementById(
+        "edit-task-contacts-list"
+    );
+    editFilteredNamesAndColors = filterInputFromArray(
+        editCheckedContactNamesAndColors,
+        event.target.value
+    );
     editAddContactNamesToList(editFilteredNamesAndColors, editTaskContactList);
 }
 
@@ -112,14 +125,20 @@ function editFilterInput(event) {
  */
 function checkContact(event, data) {
     const container = event.currentTarget;
-    let currentContact = getContactFromArrayById(editFilteredNamesAndColors, data.id);
+    let currentContact = getContactFromArrayById(
+        editFilteredNamesAndColors,
+        data.id
+    );
     container.classList.toggle("checked-contact");
     if (container.classList.contains("checked-contact")) {
         editCheckedContactNamesAndColors.push(currentContact);
         contactNames.push(currentContact.name);
         helperArray.push(currentContact.name);
     } else {
-        editCheckedContactNamesAndColors.splice(editCheckedContactNamesAndColors.indexOf(currentContact), 1);
+        editCheckedContactNamesAndColors.splice(
+            editCheckedContactNamesAndColors.indexOf(currentContact),
+            1
+        );
         contactNames.splice(contactNames.indexOf(currentContact.name), 1);
         helperArray.splice(helperArray.indexOf(currentContact.name), 1);
     }
@@ -141,13 +160,24 @@ function getTaskFromArrayById(array, id) {
 function editShowContactList(event, taskId) {
     event.preventDefault();
     editCheckedContactNamesAndColors = [];
-    let editTaskContactListContainer = document.getElementById("edit-task-contact-list-container");
-    let editTaskDropDownIcon = document.getElementById("edit-task-contact-drop-down-icon");
-    let editNameCircleContainer = document.getElementById("edit-name-circle-container");
+    let editTaskContactListContainer = document.getElementById(
+        "edit-task-contact-list-container"
+    );
+    let editTaskDropDownIcon = document.getElementById(
+        "edit-task-contact-drop-down-icon"
+    );
+    let editNameCircleContainer = document.getElementById(
+        "edit-name-circle-container"
+    );
     let currentTask = getTaskFromArrayById(allTasks, taskId);
     helperArray = currentTask.assignedTo;
-    editCheckedContactNamesAndColors = editFilteredNamesAndColors.filter((contact) => helperArray.includes(contact.name));
-    setContactAssignedToChecked(currentTask.assignedTo, editCheckedContactNamesAndColors);
+    editCheckedContactNamesAndColors = editFilteredNamesAndColors.filter(
+        (contact) => helperArray.includes(contact.name)
+    );
+    setContactAssignedToChecked(
+        currentTask.assignedTo,
+        editCheckedContactNamesAndColors
+    );
     if (event.currentTarget == event.target) {
         editTaskContactListContainer.classList.toggle("d-none");
         if (!editTaskContactListContainer.classList.contains("d-none")) {
@@ -157,14 +187,20 @@ function editShowContactList(event, taskId) {
             editNameCircleContainer.classList.remove("d-none");
             editNameCircleContainer.classList.add("open-circle-container");
             editNameCircleContainer.innerHTML = "";
-            addNameCircles(editCheckedContactNamesAndColors, editNameCircleContainer, `contact-name-circle`);
+            addNameCircles(
+                editCheckedContactNamesAndColors,
+                editNameCircleContainer,
+                `contact-name-circle`
+            );
         }
-        if (!editNameCircleContainer.classList.contains("d-none") && !editNameCircleContainer.hasChildNodes()) {
+        if (
+            !editNameCircleContainer.classList.contains("d-none") &&
+            !editNameCircleContainer.hasChildNodes()
+        ) {
             editNameCircleContainer.innerHTML = "";
             editNameCircleContainer.classList.remove("open-circle-container");
         }
     }
-    
 }
 
 /**
@@ -172,7 +208,9 @@ function editShowContactList(event, taskId) {
  * @param {string} taskId
  */
 async function removeTaskIdFromUncheckedContacts(taskId) {
-    let uncheckedContacts = editFilteredNamesAndColors.filter((contact) => !contactNames.includes(contact.name));
+    let uncheckedContacts = editFilteredNamesAndColors.filter(
+        (contact) => !contactNames.includes(contact.name)
+    );
     for (let i = 0; i < uncheckedContacts.length; i++) {
         let contact = uncheckedContacts[i];
         let contactTasks = contact.tasksAssignedTo || [];
@@ -208,9 +246,13 @@ function editAddSubTask() {
  */
 function editClearSubtaskInputField() {
     document.getElementById("edit-subtask-title").value = "";
-    document.getElementById("edit-sub-task-icon-plus").classList.remove("d-none");
+    document
+        .getElementById("edit-sub-task-icon-plus")
+        .classList.remove("d-none");
     document.getElementById("edit-sub-task-icon-cross").classList.add("d-none");
-    document.getElementById("edit-sub-task-icon-vector").classList.add("d-none");
+    document
+        .getElementById("edit-sub-task-icon-vector")
+        .classList.add("d-none");
     document.getElementById("edit-sub-task-icon-check").classList.add("d-none");
 }
 
@@ -219,10 +261,18 @@ function editClearSubtaskInputField() {
  */
 function editShowAndHideIcons() {
     let editSubtaskInput = document.getElementById("edit-subtask-title");
-    let editSubtaskIconPlus = document.getElementById("edit-sub-task-icon-plus");
-    let editSubtaskIconCross = document.getElementById("edit-sub-task-icon-cross");
-    let editSubtaskIconVector = document.getElementById("edit-sub-task-icon-vector");
-    let editSubtaskIconCheck = document.getElementById("edit-sub-task-icon-check");
+    let editSubtaskIconPlus = document.getElementById(
+        "edit-sub-task-icon-plus"
+    );
+    let editSubtaskIconCross = document.getElementById(
+        "edit-sub-task-icon-cross"
+    );
+    let editSubtaskIconVector = document.getElementById(
+        "edit-sub-task-icon-vector"
+    );
+    let editSubtaskIconCheck = document.getElementById(
+        "edit-sub-task-icon-check"
+    );
     if (editSubtaskInput.value.length > 0) {
         editSubtaskIconPlus.classList.add("d-none");
         editSubtaskIconCross.classList.remove("d-none");
@@ -240,9 +290,14 @@ function editTaskGetEmployeeInfo(assignedUsers) {
         assignedUsers = assignedUsers.split(",");
     }
     for (let index = 0; index < assignedUsers.length; index++) {
-        let bgColor = getColorFromArrayByName(boardContactsAndColorsHelperArray, assignedUsers[index]);
+        let bgColor = getColorFromArrayByName(
+            boardContactsAndColorsHelperArray,
+            assignedUsers[index]
+        );
         document.getElementById("edit-name-circle-container").innerHTML += `
-            <div style="background-color: ${bgColor}" class="name-circle">${getEmployeesInitials(assignedUsers[index])}</div>
+            <div style="background-color: ${bgColor}" class="name-circle">${getEmployeesInitials(
+            assignedUsers[index]
+        )}</div>
         `;
     }
 }
@@ -286,43 +341,72 @@ async function editGetSubtaskInfo(subtasks) {
 
 /**
  * Function to collect changed data from editing a task
- * @param {string} taskId 
+ * @param {string} taskId
  */
 async function getChangedTaskData(taskId) {
     let changedTaskTitle = document.getElementById("edit-task-title").value;
-    let changedTaskDescription = document.getElementById("edit-task-description").value;
+    let changedTaskDescription = document.getElementById(
+        "edit-task-description"
+    ).value;
     let changedTaskDate = document.getElementById("edit-task-due-date").value;
     let changedTaskPrio = taskPrio;
-    let changedContacts = editCheckedContactNamesAndColors.map((contact) => contact.name);
+    let changedContacts = editCheckedContactNamesAndColors.map(
+        (contact) => contact.name
+    );
     let changedSubtaskList = subtaskList;
-    await setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTaskDescription, changedTaskDate, changedTaskPrio, changedContacts, changedSubtaskList);
+    await setChangedTaskDataToBackend(
+        taskId,
+        changedTaskTitle,
+        changedTaskDescription,
+        changedTaskDate,
+        changedTaskPrio,
+        changedContacts,
+        changedSubtaskList
+    );
 }
 
 /**
  * Function to set new data from editing a task to firebase database, update session storage
  *  and let the edit task view slide out from screen
- * @param {string} taskId 
- * @param {string} changedTaskTitle 
- * @param {string} changedTaskDescription 
- * @param {string} changedTaskDate 
- * @param {string} changedTaskPrio 
- * @param {array} changedContacts 
- * @param {array} changedSubtaskList 
+ * @param {string} taskId
+ * @param {string} changedTaskTitle
+ * @param {string} changedTaskDescription
+ * @param {string} changedTaskDate
+ * @param {string} changedTaskPrio
+ * @param {array} changedContacts
+ * @param {array} changedSubtaskList
  */
-async function setChangedTaskDataToBackend(taskId, changedTaskTitle, changedTaskDescription, changedTaskDate, changedTaskPrio, changedContacts, changedSubtaskList) { 
-    if (changedTaskTitle !== "" && changedTaskDescription !== "" && changedTaskDate !== "" && changedTaskPrio !== "") {
-        updateData((path = PATH_TO_TASKS), (id = taskId), (data = {
-            "title": changedTaskTitle,
-            "description": changedTaskDescription,
-            "dueDate": changedTaskDate,
-            "priority": changedTaskPrio,
-            "assignedTo": changedContacts,
-            "subtasks": changedSubtaskList,
-        }));
+async function setChangedTaskDataToBackend(
+    taskId,
+    changedTaskTitle,
+    changedTaskDescription,
+    changedTaskDate,
+    changedTaskPrio,
+    changedContacts,
+    changedSubtaskList
+) {
+    if (
+        changedTaskTitle !== "" &&
+        changedTaskDescription !== "" &&
+        changedTaskDate !== "" &&
+        changedTaskPrio !== ""
+    ) {
+        updateData(
+            (path = PATH_TO_TASKS),
+            (id = taskId),
+            (data = {
+                title: changedTaskTitle,
+                description: changedTaskDescription,
+                dueDate: changedTaskDate,
+                priority: changedTaskPrio,
+                assignedTo: changedContacts,
+                subtasks: changedSubtaskList,
+            })
+        );
         await addTaskToAssignedContacts();
         await setBackendJsonToSessionStorage();
         await updateSessionStorage();
         editTaskSlideOut();
-    } 
+    }
     navigateToBoard();
 }

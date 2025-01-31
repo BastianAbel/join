@@ -26,7 +26,6 @@
 
     100% {
         z-index: -1;
-
     }
 }
 
@@ -42,7 +41,7 @@
     color: var(--identity);
 }
 
-@media(min-width: 920px) {
+@media (min-width: 920px) {
     .greeting-container {
         display: none;
     }
