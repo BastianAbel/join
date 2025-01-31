@@ -1,55 +1,55 @@
 * {
-    margin: 0;
-    box-sizing: border-box;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 html {
-    overflow-x: hidden;
+  overflow-x: hidden;
 }
 
 main {
-    background-color: var(--light-background);
+  background-color: var(--light-background);
 }
 
 main > div {
-    margin: 8px;
+  margin: 8px;
 }
 
 main a {
-    display: inline-block;
+  display: inline-block;
 }
 
 .headline-and-arrow-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 32px;
 
-    & img {
-        margin-top: -44px;
-    }
+  & img {
+    margin-top: -44px;
+  }
 }
 
 .highlight {
-    color: rgba(41, 171, 226);
+  color: rgba(41, 171, 226);
 }
 
 h1 {
-    height: 73px;
+  height: 73px;
 }
 
 h2 {
-    margin-bottom: 16px;
+  margin-bottom: 16px;
 }
 
 .legal-info-container {
-    margin-bottom: 16px;
-    margin-top: 16px;
+  margin-bottom: 16px;
+  margin-top: 16px;
 }
 
 .arrow-position {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  cursor: pointer;
 }

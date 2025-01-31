@@ -9,13 +9,15 @@ const signupPopup = document.getElementById("register-popup");
  * Function to give feedback to the user if the passwords match or not.
  */
 function visualizeIfPasswordsMatch() {
-    const passwordInputValue = getPasswordInput();
-    const isEmpty = checkIfpasswordFieldsEmpty(passwordInputValue);
-    if (isEmpty) {
-        removePasswordFeedbackStyle();
-    } else {
-        PasswordsMatch(passwordInputValue) ? setPasswordFeedbackStyle("matching") : setPasswordFeedbackStyle("notMatching");
-    }
+  const passwordInputValue = getPasswordInput();
+  const isEmpty = checkIfpasswordFieldsEmpty(passwordInputValue);
+  if (isEmpty) {
+    removePasswordFeedbackStyle();
+  } else {
+    PasswordsMatch(passwordInputValue)
+      ? setPasswordFeedbackStyle("matching")
+      : setPasswordFeedbackStyle("notMatching");
+  }
 }
 
 /**
@@ -23,9 +25,9 @@ function visualizeIfPasswordsMatch() {
  * @returns an object with the password and confirm password input values
  */
 function getPasswordInput() {
-    password = passwordInput.value;
-    confirmPassword = confirmPasswordInput.value;
-    return { "password": password, "confirmPassword": confirmPassword };
+  password = passwordInput.value;
+  confirmPassword = confirmPasswordInput.value;
+  return { password: password, confirmPassword: confirmPassword };
 }
 
 /**
@@ -34,23 +36,23 @@ function getPasswordInput() {
  * @returns true if the password fields are empty
  */
 function checkIfpasswordFieldsEmpty(inputToTest) {
-    return inputToTest.password === "" || inputToTest.confirmPassword === "";
+  return inputToTest.password === "" || inputToTest.confirmPassword === "";
 }
 
 /**
  * Function to remove the feedback style from the password fields
  */
 function removePasswordFeedbackStyle() {
-    passwordInput.style.border = "";
-    confirmPasswordInput.style.border = "";
-    removeFeedbackText();
+  passwordInput.style.border = "";
+  confirmPasswordInput.style.border = "";
+  removeFeedbackText();
 }
 
 /**
  * Function to remove the feedback text from the screen
  */
 function removeFeedbackText() {
-    passwordFeedbackRef.classList.add("d-none");
+  passwordFeedbackRef.classList.add("d-none");
 }
 
 /**
@@ -59,7 +61,7 @@ function removeFeedbackText() {
  * @returns true if the passwords match
  */
 function PasswordsMatch(inputToTest) {
-    return checkIfPasswordsMatch(inputToTest);
+  return checkIfPasswordsMatch(inputToTest);
 }
 
 /**
@@ -68,21 +70,21 @@ function PasswordsMatch(inputToTest) {
  * @returns true if the passwords match
  */
 function checkIfPasswordsMatch(inputToTest) {
-    return inputToTest.password === inputToTest.confirmPassword;
+  return inputToTest.password === inputToTest.confirmPassword;
 }
 
 /**
  * Function to set the password feedback style
  */
 const PasswordFeedbackStyles = {
-    matching: {
-        text: "Passwords match!",
-        colorcode: "--icon-low-green",
-    },
-    notMatching: {
-        text: "Your passwords don't match. Please try again.",
-        colorcode: "--icon-urgent-red",
-    },
+  matching: {
+    text: "Passwords match!",
+    colorcode: "--icon-low-green",
+  },
+  notMatching: {
+    text: "Your passwords don't match. Please try again.",
+    colorcode: "--icon-urgent-red",
+  },
 };
 
 /**
@@ -90,28 +92,33 @@ const PasswordFeedbackStyles = {
  * @param {string} currentState
  */
 function setPasswordFeedbackStyle(currentState) {
-    passwordFeedbackRef.innerHTML = PasswordFeedbackStyles[currentState].text;
-    passwordFeedbackRef.classList.remove("d-none");
-    passwordInput.style.border = "1px solid var(" + PasswordFeedbackStyles[currentState].colorcode + ")";
-    confirmPasswordInput.style.border = "1px solid var(" + PasswordFeedbackStyles[currentState].colorcode + ")";
-    passwordFeedbackRef.classList.toggle("pw-match-green", currentState === "matching");
+  passwordFeedbackRef.innerHTML = PasswordFeedbackStyles[currentState].text;
+  passwordFeedbackRef.classList.remove("d-none");
+  passwordInput.style.border =
+    "1px solid var(" + PasswordFeedbackStyles[currentState].colorcode + ")";
+  confirmPasswordInput.style.border =
+    "1px solid var(" + PasswordFeedbackStyles[currentState].colorcode + ")";
+  passwordFeedbackRef.classList.toggle(
+    "pw-match-green",
+    currentState === "matching"
+  );
 }
 
 /**
  * Function to process the sign up form
  */
 async function processSignUp() {
-    if(!inputsFilled("username", "email", "password", "confirmPassword")) {
-        return
-    }
-    if (await emailExists()) {
-        setEmailExistsFeedback();
-    } else {
-        removeFeedbackText();
-        addNewProfileToServer();
-        showSignUpPopUp();
-        setTimeout(navigateToLogin, 800);
-    }
+  if (!inputsFilled("username", "email", "password", "confirmPassword")) {
+    return;
+  }
+  if (await emailExists()) {
+    setEmailExistsFeedback();
+  } else {
+    removeFeedbackText();
+    addNewProfileToServer();
+    showSignUpPopUp();
+    setTimeout(navigateToLogin, 800);
+  }
 }
 
 /**
@@ -119,7 +126,7 @@ async function processSignUp() {
  * @returns true if the email exists
  */
 async function emailExists() {
-    return await checkIfEmailExists();
+  return await checkIfEmailExists();
 }
 
 /**
@@ -127,40 +134,44 @@ async function emailExists() {
  * @returns true if the email exists
  */
 async function checkIfEmailExists() {
-    await fetchUsers();
-    emailToSearch = emailInput.value;
-    return !!users.find((user) => user.user.email === emailToSearch);
+  await fetchUsers();
+  emailToSearch = emailInput.value;
+  return !!users.find((user) => user.user.email === emailToSearch);
 }
 
 /**
  * Function to set visual feedback if the email already exists
  */
 function setEmailExistsFeedback() {
-    passwordFeedbackRef.innerHTML = "This email already exists.";
-    passwordFeedbackRef.classList.remove("pw-match-green");
-    passwordFeedbackRef.classList.remove("d-none");
+  passwordFeedbackRef.innerHTML = "This email already exists.";
+  passwordFeedbackRef.classList.remove("pw-match-green");
+  passwordFeedbackRef.classList.remove("d-none");
 }
 
 /**
  * Function to show the sign up pop up as visual feedback to the user
  */
 function showSignUpPopUp() {
-    signupPopup.classList.remove("d-none");
+  signupPopup.classList.remove("d-none");
 }
 
 /**
  * Function to save the new user to the firebase database
  */
 function addNewProfileToServer() {
-    let userData = { "name": `"${userNameInput.value}"`, "email": `"${emailInput.value}"`, "password": `"${passwordInput.value}"` };
-    postData((path = "users/"), (data = { userData }));
+  let userData = {
+    name: `"${userNameInput.value}"`,
+    email: `"${emailInput.value}"`,
+    password: `"${passwordInput.value}"`,
+  };
+  postData((path = "users/"), (data = { userData }));
 }
 
 /**
  * Function to set the displayed view to the login page
  */
 function navigateToLogin() {
-    window.location.href = "index.html";
+  window.location.href = "index.html";
 }
 
 /**
@@ -169,11 +180,11 @@ function navigateToLogin() {
  * @param {string} imgId
  */
 function togglePasswordVisibilityIcon(element, imgId) {
-    inputRefValue = element.value;
-    lockImgRef = document.getElementById("password-lock-" + imgId);
-    visibilityImgRef = document.getElementById("password-visibility-" + imgId);
-    lockImgRef.classList.toggle("d-none", !(inputRefValue.length === 0));
-    visibilityImgRef.classList.toggle("d-none", inputRefValue.length === 0);
+  inputRefValue = element.value;
+  lockImgRef = document.getElementById("password-lock-" + imgId);
+  visibilityImgRef = document.getElementById("password-visibility-" + imgId);
+  lockImgRef.classList.toggle("d-none", !(inputRefValue.length === 0));
+  visibilityImgRef.classList.toggle("d-none", inputRefValue.length === 0);
 }
 
 /**
@@ -182,21 +193,21 @@ function togglePasswordVisibilityIcon(element, imgId) {
  * @param {html-element} imgElement
  */
 function changePasswordVisibility(inputfieldId, imgElement) {
-    visibleImgRef = imgElement;
-    inputfieldRef = document.getElementById(inputfieldId);
-    if (inputfieldRef.type == "text") {
-        inputfieldRef.type = "password";
-        visibleImgRef.src = "/assets/icons/visibility_off.svg";
-    } else {
-        inputfieldRef.type = "text";
-        visibleImgRef.src = "/assets/icons/visibility_on.svg";
-    }
+  visibleImgRef = imgElement;
+  inputfieldRef = document.getElementById(inputfieldId);
+  if (inputfieldRef.type == "text") {
+    inputfieldRef.type = "password";
+    visibleImgRef.src = "/assets/icons/visibility_off.svg";
+  } else {
+    inputfieldRef.type = "text";
+    visibleImgRef.src = "/assets/icons/visibility_on.svg";
+  }
 }
 
 function toggleSignUpButton() {
-    const checkbox = document.getElementById("privacyCheckbox");
-    const signUpButton = document.getElementById("submitBtn");
-    checkbox.checked 
-    ? signUpButton.disabled = false
-    : signUpButton.disabled = true;
+  const checkbox = document.getElementById("privacyCheckbox");
+  const signUpButton = document.getElementById("submitBtn");
+  checkbox.checked
+    ? (signUpButton.disabled = false)
+    : (signUpButton.disabled = true);
 }
