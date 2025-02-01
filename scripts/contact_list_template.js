@@ -196,7 +196,7 @@ function renderAddContactView() {
                     </div>
                     <div class="input-feedback-container" id="input-feedback-container"></div>
                     <div class="button-container">
-                        <button type="submit" class="create-contact-button">
+                        <button type="submit" class="create-contact-button" disabled>
                             Create contact
                             <img src="/assets/icons/check.svg" alt="">
                         </button>

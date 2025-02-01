@@ -533,9 +533,6 @@ select {
     .prio-btn span {
         font-size: 12px;
     }
-    .task-overlay-container {
-        width: unset !important;
-    }
 }
 
 @media (max-width: 400px) {

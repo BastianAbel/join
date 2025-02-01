@@ -53,3 +53,16 @@ h2 {
     justify-content: start;
     cursor: pointer;
 }
+
+.privacy-policy-container {
+    max-width: calc(1920px - 362px);
+    margin-left: 116px;
+    margin-right: 116px;
+}
+
+@media(max-width: 920px){
+    .privacy-policy-container {
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+}

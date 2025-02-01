@@ -47,7 +47,7 @@ function renderSearchResultCard(task) {
     const boardContentMainContainer = document.getElementById(
         "board-content-container"
     );
-    boardContentMainContainer.style.display = "none";
+    boardContentMainContainer.classList.add('d-none');
     searchResultContainer.style.display = "flex";
     contentRef.innerHTML += taskCardTemplateToHtml(
         task,
@@ -167,7 +167,8 @@ function checkUserSearchInputAndRedirect() {
     if (userInput.value.trim() !== "") {
         return;
     } else {
-        window.location.href = "board.html";
+        document.getElementById('board-content-container').classList.remove('d-none');
+        document.getElementById('search-task-result-main-container').style.display= "none";
     }
 }
 

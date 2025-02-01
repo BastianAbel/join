@@ -1,12 +1,12 @@
 .big-contact-container {
+    position: fixed;
+    top: 24%;
+    left: 16%;
     height: calc(100vh - 180px);
     max-width: 1212px;
     border-radius: 30px;
-    position: absolute;
-    top: 80px;
-    bottom: 80px;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
-    margin: 8px 16px 8px 16px;
+    margin: 8px 16px;
     background-color: white;
     z-index: 9999;
     overflow-y: auto;
@@ -254,5 +254,7 @@ input:focus {
 @media (max-width: 920px) {
     .big-contact-container {
         width: calc(100vw - 32px) !important;
+        top: 8% !important;
+        left: 0% !important;
     }
 }

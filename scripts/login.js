@@ -155,7 +155,8 @@ function loadUserInitials() {
 /**
  * Function to set the user's to session storage and local storage if the user logs in as a guest.
  */
-async function setGuestToSessionStorage() {
+async function setGuestToSessionStorage(event) {
+    event.preventDefault();
     sessionStorage.setItem("loginStatus", "guest");
     localStorage.setItem("guest", true);
     sessionStorage.setItem("freshLogin", true);
