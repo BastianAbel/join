@@ -159,6 +159,7 @@
 
 .card-under-headline {
     overflow-x: auto;
+    max-height: 56px;
 }
 
 ::-webkit-scrollbar {

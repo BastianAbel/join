@@ -158,7 +158,7 @@ function renderEditTaskBigView(taskId, taskPriority) {
             <div id="edit-task-contact-list-container" class="d-none">
                 <ul id="edit-task-contacts-list"></ul>
             </div>
-            <div id="edit-name-circle-container" class="d-none"></div>
+            <div id="edit-name-circle-container" ></div>
         </div>
 
         <div class="add-task-attribute-container">

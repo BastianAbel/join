@@ -1,9 +1,11 @@
-// let editCheckedUsersNamesAndColors = [];
 let editCheckedContactNamesAndColors = [];
 let editNewTask = {};
 let editContactNames = [];
 let editFilteredNamesAndColors = [];
 let helperArray = [];
+let editTaskDropDownIcon;
+let editTaskContactListContainer;
+let editNameCircleContainer;
 
 /**
  * Function to get all contacts that will be rendered in the contact list on editing a task
@@ -142,6 +144,12 @@ function checkContact(event, data) {
         contactNames.splice(contactNames.indexOf(currentContact.name), 1);
         helperArray.splice(helperArray.indexOf(currentContact.name), 1);
     }
+    editNameCircleContainer.innerHTML = "";
+    addNameCircles(
+        editCheckedContactNamesAndColors,
+        editNameCircleContainer,
+        `contact-name-circle`
+    );
 }
 
 /**
@@ -160,20 +168,20 @@ function getTaskFromArrayById(array, id) {
 function editShowContactList(event, taskId) {
     event.preventDefault();
     editCheckedContactNamesAndColors = [];
-    let editTaskContactListContainer = document.getElementById(
+    editTaskContactListContainer = document.getElementById(
         "edit-task-contact-list-container"
     );
-    let editTaskDropDownIcon = document.getElementById(
+    editTaskDropDownIcon = document.getElementById(
         "edit-task-contact-drop-down-icon"
     );
-    let editNameCircleContainer = document.getElementById(
+    editNameCircleContainer = document.getElementById(
         "edit-name-circle-container"
     );
     let currentTask = getTaskFromArrayById(allTasks, taskId);
     helperArray = currentTask.assignedTo;
     editCheckedContactNamesAndColors = editFilteredNamesAndColors.filter(
         (contact) => helperArray.includes(contact.name)
-    );
+    ); //TODO - dies früher starten
     setContactAssignedToChecked(
         currentTask.assignedTo,
         editCheckedContactNamesAndColors
@@ -286,7 +294,7 @@ function editShowAndHideIcons() {
  * @param {array} assignedUsers
  */
 function editTaskGetEmployeeInfo(assignedUsers) {
-    if (typeof assignedUsers === "string") {
+    if (typeof assignedUsers === "string" && assignedUsers !== "") {
         assignedUsers = assignedUsers.split(",");
     }
     for (let index = 0; index < assignedUsers.length; index++) {
@@ -387,7 +395,6 @@ async function setChangedTaskDataToBackend(
 ) {
     if (
         changedTaskTitle !== "" &&
-        changedTaskDescription !== "" &&
         changedTaskDate !== "" &&
         changedTaskPrio !== ""
     ) {
