@@ -279,6 +279,7 @@ input:focus {
 }
 
 @media (max-width: 1355px) {
+
     .section-three,
     .section-four,
     .section-five,
@@ -357,10 +358,19 @@ input:focus {
     }
 }
 
-@media (min-width: 1297px) {
+@media (min-width: 800px) {
     #board-main {
         height: calc(100vh - 80px);
     }
+
+    
+    .main-container {
+        width: calc(100vw - 232px);
+    }
+
+}
+
+@media (min-width: 1297px) {
 
     .board-header {
         max-width: 1056px;
