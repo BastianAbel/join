@@ -165,6 +165,7 @@ function addNewProfileToServer() {
         password: `"${passwordInput.value}"`,
     };
     postData((path = "users/"), (data = { userData }));
+    postData((path = "contacts/"), (data = {name: `${userNameInput.value}`, email: `${emailInput.value}`, phone: "", }));
 }
 
 /**
