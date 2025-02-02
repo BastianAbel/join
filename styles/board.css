@@ -110,6 +110,7 @@ h2 {
     min-width: 275px;
     margin-left: 16px;
     margin-right: 16px;
+    overflow: auto;
 }
 
 .section-two {
@@ -177,7 +178,6 @@ input:focus {
     align-items: center;
     gap: 16px;
     padding: 12px 0;
-    overflow-y: auto !important;
     min-height: 263px;
 }
 
@@ -279,7 +279,6 @@ input:focus {
 }
 
 @media (max-width: 1355px) {
-
     .section-three,
     .section-four,
     .section-five,
@@ -336,6 +335,7 @@ input:focus {
         flex-direction: column;
         margin: 0;
         width: 100%;
+        overflow: auto;
     }
 
     .section-one,
@@ -363,15 +363,52 @@ input:focus {
         height: calc(100vh - 80px);
     }
 
-    
     .main-container {
         width: calc(100vw - 232px);
     }
+}
 
+@media (max-width: 1297px) {
+    .board-content {
+        max-width: 1208px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    ::-webkit-scrollbar {
+        height: 3px !important;
+        width: 100%;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: gray;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: darkgray !important;
+    }
+
+    ::-webkit-scrollbar-button {
+        display: none !important;
+    }
+
+    .section-three,
+    .section-four,
+    .section-five{
+        margin-bottom: 6px;
+    }
+
+    .section-six{
+        margin-bottom: 16px;
+    }
 }
 
 @media (min-width: 1297px) {
-
     .board-header {
         max-width: 1056px;
         height: 73px;
@@ -435,6 +472,7 @@ input:focus {
         flex-direction: column;
         margin: 0;
         z-index: 1;
+        overflow: auto;
     }
 
     .search-task-result-main-container {

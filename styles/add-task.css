@@ -419,7 +419,7 @@ select {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: darkgray;
+    background: darkgray !important;
 }
 
 ::-webkit-scrollbar-button {
