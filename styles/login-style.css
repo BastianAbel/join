@@ -11,8 +11,8 @@ body {
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    /* max-width: 1920px; */
-    position: relative;
+    max-width: 1920px;
+    position: unset !important;
 }
 
 header {
@@ -25,7 +25,7 @@ main {
     align-items: center;
     justify-content: center;
     z-index: 1;
-    position: relative;
+    position: unset !important;
 }
 
 section,
@@ -313,5 +313,12 @@ input {
     .guest-login-button {
         width: 177px;
         height: 48px;
+    }
+}
+
+
+@media (min-width: 1920px) {
+    .signup-container {
+        right: calc((100vw / 2) - 920px) !important;
     }
 }
