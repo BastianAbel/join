@@ -36,6 +36,7 @@ function inputsFilled(...inputs) {
 }
 
 function resetNotFilledResponse(element) {
+    setResponseContainer();
     const input = element;
     input.classList.remove("not-valid");
     responseContainer.innerHTML = "";
