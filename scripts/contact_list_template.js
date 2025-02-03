@@ -134,6 +134,7 @@ function renderEditContactView(initials, color, id) {
                     <input id="newPhone" type="tel" placeholder="Phone" required>
                     <img src="/assets/icons/phone-icon.svg" alt="Phone Icon" class="input-icon">
                 </div>
+                <div class="input-feedback-container" id="input-feedback-container"></div>
             </div>
             <div class="button-container">
                 <div>
