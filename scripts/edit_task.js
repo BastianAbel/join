@@ -181,7 +181,7 @@ function editShowContactList(event, taskId) {
     helperArray = currentTask.assignedTo;
     editCheckedContactNamesAndColors = editFilteredNamesAndColors.filter(
         (contact) => helperArray.includes(contact.name)
-    ); //TODO - dies früher starten
+    );
     setContactAssignedToChecked(
         currentTask.assignedTo,
         editCheckedContactNamesAndColors
