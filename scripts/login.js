@@ -12,6 +12,9 @@ async function userLogin() {
     if (!inputsFilled("email", "password")) {
         return;
     }
+    if(!checkValidation('email', 'email')) {
+        return
+    }
     await fetchUsers();
     const userExists = checkIfUserExists();
     if (userExists) {
@@ -81,7 +84,7 @@ async function initiateLogin() {
  * Function to give visual feedback to the user if the login credentials do not match any user.
  */
 function visualizeNoLoginMatch() {
-    document.getElementById("pw-state-message").innerHTML =
+    document.getElementById("input-feedback-container").innerHTML =
         "Check your email and password. Please try again.";
     passwordInputRef.style.border = "1px solid var(--icon-urgent-red)";
     emailInputRef.style.border = "1px solid var(--icon-urgent-red)";

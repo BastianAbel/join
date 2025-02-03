@@ -30,36 +30,3 @@ function onlyLoadIfUserOrGuest() {
         window.location.href = "index.html";
     }
 }
-
-/**
- * Function to check if all inputs given as arguments are filled
- * @param  {...string} inputs The id's of the inputs to check
- * @returns true if all inputs are filled
- */
-function inputsFilled(...inputs) {
-    const inputFeedback = document.getElementById("input-feedback-container");
-    let filled = true;
-    for (let i = 0; i < inputs.length; i++) {
-        const input = document.getElementById(inputs[i]);
-        if (!input.value && input.value === "") {
-            filled = false;
-            input.classList.add("not-valid");
-            inputFeedback.innerHTML = "Inputs must be filled!";
-        }
-    }
-    return filled;
-}
-
-/**
- * Function to reset the input field's validation feedback.
- * Removes the "not-valid" class from the input element
- * and clears the feedback message.
- *
- * @param {HTMLElement} element - The input element to reset.
- */
-function resetNotFilledResponse(element) {
-    const inputFeedback = document.getElementById("input-feedback-container");
-    const input = element;
-    input.classList.remove("not-valid");
-    inputFeedback.innerHTML = "";
-}

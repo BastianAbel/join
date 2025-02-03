@@ -16,6 +16,7 @@
     <script src="/scripts/register.js" defer></script>
     <script src="/scripts/firebase.js" defer></script>
     <script src="/scripts/standart.js" defer></script>
+    <script src="/scripts/form_validation.js" defer></script>
 </head>
 
 <body onload="autoLogin()">
@@ -28,7 +29,7 @@
             <form onsubmit="userLogin(); return false;">
                 <div class="input-main">
                     <div class="input-container">
-                        <input id="email" type="email" placeholder="Email" onkeyup="resetNotFilledResponse(this)" />
+                        <input id="email" type="text" placeholder="Email" onkeyup="resetNotFilledResponse(this)" onfocusout="checkValidation('email', 'email')"/>
                         <img src="/assets/icons/mail-icon.svg" alt="User Icon" class="input-icon" />
                     </div>
                     <div class="input-container">

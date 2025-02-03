@@ -270,6 +270,9 @@ document.addEventListener("mouseup", function (e) {
  * @param {string} id
  */
 function getEditedUserData(id) {
+    if(!inputsFilled("newName")) {
+        return
+    }
     let newName = document.getElementById("newName").value;
     let newEmail = document.getElementById("newEmail").value;
     let newPhone = document.getElementById("newPhone").value;
