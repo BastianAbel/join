@@ -123,15 +123,15 @@ function renderEditContactView(initials, color, id) {
         <div class="input-button-desktop-wrapper">
             <div class="create-contact-container">
                 <div class="input-container">
-                    <input id="newName" type="text" placeholder="Name" required>
+                    <input id="newName" type="text" placeholder="Name">
                     <img src="/assets/icons/contact-person.svg" alt="User Icon" class="input-icon">
                 </div>
                 <div class="input-container">
-                    <input id="newEmail" type="email" placeholder="Email" required>
+                    <input id="newEmail" type="email" placeholder="Email">
                     <img src="/assets/icons/mail-icon.svg" alt="Mail Icon" class="input-icon">
                 </div>
                 <div class="input-container">
-                    <input id="newPhone" type="tel" placeholder="Phone" required>
+                    <input id="newPhone" type="tel" placeholder="Phone">
                     <img src="/assets/icons/phone-icon.svg" alt="Phone Icon" class="input-icon">
                 </div>
                 <div class="input-feedback-container" id="input-feedback-container"></div>
@@ -187,7 +187,7 @@ function renderAddContactView() {
                             <img src="/assets/icons/contact-person.svg" alt="User Icon" class="input-icon">
                         </div>
                         <div class="input-container">
-                            <input id="add-contact-email-input-field" type="email" placeholder="Email" onkeyup="resetNotFilledResponse(this)"/>
+                            <input id="add-contact-email-input-field" type="text" placeholder="Email" onkeyup="resetNotFilledResponse(this)"/>
                             <img src="/assets/icons/mail-icon.svg" alt="Mail Icon" class="input-icon">
                         </div>
                         <div class="input-container">

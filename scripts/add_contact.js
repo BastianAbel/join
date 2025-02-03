@@ -51,6 +51,9 @@ async function getIdOfNewContact() {
  */
 async function createContact(event) {
     event.preventDefault();
+    if (!checkValidation("email", "add-contact-email-input-field")) {
+        return
+    }
     if (
         !inputsFilled(
             "add-contact-name-input-field",
