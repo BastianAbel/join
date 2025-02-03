@@ -23,7 +23,7 @@ function getBackToPreviousSite() {
  */
 function onlyLoadIfUserOrGuest() {
     user = localStorage.getItem("user");
-    guest = localStorage.getItem("guest");
+    guest = sessionStorage.getItem("guest");
     if (guest || user) {
         return true;
     } else {

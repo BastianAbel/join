@@ -239,6 +239,10 @@ function showContactList(event) {
         TASK_CONTACT_LIST_CONTAINER.classList.toggle("d-none");
         if (!TASK_CONTACT_LIST_CONTAINER.classList.contains("d-none")) {
             CONTACT_INPUT_ICON.src = "/assets/icons/arrow-drop-up.svg";
+            document.addEventListener(
+                "click",
+                prepareContactlistToGetClosedFromOutside
+            );
         } else {
             CONTACT_INPUT_ICON.src = "/assets/icons/arrow-drop-down.svg";
             NAME_CIRCLE_CONTAINER.classList.remove("d-none");
@@ -266,8 +270,16 @@ function addNameCircles(array, containerElement, elementIdForColor) {
         let id = array[i].id;
         let color = array[i].color;
         let targetElementForColor = elementIdForColor + `(${id})`;
-        containerElement.innerHTML += renderNameCircle(name, id);
-        setColorById(targetElementForColor, color);
+        if (i < 3) {
+            containerElement.innerHTML += renderNameCircle(name, id);
+            setColorById(targetElementForColor, color);
+        } else {
+            if (i == array.length - 1) {
+                containerElement.innerHTML += `...(${
+                    array.length - 3
+                }) more Contact(s)`;
+            }
+        }
     }
 }
 
@@ -337,6 +349,7 @@ function showAndHideIcons() {
  */
 function editContent(event) {
     let spanElement = event.target.parentNode.parentNode.querySelector("span");
+    sessionStorage.setItem("currentEditedSubtask", spanElement.innerHTML)
     if (spanElement) {
         spanElement.setAttribute("contenteditable", "true");
         spanElement.focus();
@@ -349,10 +362,22 @@ function editContent(event) {
  * @param {event} event
  */
 function removeEditClass(event) {
-    event.target.classList.remove("editableSpan");
-    let spanElement = event.target.parentNode.parentNode.querySelector("span");
-    if (spanElement) {
-        spanElement.setAttribute("contenteditable", "false");
+    let subtaskSpan = event.target;
+    if (subtaskSpan.textContent === "") {
+        event.target.parentNode.parentNode.parentNode.removeChild(
+            event.target.parentNode.parentNode
+        );
+        let subtaskText = sessionStorage.getItem("currentEditedSubtask");
+        subtaskList = subtaskList.filter(
+            (subtask) => subtask.description !== subtaskText
+        );
+        sessionStorage.removeItem("currentEditedSubtask");
+    } else {
+        event.target.classList.remove("editableSpan");
+        let spanElement = event.target.parentNode.parentNode.querySelector("span");
+        if (spanElement) {
+            spanElement.setAttribute("contenteditable", "false");
+        }
     }
 }
 
@@ -477,7 +502,7 @@ async function getIdOfNewTask() {
     return taskKeysArray[taskKeysArray.length - 1];
 }
 
-document.addEventListener("click", function (event) {
+function prepareContactlistToGetClosedFromOutside(event) {
     event.stopPropagation();
     try {
         if (!TASK_CONTACT_LIST_CONTAINER.contains(event.target)) {
@@ -488,5 +513,13 @@ document.addEventListener("click", function (event) {
         } else {
             return;
         }
-    } catch {}
-});
+    } catch {
+    } finally {
+        if (TASK_CONTACT_LIST_CONTAINER.classList.contains("d-none")) {
+            document.removeEventListener(
+                "click",
+                prepareContactlistToGetClosedFromOutside
+            );
+        }
+    }
+}

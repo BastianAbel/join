@@ -71,6 +71,7 @@ function checkIfUserExists() {
  */
 async function initiateLogin() {
     userName = user.user.name;
+    email = user.user.email;
     localStorage.setItem("userName", userName);
     userKey = user.id;
     getUserInitials(userName);
@@ -161,7 +162,7 @@ function loadUserInitials() {
 async function setGuestToSessionStorage(event) {
     event.preventDefault();
     sessionStorage.setItem("loginStatus", "guest");
-    localStorage.setItem("guest", true);
+    sessionStorage.setItem("guest", true);
     sessionStorage.setItem("freshLogin", true);
     await setBackendJsonToSessionStorage();
     navigateToSummary();
@@ -193,7 +194,7 @@ function userLogout() {
     sessionStorage.removeItem("user");
     sessionStorage.removeItem("loginStatus");
     sessionStorage.removeItem("userName");
-    localStorage.removeItem("user");
+    sessionStorage.removeItem("guest");
     localStorage.removeItem("userkey");
     localStorage.removeItem("userName");
 }
@@ -203,6 +204,8 @@ function userLogout() {
  */
 async function autoLogin() {
     let userKey = localStorage.getItem("userkey");
+    let userData = JSON.parse(localStorage.getItem("user")); 
+    document.getElementById('email').value = userData.email;
     if (userKey) {
         await fetchUsers();
         findUserByKey(userKey);

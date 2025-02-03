@@ -126,3 +126,9 @@
         }
     }
 }
+
+@media (max-width:376px){
+   #join-logo-dark{
+        margin-top: 6px;
+   }
+}
