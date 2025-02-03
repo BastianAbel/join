@@ -448,18 +448,57 @@ function getAllTasksUsersAndContactsFromSessionStorage() {
  * Function to write all task-cards to the board based on the informations stored in an array
  * @param {array} array
  */
-// prettier-ignore
 function writeCardsToBoardSectionsFromArray(array) {
     for (let j = 0; j < array.length; j++) {
         let renderValuesObject = getObjectWithValuesNeededInBoardCard(array[j]);
         if (array[j].state === "toDo") {
-            hideElementAndRenderAnother("todo", "board-to-do-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc, renderValuesObject.color, j)
+            hideElementAndRenderAnother(
+                "todo",
+                "board-to-do-section",
+                renderValuesObject.task,
+                renderValuesObject.subtaskState,
+                renderValuesObject.prioImg,
+                renderValuesObject.employeesName,
+                progressBarCalc,
+                renderValuesObject.color,
+                j
+            );
         } else if (array[j].state === "inProgress") {
-            hideElementAndRenderAnother("inProgress", "board-in-progress-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc, renderValuesObject.color, j);
+            hideElementAndRenderAnother(
+                "inProgress",
+                "board-in-progress-section",
+                renderValuesObject.task,
+                renderValuesObject.subtaskState,
+                renderValuesObject.prioImg,
+                renderValuesObject.employeesName,
+                progressBarCalc,
+                renderValuesObject.color,
+                j
+            );
         } else if (array[j].state === "awaitFeedback") {
-            hideElementAndRenderAnother("awaitingFeedback", "board-await-feedback-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc, renderValuesObject.color, j);
+            hideElementAndRenderAnother(
+                "awaitingFeedback",
+                "board-await-feedback-section",
+                renderValuesObject.task,
+                renderValuesObject.subtaskState,
+                renderValuesObject.prioImg,
+                renderValuesObject.employeesName,
+                progressBarCalc,
+                renderValuesObject.color,
+                j
+            );
         } else if (array[j].state === "done") {
-            hideElementAndRenderAnother("done", "board-done-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc, renderValuesObject.color, j);
+            hideElementAndRenderAnother(
+                "done",
+                "board-done-section",
+                renderValuesObject.task,
+                renderValuesObject.subtaskState,
+                renderValuesObject.prioImg,
+                renderValuesObject.employeesName,
+                progressBarCalc,
+                renderValuesObject.color,
+                j
+            );
         }
     }
 }
