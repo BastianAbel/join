@@ -2,7 +2,7 @@ let responseContainer = document.getElementById("input-feedback-container");
 
 const validationPatterns = {
     "email" : /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-    "phone" : /^(?:\+49|0)[1-9]\d{1,14}$/
+    "phonenumber" : /^(?:\+49|0)[1-9]\d{1,14}$/
 }
 
 function checkValidation(validationType, inputfieldId) {
@@ -10,7 +10,7 @@ function checkValidation(validationType, inputfieldId) {
     const inputfield = document.getElementById(inputfieldId);
     let valid = validationPatterns[validationType].test(inputfield.value);
     if(!valid && inputfield.value.length > 0) {
-        responseContainer.innerHTML = inputfield.value + " is not a valid Email!";
+        responseContainer.innerHTML = inputfield.value + " is not a valid " + validationType + "!";
         inputfield.classList.add("not-valid");
         return false
     }

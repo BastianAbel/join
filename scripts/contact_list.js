@@ -270,14 +270,28 @@ document.addEventListener("mouseup", function (e) {
  * @param {string} id
  */
 function getEditedUserData(id) {
-    if(!checkValidation("email", "newEmail") || !inputsFilled("newName", "newEmail", "newPhone")) {
-        return
+    const inputsValid = checkEditInputs();
+    if(inputsValid) {
+        let newName = document.getElementById("newName").value;
+        let newEmail = document.getElementById("newEmail").value;
+        let newPhone = document.getElementById("newPhone").value;
+        saveEditedUserData(newName, newEmail, newPhone, id);        
     }
-    let newName = document.getElementById("newName").value;
-    let newEmail = document.getElementById("newEmail").value;
-    let newPhone = document.getElementById("newPhone").value;
-    saveEditedUserData(newName, newEmail, newPhone, id);
 }
+
+function checkEditInputs() {
+    const allInputsFilled = inputsFilled("newName", "newEmail", "newPhone");
+    const emailValid = checkValidation("email", "newEmail");
+    const phonenumberValid = checkValidation("phonenumber", "newPhone");
+    if(allInputsFilled) {
+        if(emailValid && phonenumberValid) {
+            return true
+        } else if(!emailValid && !phonenumberValid) {
+            let responseEditContainer = document.getElementById("input-feedback-container");
+            responseEditContainer.innerHTML = "No Valid Email and Phonenumber!"
+        }
+    }
+} 
 
 /**
  * Function to save the edited data of a contact in the firebase database

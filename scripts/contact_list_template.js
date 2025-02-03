@@ -191,7 +191,7 @@ function renderAddContactView() {
                             <img src="/assets/icons/mail-icon.svg" alt="Mail Icon" class="input-icon">
                         </div>
                         <div class="input-container">
-                            <input id="add-contact-phone-input-field" type="number" placeholder="Phone" onkeyup="resetNotFilledResponse(this)"/>
+                            <input id="add-contact-phone-input-field" type="text" placeholder="Phone" onkeyup="resetNotFilledResponse(this)"/>
                             <img src="/assets/icons/phone-icon.svg" alt="Phone Icon" class="input-icon">
                         </div>
                     </div>
