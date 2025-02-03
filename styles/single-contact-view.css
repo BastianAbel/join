@@ -307,3 +307,14 @@ span {
         display: none;
     }
 }
+
+@media (max-width:385px){
+    .contact-name{
+        padding-top: 12px;
+        padding-bottom: 0;
+    }
+
+    .contact-head h1{
+        margin-top: 12px;
+    }
+}
