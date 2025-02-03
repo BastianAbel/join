@@ -108,7 +108,7 @@ function setPasswordFeedbackStyle(currentState) {
  * Function to process the sign up form
  */
 async function processSignUp() {
-    if (!inputsFilled("username", "email", "password", "confirmPassword")) {
+    if (!checkValidation("email", "email") || !inputsFilled("username", "email", "password", "confirmPassword")) {
         return;
     }
     if (await emailExists()) {
