@@ -206,6 +206,7 @@ async function autoLogin() {
     let userKey = localStorage.getItem("userkey");
     let userData = JSON.parse(localStorage.getItem("user")); 
     document.getElementById('email').value = userData.email;
+    localStorage.removeItem("user");
     if (userKey) {
         await fetchUsers();
         findUserByKey(userKey);
