@@ -49,14 +49,7 @@ function renderSearchResultCard(task) {
     );
     boardContentMainContainer.classList.add("d-none");
     searchResultContainer.style.display = "flex";
-    contentRef.innerHTML += taskCardTemplateToHtml(
-        task,
-        subtaskState,
-        priorityImg,
-        employeesName,
-        progressBarCalc,
-        cardTypeColor
-    );
+    contentRef.innerHTML += taskCardTemplateToHtml( task, subtaskState, priorityImg, employeesName, progressBarCalc, cardTypeColor);
 }
 
 /**
