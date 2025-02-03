@@ -47,7 +47,7 @@ function renderSearchResultCard(task) {
     const boardContentMainContainer = document.getElementById(
         "board-content-container"
     );
-    boardContentMainContainer.classList.add('d-none');
+    boardContentMainContainer.classList.add("d-none");
     searchResultContainer.style.display = "flex";
     contentRef.innerHTML += taskCardTemplateToHtml(
         task,
@@ -78,11 +78,11 @@ function createUserContainer(assignedUsers) {
     if (!assignedUsers) {
         return "";
     }
-    if (assignedUsers.length > 6) {
+    if (assignedUsers.length > 3) {
         moreUserTemplate = `<div class="more-users"><span>...</span></div>`;
     }
     assignedUsers = assignedUsers
-        .slice(0, 6)
+        .slice(0, 3)
         .map((user) => {
             const userContainer = document.createElement("div");
             userContainer.className = "user";
@@ -167,8 +167,12 @@ function checkUserSearchInputAndRedirect() {
     if (userInput.value.trim() !== "") {
         return;
     } else {
-        document.getElementById('board-content-container').classList.remove('d-none');
-        document.getElementById('search-task-result-main-container').style.display= "none";
+        document
+            .getElementById("board-content-container")
+            .classList.remove("d-none");
+        document.getElementById(
+            "search-task-result-main-container"
+        ).style.display = "none";
     }
 }
 
