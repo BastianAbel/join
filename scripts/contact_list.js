@@ -270,7 +270,7 @@ document.addEventListener("mouseup", function (e) {
  * @param {string} id
  */
 function getEditedUserData(id) {
-    if(!inputsFilled("newName")) {
+    if(!checkValidation("email", "newEmail") || !inputsFilled("newName", "newEmail", "newPhone")) {
         return
     }
     let newName = document.getElementById("newName").value;
