@@ -230,6 +230,16 @@ async function removeTaskIdFromUncheckedContacts(taskId) {
     }
 }
 
+function editSubtask(event) {
+    let spanElement = event.target.parentNode.parentNode.querySelector("span");
+    sessionStorage.setItem("currentEditedSubtask", spanElement.innerHTML);
+    if (spanElement) {
+        spanElement.setAttribute("contenteditable", "true");
+        spanElement.focus();
+        spanElement.classList.add("editableSpan");
+    }
+}
+
 /**
  * Function to edit a subtask of a task in the edit view of a task
  */

@@ -27,6 +27,7 @@ let checkedContactNamesAndColors = [];
 let subtaskList = [];
 let editSubtaskListArray = [];
 let taskPrio = "";
+let subtaskTitleBeforeEditing = "";
 
 /**
  * Function to get all contacts names from the allContacts array and add them to the contact list
@@ -349,7 +350,11 @@ function showAndHideIcons() {
  */
 function editContent(event) {
     let spanElement = event.target.parentNode.parentNode.querySelector("span");
-    sessionStorage.setItem("currentEditedSubtask", spanElement.innerHTML)
+    if (spanElement.innerHTML !== "") {
+        subtaskTitleBeforeEditing = spanElement.innerHTML;
+    }
+
+    sessionStorage.setItem("currentEditedSubtask", spanElement.innerHTML);
     if (spanElement) {
         spanElement.setAttribute("contenteditable", "true");
         spanElement.focus();
@@ -372,13 +377,38 @@ function removeEditClass(event) {
             (subtask) => subtask.description !== subtaskText
         );
         sessionStorage.removeItem("currentEditedSubtask");
+    } else if (
+        subtaskSpan.textContent !== "" &&
+        subtaskSpan.textContent !== subtaskTitleBeforeEditing
+    ) {
+        let newString = subtaskSpan.textContent;
+        setEditedSubtaskTitleToArray(
+            subtaskList,
+            subtaskTitleBeforeEditing,
+            newString
+        );
     } else {
         event.target.classList.remove("editableSpan");
-        let spanElement = event.target.parentNode.parentNode.querySelector("span");
+        let spanElement =
+            event.target.parentNode.parentNode.querySelector("span");
         if (spanElement) {
             spanElement.setAttribute("contenteditable", "false");
         }
     }
+}
+
+/**
+ * Updates the description of a subtask in the provided array.
+ * Searches for a subtask object with a description matching the oldstring
+ * and updates it to the newString.
+ *
+ * @param {array} array - The array of subtask objects.
+ * @param {string} oldstring - The current description to be updated.
+ * @param {string} newString - The new description to replace the old one.
+ */
+function setEditedSubtaskTitleToArray(array, oldstring, newString) {
+    let obj = array.find((obj) => obj.description === oldstring);
+    obj.description = newString;
 }
 
 /**
