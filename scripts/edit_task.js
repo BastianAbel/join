@@ -181,7 +181,7 @@ function editShowContactList(event, taskId) {
     helperArray = currentTask.assignedTo;
     editCheckedContactNamesAndColors = editFilteredNamesAndColors.filter(
         (contact) => helperArray.includes(contact.name)
-    ); //TODO - dies früher starten
+    );
     setContactAssignedToChecked(
         currentTask.assignedTo,
         editCheckedContactNamesAndColors
@@ -294,6 +294,7 @@ function editShowAndHideIcons() {
  * @param {array} assignedUsers
  */
 function editTaskGetEmployeeInfo(assignedUsers) {
+    let circleContainer = document.getElementById("edit-name-circle-container");
     if (typeof assignedUsers === "string" && assignedUsers !== "") {
         assignedUsers = assignedUsers.split(",");
     }
@@ -302,11 +303,18 @@ function editTaskGetEmployeeInfo(assignedUsers) {
             boardContactsAndColorsHelperArray,
             assignedUsers[index]
         );
-        document.getElementById("edit-name-circle-container").innerHTML += `
-            <div style="background-color: ${bgColor}" class="name-circle">${getEmployeesInitials(
-            assignedUsers[index]
-        )}</div>
+        if (index < 3) {
+            circleContainer.innerHTML += `<div style="background-color: ${bgColor}" class="name-circle">${getEmployeesInitials(
+                assignedUsers[index]
+            )}</div>
         `;
+        } else {
+            if (index == assignedUsers.length - 1) {
+                circleContainer.innerHTML += `...(${
+                    assignedUsers.length - 3
+                }) more Contact(s)`;
+            }
+        }
     }
 }
 
