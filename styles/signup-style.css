@@ -297,3 +297,9 @@ a {
         height: 48px;
     }
 }
+
+@media (max-width:376px){
+    .join-logo{
+        margin-top: 10px;
+    }
+}
