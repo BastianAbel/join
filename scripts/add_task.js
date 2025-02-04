@@ -73,14 +73,17 @@ function addSubTask() {
     let subTaskObject = {};
     if (SUBTASK_INPUT.value) {
         subtaskTitle = SUBTASK_INPUT.value;
-        SUBTASK_LIST.innerHTML += renderSubtask(subtaskTitle);
-        subTaskObject["checked"] = false;
-        subTaskObject["description"] = subtaskTitle;
-        subtaskList.push(subTaskObject);
-        SUBTASK_INPUT.value = "";
+        if (subtaskTitle.trim() !== "") {
+            SUBTASK_LIST.innerHTML += renderSubtask(subtaskTitle);
+            subTaskObject["checked"] = false;
+            subTaskObject["description"] = subtaskTitle;
+            subtaskList.push(subTaskObject);
+            SUBTASK_INPUT.value = "";
+        }
         clearSubtaskInputField();
     }
 }
+
 /**
  * Function to delete a subtask from the subtask list in the add task form
  * @param {event} event
@@ -368,7 +371,7 @@ function editContent(event) {
  */
 function removeEditClass(event) {
     let subtaskSpan = event.target;
-    if (subtaskSpan.textContent === "") {
+    if (subtaskSpan.textContent.trim() === "") {
         event.target.parentNode.parentNode.parentNode.removeChild(
             event.target.parentNode.parentNode
         );
@@ -378,7 +381,7 @@ function removeEditClass(event) {
         );
         sessionStorage.removeItem("currentEditedSubtask");
     } else if (
-        subtaskSpan.textContent !== "" &&
+        subtaskSpan.textContent.trim() !== "" &&
         subtaskSpan.textContent !== subtaskTitleBeforeEditing
     ) {
         let newString = subtaskSpan.textContent;
