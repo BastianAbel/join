@@ -185,7 +185,6 @@ function setNewTaskStateByParamOrDefault() {
  * Logs an error message to the console if task creation fails.
  * @param {Object} newTask - The task object containing details like type, title, and due date.
  */
-
 async function handleValidNewTask(newTask) {
     try {
         if (newTask["type"] !== "" && newTask["title"] !== "" && newTask["dueDate"] !== "") {

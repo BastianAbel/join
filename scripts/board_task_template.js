@@ -9,36 +9,18 @@
  * @param {int} j
  * @returns HTML string of a single task card
  */
-function taskCardTemplateToHtml(
-    task,
-    state,
-    priorityImage,
-    employeesName,
-    progressBarCalc,
-    cardTypeColor,
-    j
-) {
+function taskCardTemplateToHtml(task, state, priorityImage, employeesName, progressBarCalc, cardTypeColor, j) {
     return ` 
-    <div id="${task.id}" onclick="taskBigView('${task.id}','${j}', '${
-        task.dueDate
-    }', '${task.priority}', '${priorityImage}', '${
-        task.assignedTo
-    }', '${encodeURIComponent(
-        JSON.stringify(task.subtasks)
-    )}', '${cardTypeColor}')" class="card-main-container draggable" draggable="true" ondragstart="startDragging(event, '${
+    <div id="${task.id}" onclick="taskBigView('${task.id}','${j}', '${task.dueDate}', '${task.priority}', '${priorityImage}', '${task.assignedTo}', '${encodeURIComponent(JSON.stringify(task.subtasks))}', '${cardTypeColor}')" class="card-main-container draggable" draggable="true" ondragstart="startDragging(event, '${
         task.id
     }')" ondrag="enableScrollByDragging(event)" onmousedown="rotate(event)" onmouseup="removeRotations()">
             <div class="card-main-container-content">
                 <div style=" ${cardTypeColor}" class="labels-board-card-label">
-                    <div id="task-type${j}" class="card-label"><span>${capitalizeFirstLetter(
-        task.type
-    )}</span></div>
+                    <div id="task-type${j}" class="card-label"><span>${capitalizeFirstLetter(task.type)}</span></div>
                 </div>
                 <div class="card-headline">
                     <h2 id="task-title${j}">${task.title}</h2>
-                    <div id="task-description${j}" class="card-under-headline">${
-        task.description
-    }</div>
+                    <div id="task-description${j}" class="card-under-headline">${task.description}</div>
                 </div>
                 <div id="status-bar-and-task-information" class="status-bar-and-task-information">
                     ${progressBarCalc}
@@ -48,14 +30,10 @@ function taskCardTemplateToHtml(
                     <div id="user-main-container" class="user-main">
                     ${employeesName}
                     </div>
-                    <div class="move-card-button"><img src="${priorityImage}" alt="${
-        task.priority
-    }"></div>
+                    <div class="move-card-button"><img src="${priorityImage}" alt="${task.priority}"></div>
                 </div> 
                 <div class="dropdown-main-container">
-                    <select class="dropdown-container" onclick="stopEventBubbling(event)" name="options" onchange="handleDropdownChange(event, '${
-                        task.id
-                    }')">
+                    <select class="dropdown-container" onclick="stopEventBubbling(event)" name="options" onchange="handleDropdownChange(event, '${task.id}')">
                         <option onclick="stopEventBubbling(event)" class="dropdown-options" value="" selected>Verschieben in </option>
                         <option value="toDo">Todo</option>
                         <option value="inProgress">In Progress</option>
@@ -74,7 +52,7 @@ function taskCardTemplateToHtml(
  * @returns HTML string of the edit task big view
  */
 function renderEditTaskBigView(taskId, taskPriority) {
-    return /*html*/ `
+    return `
 <div id="edit-task-big-container" class="edit-task-container">
             <div class="edit-task-close-container">
                 <img onclick="editTaskSlideOut()" onmousedown="removeRotations()" src="../assets/icons/close-black.svg" alt="">
