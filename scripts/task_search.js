@@ -74,23 +74,33 @@ function createUserContainer(assignedUsers) {
     if (assignedUsers.length > 3) {
         moreUserTemplate = `<div class="more-users"><span>...</span></div>`;
     }
-    assignedUsers = assignedUsers
-        .slice(0, 3)
-        .map((user) => {
-            const userContainer = document.createElement("div");
-            userContainer.className = "user";
-            const userName = checkUserFolder(user);
-            userContainer.style.backgroundColor = getColorFromArrayByName(
-                boardContactsAndColorsHelperArray,
-                userName
-            );
-            const initials = getEmployeesInitials(userName);
-            userContainer.innerHTML = initials;
-            return userContainer.outerHTML;
-        })
-        .join("");
+    assignedUsers = createUserBubbles(assignedUsers);
     assignedUsers = assignedUsers + moreUserTemplate;
     return assignedUsers;
+}
+
+/**
+ * function to create userbubbles with initials
+ * @param {array} assignedUsers 
+ * @returns html user bubbles
+ */
+function createUserBubbles(assignedUsers) {
+    let assignedUserBubbles = assignedUsers
+    .slice(0, 3)
+    .map((user) => {
+        const userContainer = document.createElement("div");
+        userContainer.className = "user";
+        const userName = checkUserFolder(user);
+        userContainer.style.backgroundColor = getColorFromArrayByName(
+            boardContactsAndColorsHelperArray,
+            userName
+        );
+        const initials = getEmployeesInitials(userName);
+        userContainer.innerHTML = initials;
+        return userContainer.outerHTML;
+    })
+    .join("");
+    return assignedUserBubbles
 }
 
 /**
