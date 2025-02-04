@@ -12,7 +12,7 @@ async function userLogin() {
     if (!inputsFilled("email", "password")) {
         return;
     }
-    if(!checkValidation('email', 'email')) {
+    if (!checkValidation('email', 'email')) {
         return
     }
     await fetchUsers();
@@ -30,23 +30,13 @@ async function userLogin() {
 async function fetchUsers() {
     let response = await fetch(BASE_URL + PATH_TO_USERS + ".json");
     let fetchedUsers = await response.json();
-    let userKeysArray = Object.keys(fetchedUsers);
-    for (let i = 0; i < userKeysArray.length; i++) {
-        users.push({
-            id: userKeysArray[i],
-            user: {
-                email: fetchedUsers[userKeysArray[i]]["userData"].email
-                    .replace(/['"]/g, "")
-                    .trim(),
-                password: fetchedUsers[userKeysArray[i]]["userData"].password
-                    .replace(/['"]/g, "")
-                    .trim(),
-                name: fetchedUsers[userKeysArray[i]]["userData"].name
-                    .replace(/['"]/g, "")
-                    .trim(),
-            },
-        });
-    }
+
+    users.push(...Object.entries(fetchedUsers).map(([id, data]) => ({
+        id,
+        user: Object.fromEntries(
+            Object.entries(data.userData).map(([key, value]) => [key, value.replace(/['"]/g, "").trim()])
+        )
+    })));
 }
 
 /**
@@ -204,7 +194,7 @@ function userLogout() {
  */
 async function autoLogin() {
     let userKey = localStorage.getItem("userkey");
-    let userData = JSON.parse(localStorage.getItem("user")); 
+    let userData = JSON.parse(localStorage.getItem("user"));
     document.getElementById('email').value = userData.email;
     localStorage.removeItem("user");
     if (userKey) {
