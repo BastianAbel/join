@@ -27,36 +27,19 @@ function loadAllContacts() {
  * Function to get the correct board-section to render the contacts in based on the first letter of the contact's name
  */
 function getListSection() {
-    allContacts.sort((a, b) =>
-        a.contact.name > b.contact.name
-            ? 1
-            : a.contact.name < b.contact.name
-            ? -1
-            : 0
-    );
-    firstLetters = Array.from(
-        new Set(allContacts.map((entry) => entry.contact.name[0].toUpperCase()))
-    );
-    for (let i = 0; i < firstLetters.length; i++) {
-        CONTACT_LIST_CONTAINER.innerHTML += renderContactSection(
-            firstLetters[i]
-        );
-        for (let j = 0; j < allContacts.length; j++) {
-            if (allContacts[j].contact.name.startsWith(firstLetters[i])) {
-                document.getElementById(
-                    `div-for-contacts-with-letter(${firstLetters[i]})`
-                ).innerHTML += renderContactListContact(
-                    allContacts[j].contact,
-                    getContactInitials(allContacts[j].contact.name),
-                    allContacts[j].id
-                );
-                setColorById(
-                    `profile-picture(${allContacts[j].id})`,
-                    allContacts[j].color
-                );
-            }
-        }
-    }
+    allContacts.sort((a, b) => a.contact.name.localeCompare(b.contact.name));
+    let firstLetters = [...new Set(allContacts.map(c => c.contact.name[0].toUpperCase()))];
+
+    firstLetters.forEach(letter => {
+        CONTACT_LIST_CONTAINER.innerHTML += renderContactSection(letter);
+        allContacts
+            .filter(c => c.contact.name.startsWith(letter))
+            .forEach(c => {
+                document.getElementById(`div-for-contacts-with-letter(${letter})`).innerHTML += 
+                    renderContactListContact(c.contact, getContactInitials(c.contact.name), c.id);
+                setColorById(`profile-picture(${c.id})`, c.color);
+            });
+    });
 }
 
 /**
@@ -270,14 +253,28 @@ document.addEventListener("mouseup", function (e) {
  * @param {string} id
  */
 function getEditedUserData(id) {
-    if(!checkValidation("email", "newEmail") || !inputsFilled("newName", "newEmail", "newPhone")) {
-        return
+    const inputsValid = checkEditInputs();
+    if(inputsValid) {
+        let newName = document.getElementById("newName").value;
+        let newEmail = document.getElementById("newEmail").value;
+        let newPhone = document.getElementById("newPhone").value;
+        saveEditedUserData(newName, newEmail, newPhone, id);        
     }
-    let newName = document.getElementById("newName").value;
-    let newEmail = document.getElementById("newEmail").value;
-    let newPhone = document.getElementById("newPhone").value;
-    saveEditedUserData(newName, newEmail, newPhone, id);
 }
+
+function checkEditInputs() {
+    const allInputsFilled = inputsFilled("newName", "newEmail", "newPhone");
+    const emailValid = checkValidation("email", "newEmail");
+    const phonenumberValid = checkValidation("phonenumber", "newPhone");
+    if(allInputsFilled) {
+        if(emailValid && phonenumberValid) {
+            return true
+        } else if(!emailValid && !phonenumberValid) {
+            let responseEditContainer = document.getElementById("input-feedback-container");
+            responseEditContainer.innerHTML = "No Valid Email and Phonenumber!"
+        }
+    }
+} 
 
 /**
  * Function to save the edited data of a contact in the firebase database

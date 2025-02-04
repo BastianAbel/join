@@ -51,17 +51,9 @@ async function getIdOfNewContact() {
  */
 async function createContact(event) {
     event.preventDefault();
-    if (!checkValidation("email", "add-contact-email-input-field")) {
+    const inputsValid = checkAddContactInputs();
+    if(!inputsValid) {
         return
-    }
-    if (
-        !inputsFilled(
-            "add-contact-name-input-field",
-            "add-contact-email-input-field",
-            "add-contact-phone-input-field"
-        )
-    ) {
-        return;
     }
     const EMAIL_INPUT = document.getElementById(
         "add-contact-email-input-field"
@@ -108,5 +100,22 @@ async function createContact(event) {
         }, 1500);
     } catch (error) {
         console.error("Fehler beim Erstellen des Kontaktes:", error);
+    }
+}
+
+/**
+ * function to ckeck if all Add Contact Card Inputs are filled and valid
+ */
+function checkAddContactInputs() {
+    const allInputsFilled = inputsFilled("add-contact-name-input-field", "add-contact-email-input-field", "add-contact-phone-input-field");
+    const emailValid = checkValidation("email", "add-contact-email-input-field");
+    const phonenumberValid = checkValidation("phonenumber", "add-contact-phone-input-field");
+    if (allInputsFilled) {
+        if (emailValid && phonenumberValid) {
+            return true
+        } else if (!emailValid && !phonenumberValid) {
+            let responseEditContainer = document.getElementById("input-feedback-container");
+            responseEditContainer.innerHTML = "Not a valid Email and Phonenumber!"
+        }
     }
 }

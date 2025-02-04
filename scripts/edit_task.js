@@ -29,21 +29,15 @@ function editAddContactNamesToList(array, element) {
  * @param {array} taskArrayOfAssignedContacts
  * @param {array} arrayOfAllContactNames
  */
-function setContactAssignedToChecked(
-    taskArrayOfAssignedContacts,
-    arrayOfAllContactNames
-) {
+function setContactAssignedToChecked(taskArrayOfAssignedContacts, arrayOfAllContactNames) {
     let listElementDiv;
     for (let i = 0; i < arrayOfAllContactNames.length; i++) {
         for (let j = 0; j < taskArrayOfAssignedContacts.length; j++) {
             {
                 if (
-                    arrayOfAllContactNames[i].name ==
-                    taskArrayOfAssignedContacts[j]
+                    arrayOfAllContactNames[i].name == taskArrayOfAssignedContacts[j]
                 ) {
-                    listElementDiv = document.getElementById(
-                        `check-box-assign-contact-id(${arrayOfAllContactNames[i].id})`
-                    );
+                    listElementDiv = document.getElementById(`check-box-assign-contact-id(${arrayOfAllContactNames[i].id})`);
                     listElementDiv.classList.add("checked-contact");
                 }
             }
@@ -127,29 +121,16 @@ function editFilterInput(event) {
  */
 function checkContact(event, data) {
     const container = event.currentTarget;
-    let currentContact = getContactFromArrayById(
-        editFilteredNamesAndColors,
-        data.id
-    );
-    container.classList.toggle("checked-contact");
-    if (container.classList.contains("checked-contact")) {
-        editCheckedContactNamesAndColors.push(currentContact);
-        contactNames.push(currentContact.name);
-        helperArray.push(currentContact.name);
-    } else {
-        editCheckedContactNamesAndColors.splice(
-            editCheckedContactNamesAndColors.indexOf(currentContact),
-            1
-        );
-        contactNames.splice(contactNames.indexOf(currentContact.name), 1);
-        helperArray.splice(helperArray.indexOf(currentContact.name), 1);
-    }
+    const currentContact = getContactFromArrayById(editFilteredNamesAndColors, data.id);
+    const isChecked = container.classList.toggle("checked-contact");
+
+    [editCheckedContactNamesAndColors, contactNames, helperArray].forEach(arr => {
+        const index = arr.indexOf(currentContact.name);
+        isChecked ? arr.push(currentContact.name) : arr.splice(index, 1);
+    });
+
     editNameCircleContainer.innerHTML = "";
-    addNameCircles(
-        editCheckedContactNamesAndColors,
-        editNameCircleContainer,
-        `contact-name-circle`
-    );
+    addNameCircles(editCheckedContactNamesAndColors, editNameCircleContainer, `contact-name-circle`);
 }
 
 /**
@@ -167,48 +148,67 @@ function getTaskFromArrayById(array, id) {
  */
 function editShowContactList(event, taskId) {
     event.preventDefault();
-    editCheckedContactNamesAndColors = [];
-    editTaskContactListContainer = document.getElementById(
-        "edit-task-contact-list-container"
-    );
-    editTaskDropDownIcon = document.getElementById(
-        "edit-task-contact-drop-down-icon"
-    );
-    editNameCircleContainer = document.getElementById(
-        "edit-name-circle-container"
-    );
+    if (event.currentTarget !== event.target) return;
+
+    initEditTaskElements();
     let currentTask = getTaskFromArrayById(allTasks, taskId);
-    helperArray = currentTask.assignedTo;
-    editCheckedContactNamesAndColors = editFilteredNamesAndColors.filter(
-        (contact) => helperArray.includes(contact.name)
-    );
-    setContactAssignedToChecked(
-        currentTask.assignedTo,
-        editCheckedContactNamesAndColors
-    );
-    if (event.currentTarget == event.target) {
-        editTaskContactListContainer.classList.toggle("d-none");
-        if (!editTaskContactListContainer.classList.contains("d-none")) {
-            editTaskDropDownIcon.src = "/assets/icons/arrow-drop-up.svg";
-        } else {
-            editTaskDropDownIcon.src = "/assets/icons/arrow-drop-down.svg";
-            editNameCircleContainer.classList.remove("d-none");
-            editNameCircleContainer.classList.add("open-circle-container");
-            editNameCircleContainer.innerHTML = "";
-            addNameCircles(
-                editCheckedContactNamesAndColors,
-                editNameCircleContainer,
-                `contact-name-circle`
-            );
-        }
-        if (
-            !editNameCircleContainer.classList.contains("d-none") &&
-            !editNameCircleContainer.hasChildNodes()
-        ) {
-            editNameCircleContainer.innerHTML = "";
-            editNameCircleContainer.classList.remove("open-circle-container");
-        }
-    }
+    editCheckedContactNamesAndColors = getCheckedContacts(currentTask.assignedTo);
+    setContactAssignedToChecked(currentTask.assignedTo, editCheckedContactNamesAndColors);
+
+    toggleClass(editTaskContactListContainer, "d-none");
+    editTaskDropDownIcon.src = getDropDownIcon(editTaskContactListContainer);
+
+    if (!editTaskContactListContainer.classList.contains("d-none")) updateNameCircles();
+    if (!editNameCircleContainer.classList.contains("d-none") && !editNameCircleContainer.hasChildNodes())
+        resetNameCircles();
+}
+
+/**gets the edit container refs */
+function initEditTaskElements() {
+    editTaskContactListContainer = document.getElementById("edit-task-contact-list-container");
+    editTaskDropDownIcon = document.getElementById("edit-task-contact-drop-down-icon");
+    editNameCircleContainer = document.getElementById("edit-name-circle-container");
+}
+
+/** returns contacts that should be checked */
+function getCheckedContacts(assignedTo) {
+    return editFilteredNamesAndColors.filter(contact => assignedTo.includes(contact.name));
+}
+
+/**
+ * toggles class
+ * @param {element} element 
+ * @param {string} className 
+ */
+function toggleClass(element, className) {
+    element.classList.toggle(className);
+}
+
+/**
+ * gets img source of dropdown/up icon relevant to the container
+ * @param {element} container 
+ * @returns dropdown/up img source
+ */
+function getDropDownIcon(container) {
+    return container.classList.contains("d-none") ? "/assets/icons/arrow-drop-down.svg" : "/assets/icons/arrow-drop-up.svg";
+}
+
+/**
+ * updates the contact Bubbles
+ */
+function updateNameCircles() {
+    editNameCircleContainer.classList.add("open-circle-container");
+    editNameCircleContainer.classList.remove("d-none");
+    editNameCircleContainer.innerHTML = "";
+    addNameCircles(editCheckedContactNamesAndColors, editNameCircleContainer, `contact-name-circle`);
+}
+
+/**
+ * resets the contact Bubbles
+ */
+function resetNameCircles() {
+    editNameCircleContainer.innerHTML = "";
+    editNameCircleContainer.classList.remove("open-circle-container");
 }
 
 /**
@@ -230,6 +230,10 @@ async function removeTaskIdFromUncheckedContacts(taskId) {
     }
 }
 
+/**
+ * edits a subtask
+ * @param {event} event 
+ */
 function editSubtask(event) {
     let spanElement = event.target.parentNode.parentNode.querySelector("span");
     sessionStorage.setItem("currentEditedSubtask", spanElement.innerHTML);
@@ -279,18 +283,10 @@ function editClearSubtaskInputField() {
  */
 function editShowAndHideIcons() {
     let editSubtaskInput = document.getElementById("edit-subtask-title");
-    let editSubtaskIconPlus = document.getElementById(
-        "edit-sub-task-icon-plus"
-    );
-    let editSubtaskIconCross = document.getElementById(
-        "edit-sub-task-icon-cross"
-    );
-    let editSubtaskIconVector = document.getElementById(
-        "edit-sub-task-icon-vector"
-    );
-    let editSubtaskIconCheck = document.getElementById(
-        "edit-sub-task-icon-check"
-    );
+    let editSubtaskIconPlus = document.getElementById("edit-sub-task-icon-plus");
+    let editSubtaskIconCross = document.getElementById("edit-sub-task-icon-cross");
+    let editSubtaskIconVector = document.getElementById("edit-sub-task-icon-vector");
+    let editSubtaskIconCheck = document.getElementById("edit-sub-task-icon-check");
     if (editSubtaskInput.value.length > 0) {
         editSubtaskIconPlus.classList.add("d-none");
         editSubtaskIconCross.classList.remove("d-none");
@@ -305,27 +301,22 @@ function editShowAndHideIcons() {
  */
 function editTaskGetEmployeeInfo(assignedUsers) {
     let circleContainer = document.getElementById("edit-name-circle-container");
-    if (typeof assignedUsers === "string" && assignedUsers !== "") {
-        assignedUsers = assignedUsers.split(",");
-    }
-    for (let index = 0; index < assignedUsers.length; index++) {
-        let bgColor = getColorFromArrayByName(
-            boardContactsAndColorsHelperArray,
-            assignedUsers[index]
-        );
-        if (index < 3) {
-            circleContainer.innerHTML += `<div style="background-color: ${bgColor}" class="name-circle">${getEmployeesInitials(
-                assignedUsers[index]
-            )}</div>
-        `;
-        } else {
-            if (index == assignedUsers.length - 1) {
-                circleContainer.innerHTML += `...(${
-                    assignedUsers.length - 3
-                }) more Contact(s)`;
-            }
-        }
-    }
+    assignedUsers = typeof assignedUsers === "string" && assignedUsers ? assignedUsers.split(",") : assignedUsers;
+    
+    assignedUsers.forEach((user, index) => {
+        if (index < 3) circleContainer.innerHTML += createNameCircle(user);
+        else if (index === assignedUsers.length - 1) circleContainer.innerHTML += `...(${assignedUsers.length - 3}) more Contact(s)`;
+    });
+}
+
+/**
+ * funktion to create contact Bubble out of a user
+ * @param {string} user 
+ * @returns contact Bubble Html
+ */
+function createNameCircle(user) {
+    let bgColor = getColorFromArrayByName(boardContactsAndColorsHelperArray, user);
+    return `<div style="background-color: ${bgColor}" class="name-circle">${getEmployeesInitials(user)}</div>`;
 }
 
 /**
@@ -402,35 +393,10 @@ async function getChangedTaskData(taskId) {
  * @param {array} changedContacts
  * @param {array} changedSubtaskList
  */
-async function setChangedTaskDataToBackend(
-    taskId,
-    changedTaskTitle,
-    changedTaskDescription,
-    changedTaskDate,
-    changedTaskPrio,
-    changedContacts,
-    changedSubtaskList
-) {
-    if (
-        changedTaskTitle !== "" &&
-        changedTaskDate !== "" &&
-        changedTaskPrio !== ""
-    ) {
-        updateData(
-            (path = PATH_TO_TASKS),
-            (id = taskId),
-            (data = {
-                title: changedTaskTitle,
-                description: changedTaskDescription,
-                dueDate: changedTaskDate,
-                priority: changedTaskPrio,
-                assignedTo: changedContacts,
-                subtasks: changedSubtaskList,
-            })
-        );
-        await addTaskToAssignedContacts();
-        await setBackendJsonToSessionStorage();
-        await updateSessionStorage();
+async function setChangedTaskDataToBackend(taskId, title, desc, date, prio, contacts, subtasks) {
+    if (title && date && prio) {
+        await updateData(PATH_TO_TASKS, taskId, { title, description: desc, dueDate: date, priority: prio, assignedTo: contacts, subtasks });
+        await Promise.all([addTaskToAssignedContacts(), setBackendJsonToSessionStorage(), updateSessionStorage()]);
         editTaskSlideOut();
     }
     navigateToBoard();

@@ -1,10 +1,6 @@
-const TASK_CONTACT_LIST_CONTAINER = document.getElementById(
-    "add-task-contact-list-container"
-);
+const TASK_CONTACT_LIST_CONTAINER = document.getElementById("add-task-contact-list-container");
 const CONTACT_INPUT = document.getElementById("task-contact-input");
-const CONTACT_INPUT_ICON = document.getElementById(
-    "add-task-contact-drop-down-icon"
-);
+const CONTACT_INPUT_ICON = document.getElementById("add-task-contact-drop-down-icon");
 const TASK_CONTACT_LIST = document.getElementById("add-task-contacts-list");
 const NAME_CIRCLE_CONTAINER = document.getElementById("name-circle-container");
 const SUBTASK_INPUT = document.getElementById("subtask-title");
@@ -50,21 +46,6 @@ async function getAllContactsNames() {
 }
 
 /**
- * Function to add contact names from an array to the contact list in the add task form
- * @param {array} array
- * @param {HTML-Element} element
- */
-function addContactNamesToList(array, element) {
-    element.innerHTML = "";
-    for (let j = 0; j < array.length; j++) {
-        let name = array[j].name;
-        let id = array[j].id;
-        element.innerHTML += renderAssignContact(name, id);
-        setColorById(`name-circle(${id})`, array[j].color);
-    }
-}
-
-/**
  * Function to add a subtask to the subtask list in the add task form, setting the value of checked by default to false
  * and then clearing the input field
  */
@@ -73,89 +54,24 @@ function addSubTask() {
     let subTaskObject = {};
     if (SUBTASK_INPUT.value) {
         subtaskTitle = SUBTASK_INPUT.value;
-        SUBTASK_LIST.innerHTML += renderSubtask(subtaskTitle);
-        subTaskObject["checked"] = false;
-        subTaskObject["description"] = subtaskTitle;
-        subtaskList.push(subTaskObject);
-        SUBTASK_INPUT.value = "";
+        if (subtaskTitle.trim() !== "") {
+            SUBTASK_LIST.innerHTML += renderSubtask(subtaskTitle);
+            subTaskObject["checked"] = false;
+            subTaskObject["description"] = subtaskTitle;
+            subtaskList.push(subTaskObject);
+            SUBTASK_INPUT.value = "";
+        }
         clearSubtaskInputField();
     }
 }
+
 /**
  * Function to delete a subtask from the subtask list in the add task form
  * @param {event} event
  */
 function deleteSubtask(event, subtaskDescription) {
-    event.target.parentNode.parentNode.parentNode.parentNode.removeChild(
-        event.target.parentNode.parentNode.parentNode
-    );
-    subtaskList = subtaskList.filter(
-        (subtask) => subtask.description !== subtaskDescription
-    );
-}
-
-/**
- * Function to clear all input fields of the add task form by resetting their values
- */
-function clearAllInputAddTask(event) {
-    event.stopPropagation();
-    TASK_TITLE_INPUT.value = "";
-    TASK_DESCRIPTION.value = "";
-    DUE_DATE_INPUT.value = "";
-    clearSubtaskInputField();
-    setMediumPrio();
-    subtaskList = [];
-    SUBTASK_LIST.innerHTML = "";
-    removeNotValidIfClearButtonisClicked(event);
-}
-
-/**
- * Function to remove "not-valid" class from task input fields
- * and clear feedback and requirement info containers when the clear button is clicked.
- * @param {event} event - The event object from the clear button click
- */
-function removeNotValidIfClearButtonisClicked(event) {
-    event.stopPropagation();
-    TASK_TITLE_INPUT.classList.remove("not-valid");
-    DUE_DATE_INPUT.classList.remove("not-valid");
-    TASK_CATEGORY_SELECT.classList.remove("not-valid");
-    document.getElementById("input-feedback-container").innerHTML = "";
-}
-
-/**
- * Function to open a datePicker-tool under the position of the event-target
- * @param {event} event
- */
-function openDatePicker(event) {
-    let dateInput = document.getElementById("hiddenDateInput");
-    let target = event.target;
-    const rect = target.getBoundingClientRect();
-    dateInput.style.left = `${rect.left - 190}px`;
-    dateInput.style.top = `${rect.bottom}px`;
-    dateInput.style.visibility = "visible";
-    dateInput.offsetHeight;
-    dateInput.showPicker();
-}
-
-/**
- * Function to format a datestring from a datepicker to a needed format
- * @param {dateString} dateString
- * @returns {string} in formatted design
- */
-function formatDate(dateString) {
-    if (!dateString) {
-        return "";
-    }
-    let stringParts = dateString.split("-");
-    return `${stringParts[2]}/${stringParts[1]}/${stringParts[0]}`;
-}
-
-/**
- * Function to set a formatted string as a value of an input-field
- */
-function updateDateField() {
-    let dateInput = document.getElementById("hiddenDateInput");
-    DUE_DATE_INPUT.value = formatDate(dateInput.value);
+    event.target.parentNode.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode.parentNode);
+    subtaskList = subtaskList.filter((subtask) => subtask.description !== subtaskDescription);
 }
 
 /**
@@ -189,18 +105,6 @@ function setLowPrio() {
 }
 
 /**
- * Function to filter the contact list showing possible contacts to assigne to the task in the add task form by the input value
- * @param {event} event
- */
-function filterInput(event) {
-    filteredNamesAndColors = filterInputFromArray(
-        filteredNamesAndColors,
-        event.target.value
-    );
-    addContactNamesToList(filteredNamesAndColors, TASK_CONTACT_LIST);
-}
-
-/**
  * Function to check a contact in the contact list in the add task form by adding it to the checkedContactNamesAndColors array
  * or removing it from there if it is not checked anymore
  * @param {event} event
@@ -208,27 +112,17 @@ function filterInput(event) {
  */
 function checkContact(event, data) {
     const container = event.currentTarget;
-    let currentContact = getContactFromArrayById(
-        filteredNamesAndColors,
-        data.id
-    );
+    let currentContact = getContactFromArrayById(filteredNamesAndColors, data.id);
     container.classList.toggle("checked-contact");
     if (container.classList.contains("checked-contact")) {
         checkedContactNamesAndColors.push(currentContact);
         contactNames.push(currentContact.name);
     } else {
-        checkedContactNamesAndColors.splice(
-            checkedContactNamesAndColors.indexOf(currentContact),
-            1
-        );
+        checkedContactNamesAndColors.splice(checkedContactNamesAndColors.indexOf(currentContact), 1);
         contactNames.splice(contactNames.indexOf(currentContact.name), 1);
     }
     NAME_CIRCLE_CONTAINER.innerHTML = "";
-    addNameCircles(
-        checkedContactNamesAndColors,
-        NAME_CIRCLE_CONTAINER,
-        `contact-name-circle`
-    );
+    addNameCircles(checkedContactNamesAndColors, NAME_CIRCLE_CONTAINER, `contact-name-circle`);
 }
 
 /**
@@ -240,19 +134,13 @@ function showContactList(event) {
         TASK_CONTACT_LIST_CONTAINER.classList.toggle("d-none");
         if (!TASK_CONTACT_LIST_CONTAINER.classList.contains("d-none")) {
             CONTACT_INPUT_ICON.src = "/assets/icons/arrow-drop-up.svg";
-            document.addEventListener(
-                "click",
-                prepareContactlistToGetClosedFromOutside
-            );
+            document.addEventListener("click", prepareContactlistToGetClosedFromOutside);
         } else {
             CONTACT_INPUT_ICON.src = "/assets/icons/arrow-drop-down.svg";
             NAME_CIRCLE_CONTAINER.classList.remove("d-none");
             NAME_CIRCLE_CONTAINER.classList.add("open-circle-container");
         }
-        if (
-            !NAME_CIRCLE_CONTAINER.classList.contains("d-none") &&
-            !NAME_CIRCLE_CONTAINER.hasChildNodes()
-        ) {
+        if (!NAME_CIRCLE_CONTAINER.classList.contains("d-none") && !NAME_CIRCLE_CONTAINER.hasChildNodes()) {
             NAME_CIRCLE_CONTAINER.classList.add("d-none");
             NAME_CIRCLE_CONTAINER.classList.remove("open-circle-container");
         }
@@ -271,53 +159,7 @@ function addNameCircles(array, containerElement, elementIdForColor) {
         let id = array[i].id;
         let color = array[i].color;
         let targetElementForColor = elementIdForColor + `(${id})`;
-        if (i < 3) {
-            containerElement.innerHTML += renderNameCircle(name, id);
-            setColorById(targetElementForColor, color);
-        } else {
-            if (i == array.length - 1) {
-                containerElement.innerHTML += `...(${
-                    array.length - 3
-                }) more Contact(s)`;
-            }
-        }
-    }
-}
-
-/**
- * Function to ensure that the due date input field in the add task form is formatted correctly
- */
-function formatDateInput() {
-    if (DUE_DATE_INPUT.value.length == 2 || DUE_DATE_INPUT.value.length == 5) {
-        DUE_DATE_INPUT.value += `/`;
-    }
-
-    if (
-        DUE_DATE_INPUT.value.length == 10 &&
-        !isDateValid(DUE_DATE_INPUT.value)
-    ) {
-        DUE_DATE_INPUT.value = "";
-    }
-}
-
-/**
- * Function to check if a date is valid and in the format dd/mm/yyyy
- * @param {string} dateString
- * @returns true if the date is valid, false if not
- */
-function isDateValid(dateString) {
-    const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
-    if (!dateRegex.test(dateString)) return false;
-    const [day, month, year] = dateString.split("/").map(Number);
-    if (month >= 1 && month <= 12 && day >= 1 && day <= 31 && year >= 2025) {
-        const date = new Date(year, month - 1, day);
-        return (
-            date.getFullYear() === year &&
-            date.getMonth() === month - 1 &&
-            date.getDate() === day
-        );
-    } else {
-        return false;
+        handleCountOfItemsAtAddNameCircles(array, containerElement, targetElementForColor, name, id, i, color);
     }
 }
 
@@ -350,10 +192,9 @@ function showAndHideIcons() {
  */
 function editContent(event) {
     let spanElement = event.target.parentNode.parentNode.querySelector("span");
-    if (spanElement.innerHTML !== "") {
+    if (spanElement.innerHTML.trim() !== "") {
         subtaskTitleBeforeEditing = spanElement.innerHTML;
     }
-
     sessionStorage.setItem("currentEditedSubtask", spanElement.innerHTML);
     if (spanElement) {
         spanElement.setAttribute("contenteditable", "true");
@@ -368,47 +209,18 @@ function editContent(event) {
  */
 function removeEditClass(event) {
     let subtaskSpan = event.target;
-    if (subtaskSpan.textContent === "") {
-        event.target.parentNode.parentNode.parentNode.removeChild(
-            event.target.parentNode.parentNode
-        );
-        let subtaskText = sessionStorage.getItem("currentEditedSubtask");
-        subtaskList = subtaskList.filter(
-            (subtask) => subtask.description !== subtaskText
-        );
-        sessionStorage.removeItem("currentEditedSubtask");
-    } else if (
-        subtaskSpan.textContent !== "" &&
-        subtaskSpan.textContent !== subtaskTitleBeforeEditing
-    ) {
+    if (subtaskSpan.textContent.trim() === "") {
+        handleEmptySubtaskTitleAtRemoveEditClass(event);
+    } else if (subtaskSpan.textContent.trim() !== "" && subtaskSpan.textContent !== subtaskTitleBeforeEditing) {
         let newString = subtaskSpan.textContent;
-        setEditedSubtaskTitleToArray(
-            subtaskList,
-            subtaskTitleBeforeEditing,
-            newString
-        );
+        setEditedSubtaskTitleToArray(subtaskList, subtaskTitleBeforeEditing, newString);
     } else {
         event.target.classList.remove("editableSpan");
-        let spanElement =
-            event.target.parentNode.parentNode.querySelector("span");
+        let spanElement = event.target.parentNode.parentNode.querySelector("span");
         if (spanElement) {
             spanElement.setAttribute("contenteditable", "false");
         }
     }
-}
-
-/**
- * Updates the description of a subtask in the provided array.
- * Searches for a subtask object with a description matching the oldstring
- * and updates it to the newString.
- *
- * @param {array} array - The array of subtask objects.
- * @param {string} oldstring - The current description to be updated.
- * @param {string} newString - The new description to replace the old one.
- */
-function setEditedSubtaskTitleToArray(array, oldstring, newString) {
-    let obj = array.find((obj) => obj.description === oldstring);
-    obj.description = newString;
 }
 
 /**
@@ -417,51 +229,13 @@ function setEditedSubtaskTitleToArray(array, oldstring, newString) {
  */
 async function createTask(event) {
     event.preventDefault();
-    console.log(event.target.id);
-
-    if (event.submitter.id !== "create-task-btn") {
+    if (event.submitter.id !== "create-task-btn" || !inputsFilled("task-title", "task-due-date", "task-category-select")) {
         return;
     }
-    if (!inputsFilled("task-title", "task-due-date", "task-category-select")) {
-        return;
-    }
-    let param = new URLSearchParams(window.location.search);
-    let state = "";
-    if (param.has("state") && param.get("state") !== "") {
-        state = param.get("state");
-    } else {
-        state = "toDo";
-    }
-    newTask = {
-        type: document.getElementById("task-category-select").value,
-        title: document.getElementById("task-title").value,
-        description: document.getElementById("task-description").value,
-        dueDate: document.getElementById("task-due-date").value,
-        priority: taskPrio || "low",
-        assignedTo: contactNames,
-        subtasks: subtaskList,
-        state: state,
-    };
-
-    try {
-        if (
-            newTask["type"] !== "" &&
-            newTask["title"] !== "" &&
-            newTask["dueDate"] !== ""
-        ) {
-            await postData(PATH_TO_TASKS, newTask);
-            await addTaskToAssignedContacts();
-            await setBackendJsonToSessionStorage();
-            clearAllInputAddTask();
-        }
-    } catch (error) {
-        console.error("Fehler beim Erstellen der Aufgabe:", error);
-    }
+    let state = setNewTaskStateByParamOrDefault();
+    newTask = createNewTaskObject(contactNames, subtaskList, state);
+    await handleValidNewTask(newTask);
     navigateToBoard();
-}
-
-function navigateToBoard() {
-    window.location.href = "board.html";
 }
 
 /**
@@ -471,23 +245,10 @@ async function addTaskToAssignedContacts() {
     if (checkedContactNamesAndColors.length > 0) {
         let newTaskId = await getIdOfNewTask();
         for (let i = 0; i < checkedContactNamesAndColors.length; i++) {
-            let indexInAllContacts = allContacts.findIndex(
-                (contact) => contact.id == checkedContactNamesAndColors[i].id
-            );
-            addTaskToContactInAllContactsArray(
-                allContacts[indexInAllContacts],
-                "tasksAssignedTo",
-                newTaskId
-            );
-            let allAssignedToTasks = getAllTaskIdsOfUser(
-                allContacts[indexInAllContacts],
-                "tasksAssignedTo"
-            );
-            await updateData(
-                PATH_TO_CONTACTS,
-                checkedContactNamesAndColors[i].id,
-                (data = { tasksAssignedTo: allAssignedToTasks })
-            );
+            let indexInAllContacts = allContacts.findIndex((contact) => contact.id == checkedContactNamesAndColors[i].id);
+            addTaskToContactInAllContactsArray(allContacts[indexInAllContacts], "tasksAssignedTo", newTaskId);
+            let allAssignedToTasks = getAllTaskIdsOfUser(allContacts[indexInAllContacts], "tasksAssignedTo");
+            await updateData(PATH_TO_CONTACTS, checkedContactNamesAndColors[i].id, (data = { tasksAssignedTo: allAssignedToTasks }));
         }
     }
 }
@@ -510,11 +271,7 @@ function getAllTaskIdsOfUser(contact, arrayOfIds) {
  * @param {array} tasksAssignedTo
  * @param {string} newTaskId
  */
-function addTaskToContactInAllContactsArray(
-    contact,
-    tasksAssignedTo,
-    newTaskId
-) {
+function addTaskToContactInAllContactsArray(contact, tasksAssignedTo, newTaskId) {
     if (!contact.contact[tasksAssignedTo]) {
         contact.contact[tasksAssignedTo] = [newTaskId];
     } else if (!contact.contact[tasksAssignedTo].includes(newTaskId)) {
@@ -532,24 +289,20 @@ async function getIdOfNewTask() {
     return taskKeysArray[taskKeysArray.length - 1];
 }
 
+/**
+ * Event listener that closes the contact list in the add task form when the user clicks outside
+ * of the contact list. This function is called on every click event outside of the contact list
+ * and checks if the event target is inside the contact list container. If it is not, the contact
+ * list container is hidden and the event listener is removed.
+ * @param {Event} event - The click event outside of the contact list
+ */
 function prepareContactlistToGetClosedFromOutside(event) {
     event.stopPropagation();
-    try {
-        if (!TASK_CONTACT_LIST_CONTAINER.contains(event.target)) {
-            TASK_CONTACT_LIST_CONTAINER.classList.add("d-none");
-            if (NAME_CIRCLE_CONTAINER.hasChildNodes()) {
-                NAME_CIRCLE_CONTAINER.classList.remove("d-none");
-            }
-        } else {
-            return;
+    if (!TASK_CONTACT_LIST_CONTAINER.contains(event.target)) {
+        TASK_CONTACT_LIST_CONTAINER.classList.add("d-none");
+        if (NAME_CIRCLE_CONTAINER.hasChildNodes()) {
+            NAME_CIRCLE_CONTAINER.classList.remove("d-none");
         }
-    } catch {
-    } finally {
-        if (TASK_CONTACT_LIST_CONTAINER.classList.contains("d-none")) {
-            document.removeEventListener(
-                "click",
-                prepareContactlistToGetClosedFromOutside
-            );
-        }
+        document.removeEventListener("click", prepareContactlistToGetClosedFromOutside);
     }
 }
