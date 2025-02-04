@@ -23,9 +23,7 @@ function searchTask(event) {
     if (searchInput.length < 4) {
         return;
     }
-    let results = data.filter((entry) =>
-        entry.title.toLowerCase().includes(searchInput)
-    );
+    let results = data.filter((entry) => entry.title.toLowerCase().includes(searchInput));
     contentRef.innerHTML = "";
     results.forEach((task) => {
         renderSearchResultCard(task);
@@ -41,15 +39,11 @@ function renderSearchResultCard(task) {
     const priorityImg = getPriorityImage(task.priority);
     const employeesName = createUserContainer(task.assignedTo);
     const cardTypeColor = changeColorCardType(task.type);
-    const searchResultContainer = document.getElementById(
-        "search-task-result-main-container"
-    );
-    const boardContentMainContainer = document.getElementById(
-        "board-content-container"
-    );
+    const searchResultContainer = document.getElementById("search-task-result-main-container");
+    const boardContentMainContainer = document.getElementById("board-content-container");
     boardContentMainContainer.classList.add("d-none");
     searchResultContainer.style.display = "flex";
-    contentRef.innerHTML += taskCardTemplateToHtml( task, subtaskState, priorityImg, employeesName, progressBarCalc, cardTypeColor);
+    contentRef.innerHTML += taskCardTemplateToHtml(task, subtaskState, priorityImg, employeesName, progressBarCalc, cardTypeColor);
 }
 
 /**
@@ -81,26 +75,23 @@ function createUserContainer(assignedUsers) {
 
 /**
  * function to create userbubbles with initials
- * @param {array} assignedUsers 
+ * @param {array} assignedUsers
  * @returns html user bubbles
  */
 function createUserBubbles(assignedUsers) {
     let assignedUserBubbles = assignedUsers
-    .slice(0, 3)
-    .map((user) => {
-        const userContainer = document.createElement("div");
-        userContainer.className = "user";
-        const userName = checkUserFolder(user);
-        userContainer.style.backgroundColor = getColorFromArrayByName(
-            boardContactsAndColorsHelperArray,
-            userName
-        );
-        const initials = getEmployeesInitials(userName);
-        userContainer.innerHTML = initials;
-        return userContainer.outerHTML;
-    })
-    .join("");
-    return assignedUserBubbles
+        .slice(0, 3)
+        .map((user) => {
+            const userContainer = document.createElement("div");
+            userContainer.className = "user";
+            const userName = checkUserFolder(user);
+            userContainer.style.backgroundColor = getColorFromArrayByName(boardContactsAndColorsHelperArray, userName);
+            const initials = getEmployeesInitials(userName);
+            userContainer.innerHTML = initials;
+            return userContainer.outerHTML;
+        })
+        .join("");
+    return assignedUserBubbles;
 }
 
 /**
@@ -161,12 +152,8 @@ function checkUserSearchInputAndRedirect() {
     if (userInput.value.trim() !== "") {
         return;
     } else {
-        document
-            .getElementById("board-content-container")
-            .classList.remove("d-none");
-        document.getElementById(
-            "search-task-result-main-container"
-        ).style.display = "none";
+        document.getElementById("board-content-container").classList.remove("d-none");
+        document.getElementById("search-task-result-main-container").style.display = "none";
     }
 }
 
@@ -184,9 +171,7 @@ function getSubtaskStatus(subtasks) {
     }
     completedSubtasks = subtasks.filter((subtask) => subtask.checked).length;
     statusProgressBar(completedSubtasks, totalSubtasks);
-    return `<span id="state">${completedSubtasks}/${totalSubtasks} ${
-        totalSubtasks === 1 ? "Subtask" : "Subtasks"
-    }</span>`;
+    return `<span id="state">${completedSubtasks}/${totalSubtasks} ${totalSubtasks === 1 ? "Subtask" : "Subtasks"}</span>`;
 }
 
 /**

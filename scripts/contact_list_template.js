@@ -20,7 +20,6 @@ function renderContactSection(letter) {
  */
 function renderContactListContact(contact, initials, id) {
     return `<div id="${id}" onclick="contactBigView('${contact.name}','${contact.email}', '${contact.phone}','${initials}', '${id}', )" class="contactlist-contact contactlist-contact-hover">
-
                     <div id="profile-picture(${id})" class="profile-picture test-profile-picture-background">
                         <span>${initials}</span>
                     </div>
@@ -42,7 +41,7 @@ function renderContactListContact(contact, initials, id) {
  * @returns html-string
  */
 function renderSingleContactView(name, email, phone, initials, id, color) {
-    return /*HTML*/ ` 
+    return ` 
             <div id="window-overlay" class="d-none window-overlay"></div>
                 <div class="contact-head-container"
                     <div class="contact-container">
@@ -104,7 +103,7 @@ function renderSingleContactView(name, email, phone, initials, id, color) {
  * @returns html-string
  */
 function renderEditContactView(initials, color, id) {
-    return /*HTML*/ `
+    return `
 <div id="editContactContainer" class="big-contact-container">
     <div class="add-contact-container">
         <div class="close-container">
