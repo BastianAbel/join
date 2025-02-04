@@ -108,32 +108,41 @@ function getCountOfTaskInBoard() {
  * Function to get the nearest deadline of all tasks on the board
  * @returns string with datetime representing the nearest deadline
  */
+// function getUpcomingDeadline() {
+//     let allDeadlines = allTasks.map((task) => task.dueDate);
+//     let nearestDeadline;
+//     let smallestDiff = Infinity;
+//     let dateWithSmallestDiff;
+//     for (let j = 0; j < allDeadlines.length; j++) {
+//         let dateString = allDeadlines[j];
+//         let date = new Date(
+//             Date.parse(
+//                 dateString.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$3-$2-$1")
+//             )
+//         );
+//         let today = new Date();
+//         let timeDiffInMs = Math.abs(date.getTime() - today.getTime());
+//         let timeDiffInDays = Math.floor(timeDiffInMs / (1000 * 60 * 60 * 24));
+//         if (timeDiffInDays < smallestDiff) {
+//             smallestDiff = timeDiffInDays;
+//             dateWithSmallestDiff = date;
+//         }
+//     }
+//     nearestDeadline = new Intl.DateTimeFormat("en-US", {
+//         month: "long",
+//         day: "numeric",
+//         year: "numeric",
+//     }).format(dateWithSmallestDiff);
+//     return nearestDeadline;
+// }
 function getUpcomingDeadline() {
-    let allDeadlines = allTasks.map((task) => task.dueDate);
-    let nearestDeadline;
-    let smallestDiff = Infinity;
-    let dateWithSmallestDiff;
-    for (let j = 0; j < allDeadlines.length; j++) {
-        let dateString = allDeadlines[j];
-        let date = new Date(
-            Date.parse(
-                dateString.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$3-$2-$1")
-            )
-        );
-        let today = new Date();
-        let timeDiffInMs = Math.abs(date.getTime() - today.getTime());
-        let timeDiffInDays = Math.floor(timeDiffInMs / (1000 * 60 * 60 * 24));
-        if (timeDiffInDays < smallestDiff) {
-            smallestDiff = timeDiffInDays;
-            dateWithSmallestDiff = date;
-        }
-    }
-    nearestDeadline = new Intl.DateTimeFormat("en-US", {
-        month: "long",
-        day: "numeric",
-        year: "numeric",
-    }).format(dateWithSmallestDiff);
-    return nearestDeadline;
+    let today = new Date();
+    
+    let nearestDeadline = allTasks
+        .map(task => new Date(task.dueDate.replace(/(\d{2})\/(\d{2})\/(\d{4})/, "$3-$2-$1")))
+        .reduce((nearest, date) => Math.abs(date - today) < Math.abs(nearest - today) ? date : nearest);
+
+    return new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric", year: "numeric" }).format(nearestDeadline);
 }
 
 /**
