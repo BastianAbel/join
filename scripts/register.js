@@ -14,9 +14,7 @@ function visualizeIfPasswordsMatch() {
     if (isEmpty) {
         removePasswordFeedbackStyle();
     } else {
-        PasswordsMatch(passwordInputValue)
-            ? setPasswordFeedbackStyle("matching")
-            : setPasswordFeedbackStyle("notMatching");
+        PasswordsMatch(passwordInputValue) ? setPasswordFeedbackStyle("matching") : setPasswordFeedbackStyle("notMatching");
     }
 }
 
@@ -94,14 +92,9 @@ const PasswordFeedbackStyles = {
 function setPasswordFeedbackStyle(currentState) {
     passwordFeedbackRef.innerHTML = PasswordFeedbackStyles[currentState].text;
     passwordFeedbackRef.classList.remove("d-none");
-    passwordInput.style.border =
-        "1px solid var(" + PasswordFeedbackStyles[currentState].colorcode + ")";
-    confirmPasswordInput.style.border =
-        "1px solid var(" + PasswordFeedbackStyles[currentState].colorcode + ")";
-    passwordFeedbackRef.classList.toggle(
-        "pw-match-green",
-        currentState === "matching"
-    );
+    passwordInput.style.border = "1px solid var(" + PasswordFeedbackStyles[currentState].colorcode + ")";
+    confirmPasswordInput.style.border = "1px solid var(" + PasswordFeedbackStyles[currentState].colorcode + ")";
+    passwordFeedbackRef.classList.toggle("pw-match-green", currentState === "matching");
 }
 
 /**
@@ -165,7 +158,7 @@ function addNewProfileToServer() {
         password: `"${passwordInput.value}"`,
     };
     postData((path = "users/"), (data = { userData }));
-    postData((path = "contacts/"), (data = {name: `${userNameInput.value}`, email: `${emailInput.value}`, phone: "", }));
+    postData((path = "contacts/"), (data = { name: `${userNameInput.value}`, email: `${emailInput.value}`, phone: "" }));
 }
 
 /**
@@ -205,10 +198,12 @@ function changePasswordVisibility(inputfieldId, imgElement) {
     }
 }
 
+/**
+ * Toggles the sign-up button's disabled state based on the privacy checkbox.
+ * Enables the sign-up button if the privacy checkbox is checked, otherwise disables it.
+ */
 function toggleSignUpButton() {
     const checkbox = document.getElementById("privacyCheckbox");
     const signUpButton = document.getElementById("submitBtn");
-    checkbox.checked
-        ? (signUpButton.disabled = false)
-        : (signUpButton.disabled = true);
+    checkbox.checked ? (signUpButton.disabled = false) : (signUpButton.disabled = true);
 }

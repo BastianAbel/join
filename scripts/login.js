@@ -12,8 +12,8 @@ async function userLogin() {
     if (!inputsFilled("email", "password")) {
         return;
     }
-    if (!checkValidation('email', 'email')) {
-        return
+    if (!checkValidation("email", "email")) {
+        return;
     }
     await fetchUsers();
     const userExists = checkIfUserExists();
@@ -31,12 +31,12 @@ async function fetchUsers() {
     let response = await fetch(BASE_URL + PATH_TO_USERS + ".json");
     let fetchedUsers = await response.json();
 
-    users.push(...Object.entries(fetchedUsers).map(([id, data]) => ({
-        id,
-        user: Object.fromEntries(
-            Object.entries(data.userData).map(([key, value]) => [key, value.replace(/['"]/g, "").trim()])
-        )
-    })));
+    users.push(
+        ...Object.entries(fetchedUsers).map(([id, data]) => ({
+            id,
+            user: Object.fromEntries(Object.entries(data.userData).map(([key, value]) => [key, value.replace(/['"]/g, "").trim()])),
+        }))
+    );
 }
 
 /**
@@ -47,9 +47,7 @@ function checkIfUserExists() {
     let email = emailInputRef.value;
     let password = passwordInputRef.value;
     user = {};
-    user = users.find(
-        (user) => user.user.email === email && user.user.password === password
-    );
+    user = users.find((user) => user.user.email === email && user.user.password === password);
     if (user) {
         return true;
     }
@@ -75,8 +73,7 @@ async function initiateLogin() {
  * Function to give visual feedback to the user if the login credentials do not match any user.
  */
 function visualizeNoLoginMatch() {
-    document.getElementById("input-feedback-container").innerHTML =
-        "Check your email and password. Please try again.";
+    document.getElementById("input-feedback-container").innerHTML = "Check your email and password. Please try again.";
     passwordInputRef.style.border = "1px solid var(--icon-urgent-red)";
     emailInputRef.style.border = "1px solid var(--icon-urgent-red)";
 }
@@ -103,11 +100,7 @@ function getUserInitials(userName) {
  * @param {string} userEmail
  * @param {string} userPassword
  */
-function setLoginInformationToSessionStorage(
-    userName,
-    userEmail,
-    userPassword
-) {
+function setLoginInformationToSessionStorage(userName, userEmail, userPassword) {
     userData = {
         name: userName,
         email: userEmail,
@@ -213,7 +206,7 @@ async function autoLogin() {
     let userKey = localStorage.getItem("userkey");
     let userData = JSON.parse(localStorage.getItem("user"));
     if (userData) {
-        document.getElementById('email').value = userData.email;
+        document.getElementById("email").value = userData.email;
         localStorage.removeItem("user");
     }
     if (userKey) {

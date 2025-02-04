@@ -85,7 +85,6 @@ function getEmployeeInfo(assignedUsers) {
     if (typeof assignedUsers === "string") {
         assignedUsers = assignedUsers.split(",");
     }
-
     if (assignedUsers.length > 0 && assignedUsers[0] !== "") {
         for (let index = 0; index < assignedUsers.length; index++) {
             let bgColor = getColorFromArrayByName(boardContactsAndColorsHelperArray, assignedUsers[index]);

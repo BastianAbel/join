@@ -1,14 +1,12 @@
-const CONTACT_LIST_CONTAINER = document.getElementById(
-    "contact-list-container"
-);
+const CONTACT_LIST_CONTAINER = document.getElementById("contact-list-container");
 let allContacts = [];
 let firstLetters = [];
 let cardId = "";
 let activeContactId = null;
 
 /**
- *
- * @returns an array of all contact-objects add the color property and firebase-id to each object
+ * Function to get all contact-objects from the session storage and add the color property and firebase-id to each object
+ * @returns an array of all contact-objects with the added color property and firebase-id
  */
 function loadAllContacts() {
     let fullObjectInSessionStorage = getJsonObjectFromSessionStorage();
@@ -28,15 +26,14 @@ function loadAllContacts() {
  */
 function getListSection() {
     allContacts.sort((a, b) => a.contact.name.localeCompare(b.contact.name));
-    let firstLetters = [...new Set(allContacts.map(c => c.contact.name[0].toUpperCase()))];
+    let firstLetters = [...new Set(allContacts.map((c) => c.contact.name[0].toUpperCase()))];
 
-    firstLetters.forEach(letter => {
+    firstLetters.forEach((letter) => {
         CONTACT_LIST_CONTAINER.innerHTML += renderContactSection(letter);
         allContacts
-            .filter(c => c.contact.name.startsWith(letter))
-            .forEach(c => {
-                document.getElementById(`div-for-contacts-with-letter(${letter})`).innerHTML += 
-                    renderContactListContact(c.contact, getContactInitials(c.contact.name), c.id);
+            .filter((c) => c.contact.name.startsWith(letter))
+            .forEach((c) => {
+                document.getElementById(`div-for-contacts-with-letter(${letter})`).innerHTML += renderContactListContact(c.contact, getContactInitials(c.contact.name), c.id);
                 setColorById(`profile-picture(${c.id})`, c.color);
             });
     });
@@ -81,16 +78,7 @@ function contactBigView(name, email, phone, initials, id, contact) {
     newActiveElement.style.color = "white";
     activeContactId = id;
     let color = allContacts.find((e) => e.id == id).color;
-    document.getElementById("single-contact-view").innerHTML =
-        renderSingleContactView(
-            name,
-            email,
-            phone,
-            initials,
-            id,
-            color,
-            contact
-        );
+    document.getElementById("single-contact-view").innerHTML = renderSingleContactView(name, email, phone, initials, id, color, contact);
     document.getElementById("single-contact-view").style.display = "block";
     document.getElementById("add-contact-button").style.display = "none";
 }
@@ -108,11 +96,7 @@ function editBigView(initials, color, id, name, email, phone) {
     document.getElementById("edit-delete-menu").style.display = "none";
     document.getElementById("profileBtn").style.backgroundColor = "white";
     document.getElementById("window-overlay").classList.remove("d-none");
-    document.getElementById("main-content").innerHTML += renderEditContactView(
-        initials,
-        color,
-        id
-    );
+    document.getElementById("main-content").innerHTML += renderEditContactView(initials, color, id);
     document.getElementById("newName").value = name;
     document.getElementById("newEmail").value = email;
     document.getElementById("newPhone").value = phone;
@@ -254,27 +238,31 @@ document.addEventListener("mouseup", function (e) {
  */
 function getEditedUserData(id) {
     const inputsValid = checkEditInputs();
-    if(inputsValid) {
+    if (inputsValid) {
         let newName = document.getElementById("newName").value;
         let newEmail = document.getElementById("newEmail").value;
         let newPhone = document.getElementById("newPhone").value;
-        saveEditedUserData(newName, newEmail, newPhone, id);        
+        saveEditedUserData(newName, newEmail, newPhone, id);
     }
 }
 
+/**
+ * Function to check if all input fields for editing a contact are filled and valid
+ * @returns {boolean} - true if all inputs are filled and valid, false if not
+ */
 function checkEditInputs() {
     const allInputsFilled = inputsFilled("newName", "newEmail", "newPhone");
     const emailValid = checkValidation("email", "newEmail");
     const phonenumberValid = checkValidation("phonenumber", "newPhone");
-    if(allInputsFilled) {
-        if(emailValid && phonenumberValid) {
-            return true
-        } else if(!emailValid && !phonenumberValid) {
+    if (allInputsFilled) {
+        if (emailValid && phonenumberValid) {
+            return true;
+        } else if (!emailValid && !phonenumberValid) {
             let responseEditContainer = document.getElementById("input-feedback-container");
-            responseEditContainer.innerHTML = "No Valid Email and Phonenumber!"
+            responseEditContainer.innerHTML = "No Valid Email and Phonenumber!";
         }
     }
-} 
+}
 
 /**
  * Function to save the edited data of a contact in the firebase database
@@ -290,11 +278,7 @@ async function saveEditedUserData(newName, newEmail, newPhone, id) {
     document.getElementById("userName").innerHTML = newName;
     document.getElementById("userEmail").innerHTML = newEmail;
     document.getElementById("userPhone").innerHTML = newPhone;
-    updateData(
-        (path = PATH_TO_CONTACTS),
-        (id = id),
-        (data = { email: newEmail, name: newName, phone: newPhone })
-    );
+    updateData((path = PATH_TO_CONTACTS), (id = id), (data = { email: newEmail, name: newName, phone: newPhone }));
     EditContactViewSlideDown();
     await setBackendJsonToSessionStorage();
     setTimeout(() => {
