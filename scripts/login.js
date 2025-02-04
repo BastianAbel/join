@@ -12,7 +12,7 @@ async function userLogin() {
     if (!inputsFilled("email", "password")) {
         return;
     }
-    if(!checkValidation('email', 'email')) {
+    if (!checkValidation('email', 'email')) {
         return
     }
     await fetchUsers();
@@ -157,6 +157,19 @@ function loadUserInitials() {
 }
 
 /**
+ * Function to get the user credentials for legal pages from the session storage.
+ */
+function loadPrivacyAndLegalUserInitials() {
+    let userInitials = sessionStorage.getItem("userName");
+    let loginStatus = sessionStorage.getItem("loginStatus");
+    if (loginStatus === "user") {
+        document.getElementById("profileBtn").innerText = userInitials;
+    } else {
+        document.getElementById("profileBtn").innerText = "G";
+    }
+}
+
+/**
  * Function to set the user's to session storage and local storage if the user logs in as a guest.
  */
 async function setGuestToSessionStorage(event) {
@@ -204,13 +217,16 @@ function userLogout() {
  */
 async function autoLogin() {
     let userKey = localStorage.getItem("userkey");
-    let userData = JSON.parse(localStorage.getItem("user")); 
-    document.getElementById('email').value = userData.email;
-    localStorage.removeItem("user");
-    if (userKey) {
-        await fetchUsers();
-        findUserByKey(userKey);
-        initiateLogin();
+    let userData = JSON.parse(localStorage.getItem("user"));
+    if (userData) {
+        document.getElementById('email').value = userData.email;
+        localStorage.removeItem("user");
+    } else {
+        if (userKey) {
+            await fetchUsers();
+            findUserByKey(userKey);
+            initiateLogin();
+        }
     }
 }
 
