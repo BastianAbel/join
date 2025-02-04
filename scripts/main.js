@@ -17,9 +17,7 @@ function getContactInitials(contactName) {
  * @returns array of values that fit the input
  */
 function filterInputFromArray(sourceArray, input) {
-    return sourceArray.filter((entry) =>
-        entry.name.toLowerCase().includes(input.toLowerCase())
-    );
+    return sourceArray.filter((entry) => entry.name.toLowerCase().includes(input.toLowerCase()));
 }
 
 /**
@@ -27,23 +25,7 @@ function filterInputFromArray(sourceArray, input) {
  * @returns one random color-code
  */
 function getRandomColor() {
-    let colors = [
-        "#FF7A00",
-        "#FF5EB3",
-        "#6E52FF",
-        "#9327FF",
-        "#00BEE8",
-        "#1FD7C1",
-        "#FF745E",
-        "#FFA35E",
-        "#FC71FF",
-        "#FFC701",
-        "#0038FF",
-        "#C3FF2B",
-        "#FFE62B",
-        "#FF4646",
-        "#FFBB2B",
-    ];
+    let colors = ["#FF7A00", "#FF5EB3", "#6E52FF", "#9327FF", "#00BEE8", "#1FD7C1", "#FF745E", "#FFA35E", "#FC71FF", "#FFC701", "#0038FF", "#C3FF2B", "#FFE62B", "#FF4646", "#FFBB2B"];
     return colors[Math.floor(Math.floor(Math.random() * colors.length))];
 }
 
