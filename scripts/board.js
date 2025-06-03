@@ -71,7 +71,18 @@ function getSmallCardInfo(taskId, j, taskDate, taskPriority, priorityImage, assi
  * @param {string} decodedSubtasks
  */
 function setInfoToBigCard(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks) {
-    document.getElementById("board-main").innerHTML += renderTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskType, taskPriority, priorityImage, assignedUsers, cardTypeColor, decodedSubtasks);
+    document.getElementById("board-main").innerHTML += renderTaskBigView(
+        taskId,
+        taskTitle,
+        taskDescription,
+        taskDate,
+        taskType,
+        taskPriority,
+        priorityImage,
+        assignedUsers,
+        cardTypeColor,
+        decodedSubtasks
+    );
     getEmployeeInfo(assignedUsers);
     getSubtaskInfo(decodedSubtasks, taskId);
 }
@@ -129,9 +140,9 @@ async function getSubtaskInfo(subtasks, taskId) {
 async function getCheckboxBg(taskId, i) {
     let subtaskResponse = await loadData((path = `${PATH_TO_TASKS}${taskId}/subtasks/${i}/checked`));
     if (subtaskResponse === true) {
-        document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-checked.svg")';
+        document.getElementById(`checkboxLabel${i}`).style.background = 'url("../assets/icons/checkbox-checked.svg")';
     } else if (subtaskResponse === false) {
-        document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-not-checked.svg")';
+        document.getElementById(`checkboxLabel${i}`).style.background = 'url("../assets/icons/checkbox-not-checked.svg")';
     }
 }
 
@@ -144,10 +155,10 @@ async function changeStateofCheckbox(i, taskId) {
     let isChecked = document.getElementById(`privacyCheckbox${i}`).checked;
     if (isChecked) {
         await updateData((path = PATH_TO_TASKS), (id = `${taskId}/subtasks/${i}`), (data = { checked: true }));
-        document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-checked.svg") no-repeat';
+        document.getElementById(`checkboxLabel${i}`).style.background = 'url("../assets/icons/checkbox-checked.svg") no-repeat';
     } else {
         await updateData((path = PATH_TO_TASKS), (id = `${taskId}/subtasks/${i}`), (data = { checked: false }));
-        document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-not-checked.svg") no-repeat';
+        document.getElementById(`checkboxLabel${i}`).style.background = 'url("../assets/icons/checkbox-not-checked.svg") no-repeat';
     }
     await updateBoardAfterChanges();
 }
@@ -309,13 +320,53 @@ function writeCardsToBoardSectionsFromArray(array) {
     for (let j = 0; j < array.length; j++) {
         let renderValuesObject = getObjectWithValuesNeededInBoardCard(array[j]);
         if (array[j].state === "toDo") {
-            hideElementAndRenderAnother("todo", "board-to-do-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc, renderValuesObject.color, j);
+            hideElementAndRenderAnother(
+                "todo",
+                "board-to-do-section",
+                renderValuesObject.task,
+                renderValuesObject.subtaskState,
+                renderValuesObject.prioImg,
+                renderValuesObject.employeesName,
+                progressBarCalc,
+                renderValuesObject.color,
+                j
+            );
         } else if (array[j].state === "inProgress") {
-            hideElementAndRenderAnother("inProgress", "board-in-progress-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc, renderValuesObject.color, j);
+            hideElementAndRenderAnother(
+                "inProgress",
+                "board-in-progress-section",
+                renderValuesObject.task,
+                renderValuesObject.subtaskState,
+                renderValuesObject.prioImg,
+                renderValuesObject.employeesName,
+                progressBarCalc,
+                renderValuesObject.color,
+                j
+            );
         } else if (array[j].state === "awaitFeedback") {
-            hideElementAndRenderAnother("awaitingFeedback", "board-await-feedback-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc, renderValuesObject.color, j);
+            hideElementAndRenderAnother(
+                "awaitingFeedback",
+                "board-await-feedback-section",
+                renderValuesObject.task,
+                renderValuesObject.subtaskState,
+                renderValuesObject.prioImg,
+                renderValuesObject.employeesName,
+                progressBarCalc,
+                renderValuesObject.color,
+                j
+            );
         } else if (array[j].state === "done") {
-            hideElementAndRenderAnother("done", "board-done-section", renderValuesObject.task, renderValuesObject.subtaskState, renderValuesObject.prioImg, renderValuesObject.employeesName, progressBarCalc, renderValuesObject.color, j);
+            hideElementAndRenderAnother(
+                "done",
+                "board-done-section",
+                renderValuesObject.task,
+                renderValuesObject.subtaskState,
+                renderValuesObject.prioImg,
+                renderValuesObject.employeesName,
+                progressBarCalc,
+                renderValuesObject.color,
+                j
+            );
         }
     }
 }

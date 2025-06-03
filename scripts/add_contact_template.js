@@ -18,7 +18,7 @@ function renderNewContact(name, email, initials, id, color, phone) {
                                 <h1>Contacts</h1>
                             </div>
                             <div class="arrow-position">
-                                <img onclick="navigateToContactList()" class="" src="/assets/icons/blue-arrow-left.svg" alt="" />
+                                <img onclick="navigateToContactList()" class="" src="../assets/icons/blue-arrow-left.svg" alt="" />
                             </div>
                         </div>
                         <span class="border-left">Better with a team</span>
@@ -58,7 +58,7 @@ function renderNewContact(name, email, initials, id, color, phone) {
                 </div>
                 </div>
                     <div id="option-circle" onclick="showEditDeleteMenu()" class="options-icon-container">
-                        <img src="/assets/icons/options-logo.svg" alt="" />
+                        <img src="../assets/icons/options-logo.svg" alt="" />
                     </div>
             </div>`;
 }
