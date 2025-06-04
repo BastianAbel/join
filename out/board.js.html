@@ -132,9 +132,9 @@ async function getSubtaskInfo(subtasks, taskId) {
 async function getCheckboxBg(taskId, i) {
     let subtaskResponse = await loadData((path = `${PATH_TO_TASKS}${taskId}/subtasks/${i}/checked`));
     if (subtaskResponse === true) {
-        document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-checked.svg")';
+        document.getElementById(`checkboxLabel${i}`).style.background = 'url("../assets/icons/checkbox-checked.svg")';
     } else if (subtaskResponse === false) {
-        document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-not-checked.svg")';
+        document.getElementById(`checkboxLabel${i}`).style.background = 'url("../assets/icons/checkbox-not-checked.svg")';
     }
 }
 
@@ -147,10 +147,10 @@ function changeStateofCheckbox(i, taskId) {
     let isChecked = document.getElementById(`privacyCheckbox${i}`).checked;
     if (isChecked) {
         updateData((path = PATH_TO_TASKS), (id = `${taskId}/subtasks/${i}`), (data = { "checked": true }));
-        document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-checked.svg") no-repeat';
+        document.getElementById(`checkboxLabel${i}`).style.background = 'url("../assets/icons/checkbox-checked.svg") no-repeat';
     } else {
         updateData((path = PATH_TO_TASKS), (id = `${taskId}/subtasks/${i}`), (data = { "checked": false }));
-        document.getElementById(`checkboxLabel${i}`).style.background = 'url("/assets/icons/checkbox-not-checked.svg") no-repeat';
+        document.getElementById(`checkboxLabel${i}`).style.background = 'url("../assets/icons/checkbox-not-checked.svg") no-repeat';
     }
 }
 

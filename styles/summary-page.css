@@ -223,7 +223,7 @@ a {
 
 .to-do-container:hover {
     #to-do-img-hover {
-        content: url(/assets/icons/pencil-rectangle-hover.svg);
+        content: url(../assets/icons/pencil-rectangle-hover.svg);
         width: 40px;
         height: 40px;
     }
@@ -231,7 +231,7 @@ a {
 
 .done-container:hover {
     #done-img-hover {
-        content: url(/assets/icons/check-rectangle-hover.svg);
+        content: url(../assets/icons/check-rectangle-hover.svg);
         width: 40px;
         height: 40px;
     }
@@ -371,16 +371,16 @@ a {
         margin: 12px 0 0 16px;
     }
 
-    .task-management-area{
-        margin:0;
+    .task-management-area {
+        margin: 0;
         margin-top: 12px;
     }
 
-    .important-reminder-main-container{
+    .important-reminder-main-container {
         margin-top: 12px;
     }
 
-    .task-overview{
+    .task-overview {
         margin-top: 12px;
     }
 }

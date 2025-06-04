@@ -181,7 +181,7 @@ function toggleClass(element, className) {
  * @returns dropdown/up img source
  */
 function getDropDownIcon(container) {
-    return container.classList.contains("d-none") ? "/assets/icons/arrow-drop-down.svg" : "/assets/icons/arrow-drop-up.svg";
+    return container.classList.contains("d-none") ? "../assets/icons/arrow-drop-down.svg" : "../assets/icons/arrow-drop-up.svg";
 }
 
 /**
@@ -320,17 +320,17 @@ async function editGetSubtaskInfo(subtasks) {
 					<span onblur="removeEditClass(event)">${decodedSubtasks[i].description}</span>
 					<div class="subtask-img-container">
 						<img 
-							src="/assets/icons/edit-symbol.svg"
+							src="../assets/icons/edit-symbol.svg"
 							alt="pencil icon"
 							onclick="editContent(event)"
 						/>
 						<img
 							id="sub-task-icon-vector"
-							src="/assets/icons/subtask-vektor.svg"
+							src="../assets/icons/subtask-vektor.svg"
 							alt="vector icon"
 						/>
 						<img
-							src="/assets/icons/trashcan.svg"
+							src="../assets/icons/trashcan.svg"
 							alt="trashcan-logo"
 							onclick="deleteSubtask(event,'${decodedSubtasks[i].description}')"
 						/>

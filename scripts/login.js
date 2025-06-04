@@ -145,8 +145,8 @@ function loadUserInitials() {
 function loadPrivacyAndLegalUserInitials() {
     let userInitials = sessionStorage.getItem("userName");
     let loginStatus = sessionStorage.getItem("loginStatus");
-    if(!loginStatus) {
-        document.getElementById('privacy-navbar').innerHTML = '<a class="login-navbar-style" href="/pages/index.html">Log In</a>';
+    if (!loginStatus) {
+        document.getElementById("privacy-navbar").innerHTML = '<a class="login-navbar-style" href="../pages/index.html">Log In</a>';
     }
     if (loginStatus === "user") {
         document.getElementById("profileBtn").innerText = userInitials;

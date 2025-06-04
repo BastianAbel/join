@@ -46,7 +46,9 @@ function renderTaskBigView(taskId, taskTitle, taskDescription, taskDate, taskTyp
                     <div class="option-delete"></div><span>Delete</span>
                 </div>
                 <div class="seperator"></div>
-                <div onclick="openEditTaskBigView('${taskTitle}','${taskDescription}','${taskDate}', '${taskPriority}', '${assignedUsers}', '${taskId}', '${encodeURIComponent(JSON.stringify(decodedSubtasks))}')" class="option-container">
+                <div onclick="openEditTaskBigView('${taskTitle}','${taskDescription}','${taskDate}', '${taskPriority}', '${assignedUsers}', '${taskId}', '${encodeURIComponent(
+        JSON.stringify(decodedSubtasks)
+    )}')" class="option-container">
                     <div class="option-edit"></div><span>Edit</span>
                 </div>
             </div>

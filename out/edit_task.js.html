@@ -194,9 +194,9 @@ function editShowContactList(event, taskId) {
     if (event.currentTarget == event.target) {
         editTaskContactListContainer.classList.toggle("d-none");
         if (!editTaskContactListContainer.classList.contains("d-none")) {
-            editTaskDropDownIcon.src = "/assets/icons/arrow-drop-up.svg";
+            editTaskDropDownIcon.src = "../assets/icons/arrow-drop-up.svg";
         } else {
-            editTaskDropDownIcon.src = "/assets/icons/arrow-drop-down.svg";
+            editTaskDropDownIcon.src = "../assets/icons/arrow-drop-down.svg";
             editNameCircleContainer.classList.remove("d-none");
             editNameCircleContainer.classList.add("open-circle-container");
             editNameCircleContainer.innerHTML = "";
@@ -306,17 +306,17 @@ async function editGetSubtaskInfo(subtasks, taskId) {
 					&lt;span onblur="removeEditClass(event)">${subtasks[i].description}&lt;/span>
 					&lt;div class="subtask-img-container">
 						&lt;img 
-							src="/assets/icons/edit-symbol.svg"
+							src="../assets/icons/edit-symbol.svg"
 							alt="pencil icon"
 							onclick="editContent(event)"
 						/>
 						&lt;img
 							id="sub-task-icon-vector"
-							src="/assets/icons/subtask-vektor.svg"
+							src="../assets/icons/subtask-vektor.svg"
 							alt="vector icon"
 						/>
 						&lt;img
-							src="/assets/icons/trashcan.svg"
+							src="../assets/icons/trashcan.svg"
 							alt="trashcan-logo"
 							onclick="deleteSubtask(event,'${subtasks[i].description}')"
 						/>

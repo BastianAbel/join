@@ -81,7 +81,7 @@ function renderSingleContactView(name, email, phone, initials, id, color) {
                                 &lt;h1>Contacts&lt;/h1>
                             &lt;/div>
                             &lt;div class="arrow-position">
-                                &lt;img onclick="navigateToContactList()" class="" src="/assets/icons/blue-arrow-left.svg" alt="" />
+                                &lt;img onclick="navigateToContactList()" class="" src="../assets/icons/blue-arrow-left.svg" alt="" />
                             &lt;/div>
                         &lt;/div>
                         &lt;span class="border-left">Better with a team&lt;/span>
@@ -121,7 +121,7 @@ function renderSingleContactView(name, email, phone, initials, id, color) {
                 &lt;/div>
                 &lt;/div>
                     &lt;div id="option-circle" onclick="showEditDeleteMenu()" class="options-icon-container">
-                        &lt;img src="/assets/icons/options-logo.svg" alt="" />
+                        &lt;img src="../assets/icons/options-logo.svg" alt="" />
                     &lt;/div>
             &lt;/div>`;
 }
@@ -138,7 +138,7 @@ function renderEditContactView(initials, color, id) {
 &lt;div id="editContactContainer" class="big-contact-container">
     &lt;div class="add-contact-container">
         &lt;div class="close-container">
-            &lt;img onclick="EditContactViewSlideDown()" src="/assets/icons/cross-white.svg" alt="">
+            &lt;img onclick="EditContactViewSlideDown()" src="../assets/icons/cross-white.svg" alt="">
         &lt;/div>
         &lt;div class="add-contact-head">
             &lt;h1 class="border-bottom">Edit contact&lt;/h1>
@@ -154,15 +154,15 @@ function renderEditContactView(initials, color, id) {
             &lt;div class="create-contact-container">
                 &lt;div class="input-container">
                     &lt;input id="newName" type="text" placeholder="Name" required>
-                    &lt;img src="/assets/icons/contact-person.svg" alt="User Icon" class="input-icon">
+                    &lt;img src="../assets/icons/contact-person.svg" alt="User Icon" class="input-icon">
                 &lt;/div>
                 &lt;div class="input-container">
                     &lt;input id="newEmail" type="email" placeholder="Email" required>
-                    &lt;img src="/assets/icons/mail-icon.svg" alt="Mail Icon" class="input-icon">
+                    &lt;img src="../assets/icons/mail-icon.svg" alt="Mail Icon" class="input-icon">
                 &lt;/div>
                 &lt;div class="input-container">
                     &lt;input id="newPhone" type="tel" placeholder="Phone" required>
-                    &lt;img src="/assets/icons/phone-icon.svg" alt="Phone Icon" class="input-icon">
+                    &lt;img src="../assets/icons/phone-icon.svg" alt="Phone Icon" class="input-icon">
                 &lt;/div>
             &lt;/div>
             &lt;div class="button-container">
@@ -172,7 +172,7 @@ function renderEditContactView(initials, color, id) {
                 &lt;div>
                     &lt;button onclick="getEditedUserData('${id}')" class="save-contact-button">
                         Save 
-                        &lt;img src="/assets/icons/check.svg" alt="">
+                        &lt;img src="../assets/icons/check.svg" alt="">
                     &lt;/button>
                 &lt;/div>
             &lt;/div>
@@ -194,7 +194,7 @@ return`
         &lt;div class="desktop-view-contact-wrapper">
         &lt;div class="add-contact-container">
             &lt;div class="close-container">
-                &lt;img onclick="AddContactViewSlideDown()" src="/assets/icons/cross-white.svg" alt="">
+                &lt;img onclick="AddContactViewSlideDown()" src="../assets/icons/cross-white.svg" alt="">
             &lt;/div>
             &lt;div class="add-contact-head">
                 &lt;h1>Add Contact&lt;/h1>
@@ -205,7 +205,7 @@ return`
             &lt;div id="add-contact-placeholder" class="d-none">
                 &lt;p id="add-contact-initials-paragraph">&lt;/p>
             &lt;/div>
-            &lt;img id="add-contact-placeholder-img" src="/assets/icons/contact-placeholder.svg" alt="" />
+            &lt;img id="add-contact-placeholder-img" src="../assets/icons/contact-placeholder.svg" alt="" />
         &lt;/div>
         &lt;form onsubmit="createContact(event)">
         &lt;div class="input-button-desktop-wrapper">
@@ -218,7 +218,7 @@ return`
                         onblur="fillPlaceholderBubble()" 
                         required 
                     />
-                    &lt;img src="/assets/icons/contact-person.svg" alt="User Icon" class="input-icon">
+                    &lt;img src="../assets/icons/contact-person.svg" alt="User Icon" class="input-icon">
                 &lt;/div>
                 &lt;div class="input-container">
                     &lt;input 
@@ -227,7 +227,7 @@ return`
                         placeholder="Email" 
                         required 
                     />
-                    &lt;img src="/assets/icons/mail-icon.svg" alt="Mail Icon" class="input-icon">
+                    &lt;img src="../assets/icons/mail-icon.svg" alt="Mail Icon" class="input-icon">
                 &lt;/div>
                 &lt;div class="input-container">
                     &lt;input 
@@ -236,13 +236,13 @@ return`
                         placeholder="Phone" 
                         required 
                     />
-                    &lt;img src="/assets/icons/phone-icon.svg" alt="Phone Icon" class="input-icon">
+                    &lt;img src="../assets/icons/phone-icon.svg" alt="Phone Icon" class="input-icon">
                 &lt;/div>
             &lt;/div>
             &lt;div class="button-container">
                 &lt;button type="submit" class="create-contact-button">
                     Create contact
-                    &lt;img src="/assets/icons/check.svg" alt="">
+                    &lt;img src="../assets/icons/check.svg" alt="">
                 &lt;/button>
             &lt;/div>
             &lt;/form>
