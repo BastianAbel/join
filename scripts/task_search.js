@@ -134,13 +134,13 @@ function checkUserFolder(assignedUser) {
  */
 function getPriorityImage(priority) {
     if (priority === "urgent") {
-        return "/assets/icons/prio-urgent.svg";
+        return "../assets/icons/prio-urgent.svg";
     } else if (priority === "medium") {
-        return "/assets/icons/prio-media-orange.svg";
+        return "../assets/icons/prio-media-orange.svg";
     } else if (priority === "low") {
-        return "/assets/icons/prio-low.svg";
+        return "../assets/icons/prio-low.svg";
     } else {
-        return "/assets/icons/prio-low.svg";
+        return "../assets/icons/prio-low.svg";
     }
 }
 

@@ -201,7 +201,7 @@ main {
         border: 1px solid var(--identity);
 
         & img {
-            content: url(/assets/icons/close-blue.svg);
+            content: url(../assets/icons/close-blue.svg);
         }
     }
 }
@@ -311,12 +311,12 @@ select {
     color: var(--light-text-color);
 
     & img {
-        content: url(/assets/icons/checkbox-checked-white.svg);
+        content: url(../assets/icons/checkbox-checked-white.svg);
     }
 }
 
 .open-list {
-    content: url("/assets/icons/black-arrow-drop-up.svg");
+    content: url("../assets/icons/black-arrow-drop-up.svg");
 }
 
 #name-circle-container,

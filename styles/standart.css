@@ -1,6 +1,6 @@
 @font-face {
     font-family: inter;
-    src: url("/assets/fonts/Inter-VariableFont_opsz\,wght.ttf");
+    src: url("../assets/fonts/Inter-VariableFont_opsz\,wght.ttf");
 }
 
 * {
@@ -100,7 +100,7 @@ input[type="checkbox"] + label {
     cursor: pointer;
     flex-shrink: 0;
     z-index: 9998;
-    background-image: url(/assets/icons/checkbox-not-checked.svg);
+    background-image: url(../assets/icons/checkbox-not-checked.svg);
 }
 
 input[type="checkbox"]:checked + label {
@@ -109,7 +109,7 @@ input[type="checkbox"]:checked + label {
     display: inline-block;
     background-size: 100%;
     flex-shrink: 0;
-    background-image: url(/assets/icons/checkbox-checked.svg);
+    background-image: url(../assets/icons/checkbox-checked.svg);
 }
 
 .not-valid {

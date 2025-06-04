@@ -50,7 +50,7 @@ function renderSingleContactView(name, email, phone, initials, id, color) {
                                 <h1>Contacts</h1>
                             </div>
                             <div class="arrow-position">
-                                <img onclick="navigateToContactList()" class="" src="/assets/icons/blue-arrow-left.svg" alt="" />
+                                <img onclick="navigateToContactList()" class="" src="../assets/icons/blue-arrow-left.svg" alt="" />
                             </div>
                         </div>
                         <span class="border-left">Better with a team</span>
@@ -90,7 +90,7 @@ function renderSingleContactView(name, email, phone, initials, id, color) {
                 </div>
                 </div>
                     <div id="option-circle" onclick="showEditDeleteMenu()" class="options-icon-container">
-                        <img src="/assets/icons/options-logo.svg" alt="" />
+                        <img src="../assets/icons/options-logo.svg" alt="" />
                     </div>
             </div>`;
 }
@@ -107,7 +107,7 @@ function renderEditContactView(initials, color, id) {
 <div id="editContactContainer" class="big-contact-container">
     <div class="add-contact-container">
         <div class="close-container">
-            <img onclick="EditContactViewSlideDown()" src="/assets/icons/cross-white.svg" alt="">
+            <img onclick="EditContactViewSlideDown()" src="../assets/icons/cross-white.svg" alt="">
         </div>
         <div class="add-contact-head">
             <h1 class="border-bottom">Edit contact</h1>
@@ -123,15 +123,15 @@ function renderEditContactView(initials, color, id) {
             <div class="create-contact-container">
                 <div class="input-container">
                     <input id="newName" type="text" placeholder="Name">
-                    <img src="/assets/icons/contact-person.svg" alt="User Icon" class="input-icon">
+                    <img src="../assets/icons/contact-person.svg" alt="User Icon" class="input-icon">
                 </div>
                 <div class="input-container">
                     <input id="newEmail" type="email" placeholder="Email">
-                    <img src="/assets/icons/mail-icon.svg" alt="Mail Icon" class="input-icon">
+                    <img src="../assets/icons/mail-icon.svg" alt="Mail Icon" class="input-icon">
                 </div>
                 <div class="input-container">
                     <input id="newPhone" type="tel" placeholder="Phone">
-                    <img src="/assets/icons/phone-icon.svg" alt="Phone Icon" class="input-icon">
+                    <img src="../assets/icons/phone-icon.svg" alt="Phone Icon" class="input-icon">
                 </div>
                 <div class="input-feedback-container" id="input-feedback-container"></div>
             </div>
@@ -142,7 +142,7 @@ function renderEditContactView(initials, color, id) {
                 <div>
                     <button onclick="getEditedUserData('${id}')" class="save-contact-button">
                         Save 
-                        <img src="/assets/icons/check.svg" alt="">
+                        <img src="../assets/icons/check.svg" alt="">
                     </button>
                 </div>
             </div>
@@ -164,7 +164,7 @@ function renderAddContactView() {
         <div class="desktop-view-contact-wrapper">
             <div class="add-contact-container">
                 <div class="close-container">
-                    <img onclick="AddContactViewSlideDown()" src="/assets/icons/cross-white.svg" alt="">
+                    <img onclick="AddContactViewSlideDown()" src="../assets/icons/cross-white.svg" alt="">
                 </div>
                 <div class="add-contact-head">
                     <h1>Add Contact</h1>
@@ -175,7 +175,7 @@ function renderAddContactView() {
                 <div id="add-contact-placeholder" class="d-none">
                     <p id="add-contact-initials-paragraph"></p>
                 </div>
-                <img id="add-contact-placeholder-img" src="/assets/icons/contact-placeholder.svg" alt="" />
+                <img id="add-contact-placeholder-img" src="../assets/icons/contact-placeholder.svg" alt="" />
             </div>
             <form onsubmit="createContact(event)">
                 <div class="input-button-desktop-wrapper">
@@ -183,22 +183,22 @@ function renderAddContactView() {
                         <div class="input-container">
                             <input id="add-contact-name-input-field" type="text" placeholder="Name"
                                 onblur="fillPlaceholderBubble()" onkeyup="resetNotFilledResponse(this)"/>
-                            <img src="/assets/icons/contact-person.svg" alt="User Icon" class="input-icon">
+                            <img src="../assets/icons/contact-person.svg" alt="User Icon" class="input-icon">
                         </div>
                         <div class="input-container">
                             <input id="add-contact-email-input-field" type="text" placeholder="Email" onkeyup="resetNotFilledResponse(this)"/>
-                            <img src="/assets/icons/mail-icon.svg" alt="Mail Icon" class="input-icon">
+                            <img src="../assets/icons/mail-icon.svg" alt="Mail Icon" class="input-icon">
                         </div>
                         <div class="input-container">
                             <input id="add-contact-phone-input-field" type="text" placeholder="Phone" onkeyup="resetNotFilledResponse(this)"/>
-                            <img src="/assets/icons/phone-icon.svg" alt="Phone Icon" class="input-icon">
+                            <img src="../assets/icons/phone-icon.svg" alt="Phone Icon" class="input-icon">
                         </div>
                     </div>
                     <div class="input-feedback-container" id="input-feedback-container"></div>
                     <div class="button-container">
                         <button type="submit" class="create-contact-button">
                             Create contact
-                            <img src="/assets/icons/check.svg" alt="">
+                            <img src="../assets/icons/check.svg" alt="">
                         </button>
                     </div>
             </form>

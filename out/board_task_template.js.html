@@ -118,7 +118,7 @@ function renderEditTaskBigView(taskId, taskPriority) {
                     oninput="editFormatDateInput()"
                     required
                 />
-                &lt;img src="/assets/icons/calender.svg" alt="calender icon" />
+                &lt;img src="../assets/icons/calender.svg" alt="calender icon" />
             &lt;/div>
         &lt;/div>
 
@@ -127,15 +127,15 @@ function renderEditTaskBigView(taskId, taskPriority) {
             &lt;div id="prio-container">
                 &lt;div id="edit-prio-urgent-btn" class="prio-btn" onclick="editSetUrgentPrio()">
                     &lt;span>Urgent&lt;/span>
-                    &lt;img src="/assets/icons/prio-alta-red.svg" alt="" />
+                    &lt;img src="../assets/icons/prio-alta-red.svg" alt="" />
                 &lt;/div>
                 &lt;div id="edit-prio-medium-btn" class="prio-btn" onclick="editSetMediumPrio()">
                     &lt;span>Medium&lt;/span>
-                    &lt;img src="/assets/icons/prio-media-orange.svg" alt="" />
+                    &lt;img src="../assets/icons/prio-media-orange.svg" alt="" />
                 &lt;/div>
                 &lt;div id="edit-prio-low-btn" class="prio-btn" onclick="editSetLowPrio()">
                     &lt;span>Low&lt;/span>
-                    &lt;img src="/assets/icons/prio-baja-green.svg" alt="" />
+                    &lt;img src="../assets/icons/prio-baja-green.svg" alt="" />
                 &lt;/div>
             &lt;/div>
         &lt;/div>
@@ -156,7 +156,7 @@ function renderEditTaskBigView(taskId, taskPriority) {
                     onclick="editShowContactList(event,'${taskId}')"
                 />
                 &lt;img
-                    src="/assets/icons/arrow-drop-down.svg"
+                    src="../assets/icons/arrow-drop-down.svg"
                     alt="closed drop down logo"
                     id="edit-task-contact-drop-down-icon"
                     onclick="editShowContactList(event,'${taskId}')"
@@ -178,23 +178,23 @@ function renderEditTaskBigView(taskId, taskPriority) {
                     placeholder="Add new Subtask"
                     oninput="editShowAndHideIcons()"
                 />
-                &lt;img id="edit-sub-task-icon-plus" src="/assets/icons/plus-subtask.svg" alt="plus-icon" />
+                &lt;img id="edit-sub-task-icon-plus" src="../assets/icons/plus-subtask.svg" alt="plus-icon" />
                 &lt;img
                     id="edit-sub-task-icon-cross"
-                    src="/assets/icons/subtask-cross.svg"
+                    src="../assets/icons/subtask-cross.svg"
                     alt="cross icon"
                     onclick="editClearSubtaskInputField()"
                     class="d-none"
                 />
                 &lt;img
                     id="edit-sub-task-icon-vector"
-                    src="/assets/icons/subtask-vektor.svg"
+                    src="../assets/icons/subtask-vektor.svg"
                     alt="vector icon"
                     class="d-none"
                 />
                 &lt;img
                     id="edit-sub-task-icon-check"
-                    src="/assets/icons/subtask-check.svg"
+                    src="../assets/icons/subtask-check.svg"
                     alt="checked icon"
                     onclick="editAddSubTask()"
                     class="d-none"
@@ -205,7 +205,7 @@ function renderEditTaskBigView(taskId, taskPriority) {
             &lt;/div>
         &lt;/div>
         &lt;div id="edit-submit-changes-btn-container">
-            &lt;button onclick="getChangedTaskData('${taskId}', '${taskPriority}')" type="submit" id="edit-change-task-btn" class="add-task-btn">Ok&lt;img src="/assets/icons/check.svg" alt="" />&lt;/button>
+            &lt;button onclick="getChangedTaskData('${taskId}', '${taskPriority}')" type="submit" id="edit-change-task-btn" class="add-task-btn">Ok&lt;img src="../assets/icons/check.svg" alt="" />&lt;/button>
         &lt;/div>
     &lt;/div>
 &lt;/div>`;

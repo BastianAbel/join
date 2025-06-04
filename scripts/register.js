@@ -191,10 +191,10 @@ function changePasswordVisibility(inputfieldId, imgElement) {
     inputfieldRef = document.getElementById(inputfieldId);
     if (inputfieldRef.type == "text") {
         inputfieldRef.type = "password";
-        visibleImgRef.src = "/assets/icons/visibility_off.svg";
+        visibleImgRef.src = "../assets/icons/visibility_off.svg";
     } else {
         inputfieldRef.type = "text";
-        visibleImgRef.src = "/assets/icons/visibility_on.svg";
+        visibleImgRef.src = "../assets/icons/visibility_on.svg";
     }
 }
 

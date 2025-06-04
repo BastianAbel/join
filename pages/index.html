@@ -5,18 +5,18 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Log In</title>
-    <link rel="shortcut icon" href="/assets/icons/join-logo-white.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/icons/join-logo-white.svg" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/styles/standart.css">
-    <link rel="stylesheet" href="/styles/login-style.css">
-    <link rel="stylesheet" href="/styles/signup-style.css">
-    <link rel="stylesheet" href="/styles/start-site-animation.css">
-    <script src="/scripts/login.js" defer></script>
-    <script src="/scripts/main.js" defer></script>
-    <script src="/scripts/register.js" defer></script>
-    <script src="/scripts/firebase.js" defer></script>
-    <script src="/scripts/standart.js" defer></script>
-    <script src="/scripts/form_validation.js" defer></script>
+    <link rel="stylesheet" href="../styles/standart.css">
+    <link rel="stylesheet" href="../styles/login-style.css">
+    <link rel="stylesheet" href="../styles/signup-style.css">
+    <link rel="stylesheet" href="../styles/start-site-animation.css">
+    <script src="../scripts/login.js" defer></script>
+    <script src="../scripts/main.js" defer></script>
+    <script src="../scripts/register.js" defer></script>
+    <script src="../scripts/firebase.js" defer></script>
+    <script src="../scripts/standart.js" defer></script>
+    <script src="../scripts/form_validation.js" defer></script>
 </head>
 
 <body onload="autoLogin()">
@@ -29,14 +29,16 @@
             <form onsubmit="userLogin(); return false;">
                 <div class="input-main">
                     <div class="input-container">
-                        <input id="email" type="text" placeholder="Email" onkeyup="resetNotFilledResponse(this)" onfocusout="checkValidation('email', 'email')"/>
-                        <img src="/assets/icons/mail-icon.svg" alt="User Icon" class="input-icon" />
+                        <input id="email" type="text" placeholder="Email" onkeyup="resetNotFilledResponse(this)"
+                            onfocusout="checkValidation('email', 'email')" />
+                        <img src="../assets/icons/mail-icon.svg" alt="User Icon" class="input-icon" />
                     </div>
                     <div class="input-container">
                         <input id="password" type="password" placeholder="Password"
                             onkeyup="resetLoginWarning(); togglePasswordVisibilityIcon(this, 'first'); resetNotFilledResponse(this)" />
-                        <img src="/assets/icons/lock.svg" alt="User Icon" class="input-icon" id="password-lock-first" />
-                        <img src="/assets/icons/visibility_off.svg" alt="User Icon"
+                        <img src="../assets/icons/lock.svg" alt="User Icon" class="input-icon"
+                            id="password-lock-first" />
+                        <img src="../assets/icons/visibility_off.svg" alt="User Icon"
                             class="input-icon d-none visibility-icon" id="password-visibility-first"
                             onclick="changePasswordVisibility('password', this)" />
                     </div>
@@ -60,19 +62,19 @@
     <section>
         <div class="signup-container">
             <span>Not a Join user?</span>
-            <a href="/pages/signup.html" class="signup-button">Sign up</a>
+            <a href="../signup.html" class="signup-button">Sign up</a>
         </div>
     </section>
     <footer>
         <div class="legal-container">
-            <a href="/pages/privacy-policy.html">Privacy Policy</a>
-            <a href="/pages/impressum.html">Legal notice</a>
+            <a href="../privacy-policy.html">Privacy Policy</a>
+            <a href="../impressum.html">Legal notice</a>
         </div>
     </footer>
     <div class="start-site-container">
         <div class="animation-img-container">
-            <img id="join-logo-white" src="/assets/icons/join-logo-white.svg" alt="Join Logo" />
-            <img id="join-logo-dark" src="/assets/icons/join-logo-dark.svg" alt="Join Logo" />
+            <img id="join-logo-white" src="../assets/icons/join-logo-white.svg" alt="Join Logo" />
+            <img id="join-logo-dark" src="../assets/icons/join-logo-dark.svg" alt="Join Logo" />
         </div>
     </div>
 </body>

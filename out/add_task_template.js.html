@@ -38,17 +38,17 @@ function renderSubtask(subtaskTitle) {
 					&lt;span onblur="removeEditClass(event)">${subtaskTitle}&lt;/span>
 					&lt;div class="subtask-img-container">
 						&lt;img 
-							src="/assets/icons/edit-symbol.svg"
+							src="../assets/icons/edit-symbol.svg"
 							alt="pencil icon"
 							onclick="editContent(event)"
 						/>
 						&lt;img
 							id="sub-task-icon-vector"
-							src="/assets/icons/subtask-vektor.svg"
+							src="../assets/icons/subtask-vektor.svg"
 							alt="vector icon"
 						/>
 						&lt;img
-							src="/assets/icons/trashcan.svg"
+							src="../assets/icons/trashcan.svg"
 							alt="trashcan-logo"
 							onclick="deleteSubtask(event, '${subtaskTitle}')"
 						/>
@@ -69,7 +69,7 @@ function renderAssignContact(name, id) {
 					&lt;div id="name-circle(${id})" class="name-circle">${getContactInitials(name)}&lt;/div>
 					&lt;li>${name}&lt;/li>
 				&lt;/div>
-				&lt;img src="/assets/icons/checkbox-not-checked.svg" alt="unchecked checkbox"/>
+				&lt;img src="../assets/icons/checkbox-not-checked.svg" alt="unchecked checkbox"/>
 			&lt;/div>`;
 }
 

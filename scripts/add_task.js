@@ -133,10 +133,10 @@ function showContactList(event) {
     if (event.currentTarget == event.target) {
         TASK_CONTACT_LIST_CONTAINER.classList.toggle("d-none");
         if (!TASK_CONTACT_LIST_CONTAINER.classList.contains("d-none")) {
-            CONTACT_INPUT_ICON.src = "/assets/icons/arrow-drop-up.svg";
+            CONTACT_INPUT_ICON.src = "../assets/icons/arrow-drop-up.svg";
             document.addEventListener("click", prepareContactlistToGetClosedFromOutside);
         } else {
-            CONTACT_INPUT_ICON.src = "/assets/icons/arrow-drop-down.svg";
+            CONTACT_INPUT_ICON.src = "../assets/icons/arrow-drop-down.svg";
             NAME_CIRCLE_CONTAINER.classList.remove("d-none");
             NAME_CIRCLE_CONTAINER.classList.add("open-circle-container");
         }
